@@ -30,6 +30,7 @@ export class PreloadScene extends AppScene {
   }
   preload() {
     this.load.image(assets.nightCourt.key, assets.nightCourt.url);
+    this.load.image(assets.hoop.key, assets.hoop.url);
   }
   create() {
     makeTextures(this);

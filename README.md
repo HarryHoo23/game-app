@@ -91,3 +91,9 @@ Vite may report the Phaser vendor chunk above 500 kB. The engine is split into i
 Home and live gameplay now use a shared navy/teal, mint, cream and amber theme with a night-court environment, compact HUD and painted scoring feedback. Physics, input, scoring and saves are unchanged. See `docs/visual-redesign-2026-10-14.md` for visual modules and verification. Equipment, level-select and result layouts remain for a later pass.
 
 Run `node scripts/visual-check.mjs` with Vite running to capture home, game, aim and score previews at phone sizes.
+
+## Front-facing shooting update
+
+The gameplay hoop now uses `src/assets/hoop/hoop-board.png`, with the rim aligned to the screen centre in all ten levels. The ball starts at bottom-centre. Drag upward for power; left/right deviation changes the shot direction at a reduced sensitivity suitable for the front view. Short shots and inaccurate shots still miss.
+
+`src/data/hoop.ts` defines the image's measured rim anchor and collision dimensions. The front/back image layers give the falling ball correct net occlusion. The physics radius, domain scoring rules, upgrade economy and save schema remain unchanged. Shot positions and the horizontal drag sensitivity have intentionally changed for the new viewpoint.

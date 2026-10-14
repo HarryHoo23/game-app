@@ -1,3 +1,4 @@
+import { physics } from "../../data/physics";
 import { AimGuide } from "../effects/AimGuide";
 import Phaser from "phaser";
 import { ORIGIN } from "../physics/court";
@@ -32,7 +33,7 @@ export class ShotInput {
     if (
       !this.canAim() ||
       this.pointer !== null ||
-      Math.hypot(p.x - ORIGIN.x, p.y - ORIGIN.y) > 48
+      Math.hypot(p.x - ORIGIN.x, p.y - ORIGIN.y) > physics.inputRadius
     )
       return;
     this.pointer = p.id;
@@ -52,6 +53,9 @@ export class ShotInput {
     const v = launchVector(this.drag.x, this.drag.y, this.stats);
     this.cancel();
     if (v && this.canAim()) this.fire(v);
+  }
+  get isAiming() {
+    return this.pointer !== null;
   }
   cancel = () => {
     this.pointer = null;

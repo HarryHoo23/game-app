@@ -41,7 +41,7 @@ export function createCourtEnvironment(
     0,
   );
   shade.fillRect(0, 0, 400, 205);
-  // The original side-view launch/collision layout is preserved over the new environment.
+  // Environment layers stay independent of the current shooting/collision layout.
   const lettering = scene.add
     .text(23, 395, "GOOD SHOTS.\nLATE NIGHTS.", {
       fontFamily: "Permanent Marker",

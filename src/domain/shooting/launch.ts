@@ -1,6 +1,7 @@
 import { physics } from "../../data/physics";
 import type { Stats } from "../progression/progress";
 export function launchVector(dx: number, dy: number, stats: Stats) {
+  dx *= physics.horizontalSensitivity;
   const d = Math.hypot(dx, dy);
   if (d < physics.minDrag || dy > -10) return null;
   const raw = Math.min(d / physics.maxDrag, 1);

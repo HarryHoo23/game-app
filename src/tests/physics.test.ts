@@ -1,3 +1,4 @@
+import { getHoopGeometry } from "../domain/shooting/hoopGeometry";
 import { createRequire } from "node:module";
 import { describe, it, expect } from "vitest";
 import { levels } from "../data/levels";
@@ -29,11 +30,14 @@ describe("bundled Matter integration", () => {
       physics.ballRadius,
       { frictionAir: 0, restitution: 0.72, label: "ball" },
     );
+    const g = getHoopGeometry(level);
     const bodies = [
       ball,
-      Bodies.circle(x - 42, y, 4, { isStatic: true }),
-      Bodies.circle(x + 42, y, 4, { isStatic: true }),
-      Bodies.rectangle(x + 51, y - 34, 8, 92, { isStatic: true }),
+      Bodies.circle(x - g.rimHalfWidth, y, g.rimRadius, { isStatic: true }),
+      Bodies.circle(x + g.rimHalfWidth, y, g.rimRadius, { isStatic: true }),
+      Bodies.rectangle(x, g.boardTopY, g.boardWidth, g.boardThickness, {
+        isStatic: true,
+      }),
     ];
     for (const body of bodies)
       Composite.add(engine.world as unknown as MatterJS.CompositeType, body);
@@ -46,7 +50,12 @@ describe("bundled Matter integration", () => {
       ticks;
     expect(Math.hypot(vx, vy)).toBeLessThanOrEqual(physics.maxSpeed);
     Body.setVelocity(ball, { x: vx, y: vy });
-    const detector = new BasketDetector(x, y, 38, physics.ballRadius);
+    const detector = new BasketDetector(
+      x,
+      y,
+      g.clearHalfWidth,
+      physics.ballRadius,
+    );
     let scored = false;
     for (let i = 0; i < 210; i++) {
       const previous = { ...ball.position };

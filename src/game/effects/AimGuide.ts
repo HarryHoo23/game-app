@@ -1,3 +1,4 @@
+import { physics } from "../../data/physics";
 import Phaser from "phaser";
 import type { Vec } from "../../domain/scoring/basketDetector";
 import { predictTrajectory } from "../../domain/shooting/trajectory";
@@ -16,7 +17,11 @@ export class AimGuide {
     g.clear();
     const points = predictTrajectory(velocity);
     points.forEach((p, i) => {
-      if (i % 6 === 0) {
+      if (
+        i % 6 === 0 &&
+        Math.hypot(p.x - ORIGIN.x, p.y - ORIGIN.y) >
+          physics.foregroundBallSize / 2
+      ) {
         g.fillStyle(colorNumber("mint"), 0.75 - i * 0.009);
         g.fillCircle(p.x, p.y, 2.1 - i * 0.013);
       }
@@ -29,8 +34,8 @@ export class AimGuide {
     g.fillStyle(colorNumber("mint"), 0.8);
     g.fillCircle(end.x, end.y, 2.6);
     const angle = Math.atan2(velocity.y, velocity.x),
-      x = ORIGIN.x + Math.cos(angle) * 56,
-      y = ORIGIN.y + Math.sin(angle) * 56;
+      x = ORIGIN.x + Math.cos(angle) * 91,
+      y = ORIGIN.y + Math.sin(angle) * 91;
     g.lineStyle(1.8, colorNumber("mint"), 0.7);
     g.lineBetween(x - Math.cos(angle) * 12, y - Math.sin(angle) * 12, x, y);
     g.lineBetween(

@@ -1,3 +1,4 @@
+import { getHoopGeometry } from "../../domain/shooting/hoopGeometry";
 import { createCourtEnvironment } from "../environments/NightCourt";
 import { BallPresentation } from "../environments/BallPresentation";
 import { GameHud } from "../ui/GameHud";
@@ -65,9 +66,9 @@ export class GameScene extends AppScene {
     this.feedback = new Feedback(this, this.app);
     this.resetDetector();
     this.hint = this.add
-      .text(220, 604, "DRAG UP\nTO SHOOT", {
+      .text(285, 566, "DRAG UP\nTO SHOOT", {
         fontFamily: "Barlow",
-        fontSize: "11px",
+        fontSize: "10px",
         fontStyle: "bold",
         letterSpacing: 1.5,
         lineSpacing: 5,
@@ -130,7 +131,12 @@ export class GameScene extends AppScene {
   }
   private resetDetector() {
     const l = levels[this.levelId - 1];
-    this.detector = new BasketDetector(l.hoopX, l.hoopY, 38, BALL_RADIUS);
+    this.detector = new BasketDetector(
+      l.hoopX,
+      l.hoopY,
+      getHoopGeometry(l).clearHalfWidth,
+      BALL_RADIUS,
+    );
   }
   private launch(v: Vec) {
     if (!this.session.launch()) return;
@@ -216,7 +222,10 @@ export class GameScene extends AppScene {
         }
       }
     }
-    this.ballView.sync(this.session.inFlight || this.settled);
+    this.ballView.sync(
+      this.session.inFlight || this.settled,
+      this.aim.isAiming,
+    );
   }
   private pause() {
     if (this.paused || !this.hud) return;

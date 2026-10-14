@@ -8,11 +8,11 @@ try {
  await page.locator('[data-level="1"]').click();await page.locator('[data-score]').waitFor();
  const box=await page.locator('canvas').boundingBox();const x=n=>box.x+n*box.width/400,y=n=>box.y+n*box.height/712;
  await page.getByRole('button',{name:'Pause',exact:true}).click();await page.getByRole('button',{name:'Keep playing'}).click();
- await page.mouse.move(x(110),y(610));await page.mouse.down();await page.mouse.up();assert.equal(await page.locator('[data-shots]').innerText(),'10');
+ await page.mouse.move(x(200),y(620));await page.mouse.down();await page.mouse.up();assert.equal(await page.locator('[data-shots]').innerText(),'10');
  // Repeated real pointer shots, with state inspected only to await the next ball.
  for(let shot=0;shot<10;shot++){
   await page.waitForFunction(()=>{const s=window.afterHours.scene.getScene('Game');return s.scene.isActive()&&!s.session.inFlight&&!s.settled});
-  await page.mouse.move(x(110),y(610));await page.mouse.down();await page.mouse.move(x(134),y(469),{steps:12});await page.mouse.up();
+  await page.mouse.move(x(200),y(620));await page.mouse.down();await page.mouse.move(x(200),y(474),{steps:12});await page.mouse.up();
   console.log('Launched',shot+1,await page.locator('[data-shots]').innerText());
   if(shot===9){assert.equal(await page.locator('[data-shots]').innerText(),'0');assert.equal(await page.locator('.result-content').count(),0)}
   if(shot===0){await page.waitForTimeout(500);await page.getByRole('button',{name:'Pause',exact:true}).click();const position=await page.evaluate(()=>window.afterHours.scene.getScene('Game').physicsCourt.ball.y);await page.waitForTimeout(350);assert.equal(await page.evaluate(()=>window.afterHours.scene.getScene('Game').physicsCourt.ball.y),position);await page.getByRole('button',{name:'Keep playing'}).click()}

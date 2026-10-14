@@ -1,3 +1,4 @@
+import { getHoopGeometry } from "../../domain/shooting/hoopGeometry";
 import { HoopPresentation } from "../environments/HoopPresentation";
 import { physics } from "../../data/physics";
 import Phaser from "phaser";
@@ -7,7 +8,7 @@ export const ORIGIN = physics.origin;
 export const STEP_MS = physics.stepMs;
 export class MatterCourt {
   readonly ball: Phaser.Physics.Matter.Image;
-  readonly rim: Phaser.GameObjects.Graphics;
+  readonly rim: Phaser.GameObjects.Image;
   private hoop: HoopPresentation;
   constructor(
     private scene: Phaser.Scene,
@@ -17,26 +18,41 @@ export class MatterCourt {
     scene.matter.world.setGravity(0, 1, physics.gravity);
     const { hoopX: x, hoopY: y } = level;
     const body = scene.matter.add;
+    const geometry = getHoopGeometry(level);
     body.rectangle(200, 700, 600, 25, {
       isStatic: true,
       label: "ground",
       restitution: 0.65,
     });
-    body.rectangle(x + 51, y - 34, 8, 92, {
-      isStatic: true,
-      label: "backboard",
-      restitution: 0.7,
-    });
-    body.circle(x - 42, y, 4, {
+    body.rectangle(
+      x,
+      geometry.boardTopY,
+      geometry.boardWidth,
+      geometry.boardThickness,
+      {
+        isStatic: true,
+        label: "backboard",
+        restitution: 0.7,
+      },
+    );
+    body.circle(x - geometry.rimHalfWidth, y, geometry.rimRadius, {
       isStatic: true,
       label: "rim",
       restitution: 0.55,
     });
-    body.circle(x + 42, y, 4, {
+    body.circle(x + geometry.rimHalfWidth, y, geometry.rimRadius, {
       isStatic: true,
       label: "rim",
       restitution: 0.55,
     });
+    for (const side of [-1, 1])
+      body.rectangle(
+        x + (side * geometry.boardWidth) / 2,
+        geometry.boardSideY,
+        geometry.boardThickness,
+        geometry.boardSideHeight,
+        { isStatic: true, label: "backboard", restitution: 0.7 },
+      );
     this.hoop = new HoopPresentation(scene, level);
     this.rim = this.hoop.rim;
     this.ball = scene.matter.add.image(ORIGIN.x, ORIGIN.y, "ball", undefined, {
