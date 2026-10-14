@@ -1,0 +1,74 @@
+import { predictTrajectory } from "../../domain/shooting/trajectory";
+import Phaser from "phaser";
+import { ORIGIN } from "../physics/court";
+import { launchVector } from "../../domain/shooting/launch";
+import type { Stats } from "../../domain/progression/progress";
+export class ShotInput {
+  private pointer: number | null = null;
+  private start = { x: 0, y: 0 };
+  private drag = { x: 0, y: 0 };
+  private preview: Phaser.GameObjects.Graphics;
+  constructor(
+    private scene: Phaser.Scene,
+    private stats: Stats,
+    private canAim: () => boolean,
+    private fire: (v: { x: number; y: number }) => void,
+  ) {
+    this.preview = scene.add.graphics().setDepth(8);
+    scene.input.on("pointerdown", this.down, this);
+    scene.input.on("pointermove", this.move, this);
+    scene.input.on("pointerup", this.up, this);
+    scene.input.on("pointerupoutside", this.cancel, this);
+    scene.game.canvas.addEventListener("pointercancel", this.cancel);
+    scene.events.once("shutdown", () => {
+      scene.input.off("pointerdown", this.down, this);
+      scene.input.off("pointermove", this.move, this);
+      scene.input.off("pointerup", this.up, this);
+      scene.input.off("pointerupoutside", this.cancel, this);
+      scene.game.canvas.removeEventListener("pointercancel", this.cancel);
+    });
+  }
+  private down(p: Phaser.Input.Pointer) {
+    if (
+      !this.canAim() ||
+      this.pointer !== null ||
+      Math.hypot(p.x - ORIGIN.x, p.y - ORIGIN.y) > 48
+    )
+      return;
+    this.pointer = p.id;
+    this.start = { x: p.x, y: p.y };
+    this.drag = { x: 0, y: 0 };
+  }
+  private move(p: Phaser.Input.Pointer) {
+    if (p.id !== this.pointer) return;
+    const k = 1 - this.stats.smoothing;
+    this.drag.x += (p.x - this.start.x - this.drag.x) * k;
+    this.drag.y += (p.y - this.start.y - this.drag.y) * k;
+    this.draw();
+  }
+  private up(p: Phaser.Input.Pointer) {
+    if (p.id !== this.pointer) return;
+    this.move(p);
+    const v = launchVector(this.drag.x, this.drag.y, this.stats);
+    this.cancel();
+    if (v && this.canAim()) this.fire(v);
+  }
+  cancel = () => {
+    this.pointer = null;
+    this.preview.clear();
+  };
+  private draw() {
+    const g = this.preview;
+    g.clear();
+    const v = launchVector(this.drag.x, this.drag.y, this.stats);
+    if (!v) return;
+    predictTrajectory(v).forEach((point, i) => {
+      if (i % 6 === 0) {
+        g.fillStyle(0xa8f1d5, 0.7 - i * 0.008);
+        g.fillCircle(point.x, point.y, 2.5 - i * 0.0175);
+      }
+    });
+    g.lineStyle(1, 0xa8f1d5, 0.35);
+    g.strokeCircle(ORIGIN.x, ORIGIN.y, 24);
+  }
+}

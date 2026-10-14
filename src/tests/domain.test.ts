@@ -147,3 +147,10 @@ describe("storage", () => {
     expect(() => s.save(initialProgress())).toThrow();
   });
 });
+
+it("makes three stars mathematically reachable with starter equipment on every court", () => {
+  for (const level of levels)
+    expect(level.totalShots * 4).toBeGreaterThanOrEqual(
+      Math.ceil(level.targetScore * 1.4),
+    );
+});

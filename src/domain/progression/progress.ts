@@ -1,3 +1,5 @@
+import { economy } from "../../data/scoring";
+import { physics } from "../../data/physics";
 import { levels } from "../../data/levels";
 import { categories, upgradeCosts, type Category } from "../../data/equipment";
 import { stars } from "../levels/session";
@@ -41,7 +43,7 @@ export function calculateStats(p: PlayerProgress): Stats {
     perfectTolerance: 6 + (p.equipment.sleeve - 1) * 2,
     powerControl: (p.equipment.ball - 1) * 0.04,
     coinMultiplier: 1 + (p.equipment.hoop - 1) * 0.05,
-    maxSpeed: 17,
+    maxSpeed: physics.maxSpeed,
   };
 }
 export function rewardFor(p: PlayerProgress, result: LevelResult) {
@@ -51,7 +53,7 @@ export function rewardFor(p: PlayerProgress, result: LevelResult) {
   return s
     ? Math.floor(
         level.rewardCoins *
-          [0, 1, 1.3, 1.6][s] *
+          economy.starRewardMultipliers[s] *
           calculateStats(p).coinMultiplier,
       )
     : 0;

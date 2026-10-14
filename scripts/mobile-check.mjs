@@ -1,0 +1,16 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({channel:'chrome',headless:true});
+try {
+ const page=await browser.newPage({viewport:{width:320,height:568},deviceScaleFactor:2,isMobile:true,hasTouch:true});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://localhost:5173/?debug');await page.getByRole('button',{name:'Hit the court'}).click();await page.locator('[data-shots]').waitFor();const cdp=await page.context().newCDPSession(page);
+ const touch=(type,x,y)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints:type==='touchEnd'||type==='touchCancel'?[]:[{x,y,id:1}]});
+ const box=await page.locator('canvas').boundingBox();const x=n=>box.x+n*box.width/400,y=n=>box.y+n*box.height/712;
+ await touch('touchStart',x(110),y(610));await touch('touchMove',x(134),y(469));await touch('touchCancel');await page.waitForTimeout(150);assert.equal(await page.locator('[data-shots]').innerText(),'10');
+ await touch('touchStart',x(110),y(610));for(let i=1;i<=12;i++){await touch('touchMove',x(110+24*i/12),y(610-141*i/12));await page.waitForTimeout(12)}await touch('touchEnd');await page.waitForFunction(()=>document.querySelector('[data-shots]').textContent==='9');await page.waitForFunction(()=>Number(document.querySelector('[data-score]').textContent)>0);await page.screenshot({path:'test-results/touch-score.png'});
+ await page.getByRole('button',{name:'Pause',exact:true}).click();await page.screenshot({path:'test-results/pause-small.png'});await page.getByRole('button',{name:'Back to levels',exact:true}).click();await page.locator('[data-level="1"]').waitFor();await page.screenshot({path:'test-results/levels-small.png'});assert.deepEqual(errors,[]);
+ const gear=await browser.newPage({viewport:{width:430,height:820}});
+ await gear.addInitScript(()=>{const key='afterhours.progress.v1';if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify({schemaVersion:1,highestUnlockedLevel:1,coins:500,stars:{},equipment:{shoes:1,sleeve:1,ball:1,hoop:1},ownedEquipment:['shoes','sleeve','ball','hoop'],equipped:{shoes:'shoes',sleeve:'sleeve',ball:'ball',hoop:'hoop'},claimedRuns:[]}))});
+ await gear.goto('http://localhost:5173');await gear.getByRole('button',{name:'My equipment'}).click();await gear.locator('[data-upgrade="shoes"]').click();assert.match(await gear.locator('.gear-card').first().innerText(),/LV 2/);assert.match(await gear.locator('.coins').innerText(),/400/);await gear.reload();await gear.getByRole('button',{name:'My equipment'}).click();assert.match(await gear.locator('.gear-card').first().innerText(),/LV 2/);assert.match(await gear.locator('.coins').innerText(),/400/);await gear.screenshot({path:'test-results/gear-upgraded.png'});
+ const desktop=await browser.newPage({viewport:{width:1440,height:900}});await desktop.goto('http://localhost:5173');await desktop.getByRole('button',{name:'Hit the court'}).waitFor();await desktop.screenshot({path:'test-results/home-desktop.png'});const shell=await desktop.locator('#shell').boundingBox();assert.ok(Math.abs(shell.width/shell.height-400/712)<.005);console.log('Touch cancel, real touch basket, small-screen pause/navigation, upgrade/reload and desktop aspect ratio passed');
+}finally{await browser.close()}

@@ -1,10 +1,11 @@
+import { scoring } from "../../data/scoring";
 import type { LevelConfig } from "../../data/levels";
 export const points = (contact: boolean, perfect: boolean) =>
-  contact ? 2 : perfect ? 4 : 3;
+  contact ? scoring.normal : perfect ? scoring.perfect : scoring.swish;
 export function stars(score: number, target: number) {
-  return score >= Math.ceil(target * 1.4)
+  return score >= Math.ceil(target * scoring.starMultipliers[2])
     ? 3
-    : score >= Math.ceil(target * 1.2)
+    : score >= Math.ceil(target * scoring.starMultipliers[1])
       ? 2
       : score >= target
         ? 1

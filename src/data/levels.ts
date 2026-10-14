@@ -18,7 +18,7 @@ const entries: [string, number, number, number, number][] = [
   ["Stay focused", 24, 10, 235, 260],
   ["Under pressure", 30, 12, 280, 240],
   ["Night shift", 32, 12, 300, 250],
-  ["Own the court", 36, 12, 275, 235],
+  ["Own the court", 36, 14, 275, 235],
 ];
 export const levels: LevelConfig[] = entries.map(
   ([name, targetScore, totalShots, hoopX, hoopY], i) => ({
