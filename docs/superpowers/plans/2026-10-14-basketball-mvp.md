@@ -20,32 +20,36 @@ No React, backend, accounts, cloud, payments, ads or Capacitor. Ten levels, four
 ## Task 1: Domain and persistence
 Files: src/domain/*, src/data/*, src/services/storage.ts, src/tests/domain.test.ts.
 Interfaces: launchVector(dx,dy,stats) -> vector|null; BasketDetector.sample(previous,current) -> boolean; LevelSession.launch/resolve -> session state; calculateStats(progress) -> Stats; completeLevel(progress,result) -> PlayerProgress; purchaseUpgrade(progress,category) -> PlayerProgress; ProgressStore.load/save.
-- [ ] Write tests for the review focus and exact scoring/star/cost boundaries.
-- [ ] Run npm test and observe missing behavior failures.
-- [ ] Implement pure functions, configuration and validated storage.
-- [ ] Run npm test; expect all domain and storage tests pass. Commit.
+- [x] Write tests for the review focus and exact scoring/star/cost boundaries.
+- [x] Run npm test and observe missing behavior failures.
+- [x] Implement pure functions, configuration and validated storage.
+- [x] Run npm test; expect all domain and storage tests pass. Commit.
 
 ## Task 2: Shooting and one complete level
 Files: src/game/physics/*, src/game/input/*, src/game/systems/*, src/game/scenes/GameScene.ts.
 Consumes Task 1 launchVector, BasketDetector, LevelSession, Stats.
 Produces playable GameScene with a resolved level result, real Matter ball, directional aiming, collision feedback and pause.
-- [ ] Add physics/launch tests and run before implementation.
-- [ ] Implement fixed-step court, sampled detector, pointer cancellation, trajectory preview and feedback.
-- [ ] Build and run tests; browser-check one complete level and last-shot behavior. Commit.
+- [x] Add physics/launch tests and run before implementation.
+- [x] Implement fixed-step court, sampled detector, pointer cancellation, trajectory preview and feedback.
+- [x] Build and run tests; browser-check one complete level and last-shot behavior. Commit.
 
 ## Task 3: Campaign, equipment and presentation
 Files: src/app/*, src/game/scenes/*, src/game/ui/*, src/main.ts.
 Consumes Task 1 progress, storage, equipment and result interfaces; Task 2 GameScene.
 Produces menu, ten-level selection, result scene, upgrade screen and persisted progression.
-- [ ] Add integration tests for result/purchase/save behavior before implementation.
-- [ ] Implement responsive original court styling and all navigation.
-- [ ] Test menu → level → result → upgrade → reload, including locked levels. Commit.
+- [x] Add integration tests for result/purchase/save behavior before implementation.
+- [x] Implement responsive original court styling and all navigation.
+- [x] Test menu → level → result → upgrade → reload, including locked levels. Commit.
 
 ## Task 4: Verification and documentation
 Files: README.md, browser test script, verification notes.
-- [ ] Run tests, build, lint and formatting check.
-- [ ] Capture desktop/mobile screenshots and exercise drag, pause, retry and resizing.
-- [ ] Review branch, fix important defects, document limitations and exact commands. Commit.
+- [x] Run tests, build, lint and formatting check.
+- [x] Capture desktop/mobile screenshots and exercise drag, pause, retry and resizing.
+- [x] Review branch, fix important defects, document limitations and exact commands. Commit.
 
 ## Execution decisions
 User explicitly requested development after approving the design; proceed inline without another approval cycle. Use a feature branch in the existing empty project so the user's VS Code directory remains the runnable project. No separate worktree is necessary to protect existing application code.
+
+## Completion record
+
+All four deliverables are implemented and verified. See `../verification-2026-10-14.md` for exact checks, fixes and deviations. Browser integration checks were added during playtesting; no claim is made that every UI method had a prior failing unit test. Work remains on `feat/basketball-mvp` in the original project directory. Real-phone feel and balance tuning remain player-validation work.
