@@ -1,3 +1,4 @@
+import { hoopLayout, type BallDepthState } from "../hoop/hoopLayout";
 import Phaser from "phaser";
 import { physics } from "../../data/physics";
 import { colorNumber } from "../themes/theme";
@@ -24,7 +25,9 @@ export class BallAnimator {
         0.7,
       )
       .setDepth(1);
-    this.image = scene.add.image(body.x, body.y, "ball").setDepth(6);
+    this.image = scene.add
+      .image(body.x, body.y, "ball")
+      .setDepth(hoopLayout.ballDepth.APPROACHING);
     this.idle(0);
   }
   idle(power: number) {
@@ -33,7 +36,7 @@ export class BallAnimator {
     this.image
       .setPosition(physics.origin.x, physics.origin.y)
       .setRotation(0)
-      .setDepth(6)
+      .setDepth(hoopLayout.ballDepth.APPROACHING)
       .setDisplaySize(size * squash.x, size * squash.y)
       .setAlpha(1);
     this.shadow
@@ -41,13 +44,17 @@ export class BallAnimator {
       .setScale(1)
       .setAlpha(0.7);
   }
-  flight(pose: ShotPose, elapsedMs: number) {
+  flight(
+    pose: ShotPose,
+    elapsedMs: number,
+    state: BallDepthState = "APPROACHING",
+  ) {
     const stretch = ballDeformation(0, this.reduced ? null : elapsedMs),
       size = physics.foregroundBallSize * pose.scale;
     this.image
       .setPosition(pose.x, pose.y)
       .setRotation(pose.rotation)
-      .setDepth(pose.velocity.y > 0 ? 4 : 6)
+      .setDepth(hoopLayout.ballDepth[state])
       .setDisplaySize(size * stretch.x, size * stretch.y)
       .setAlpha(1);
     this.shadow
@@ -63,7 +70,7 @@ export class BallAnimator {
     this.image
       .setPosition(this.body.x, this.body.y)
       .setRotation(this.body.rotation)
-      .setDepth(4)
+      .setDepth(hoopLayout.ballDepth.BELOW_HOOP)
       .setDisplaySize(size, size)
       .setAlpha(1);
     this.shadow.setAlpha(0);

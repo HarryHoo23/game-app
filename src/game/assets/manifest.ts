@@ -1,8 +1,16 @@
-import hoopBoard from "../../assets/hoop/hoop-board.png";
+import backboard from "../../assets/hoop/backboard.png";
+import rimBack from "../../assets/hoop/rim_back.png";
+import net from "../../assets/hoop/net.png";
+import rimFront from "../../assets/hoop/rim_front.png";
 import nightCourt from "../../assets/background/night-court.webp";
 export const assets = {
   nightCourt: { key: "court-night", url: nightCourt },
-  hoop: { key: "hoop-front", url: hoopBoard },
+  hoop: {
+    backboard: { key: "hoop-backboard", url: backboard },
+    rimBack: { key: "hoop-rim-back", url: rimBack },
+    net: { key: "hoop-net", url: net },
+    rimFront: { key: "hoop-rim-front", url: rimFront },
+  },
   ball: { key: "ball" },
   spark: { key: "spark" },
 } as const;

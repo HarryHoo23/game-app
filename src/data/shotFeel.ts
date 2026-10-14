@@ -1,6 +1,6 @@
 /** Primary 2.5D shot tuning. All distances are in the 400×712 logical court. */
 export const shotFeel = {
-  durationMs: 880,
+  durationMs: 900,
   minDurationMs: 750,
   maxDurationMs: 1050,
   durationPowerInfluence: 180,
@@ -11,12 +11,13 @@ export const shotFeel = {
   aimDrag: 100,
   aimRange: 130,
   powerDepthRange: 240,
-  arcMinRatio: 0.18,
-  arcMaxRatio: 0.28,
+  arcMinRatio: 0.2,
+  arcMaxRatio: 0.25,
   startScale: 1,
   hoopScale: 0.45,
   baseRotations: 2,
   rotationPowerInfluence: 0.8,
+  hoopApproachOffset: 30,
   depthTolerance: 18,
   perfectDepthTolerance: 5,
   contactThreshold: 0.72,

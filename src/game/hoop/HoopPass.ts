@@ -1,0 +1,118 @@
+import {
+  sampleShot,
+  type ShotPlan,
+  type ShotPose,
+  type ShotResult,
+} from "../../domain/shooting/ShotTrajectory";
+import type { LevelConfig } from "../../data/levels";
+import { physics } from "../../data/physics";
+import { HoopSensors } from "./HoopSensors";
+import { hoopLayout } from "./hoopLayout";
+/** Continuous controlled descent through the visible net, then handoff to residual Matter physics. */
+export class HoopPass {
+  private plan: ShotPlan | null = null;
+  private arrival?: ShotPose;
+  private elapsed = 0;
+  private done = true;
+  sensors: HoopSensors;
+  constructor(private level: LevelConfig) {
+    this.sensors = new HoopSensors(
+      { x: level.hoopX, y: level.hoopY },
+      (physics.foregroundBallSize * 0.45) / 2,
+    );
+  }
+  get active() {
+    return !this.done;
+  }
+  get elapsedMs() {
+    return this.elapsed;
+  }
+  get stage() {
+    return this.sensors.stage;
+  }
+  get contacts() {
+    return this.sensors.contacts;
+  }
+  get pose(): ShotPose | undefined {
+    if (!this.arrival || !this.plan) return undefined;
+    const m = this.elapsed,
+      c = hoopLayout.passMotion,
+      a = this.arrival,
+      perMs = 1 / (1000 / 60),
+      decay = Math.exp(-m / c.lateralDampingMs),
+      t = Math.min(1, m / c.maxMs);
+    const offset = a.x - this.level.hoopX;
+    const contact = this.contacts.rim || this.contacts.backboard;
+    // A glancing rim contact redirects toward the opening with continuous position/velocity.
+    const k = 1 / c.lateralDampingMs;
+    const contactX =
+      this.level.hoopX +
+      (offset + (a.velocity.x * perMs + offset * k) * m) * decay;
+    return {
+      ...a,
+      x: contact
+        ? contactX
+        : a.x + a.velocity.x * perMs * c.lateralDampingMs * (1 - decay),
+      y: a.y + a.velocity.y * perMs * m + 0.5 * c.gravity * m * m,
+      rotation: a.rotation + a.angularVelocity * perMs * m,
+      scale: a.scale + (c.exitScale - a.scale) * t * t * (3 - 2 * t),
+      velocity: {
+        x: contact
+          ? ((a.velocity.x * perMs +
+              offset * k -
+              k * (offset + (a.velocity.x * perMs + offset * k) * m)) *
+              decay) /
+            perMs
+          : a.velocity.x * decay,
+        y: a.velocity.y + c.gravity * m * (1000 / 60),
+      },
+    };
+  }
+  start(plan: ShotPlan, result: ShotResult) {
+    this.reset();
+    if (!result.made) return false;
+    this.plan = plan;
+    this.arrival = sampleShot(plan, 1);
+    this.done = false;
+    this.sensors = new HoopSensors(
+      { x: this.level.hoopX, y: this.level.hoopY },
+      (physics.foregroundBallSize * plan.hoopScale) / 2,
+    );
+    if (result.impact === "frontRim" || result.impact === "backRim")
+      this.sensors.touch("rim");
+    if (result.impact === "backboard") this.sensors.touch("backboard");
+    // The approach may have crossed TOP already: carry the real descending segment into the sensors.
+    this.sensors.sample(
+      sampleShot(plan, hoopLayout.passMotion.approachSample),
+      this.arrival,
+    );
+    return true;
+  }
+  advance(deltaMs: number) {
+    if (!this.active)
+      return {
+        pose: this.pose,
+        entered: false,
+        scored: false,
+        finished: false,
+      };
+    const previous = this.pose!;
+    this.elapsed = Math.min(
+      hoopLayout.passMotion.maxMs,
+      this.elapsed + Math.max(0, deltaMs),
+    );
+    const pose = this.pose!;
+    const event = this.sensors.sample(previous, pose);
+    const finished =
+      event.scored || this.elapsed >= hoopLayout.passMotion.maxMs;
+    if (finished) this.done = true;
+    return { ...event, pose, finished };
+  }
+  reset() {
+    this.plan = null;
+    this.arrival = undefined;
+    this.elapsed = 0;
+    this.done = true;
+    this.sensors.reset();
+  }
+}

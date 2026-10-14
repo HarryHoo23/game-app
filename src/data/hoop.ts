@@ -1,11 +1,8 @@
-/** Asset anchors measured in the supplied 1254×1254 front-facing hoop image. */
+import { hoopLayout as visual } from "../game/hoop/hoopLayout";
+/** Canonical physical dimensions; independent of image canvas sizes. */
 export const hoopLayout = {
-  textureSize: 1254,
-  displayWidth: 250,
-  rimAnchor: { x: 0.5, y: 0.46 },
-  frontTextureY: 585,
-  rimHalfWidth: 52,
-  clearHalfWidth: 48,
+  rimHalfWidth: visual.rimWidth / 2,
+  clearHalfWidth: visual.sensors.halfWidth,
   rimRadius: 4,
   boardWidth: 228,
   boardTopOffset: -91,

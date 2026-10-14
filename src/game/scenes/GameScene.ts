@@ -1,3 +1,5 @@
+import { HoopPass } from "../hoop/HoopPass";
+import { HoopRenderer } from "../hoop/HoopRenderer";
 import { ShotController } from "../../domain/shooting/ShotController";
 import {
   assessShot,
@@ -21,6 +23,9 @@ export class GameScene extends AppScene {
   private levelId = 1;
   private session!: LevelSession;
   private physicsCourt!: MatterCourt;
+  private hoop!: HoopRenderer;
+  private pass!: HoopPass;
+  private candidateScore = 0;
   private shot = new ShotController();
   private stats!: Stats;
   private aim!: ShotInput;
@@ -59,6 +64,8 @@ export class GameScene extends AppScene {
     this.runId = crypto.randomUUID();
     createCourtEnvironment(this, "game");
     this.physicsCourt = new MatterCourt(this, l);
+    this.hoop = new HoopRenderer(this, l.hoopX, l.hoopY);
+    this.pass = new HoopPass(l);
     this.ballView = new BallAnimator(this, this.physicsCourt.ball);
     this.feedback = new Feedback(this, this.app);
     this.hint = this.add
@@ -94,7 +101,7 @@ export class GameScene extends AppScene {
         if (a !== "ball" && b !== "ball") continue;
         const other = a === "ball" ? b : a;
         if (!this.shot.active && (other === "rim" || other === "backboard"))
-          this.feedback.rim();
+          this.impact(other);
       }
     };
     const world = this.matter.world;
@@ -131,7 +138,6 @@ export class GameScene extends AppScene {
     this.settled = true;
     this.settling = 0;
     if (score) {
-      this.physicsCourt.react();
       this.feedback.basket(
         this.physicsCourt.level.hoopX,
         this.physicsCourt.level.hoopY,
@@ -167,10 +173,29 @@ export class GameScene extends AppScene {
             this.session.config,
             this.stats,
           );
-          this.physicsCourt.finishControlled(pose);
-          if (result.impact !== "none" && result.impact !== "airball")
-            this.feedback.rim();
-          this.resolve(result.score);
+          this.candidateScore = result.score;
+          if (!this.pass.start(this.shot.currentPlan!, result)) {
+            this.physicsCourt.finishControlled(pose);
+            if (result.impact !== "none" && result.impact !== "airball")
+              this.impact(result.impact === "backboard" ? "backboard" : "rim");
+            this.resolve(0);
+          }
+        }
+      }
+      if (this.pass.active) {
+        const event = this.pass.advance(STEP_MS);
+        if (event.pose) this.physicsCourt.placeControlled(event.pose);
+        if (event.entered) {
+          if (this.pass.contacts.rim) this.impact("rim");
+          this.hoop.playNetSwish(this.candidateScore >= 3);
+        }
+        if (event.finished && event.pose) {
+          this.physicsCourt.finishControlled(event.pose);
+          const contacted =
+            this.pass.contacts.rim || this.pass.contacts.backboard;
+          this.resolve(
+            event.scored ? (contacted ? 2 : this.candidateScore) : 0,
+          );
         }
       }
       if (this.settled) {
@@ -187,7 +212,9 @@ export class GameScene extends AppScene {
             return;
           }
           this.physicsCourt.reset();
+          this.hoop.reset();
           this.shot.reset();
+          this.pass.reset();
           this.settled = false;
           this.hint.setText("DRAG UP\nTO SHOOT");
         }
@@ -195,9 +222,24 @@ export class GameScene extends AppScene {
     }
     if (this.shot.active && this.shot.pose)
       this.ballView.flight(this.shot.pose, this.shot.elapsedMs);
+    else if (this.pass.active && this.pass.pose)
+      this.ballView.flight(
+        this.pass.pose,
+        this.shot.elapsedMs + this.pass.elapsedMs,
+        this.pass.stage,
+      );
     else if (this.settled)
-      this.ballView.rebound(this.shot.currentPlan!.hoopScale);
+      this.ballView.rebound(
+        this.pass.pose?.scale ?? this.shot.currentPlan!.hoopScale,
+      );
     else this.ballView.idle(this.aim.isAiming ? this.aim.aimPower : 0);
+    this.hoop.drawDebug(this.ballView.image);
+  }
+  private impact(kind: "rim" | "backboard") {
+    this.pass.sensors.touch(kind);
+    if (kind === "rim") this.hoop.playRimHit();
+    else this.hoop.playBackboardHit();
+    this.feedback.rim(kind === "backboard");
   }
   private pause() {
     if (this.paused || !this.hud) return;

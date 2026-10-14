@@ -55,7 +55,10 @@ export function createShot(
       x:
         physics.origin.x +
         clamp(dx / shotFeel.aimDrag, -1, 1) * shotFeel.aimRange,
-      y: level.hoopY + (ideal - power) * shotFeel.powerDepthRange,
+      y:
+        level.hoopY -
+        shotFeel.hoopApproachOffset +
+        (ideal - power) * shotFeel.powerDepthRange,
     },
     power,
     arcHeight:
@@ -103,7 +106,7 @@ export function predictShot(plan: ShotPlan): ShotPose[] {
     ),
   );
 }
-/** Only assess at hoop depth (t=1); earlier 2D rim-plane crossings are not baskets. */
+/** Classify the depth-arrival candidate; only ordered net-exit sensors can award it. */
 export function assessShot(
   plan: ShotPlan,
   level: LevelConfig,
@@ -111,7 +114,7 @@ export function assessShot(
 ): ShotResult {
   const end = sampleShot(plan, 1),
     dx = end.x - level.hoopX,
-    dy = end.y - level.hoopY,
+    dy = end.y - (level.hoopY - shotFeel.hoopApproachOffset),
     geometry = getHoopGeometry(level);
   const projectedRadius = (physics.foregroundBallSize * plan.hoopScale) / 2;
   const horizontalClearance = geometry.clearHalfWidth - projectedRadius;

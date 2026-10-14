@@ -1,6 +1,5 @@
 import type { ShotPose } from "../../domain/shooting/ShotTrajectory";
 import { getHoopGeometry } from "../../domain/shooting/hoopGeometry";
-import { HoopPresentation } from "../environments/HoopPresentation";
 import { physics } from "../../data/physics";
 import Phaser from "phaser";
 import type { LevelConfig } from "../../data/levels";
@@ -9,8 +8,6 @@ export const ORIGIN = physics.origin;
 export const STEP_MS = physics.stepMs;
 export class MatterCourt {
   readonly ball: Phaser.Physics.Matter.Image;
-  readonly rim: Phaser.GameObjects.Image;
-  private hoop: HoopPresentation;
   constructor(
     private scene: Phaser.Scene,
     readonly level: LevelConfig,
@@ -54,8 +51,6 @@ export class MatterCourt {
         geometry.boardSideHeight,
         { isStatic: true, label: "backboard", restitution: 0.7 },
       );
-    this.hoop = new HoopPresentation(scene, level);
-    this.rim = this.hoop.rim;
     this.ball = scene.matter.add.image(ORIGIN.x, ORIGIN.y, "ball", undefined, {
       label: "ball",
       restitution: 0.72,
@@ -97,9 +92,6 @@ export class MatterCourt {
     this.ball.setVelocity(0, 0);
     this.ball.setAngularVelocity(0);
     this.ball.setAngle(0);
-  }
-  react() {
-    this.hoop.react();
   }
   destroy() {
     this.ball.destroy();

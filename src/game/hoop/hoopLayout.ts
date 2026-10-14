@@ -1,0 +1,66 @@
+/** Gameplay dimensions never depend on PNG canvas bounds. Layer trims are source pixels. */
+export const hoopLayout = {
+  rimWidth: 104,
+  layers: {
+    backboard: {
+      frame: { x: 20, y: 268, width: 1214, height: 710 },
+      offsetX: 0,
+      offsetY: 24,
+      width: 250,
+      originX: 0.5,
+      originY: 1,
+      depth: 2,
+      flipY: false,
+    },
+    rimBack: {
+      frame: { x: 31, y: 397, width: 1193, height: 514 },
+      offsetX: 0,
+      offsetY: 0,
+      width: 104,
+      originX: 0.5,
+      originY: 0.35,
+      depth: 3,
+      flipY: false,
+    },
+    net: {
+      frame: { x: 50, y: 110, width: 1165, height: 1004 },
+      offsetX: 0,
+      offsetY: 8,
+      width: 98,
+      originX: 0.5,
+      originY: 0,
+      depth: 5,
+      flipY: false,
+    },
+    rimFront: {
+      frame: { x: 0, y: 490, width: 1254, height: 235 },
+      offsetX: 0,
+      offsetY: 5,
+      width: 108,
+      originX: 0.5,
+      originY: 0.5,
+      depth: 6,
+      flipY: true,
+    },
+  },
+  passMotion: {
+    approachSample: 0.9,
+    maxMs: 500,
+    gravity: 0.0004,
+    lateralDampingMs: 100,
+    exitScale: 0.42,
+  },
+  ballDepth: { APPROACHING: 7, AT_RIM: 4, IN_NET: 4, BELOW_HOOP: 7 },
+  sensors: { top: -22, center: 0, exit: 128, halfWidth: 48 },
+  netMotion: {
+    delayMs: 30,
+    stretchMs: 85,
+    settleMs: 245,
+    stretchY: 1.24,
+    squeezeX: 0.91,
+    swayDegrees: 2,
+  },
+  rimMotion: { durationMs: 100, offset: 1.5 },
+} as const;
+export type HoopLayer = keyof typeof hoopLayout.layers;
+export type BallDepthState = keyof typeof hoopLayout.ballDepth;

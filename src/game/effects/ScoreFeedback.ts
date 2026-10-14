@@ -34,16 +34,11 @@ export function showScoreFeedback(
     );
   }
   const title = scene.add
-    .text(
-      0,
-      -27,
-      score === 4 ? "PERFECT!" : score === 3 ? "SWISH!" : "BUCKET!",
-      {
-        fontFamily: "Permanent Marker",
-        fontSize: score === 4 ? "27px" : "32px",
-        color: theme.colors.mint,
-      },
-    )
+    .text(0, -27, score === 4 ? "PERFECT!" : score === 3 ? "SWISH!" : "MAKE!", {
+      fontFamily: "Permanent Marker",
+      fontSize: score === 4 ? "27px" : "32px",
+      color: theme.colors.mint,
+    })
     .setOrigin(0.5);
   const value = scene.add
     .text(0, 12, `+${score}`, {
@@ -65,7 +60,7 @@ export function showScoreFeedback(
         .setOrigin(0.5),
     );
   if (!reduced) {
-    fx.setScale(0.9);
+    fx.setScale(score === 2 ? 0.97 : 0.9);
     scene.tweens.add({
       targets: fx,
       scaleX: 1,

@@ -8,15 +8,28 @@ export class Feedback {
     private scene: Phaser.Scene,
     private app: AppContext,
   ) {}
-  rim() {
+  rim(backboard = false) {
     if (!this.reduced) this.scene.cameras.main.shake(70, 0.0015);
-    this.app.audio.play("rim");
+    this.app.audio.play(backboard ? "backboard" : "rim");
+    this.app.haptics.pulse("rim");
   }
   basket(x: number, y: number, score: number, streak: number) {
     showScoreFeedback(this.scene, x, y, score, streak, this.reduced);
-    this.app.audio.play(score === 4 ? "perfect" : "basket");
+    this.app.audio.play(
+      score === 4 ? "perfect" : score === 3 ? "swish" : "basket",
+    );
     this.app.haptics.pulse(score === 4 ? "perfect" : "basket");
     if (score >= 3 && !this.reduced) {
+      const camera = this.scene.cameras.main;
+      this.scene.tweens.killTweensOf(camera);
+      camera.setZoom(1);
+      this.scene.tweens.add({
+        targets: camera,
+        zoom: score === 4 ? 1.008 : 1.004,
+        duration: 80,
+        yoyo: true,
+        onComplete: () => camera.setZoom(1),
+      });
       const emitter = this.scene.add.particles(x, y, "spark", {
         speed: { min: 30, max: 120 },
         angle: { min: 210, max: 330 },

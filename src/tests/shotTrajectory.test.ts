@@ -13,19 +13,20 @@ import {
 } from "../domain/progression/progress";
 import { levels } from "../data/levels";
 import { physics } from "../data/physics";
+import { shotFeel } from "../data/shotFeel";
 const stats = calculateStats(initialProgress());
 const plan = () => createShot(0, -146, levels[0], stats)!;
 describe("controlled 2.5D flight", () => {
-  it("travels from player to hoop depth in .88 seconds, along configured parabola", () => {
+  it("travels from player to hoop depth in .90 seconds, along configured parabola", () => {
     const p = plan(),
       start = sampleShot(p, 0),
       end = sampleShot(p, 1),
       mid = sampleShot(p, 0.5);
-    expect(p.durationMs).toBe(880);
+    expect(p.durationMs).toBe(900);
     expect(start.x).toBe(physics.origin.x);
     expect(start.y).toBe(physics.origin.y);
     expect(end.x).toBe(levels[0].hoopX);
-    expect(end.y).toBeCloseTo(levels[0].hoopY);
+    expect(end.y).toBeCloseTo(levels[0].hoopY - shotFeel.hoopApproachOffset);
     expect(mid.y).toBeCloseTo((p.start.y + p.target.y) / 2 - p.arcHeight);
     expect(end.velocity.y).toBeGreaterThan(0);
   });
@@ -101,7 +102,7 @@ describe("shot lifecycle", () => {
     const c = new ShotController();
     expect(c.launch(plan())).toBe(true);
     expect(c.launch(plan())).toBe(false);
-    expect(c.advance(879).arrived).toBe(false);
+    expect(c.advance(899).arrived).toBe(false);
     expect(c.advance(1).arrived).toBe(true);
     expect(c.advance(200).arrived).toBe(false);
   });
