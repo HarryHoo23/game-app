@@ -1,6 +1,6 @@
 # AFTER HOURS ↗
 
-A mobile-first, single-player basketball game. Built with TypeScript, Vite, Phaser 3 and Matter. Original geometric court art, self-hosted fonts, no backend or accounts.
+A mobile-first, single-player basketball game. Built with TypeScript, Vite, Phaser 3 and Matter. A cinematic local night-court backdrop, procedural textured basketball, self-hosted fonts, no backend or accounts.
 
 ## Run locally
 
@@ -85,3 +85,9 @@ This verifies actual mouse and touch shots, a full successful run, a full failed
 4. Only after the core loop is proven, evaluate Capacitor and native haptics. Accounts, cloud saves, ads and purchases remain out of scope.
 
 Vite may report the Phaser vendor chunk above 500 kB. The engine is split into its own cacheable bundle; no extra UI framework is shipped.
+
+## Visual milestone 1
+
+Home and live gameplay now use a shared navy/teal, mint, cream and amber theme with a night-court environment, compact HUD and painted scoring feedback. Physics, input, scoring and saves are unchanged. See `docs/visual-redesign-2026-10-14.md` for visual modules and verification. Equipment, level-select and result layouts remain for a later pass.
+
+Run `node scripts/visual-check.mjs` with Vite running to capture home, game, aim and score previews at phone sizes.
