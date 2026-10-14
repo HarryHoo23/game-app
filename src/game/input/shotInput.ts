@@ -1,4 +1,4 @@
-import { predictTrajectory } from "../../domain/shooting/trajectory";
+import { AimGuide } from "../effects/AimGuide";
 import Phaser from "phaser";
 import { ORIGIN } from "../physics/court";
 import { launchVector } from "../../domain/shooting/launch";
@@ -7,14 +7,14 @@ export class ShotInput {
   private pointer: number | null = null;
   private start = { x: 0, y: 0 };
   private drag = { x: 0, y: 0 };
-  private preview: Phaser.GameObjects.Graphics;
+  private preview: AimGuide;
   constructor(
     private scene: Phaser.Scene,
     private stats: Stats,
     private canAim: () => boolean,
     private fire: (v: { x: number; y: number }) => void,
   ) {
-    this.preview = scene.add.graphics().setDepth(8);
+    this.preview = new AimGuide(scene);
     scene.input.on("pointerdown", this.down, this);
     scene.input.on("pointermove", this.move, this);
     scene.input.on("pointerup", this.up, this);
@@ -58,17 +58,8 @@ export class ShotInput {
     this.preview.clear();
   };
   private draw() {
-    const g = this.preview;
-    g.clear();
+    this.preview.clear();
     const v = launchVector(this.drag.x, this.drag.y, this.stats);
-    if (!v) return;
-    predictTrajectory(v).forEach((point, i) => {
-      if (i % 6 === 0) {
-        g.fillStyle(0xa8f1d5, 0.7 - i * 0.008);
-        g.fillCircle(point.x, point.y, 2.5 - i * 0.0175);
-      }
-    });
-    g.lineStyle(1, 0xa8f1d5, 0.35);
-    g.strokeCircle(ORIGIN.x, ORIGIN.y, 24);
+    if (v) this.preview.draw(v);
   }
 }

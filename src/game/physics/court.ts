@@ -1,3 +1,4 @@
+import { HoopPresentation } from "../environments/HoopPresentation";
 import { physics } from "../../data/physics";
 import Phaser from "phaser";
 import type { LevelConfig } from "../../data/levels";
@@ -7,7 +8,7 @@ export const STEP_MS = physics.stepMs;
 export class MatterCourt {
   readonly ball: Phaser.Physics.Matter.Image;
   readonly rim: Phaser.GameObjects.Graphics;
-  private net: Phaser.GameObjects.Graphics;
+  private hoop: HoopPresentation;
   constructor(
     private scene: Phaser.Scene,
     readonly level: LevelConfig,
@@ -36,21 +37,8 @@ export class MatterCourt {
       label: "rim",
       restitution: 0.55,
     });
-    const g = scene.add.graphics();
-    g.lineStyle(8, 0x415963);
-    g.lineBetween(x + 56, y + 10, x + 56, 440);
-    g.fillStyle(0xa4c8c7, 0.08);
-    g.fillRoundedRect(x + 44, y - 81, 12, 95, 3);
-    g.lineStyle(2, 0xb4d8d0, 0.8);
-    g.strokeRoundedRect(x + 44, y - 81, 12, 95, 3);
-    g.lineStyle(3, 0xf4a06b);
-    g.lineBetween(x + 46, y - 30, x + 46, y - 4);
-    this.net = scene.add.graphics();
-    this.drawNet();
-    this.rim = scene.add.graphics();
-    this.rim.lineStyle(5, 0xef9e70);
-    this.rim.lineBetween(x - 42, y, x + 42, y);
-    this.rim.setDepth(3);
+    this.hoop = new HoopPresentation(scene, level);
+    this.rim = this.hoop.rim;
     this.ball = scene.matter.add.image(ORIGIN.x, ORIGIN.y, "ball", undefined, {
       label: "ball",
       restitution: 0.72,
@@ -66,22 +54,6 @@ export class MatterCourt {
     });
     this.ball.setStatic(true);
     this.ball.setDepth(4);
-  }
-  private drawNet() {
-    const { hoopX: x, hoopY: y } = this.level;
-    const g = this.net;
-    g.clear();
-    g.lineStyle(1.3, 0xc0d9cb, 0.5);
-    for (let i = 0; i < 7; i++) {
-      const top = x - 39 + i * 13,
-        bottom = x - 24 + i * 8;
-      g.lineBetween(top, y + 4, bottom, y + 46);
-      if (i < 6) {
-        g.lineBetween(top, y + 4, bottom + 8, y + 46);
-        g.lineBetween(top + 13, y + 4, bottom, y + 46);
-      }
-    }
-    g.lineBetween(x - 24, y + 46, x + 24, y + 46);
   }
   step() {
     this.scene.matter.world.step(STEP_MS);
@@ -99,13 +71,7 @@ export class MatterCourt {
     this.ball.setAngularVelocity(v.x * 0.025);
   }
   react() {
-    this.scene.tweens.add({
-      targets: this.net,
-      alpha: 0.2,
-      duration: 90,
-      yoyo: true,
-      repeat: 2,
-    });
+    this.hoop.react();
   }
   destroy() {
     this.ball.destroy();

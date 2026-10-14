@@ -1,29 +1,8 @@
+import { createBallTexture } from "../assets/ballTexture";
 import Phaser from "phaser";
 export function makeTextures(scene: Phaser.Scene) {
   const g = scene.make.graphics({ x: 0, y: 0 });
-  g.fillStyle(0xf48b47);
-  g.fillCircle(96, 96, 88);
-  g.fillStyle(0xffb471, 0.4);
-  g.fillEllipse(72, 60, 88, 48);
-  g.lineStyle(5, 0x543b31);
-  g.strokeCircle(96, 96, 85);
-  g.beginPath();
-  g.moveTo(8, 96);
-  g.lineTo(184, 96);
-  g.moveTo(96, 8);
-  g.lineTo(96, 184);
-  g.strokePath();
-  g.lineStyle(4, 0x543b31);
-  for (const controlX of [22, 170]) {
-    const seam = new Phaser.Curves.CubicBezier(
-      new Phaser.Math.Vector2(96, 8),
-      new Phaser.Math.Vector2(controlX, 40),
-      new Phaser.Math.Vector2(controlX, 152),
-      new Phaser.Math.Vector2(96, 184),
-    );
-    g.strokePoints(seam.getPoints(28), false);
-  }
-  g.generateTexture("ball", 192, 192);
+  createBallTexture(scene);
   g.clear();
   g.fillStyle(0x9df2d2);
   g.fillCircle(4, 4, 4);

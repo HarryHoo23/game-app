@@ -1,3 +1,9 @@
+import { assets } from "../assets/manifest";
+import {
+  createCourtEnvironment,
+  createHomeBall,
+} from "../environments/NightCourt";
+import { homeScreen } from "../ui/HomeScreen";
 import { AppScene } from "./base";
 import { court, makeTextures } from "../systems/art";
 import { screen, on, topbar, starText } from "../ui/screen";
@@ -22,9 +28,20 @@ export class PreloadScene extends AppScene {
   constructor() {
     super("Preload");
   }
+  preload() {
+    this.load.image(assets.nightCourt.key, assets.nightCourt.url);
+  }
   create() {
     makeTextures(this);
-    this.scene.start("MainMenu");
+    // Canvas lettering must use the local fonts before its text textures are baked.
+    void Promise.all([
+      document.fonts.load('700 16px "Barlow"'),
+      document.fonts.load('800 16px "Barlow Condensed"'),
+      document.fonts.load('400 16px "Permanent Marker"'),
+    ]).then(
+      () => this.scene.start("MainMenu"),
+      () => this.scene.start("MainMenu"),
+    );
   }
 }
 export class MainMenuScene extends AppScene {
@@ -32,11 +49,12 @@ export class MainMenuScene extends AppScene {
     super("MainMenu");
   }
   create() {
-    court(this, true);
+    createCourtEnvironment(this, "home");
+    createHomeBall(this);
     const p = this.app.progress;
     const el = screen(
       this,
-      `<header class="brand"><span class="brand-mark">a<span>h</span>↗</span><span class="eyebrow">PICK UP. TUNE IN.</span><span class="coins"><i>●</i> ${p.coins}</span></header><div class="home-copy"><div class="pill"><span></span> THE COURT IS YOURS</div><h1>AFTER<br><em>HOURS.</em></h1><p>One court. One more shot.</p><span class="edition">STREET BASKETBALL / VOL. 01</span></div><div class="home-bottom"><div class="progress-label"><span>YOUR NEXT RUN</span><span>COURT ${String(p.highestUnlockedLevel).padStart(2, "0")} / 10</span></div><button class="primary" data-play>Hit the court <span>↗</span></button><div class="menu-row"><button class="secondary" data-levels>Choose a level</button><button class="secondary" data-gear>My equipment <span>↗</span></button></div><footer><span>DRAG. RELEASE. REPEAT.</span><button class="text-button" data-sound aria-label="Toggle sound">SOUND ${this.app.audio.enabled ? "ON" : "OFF"}</button></footer></div>`,
+      homeScreen(p, this.app.audio.enabled),
       "screen home",
     );
     on(el, "[data-play]", () =>
@@ -46,7 +64,7 @@ export class MainMenuScene extends AppScene {
     on(el, "[data-gear]", () => this.scene.start("Equipment"));
     on(el, "[data-sound]", () => {
       this.app.audio.enabled = !this.app.audio.enabled;
-      el.querySelector("[data-sound]")!.textContent =
+      el.querySelector("[data-sound-label]")!.textContent =
         `SOUND ${this.app.audio.enabled ? "ON" : "OFF"}`;
       if (this.app.audio.enabled) this.app.audio.play("basket");
     });

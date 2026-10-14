@@ -1,0 +1,458 @@
+/* First visual milestone: scoped to home and live gameplay. */
+body {
+  background: radial-gradient(
+    ellipse at 50% 15%,
+    var(--ah-raised),
+    var(--ah-background) 72%
+  );
+}
+#shell {
+  background: var(--ah-background);
+}
+.home,
+.game-hud {
+  color: var(--ah-cream);
+  font-family: var(--ah-font-ui);
+  padding: var(--ah-space-page);
+}
+.home {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ah-ink) 22%, transparent),
+    transparent 34%,
+    color-mix(in srgb, var(--ah-ink) 10%, transparent) 66%,
+    color-mix(in srgb, var(--ah-background) 96%, transparent)
+  );
+  isolation: isolate;
+}
+.home::before,
+.game-hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 35%,
+    color-mix(in srgb, var(--ah-ink) 24%, transparent) 100%
+  );
+  z-index: -1;
+}
+.home .brand {
+  gap: 3cqw;
+  align-items: center;
+}
+.home .brand-mark {
+  font-family: var(--ah-font-ui);
+  font-size: 9cqw;
+  letter-spacing: -0.65cqw;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+.home .brand-mark span {
+  color: var(--ah-mint);
+}
+.ah-icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+.home .brand-mark .ah-icon {
+  width: 8.5cqw;
+  height: 8.5cqw;
+  margin-left: 1cqw;
+  stroke-width: 2.2;
+}
+.home .brand .eyebrow {
+  font-size: 2.15cqw;
+  letter-spacing: 0.25cqw;
+  line-height: 1.65;
+  max-width: none;
+}
+.coin-display {
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 3.1cqw;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.coin-medallion {
+  width: 4.9cqw;
+  height: 4.9cqw;
+  border: 1px solid var(--ah-amber);
+  border-radius: 50%;
+  background: var(--ah-orange);
+  box-shadow: inset 0 0 0 2px
+    color-mix(in srgb, var(--ah-amber) 55%, transparent);
+  color: var(--ah-amber);
+  display: grid;
+  place-items: center;
+}
+.coin-medallion .ah-icon {
+  width: 3.8cqw;
+  height: 3.8cqw;
+  stroke-width: 1;
+}
+.home-copy {
+  margin-top: 9cqw;
+}
+.home .pill {
+  border-color: color-mix(in srgb, var(--ah-mint) 28%, transparent);
+  background: color-mix(in srgb, var(--ah-background) 58%, transparent);
+  color: var(--ah-mint);
+  padding: 1.65cqw 2.8cqw;
+  letter-spacing: 0.25cqw;
+  font-size: 2.05cqw;
+}
+.home .pill span {
+  background: var(--ah-mint);
+  width: 1.3cqw;
+  height: 1.3cqw;
+}
+.home h1 {
+  font-family: var(--ah-font-display);
+  font-size: 25.6cqw;
+  letter-spacing: -0.6cqw;
+  line-height: 0.86;
+  margin-top: 6cqw;
+  font-weight: 800;
+}
+.home h1 em {
+  color: var(--ah-mint);
+}
+.home-copy p {
+  font-size: 3.4cqw;
+  color: var(--ah-cream);
+  margin-top: 4.1cqw;
+  font-weight: 400;
+}
+.home .edition {
+  font-size: 1.95cqw;
+  letter-spacing: 0.36cqw;
+  color: var(--ah-muted);
+  margin-top: 2.4cqw;
+}
+.home-bottom {
+  position: relative;
+  margin-top: auto;
+}
+.home .progress-label {
+  color: var(--ah-cream);
+  font-size: 2.05cqw;
+  letter-spacing: 0.25cqw;
+  margin-bottom: 2.4cqw;
+  font-weight: 600;
+}
+.home .primary {
+  font-size: 3.7cqw;
+  min-height: 13cqw;
+  padding: 3.3cqw 4.6cqw;
+  background: var(--ah-mint);
+  color: var(--ah-background);
+  border-radius: var(--ah-radius-button);
+  box-shadow: var(--ah-shadow-button);
+}
+.home .primary .ah-icon {
+  width: 6.1cqw;
+  height: 6.1cqw;
+}
+.home .primary:hover {
+  background: color-mix(in srgb, var(--ah-mint) 85%, var(--ah-cream));
+}
+.home .menu-row {
+  gap: 2.6cqw;
+  margin-top: 2.6cqw;
+}
+.home .secondary {
+  font-size: 2.55cqw;
+  font-weight: 500;
+  padding: 3.7cqw 3.5cqw;
+  min-height: 12cqw;
+  background: color-mix(in srgb, var(--ah-raised) 62%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ah-edge) 80%, transparent);
+  border-radius: var(--ah-radius-button);
+}
+.home .secondary .ah-icon {
+  width: 4cqw;
+  height: 4cqw;
+}
+.home footer {
+  margin-top: 4cqw;
+  font-size: 1.8cqw;
+  letter-spacing: 0.29cqw;
+  color: var(--ah-muted);
+}
+.home .text-button {
+  display: flex;
+  gap: 2cqw;
+  align-items: center;
+  font-size: 1.9cqw;
+  letter-spacing: 0.2cqw;
+  padding: 1cqw 0;
+  color: var(--ah-muted);
+}
+.home .text-button .ah-icon {
+  width: 3cqw;
+  height: 3cqw;
+}
+.home button,
+.game-hud button {
+  transition:
+    transform var(--ah-press) ease,
+    background var(--ah-press) ease;
+}
+.home button:active,
+.game-hud button:active {
+  transform: scale(0.98);
+}
+.home .brand,
+.home-copy,
+.home-bottom {
+  animation: ah-reveal var(--ah-enter) ease-out both;
+}
+.home-copy {
+  animation-delay: 50ms;
+}
+.home-bottom {
+  animation-delay: 100ms;
+}
+.game-hud {
+  pointer-events: none;
+  padding: 5.5cqw;
+}
+.game-hud::before {
+  z-index: 0;
+  opacity: 0.75;
+}
+.game-hud > * {
+  position: relative;
+}
+.game-hud .game-top {
+  justify-content: flex-start;
+  gap: 3cqw;
+  align-items: center;
+}
+.court-meta {
+  margin-right: auto;
+  min-width: 30cqw;
+}
+.game-top .court-meta {
+  text-align: left;
+}
+.court-meta .eyebrow {
+  font-size: 2.2cqw;
+  color: var(--ah-cream);
+  letter-spacing: 0.3cqw;
+}
+.court-meta .eyebrow span {
+  color: var(--ah-muted);
+}
+.court-segments {
+  display: flex;
+  gap: 3px;
+  margin-top: 2cqw;
+  max-width: 30cqw;
+}
+.court-segments i {
+  height: 3px;
+  flex: 1;
+  background: color-mix(in srgb, var(--ah-muted) 22%, transparent);
+  border-radius: 1px;
+}
+.court-segments .active {
+  background: var(--ah-mint);
+}
+.game-hud .icon-button {
+  width: 10cqw;
+  height: 10cqw;
+  min-width: 36px;
+  min-height: 36px;
+  background: color-mix(in srgb, var(--ah-background) 65%, transparent);
+  border: 1px solid var(--ah-edge);
+  border-radius: 2.5cqw;
+  display: grid;
+  place-items: center;
+}
+.game-hud .icon-button .ah-icon {
+  width: 4.8cqw;
+  height: 4.8cqw;
+  stroke-width: 2.4;
+}
+.game-hud .coin-display {
+  margin-left: 0;
+  gap: 1.5cqw;
+  font-size: 3.15cqw;
+}
+.game-hud .scoreboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr 1fr;
+  gap: 1.8cqw;
+  margin-top: 4.5cqw;
+  padding: 0;
+}
+.game-hud .hud-panel {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--ah-edge) 68%, transparent);
+  background: color-mix(in srgb, var(--ah-background) 75%, transparent);
+  border-radius: var(--ah-radius-panel);
+  padding: 2.6cqw 1.3cqw 2.1cqw;
+  box-shadow: var(--ah-shadow-panel);
+  text-align: center;
+}
+.game-hud .stat-label {
+  font-size: 2.05cqw;
+  letter-spacing: 0.13cqw;
+  color: var(--ah-cream);
+  font-weight: 500;
+  display: block;
+}
+.game-hud .hud-panel strong {
+  font-family: var(--ah-font-display);
+  font-size: 9cqw;
+  line-height: 1.1;
+  color: var(--ah-cream);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.game-hud .target .stat-label {
+  color: var(--ah-muted);
+}
+.game-hud .target strong {
+  font-size: 9cqw;
+  color: var(--ah-muted);
+  opacity: 0.6;
+}
+.game-hud .combo-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2cqw 1.5cqw;
+}
+.combo-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5cqw;
+}
+.combo-value .ah-icon {
+  width: 4.6cqw;
+  height: 4.6cqw;
+  color: var(--ah-orange);
+}
+.game-hud .combo-value strong {
+  font-family: var(--ah-font-ui);
+  font-weight: 700;
+  font-size: 4.2cqw;
+}
+.game-hud .combo-panel .stat-label {
+  font-size: 1.9cqw;
+  letter-spacing: 0.2cqw;
+  margin-top: 1.3cqw;
+  color: var(--ah-muted);
+}
+.game-hud .combo-panel.is-active .stat-label {
+  color: var(--ah-mint);
+}
+.game-hud .target-track {
+  height: 2px;
+  margin: 2.6cqw 0.5cqw;
+  background: color-mix(in srgb, var(--ah-muted) 14%, transparent);
+}
+.game-hud .target-track i {
+  background: var(--ah-mint);
+  transition: width 250ms ease-out;
+}
+.game-hud .game-caption {
+  margin-top: auto;
+  font-size: 1.7cqw;
+  letter-spacing: 0.23cqw;
+  color: var(--ah-muted);
+}
+.game-caption .ah-icon {
+  width: 2.6cqw;
+  height: 2.6cqw;
+  margin-left: 1cqw;
+}
+.game-hud [data-modal] {
+  position: static;
+}
+.game-hud .modal-backdrop {
+  z-index: 50;
+}
+@keyframes ah-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (min-width: 650px) {
+  #shell {
+    border: 1px solid var(--ah-edge);
+    border-radius: 24px;
+    box-shadow: 0 30px 110px color-mix(in srgb, var(--ah-ink) 70%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home .brand,
+  .home-copy,
+  .home-bottom {
+    animation: none;
+  }
+  .home button,
+  .game-hud button,
+  .game-hud .target-track i {
+    transition: none;
+  }
+}
+/* Editorial metadata keeps a readable floor on the smallest phone viewport. */
+.home .brand .eyebrow,
+.home .pill,
+.home .progress-label,
+.court-meta .eyebrow {
+  font-size: clamp(8px, 2.15cqw, 11px);
+}
+.home .edition,
+.home footer,
+.home .text-button {
+  font-size: clamp(7.5px, 1.95cqw, 10px);
+}
+.game-hud .stat-label,
+.game-hud .combo-panel .stat-label {
+  font-size: clamp(8px, 2.05cqw, 11px);
+}
+.game-hud .game-caption {
+  font-size: clamp(7px, 1.7cqw, 9px);
+  letter-spacing: 0.16cqw;
+}
+.coin-display,
+.game-hud .coin-display {
+  font-size: clamp(11px, 3.1cqw, 16px);
+}
+.home .primary {
+  font-size: clamp(14px, 3.7cqw, 20px);
+  min-height: 44px;
+}
+.home .secondary {
+  font-size: clamp(10px, 2.55cqw, 14px);
+  min-height: 44px;
+}
+.home .secondary .ah-icon {
+  width: clamp(14px, 4cqw, 21px);
+  height: clamp(14px, 4cqw, 21px);
+}
+.home .coin-medallion {
+  width: clamp(18px, 4.9cqw, 25px);
+  height: clamp(18px, 4.9cqw, 25px);
+}

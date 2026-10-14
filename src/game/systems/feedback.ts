@@ -1,3 +1,4 @@
+import { showScoreFeedback } from "../effects/ScoreFeedback";
 import Phaser from "phaser";
 import type { AppContext } from "../../app/context";
 export class Feedback {
@@ -12,28 +13,7 @@ export class Feedback {
     this.app.audio.play("rim");
   }
   basket(x: number, y: number, score: number, streak: number) {
-    const text = this.scene.add
-      .text(
-        x,
-        y - 80,
-        `${score === 4 ? "PERFECT" : score === 3 ? "SWISH" : "BUCKET"}!\n+${score}${streak > 1 ? `  ·  COMBO ×${streak}` : ""}`,
-        {
-          fontFamily: "Arial",
-          fontStyle: "bold",
-          fontSize: "23px",
-          color: score === 4 ? "#b6f5d9" : "#fff0d9",
-          align: "center",
-        },
-      )
-      .setOrigin(0.5)
-      .setDepth(20);
-    this.scene.tweens.add({
-      targets: text,
-      y: y - 115,
-      alpha: 0,
-      duration: 1100,
-      onComplete: () => text.destroy(),
-    });
+    showScoreFeedback(this.scene, x, y, score, streak, this.reduced);
     this.app.audio.play(score === 4 ? "perfect" : "basket");
     this.app.haptics.pulse(score === 4 ? "perfect" : "basket");
     if (score >= 3 && !this.reduced) {

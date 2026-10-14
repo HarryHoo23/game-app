@@ -1,3 +1,5 @@
+import "@fontsource/permanent-marker/latin-400.css";
+import { installTheme } from "./game/themes/theme";
 import "@fontsource/barlow/latin-400.css";
 import "@fontsource/barlow/latin-600.css";
 import "@fontsource/barlow/latin-700.css";
@@ -14,6 +16,8 @@ import {
 } from "./game/scenes/menus";
 import { GameScene } from "./game/scenes/GameScene";
 import "./game/ui/styles.css";
+import "./game/ui/premium.css";
+installTheme();
 const app = new AppContext();
 export const game = new Phaser.Game({
   type: Phaser.AUTO,
