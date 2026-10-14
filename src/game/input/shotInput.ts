@@ -1,21 +1,27 @@
 import { physics } from "../../data/physics";
-import { AimGuide } from "../effects/AimGuide";
+import { TrajectoryPreview } from "../effects/TrajectoryPreview";
+import {
+  createShot,
+  type ShotPlan,
+} from "../../domain/shooting/ShotTrajectory";
+import type { LevelConfig } from "../../data/levels";
 import Phaser from "phaser";
 import { ORIGIN } from "../physics/court";
-import { launchVector } from "../../domain/shooting/launch";
 import type { Stats } from "../../domain/progression/progress";
 export class ShotInput {
   private pointer: number | null = null;
   private start = { x: 0, y: 0 };
   private drag = { x: 0, y: 0 };
-  private preview: AimGuide;
+  private preview: TrajectoryPreview;
+  private predicted: ShotPlan | null = null;
   constructor(
     private scene: Phaser.Scene,
     private stats: Stats,
+    private level: LevelConfig,
     private canAim: () => boolean,
-    private fire: (v: { x: number; y: number }) => void,
+    private fire: (plan: ShotPlan) => void,
   ) {
-    this.preview = new AimGuide(scene);
+    this.preview = new TrajectoryPreview(scene);
     scene.input.on("pointerdown", this.down, this);
     scene.input.on("pointermove", this.move, this);
     scene.input.on("pointerup", this.up, this);
@@ -50,20 +56,25 @@ export class ShotInput {
   private up(p: Phaser.Input.Pointer) {
     if (p.id !== this.pointer) return;
     this.move(p);
-    const v = launchVector(this.drag.x, this.drag.y, this.stats);
+    const plan = createShot(this.drag.x, this.drag.y, this.level, this.stats);
     this.cancel();
-    if (v && this.canAim()) this.fire(v);
+    if (plan && this.canAim()) this.fire(plan);
+  }
+  get aimPower() {
+    return this.predicted?.power ?? 0;
   }
   get isAiming() {
     return this.pointer !== null;
   }
   cancel = () => {
     this.pointer = null;
+    this.predicted = null;
     this.preview.clear();
   };
   private draw() {
     this.preview.clear();
-    const v = launchVector(this.drag.x, this.drag.y, this.stats);
-    if (v) this.preview.draw(v);
+    const plan = createShot(this.drag.x, this.drag.y, this.level, this.stats);
+    this.predicted = plan;
+    if (plan) this.preview.draw(plan);
   }
 }

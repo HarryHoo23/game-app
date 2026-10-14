@@ -1,3 +1,4 @@
+import type { ShotPose } from "../../domain/shooting/ShotTrajectory";
 import { getHoopGeometry } from "../../domain/shooting/hoopGeometry";
 import { HoopPresentation } from "../environments/HoopPresentation";
 import { physics } from "../../data/physics";
@@ -71,20 +72,31 @@ export class MatterCourt {
     this.ball.setStatic(true);
     this.ball.setDepth(4);
   }
+  beginControlled() {
+    this.ball.setStatic(true);
+    this.ball.setCollidesWith(0);
+  }
+  placeControlled(pose: ShotPose) {
+    this.ball.setPosition(pose.x, pose.y);
+    this.ball.setRotation(pose.rotation);
+  }
+  finishControlled(pose: ShotPose) {
+    this.ball.setCollidesWith(0xffffffff);
+    this.ball.setStatic(false);
+    this.ball.setPosition(pose.x, pose.y);
+    this.ball.setVelocity(pose.velocity.x, pose.velocity.y);
+    this.ball.setAngularVelocity(pose.angularVelocity);
+  }
   step() {
     this.scene.matter.world.step(STEP_MS);
   }
   reset() {
     this.ball.setStatic(true);
+    this.ball.setCollidesWith(0xffffffff);
     this.ball.setPosition(ORIGIN.x, ORIGIN.y);
     this.ball.setVelocity(0, 0);
     this.ball.setAngularVelocity(0);
     this.ball.setAngle(0);
-  }
-  launch(v: { x: number; y: number }) {
-    this.ball.setStatic(false);
-    this.ball.setVelocity(v.x, v.y);
-    this.ball.setAngularVelocity(v.x * 0.025);
   }
   react() {
     this.hoop.react();

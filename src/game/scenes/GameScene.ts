@@ -1,17 +1,19 @@
-import { getHoopGeometry } from "../../domain/shooting/hoopGeometry";
+import { ShotController } from "../../domain/shooting/ShotController";
+import {
+  assessShot,
+  type ShotPlan,
+} from "../../domain/shooting/ShotTrajectory";
 import { createCourtEnvironment } from "../environments/NightCourt";
-import { BallPresentation } from "../environments/BallPresentation";
+import { BallAnimator } from "../environments/BallAnimator";
 import { GameHud } from "../ui/GameHud";
 import { theme } from "../themes/theme";
 import { physics } from "../../data/physics";
-import { scoring } from "../../data/scoring";
 import Phaser from "phaser";
 import { AppScene } from "./base";
 import { levels } from "../../data/levels";
-import { LevelSession, points } from "../../domain/levels/session";
-import { BasketDetector, type Vec } from "../../domain/scoring/basketDetector";
+import { LevelSession } from "../../domain/levels/session";
 import { calculateStats, type Stats } from "../../domain/progression/progress";
-import { MatterCourt, STEP_MS, BALL_RADIUS } from "../physics/court";
+import { MatterCourt, STEP_MS } from "../physics/court";
 import { ShotInput } from "../input/shotInput";
 import { Feedback } from "../systems/feedback";
 import { on } from "../ui/screen";
@@ -19,21 +21,18 @@ export class GameScene extends AppScene {
   private levelId = 1;
   private session!: LevelSession;
   private physicsCourt!: MatterCourt;
-  private detector!: BasketDetector;
+  private shot = new ShotController();
   private stats!: Stats;
   private aim!: ShotInput;
   private feedback!: Feedback;
   private hud!: HTMLElement;
   private hudView!: GameHud;
-  private ballView!: BallPresentation;
+  private ballView!: BallAnimator;
   private accumulator = 0;
-  private elapsed = 0;
   private settling = 0;
-  private contact = false;
   private settled = false;
   private paused = false;
   private runId = "";
-  private lastRim = 0;
   private hint!: Phaser.GameObjects.Text;
   constructor() {
     super("Game");
@@ -41,12 +40,10 @@ export class GameScene extends AppScene {
   init(data: { levelId?: number }) {
     this.levelId = data.levelId ?? 1;
     this.accumulator = 0;
-    this.elapsed = 0;
+    this.shot.reset();
     this.settling = 0;
-    this.contact = false;
     this.settled = false;
     this.paused = false;
-    this.lastRim = 0;
   }
   create() {
     if (
@@ -62,9 +59,8 @@ export class GameScene extends AppScene {
     this.runId = crypto.randomUUID();
     createCourtEnvironment(this, "game");
     this.physicsCourt = new MatterCourt(this, l);
-    this.ballView = new BallPresentation(this, this.physicsCourt.ball, l.hoopY);
+    this.ballView = new BallAnimator(this, this.physicsCourt.ball);
     this.feedback = new Feedback(this, this.app);
-    this.resetDetector();
     this.hint = this.add
       .text(285, 566, "DRAG UP\nTO SHOOT", {
         fontFamily: "Barlow",
@@ -78,12 +74,13 @@ export class GameScene extends AppScene {
     this.aim = new ShotInput(
       this,
       this.stats,
+      l,
       () =>
         !this.paused &&
         !this.session.inFlight &&
         !this.settled &&
         !this.session.finished,
-      (v) => this.launch(v),
+      (plan) => this.launch(plan),
     );
     this.hudView = new GameHud(this, this.session, this.app.progress.coins);
     this.hud = this.hudView.element;
@@ -96,17 +93,8 @@ export class GameScene extends AppScene {
           b = pair.bodyB.label;
         if (a !== "ball" && b !== "ball") continue;
         const other = a === "ball" ? b : a;
-        if (other === "rim" || other === "backboard") {
-          this.contact = true;
-          if (this.elapsed - this.lastRim > 100) {
-            this.feedback.rim();
-            this.lastRim = this.elapsed;
-          }
-        }
-        if (other === "ground" && this.session.inFlight && !this.settled) {
-          this.detector.invalidate();
-          this.resolve(0);
-        }
+        if (!this.shot.active && (other === "rim" || other === "backboard"))
+          this.feedback.rim();
       }
     };
     const world = this.matter.world;
@@ -129,23 +117,11 @@ export class GameScene extends AppScene {
       this.input.keyboard?.off("keydown-ESC", escape);
     });
   }
-  private resetDetector() {
-    const l = levels[this.levelId - 1];
-    this.detector = new BasketDetector(
-      l.hoopX,
-      l.hoopY,
-      getHoopGeometry(l).clearHalfWidth,
-      BALL_RADIUS,
-    );
-  }
-  private launch(v: Vec) {
+  private launch(plan: ShotPlan) {
     if (!this.session.launch()) return;
-    this.contact = false;
-    this.elapsed = 0;
-    this.lastRim = -200;
+    this.shot.launch(plan);
     this.settled = false;
-    this.resetDetector();
-    this.physicsCourt.launch(v);
+    this.physicsCourt.beginControlled();
     this.hint.setText("");
     this.renderHud();
   }
@@ -181,27 +157,21 @@ export class GameScene extends AppScene {
     let steps = 0;
     while (this.accumulator >= STEP_MS && steps++ < 10) {
       this.accumulator -= STEP_MS;
-      const ball = this.physicsCourt.ball;
-      const previous = { x: ball.x, y: ball.y };
       this.physicsCourt.step();
-      if (this.session.inFlight && !this.settled) {
-        this.elapsed += STEP_MS;
-        const current = { x: ball.x, y: ball.y };
-        if (this.detector.sample(previous, current)) {
-          const body = ball.body as MatterJS.BodyType;
-          const perfect =
-            Math.abs(ball.x - this.session.config.hoopX) <=
-              this.stats.perfectTolerance &&
-            Math.abs(body.velocity.x) <
-              Math.abs(body.velocity.y) * scoring.perfectMaxHorizontalRatio;
-          this.resolve(points(this.contact, perfect));
-        } else if (
-          this.elapsed > physics.shotTimeout ||
-          ball.x < -70 ||
-          ball.x > 470 ||
-          ball.y > 735
-        )
-          this.resolve(0);
+      if (this.shot.active) {
+        const { pose, arrived } = this.shot.advance(STEP_MS);
+        if (pose) this.physicsCourt.placeControlled(pose);
+        if (arrived && pose) {
+          const result = assessShot(
+            this.shot.currentPlan!,
+            this.session.config,
+            this.stats,
+          );
+          this.physicsCourt.finishControlled(pose);
+          if (result.impact !== "none" && result.impact !== "airball")
+            this.feedback.rim();
+          this.resolve(result.score);
+        }
       }
       if (this.settled) {
         this.settling += STEP_MS;
@@ -217,15 +187,17 @@ export class GameScene extends AppScene {
             return;
           }
           this.physicsCourt.reset();
+          this.shot.reset();
           this.settled = false;
           this.hint.setText("DRAG UP\nTO SHOOT");
         }
       }
     }
-    this.ballView.sync(
-      this.session.inFlight || this.settled,
-      this.aim.isAiming,
-    );
+    if (this.shot.active && this.shot.pose)
+      this.ballView.flight(this.shot.pose, this.shot.elapsedMs);
+    else if (this.settled)
+      this.ballView.rebound(this.shot.currentPlan!.hoopScale);
+    else this.ballView.idle(this.aim.isAiming ? this.aim.aimPower : 0);
   }
   private pause() {
     if (this.paused || !this.hud) return;

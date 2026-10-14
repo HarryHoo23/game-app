@@ -97,3 +97,13 @@ Run `node scripts/visual-check.mjs` with Vite running to capture home, game, aim
 The gameplay hoop now uses `src/assets/hoop/hoop-board.png`, with the rim aligned to the screen centre in all ten levels. The ball starts at bottom-centre. Drag upward for power; left/right deviation changes the shot direction at a reduced sensitivity suitable for the front view. Short shots and inaccurate shots still miss.
 
 `src/data/hoop.ts` defines the image's measured rim anchor and collision dimensions. The front/back image layers give the falling ball correct net occlusion. The physics radius, domain scoring rules, upgrade economy and save schema remain unchanged. Shot positions and the horizontal drag sensitivity have intentionally changed for the new viewpoint.
+
+## Controlled shot feel — checkpoint 1
+
+The primary shot now uses a deterministic 2.5D trajectory rather than Matter gravity. `src/data/shotFeel.ts` configures timing, aim/power, arc, scale, rotation, preview and shape changes. `ShotTrajectory` owns pure sampling/arrival assessment; `ShotController` owns progress; `TrajectoryPreview` and `BallAnimator` render that same plan. Matter resumes only after the ball reaches hoop depth, for residual bounces.
+
+An ideal upward drag remains 146 logical units. Horizontal drag controls the lateral endpoint. Power independently changes depth and arc; weak, strong and off-centre shots can miss. Score is assessed once at hoop depth with clearance and downward-entry checks, using the existing 2/3/4-point rules. Earlier screen-plane crossings never award points. Normal duration starts at 880ms, with a configurable small power-dependent variation. Scale reduces smoothly to 45%; backspin is around two rotations. Aim compression and release stretch last at most 100ms.
+
+Start Vite, then run `npm run test:shot-feel` for actual input, animation measurements, miss cases, pause and a recording. It uses Chrome plus Playwright's FFmpeg (`npx playwright install ffmpeg` if absent). The older Matter trajectory tests remain adapter regression coverage; they do not validate the new primary shot.
+
+This checkpoint deliberately stops after the first five requested steps for player review. Ghost trails, differentiated hoop reactions, full net stretch/swing, camera motion, hit-stop and new ambient effects are the next checkpoint. Existing score/impact feedback is retained.
