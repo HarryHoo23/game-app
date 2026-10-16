@@ -1,8 +1,6 @@
-import { createBallTexture } from "../assets/ballTexture";
 import Phaser from "phaser";
 export function makeTextures(scene: Phaser.Scene) {
   const g = scene.make.graphics({ x: 0, y: 0 });
-  createBallTexture(scene);
   g.clear();
   g.fillStyle(0x9df2d2);
   g.fillCircle(4, 4, 4);
