@@ -1,5 +1,12 @@
 import { hoopLayout, type BallDepthState } from "../hoop/hoopLayout";
 import Phaser from "phaser";
+import { HoopRenderer } from "../hoop/HoopRenderer";
+import {
+  PERSPECTIVE_CONFIG,
+  ballDisplaySize,
+  projectShot,
+  projectCourtPoint,
+} from "../presentation/perspective";
 import { physics } from "../../data/physics";
 import { colorNumber } from "../themes/theme";
 import { ballDeformation } from "../../domain/shooting/BallAnimation";
@@ -13,6 +20,7 @@ export class BallAnimator {
   constructor(
     scene: Phaser.Scene,
     private body: Phaser.Physics.Matter.Image,
+    private hoop: HoopRenderer,
   ) {
     body.setVisible(false);
     this.shadow = scene.add
@@ -32,15 +40,20 @@ export class BallAnimator {
   }
   idle(power: number) {
     const squash = ballDeformation(this.reduced ? 0 : power, null),
-      size = physics.foregroundBallSize;
+      size = ballDisplaySize(1);
     this.image
-      .setPosition(physics.origin.x, physics.origin.y)
       .setRotation(0)
       .setDepth(hoopLayout.ballDepth.APPROACHING)
-      .setDisplaySize(size * squash.x, size * squash.y)
       .setAlpha(1);
+    this.hoop.placeBall(
+      this.image,
+      { x: physics.origin.x, y: PERSPECTIVE_CONFIG.idleBallY },
+      size * squash.x,
+      size * squash.y,
+      hoopLayout.ballDepth.APPROACHING,
+    );
     this.shadow
-      .setPosition(physics.origin.x, physics.origin.y + 67)
+      .setPosition(physics.origin.x, PERSPECTIVE_CONFIG.idleBallY + size / 2)
       .setScale(1)
       .setAlpha(0.7);
   }
@@ -50,29 +63,44 @@ export class BallAnimator {
     state: BallDepthState = "APPROACHING",
   ) {
     const stretch = ballDeformation(0, this.reduced ? null : elapsedMs),
-      size = physics.foregroundBallSize * pose.scale;
+      size = ballDisplaySize(pose.scale);
     this.image
-      .setPosition(pose.x, pose.y)
       .setRotation(pose.rotation)
       .setDepth(hoopLayout.ballDepth[state])
-      .setDisplaySize(size * stretch.x, size * stretch.y)
       .setAlpha(1);
+    const projected = projectShot(pose, this.hoop.getRimCenter());
+    this.hoop.placeBall(
+      this.image,
+      projected,
+      size * stretch.x,
+      size * stretch.y,
+      hoopLayout.ballDepth[state],
+    );
     this.shadow
       .setPosition(
-        pose.x,
-        Phaser.Math.Linear(physics.origin.y + 67, pose.y + 100, pose.t),
+        projected.x,
+        Phaser.Math.Linear(
+          PERSPECTIVE_CONFIG.idleBallY + ballDisplaySize(1) / 2,
+          projected.y + size / 2,
+          pose.t,
+        ),
       )
       .setScale(pose.scale)
       .setAlpha(0.35 * (1 - pose.t));
   }
   rebound(scale: number) {
-    const size = physics.foregroundBallSize * scale;
+    const size = ballDisplaySize(scale);
     this.image
-      .setPosition(this.body.x, this.body.y)
       .setRotation(this.body.rotation)
       .setDepth(hoopLayout.ballDepth.BELOW_HOOP)
-      .setDisplaySize(size, size)
       .setAlpha(1);
+    this.hoop.placeBall(
+      this.image,
+      projectCourtPoint(this.body, this.hoop.getRimCenter()),
+      size,
+      size,
+      hoopLayout.ballDepth.BELOW_HOOP,
+    );
     this.shadow.setAlpha(0);
   }
 }

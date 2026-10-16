@@ -6,7 +6,7 @@ import {
 } from "../../domain/shooting/ShotTrajectory";
 import type { LevelConfig } from "../../data/levels";
 import Phaser from "phaser";
-import { ORIGIN } from "../physics/court";
+import { PERSPECTIVE_CONFIG } from "../presentation/perspective";
 import type { Stats } from "../../domain/progression/progress";
 export class ShotInput {
   private pointer: number | null = null;
@@ -21,7 +21,10 @@ export class ShotInput {
     private canAim: () => boolean,
     private fire: (plan: ShotPlan) => void,
   ) {
-    this.preview = new TrajectoryPreview(scene);
+    this.preview = new TrajectoryPreview(scene, {
+      x: level.hoopX,
+      y: level.hoopY,
+    });
     scene.input.on("pointerdown", this.down, this);
     scene.input.on("pointermove", this.move, this);
     scene.input.on("pointerup", this.up, this);
@@ -39,7 +42,8 @@ export class ShotInput {
     if (
       !this.canAim() ||
       this.pointer !== null ||
-      Math.hypot(p.x - ORIGIN.x, p.y - ORIGIN.y) > physics.inputRadius
+      Math.hypot(p.x - physics.origin.x, p.y - PERSPECTIVE_CONFIG.idleBallY) >
+        physics.inputRadius
     )
       return;
     this.pointer = p.id;

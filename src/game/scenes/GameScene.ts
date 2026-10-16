@@ -1,3 +1,4 @@
+import { rimOnScreen } from "../presentation/perspective";
 import { HoopPass } from "../hoop/HoopPass";
 import { HoopRenderer } from "../hoop/HoopRenderer";
 import { ShotController } from "../../domain/shooting/ShotController";
@@ -66,7 +67,7 @@ export class GameScene extends AppScene {
     this.physicsCourt = new MatterCourt(this, l);
     this.hoop = new HoopRenderer(this, l.hoopX, l.hoopY);
     this.pass = new HoopPass(l);
-    this.ballView = new BallAnimator(this, this.physicsCourt.ball);
+    this.ballView = new BallAnimator(this, this.physicsCourt.ball, this.hoop);
     this.feedback = new Feedback(this, this.app);
     this.hint = this.add
       .text(285, 566, "DRAG UP\nTO SHOOT", {
@@ -138,12 +139,8 @@ export class GameScene extends AppScene {
     this.settled = true;
     this.settling = 0;
     if (score) {
-      this.feedback.basket(
-        this.physicsCourt.level.hoopX,
-        this.physicsCourt.level.hoopY,
-        score,
-        this.session.streak,
-      );
+      const rim = rimOnScreen(this.hoop.getRimCenter());
+      this.feedback.basket(rim.x, rim.y, score, this.session.streak);
       this.hint.setText(
         this.session.score >= this.session.config.targetScore
           ? "TARGET REACHED\nCHASE THE STARS"

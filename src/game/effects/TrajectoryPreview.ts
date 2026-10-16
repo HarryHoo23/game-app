@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { projectShot, type RimPoint } from "../presentation/perspective";
 import {
   predictShot,
   type ShotPlan,
@@ -7,7 +8,10 @@ import { shotFeel } from "../../data/shotFeel";
 import { colorNumber } from "../themes/theme";
 export class TrajectoryPreview {
   private graphic: Phaser.GameObjects.Graphics;
-  constructor(scene: Phaser.Scene) {
+  constructor(
+    scene: Phaser.Scene,
+    private rim: RimPoint,
+  ) {
     this.graphic = scene.add.graphics().setDepth(8);
   }
   clear() {
@@ -28,10 +32,11 @@ export class TrajectoryPreview {
           shotFeel.previewFarAlpha,
           distance,
         );
+      const screen = projectShot(p, this.rim);
       g.fillStyle(colorNumber("mint"), alpha * 0.1);
-      g.fillCircle(p.x, p.y, radius * 2.2);
+      g.fillCircle(screen.x, screen.y, radius * 2.2);
       g.fillStyle(colorNumber("mint"), alpha);
-      g.fillCircle(p.x, p.y, radius);
+      g.fillCircle(screen.x, screen.y, radius);
     });
   }
 }
