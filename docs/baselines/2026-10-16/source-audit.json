@@ -1,0 +1,72 @@
+[
+  {
+    "file": "src/data/shotFeel.ts",
+    "sha256": "4b58bee261873274ac2c527d9048452012989b166a3435c47a421db6f73f9480",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/domain/shooting/ShotController.ts",
+    "sha256": "a838954dbc9f484c480501d331a3942aab28b6550ef50b8c211cde6955b6c8be",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/domain/shooting/ShotTrajectory.ts",
+    "sha256": "e70c97119cabbf6d8201169021c9a8a0541394195d1323879e4c915413b8e21f",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/domain/shooting/BallAnimation.ts",
+    "sha256": "649fed0f696777c6d47b638828bd74c84554ef08fd6ea9dc77e3520f2a4053d7",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/environments/BallAnimator.ts",
+    "sha256": "a27d76becccb4446a248987f02c13af9f97f11ad30733f8aab628a4bfb8b1179",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/hoop/HoopRenderer.ts",
+    "sha256": "94e3c6800fe59434c039e08f1baacc4ae7482e8b69b3194b6163144bf5138a31",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/hoop/HoopPass.ts",
+    "sha256": "168020f091126e540f51e1266b6656c4a16048fe34eb03fe256f561d741b78d5",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/hoop/HoopSensors.ts",
+    "sha256": "cb18443fc8aa69cbd1ecec526ab083c910a99dbaaf4742abb10035b84d3ac490",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/hoop/hoopLayout.ts",
+    "sha256": "85fa02deb381724cdb0dad0a9cf2fd50422b59a6ea2490f15b23c85eca8a12c3",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/presentation/perspective.ts",
+    "sha256": "9a303b558071131aed2f1b9928757e1809ca3fe0cfa995cf062f6a287388002d",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/systems/feedback.ts",
+    "sha256": "3fbf914d779ba6cd7834a5fcc9329586348ef928fb640c64c57630a7009bce5c",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/effects/ScoreFeedback.ts",
+    "sha256": "91a71a7b8c47da9a6625e6575d3a186974590a35231cd477675c6ad2afa1ba18",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/scenes/GameScene.ts",
+    "sha256": "2c2cb88aebb92d65565576d364760239502698f4847b7329cf835002d1af2399",
+    "identicalToBaselineCommit": true
+  },
+  {
+    "file": "src/game/environments/NightCourt.ts",
+    "sha256": "e774ad41ff803b304727df9ede9e8099e50696055d5f01c06d4495de6d00bcda",
+    "identicalToBaselineCommit": true
+  }
+]

@@ -1,0 +1,3590 @@
+{
+  "scenario": {
+    "name": "04-back-rim-miss",
+    "shots": [
+      [
+        0,
+        -230
+      ]
+    ]
+  },
+  "math": {
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "target": {
+        "x": 200,
+        "y": 255
+      },
+      "power": 0.8588235294117647,
+      "arcHeight": 172.97411764705882,
+      "durationMs": 900,
+      "rotations": 2,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "logicalApex": {
+      "t": 0.7638,
+      "y": 216.38826217562354
+    },
+    "renderedApex": {
+      "t": 0.8756,
+      "y": 220.11219468249013
+    },
+    "scaleSamples": [
+      {
+        "t": 0,
+        "size": 126.72
+      },
+      {
+        "t": 0.1,
+        "size": 124.66206720000001
+      },
+      {
+        "t": 0.15,
+        "size": 122.25502080000001
+      },
+      {
+        "t": 0.4,
+        "size": 100.84884479999998
+      },
+      {
+        "t": 0.5,
+        "size": 89.9712
+      },
+      {
+        "t": 0.8,
+        "size": 60.86615039999998
+      },
+      {
+        "t": 1,
+        "size": 53.22239999999999
+      }
+    ],
+    "perspective": {
+      "hoopScale": 0.73,
+      "hoopYOffset": -28.48,
+      "idleBallScale": 0.88,
+      "idleBallCrop": 0.2,
+      "idleBallY": 673.984,
+      "ballScaleAtRim": 0.42,
+      "tint": {
+        "backboard": 12176591,
+        "rimBack": 11911114,
+        "net": 10795961,
+        "rimFront": 11911114
+      }
+    },
+    "candidates": [
+      {
+        "dx": 0,
+        "dy": -146,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 200,
+            "y": 255
+          },
+          "power": 0.8588235294117647,
+          "arcHeight": 172.97411764705882,
+          "durationMs": 900,
+          "rotations": 2,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "result": {
+          "made": true,
+          "score": 4,
+          "impact": "none",
+          "quality": "perfect"
+        }
+      },
+      {
+        "dx": 0,
+        "dy": -140,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 200,
+            "y": 263.4705882352941
+          },
+          "power": 0.8235294117647058,
+          "arcHeight": 171.71764705882353,
+          "durationMs": 906.3529411764706,
+          "rotations": 1.9717647058823529,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "result": {
+          "made": true,
+          "score": 3,
+          "impact": "none",
+          "quality": "swish"
+        }
+      },
+      {
+        "dx": 0,
+        "dy": -125,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 200,
+            "y": 284.6470588235294
+          },
+          "power": 0.7352941176470589,
+          "arcHeight": 168.57647058823528,
+          "durationMs": 922.2352941176471,
+          "rotations": 1.9011764705882355,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "result": {
+          "made": false,
+          "score": 0,
+          "impact": "frontRim",
+          "quality": "miss"
+        }
+      },
+      {
+        "dx": 0,
+        "dy": -230,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 200,
+            "y": 221.1176470588235
+          },
+          "power": 1,
+          "arcHeight": 178,
+          "durationMs": 874.5882352941177,
+          "rotations": 2.112941176470588,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "result": {
+          "made": false,
+          "score": 0,
+          "impact": "backRim",
+          "quality": "miss"
+        }
+      },
+      {
+        "dx": 80,
+        "dy": -146,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 304,
+            "y": 226.08532210834719
+          },
+          "power": 0.979301353960318,
+          "arcHeight": 177.26312820098732,
+          "durationMs": 878.3139915812604,
+          "rotations": 2.0963822596388426,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "result": {
+          "made": false,
+          "score": 0,
+          "impact": "airball",
+          "quality": "miss"
+        }
+      }
+    ],
+    "stats": {
+      "smoothing": 0,
+      "perfectTolerance": 6,
+      "powerControl": 0,
+      "coinMultiplier": 1,
+      "maxSpeed": 17
+    },
+    "renderer": 2
+  },
+  "shots": [
+    {
+      "drag": [
+        0,
+        -230
+      ],
+      "result": {
+        "made": false,
+        "score": 0,
+        "impact": "backRim",
+        "quality": "miss"
+      },
+      "flightMs": 874.5882352941177,
+      "releaseToResolveMs": 882.5,
+      "resolveToReadyMs": 933.7999999523163,
+      "releaseToReadyMs": 1816.2999999523163,
+      "netTriggerToResolveMs": null,
+      "impacts": [
+        {
+          "impact": "rim",
+          "afterReleaseMs": 882
+        }
+      ],
+      "audio": [
+        {
+          "sound": "rim",
+          "afterReleaseMs": 882.3999999761581
+        }
+      ],
+      "events": [
+        {
+          "kind": "release",
+          "shot": 1,
+          "wallMs": 295.5,
+          "flightMs": 0,
+          "passMs": 0,
+          "plan": {
+            "start": {
+              "x": 200,
+              "y": 620
+            },
+            "target": {
+              "x": 200,
+              "y": 221.1176470588235
+            },
+            "power": 1,
+            "arcHeight": 178,
+            "durationMs": 874.5882352941177,
+            "rotations": 2.112941176470588,
+            "startScale": 1,
+            "hoopScale": 0.45
+          }
+        },
+        {
+          "kind": "arrival",
+          "shot": 1,
+          "wallMs": 1177.3999999761581,
+          "flightMs": 874.5882352941177,
+          "passMs": 0,
+          "result": {
+            "made": false,
+            "score": 0,
+            "impact": "backRim",
+            "quality": "miss"
+          }
+        },
+        {
+          "kind": "impact",
+          "shot": 1,
+          "wallMs": 1177.5,
+          "flightMs": 874.5882352941177,
+          "passMs": 0,
+          "impact": "rim"
+        },
+        {
+          "kind": "audio-call",
+          "shot": 1,
+          "wallMs": 1177.8999999761581,
+          "flightMs": 874.5882352941177,
+          "passMs": 0,
+          "sound": "rim",
+          "enabled": true
+        },
+        {
+          "kind": "resolve",
+          "shot": 1,
+          "wallMs": 1178,
+          "flightMs": 874.5882352941177,
+          "passMs": 0,
+          "score": 0
+        },
+        {
+          "kind": "ball-reset",
+          "shot": 1,
+          "wallMs": 2110.7999999523163,
+          "flightMs": 874.5882352941177,
+          "passMs": 0
+        },
+        {
+          "kind": "ready",
+          "shot": 1,
+          "wallMs": 2111.7999999523163,
+          "flightMs": 0,
+          "passMs": 0
+        }
+      ]
+    }
+  ],
+  "trace": {
+    "zero": 1329.8000000715256,
+    "shot": 1,
+    "events": [
+      {
+        "kind": "release",
+        "shot": 1,
+        "wallMs": 295.5,
+        "flightMs": 0,
+        "passMs": 0,
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "target": {
+            "x": 200,
+            "y": 221.1176470588235
+          },
+          "power": 1,
+          "arcHeight": 178,
+          "durationMs": 874.5882352941177,
+          "rotations": 2.112941176470588,
+          "startScale": 1,
+          "hoopScale": 0.45
+        }
+      },
+      {
+        "kind": "arrival",
+        "shot": 1,
+        "wallMs": 1177.3999999761581,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "result": {
+          "made": false,
+          "score": 0,
+          "impact": "backRim",
+          "quality": "miss"
+        }
+      },
+      {
+        "kind": "impact",
+        "shot": 1,
+        "wallMs": 1177.5,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "impact": "rim"
+      },
+      {
+        "kind": "audio-call",
+        "shot": 1,
+        "wallMs": 1177.8999999761581,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "sound": "rim",
+        "enabled": true
+      },
+      {
+        "kind": "resolve",
+        "shot": 1,
+        "wallMs": 1178,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "score": 0
+      },
+      {
+        "kind": "ball-reset",
+        "shot": 1,
+        "wallMs": 2110.7999999523163,
+        "flightMs": 874.5882352941177,
+        "passMs": 0
+      },
+      {
+        "kind": "ready",
+        "shot": 1,
+        "wallMs": 2111.7999999523163,
+        "flightMs": 0,
+        "passMs": 0
+      }
+    ],
+    "frames": [
+      {
+        "wallMs": 9.899999976158142,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 26.799999952316284,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 44.09999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 71.89999997615814,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 83.19999992847443,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 94.89999997615814,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 111.79999995231628,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 127.39087058823532,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 127.5,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 128.02819764705882,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 144.19999992847443,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 128.66552470588238,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 160.19999992847443,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 129.30285176470588,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 177.59999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 129.94017882352938,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 193.59999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 130.57750588235294,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 210.19999992847443,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 131.24837647058823,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 227.59999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 131.88570352941178,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 244.29999995231628,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 132.42239999999998,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 260.7999999523163,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 132.42239999999998,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 277.09999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 132.42239999999998,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 294.09999990463257,
+        "shot": 0,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 132.42239999999998,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 310.89999997615814,
+        "shot": 1,
+        "flightMs": 16.666666666666668,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 658.5328979492188,
+        "diameter": 121.89190912237531,
+        "rotation": -0.25299526526084115,
+        "depth": 7,
+        "bodyY": 599.0889392512679,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 327.39999997615814,
+        "shot": 1,
+        "flightMs": 33.333333333333336,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 643.0969848632812,
+        "diameter": 118.19741674904196,
+        "rotation": -0.5059905305216823,
+        "depth": 7,
+        "bodyY": 578.6950090900865,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 344,
+        "shot": 1,
+        "flightMs": 50.00000000000001,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 627.6904907226562,
+        "diameter": 116.57480095232138,
+        "rotation": -0.7589857957825217,
+        "depth": 7,
+        "bodyY": 558.8182095164558,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 360.5,
+        "shot": 1,
+        "flightMs": 66.66666666666667,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 612.3277587890625,
+        "diameter": 117.35222175212742,
+        "rotation": -1.0119810610433628,
+        "depth": 7,
+        "bodyY": 539.4585405303758,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 377.1999999284744,
+        "shot": 1,
+        "flightMs": 83.33333333333333,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 597.0232543945312,
+        "diameter": 120.16364080914187,
+        "rotation": -1.264976326304204,
+        "depth": 7,
+        "bodyY": 520.6160021318464,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 393.09999990463257,
+        "shot": 1,
+        "flightMs": 99.99999999999999,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 581.7913208007812,
+        "diameter": 124.05711309618457,
+        "rotation": -1.5179715915650434,
+        "depth": 7,
+        "bodyY": 502.29059432086757,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 410.2999999523163,
+        "shot": 1,
+        "flightMs": 116.66666666666664,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 566.646240234375,
+        "diameter": 123.14536153837109,
+        "rotation": -1.7709668568258845,
+        "depth": 7,
+        "bodyY": 484.4823170974395,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 426.39999997615814,
+        "shot": 1,
+        "flightMs": 133.33333333333331,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 551.6024169921875,
+        "diameter": 122.11619007889976,
+        "rotation": -2.0239621220867248,
+        "depth": 7,
+        "bodyY": 467.191170461562,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 444.09999990463257,
+        "shot": 1,
+        "flightMs": 150,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 536.6741943359375,
+        "diameter": 120.97570236970363,
+        "rotation": -2.276957387347565,
+        "depth": 7,
+        "bodyY": 450.41715441323515,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 460.6999999284744,
+        "shot": 1,
+        "flightMs": 166.66666666666669,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 521.8759765625,
+        "diameter": 119.73000206271578,
+        "rotation": -2.529952652608406,
+        "depth": 7,
+        "bodyY": 434.16026895245903,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 477.39999997615814,
+        "shot": 1,
+        "flightMs": 183.33333333333337,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 507.22210693359375,
+        "diameter": 118.38519280986917,
+        "rotation": -2.7829479178692473,
+        "depth": 7,
+        "bodyY": 418.42051407923356,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 493.2999999523163,
+        "shot": 1,
+        "flightMs": 200.00000000000006,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 492.7268981933594,
+        "diameter": 116.94737826309691,
+        "rotation": -3.0359431831300885,
+        "depth": 7,
+        "bodyY": 403.1978897935588,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 510.59999990463257,
+        "shot": 1,
+        "flightMs": 216.66666666666674,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 478.40478515625,
+        "diameter": 115.42266207433205,
+        "rotation": 2.9942468587886566,
+        "depth": 7,
+        "bodyY": 388.49239609543463,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 527.2999999523163,
+        "shot": 1,
+        "flightMs": 233.33333333333343,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 464.27008056640625,
+        "diameter": 113.8171478955076,
+        "rotation": 2.7412515935278154,
+        "depth": 7,
+        "bodyY": 374.3040329848611,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 543.6999999284744,
+        "shot": 1,
+        "flightMs": 250.0000000000001,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 450.3371276855469,
+        "diameter": 112.13693937855663,
+        "rotation": 2.488256328266975,
+        "depth": 7,
+        "bodyY": 360.6328004618383,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 559.6999999284744,
+        "shot": 1,
+        "flightMs": 266.66666666666674,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 436.6203308105469,
+        "diameter": 110.38814017541219,
+        "rotation": 2.235261063006135,
+        "depth": 7,
+        "bodyY": 347.47869852636614,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 577.1999999284744,
+        "shot": 1,
+        "flightMs": 283.33333333333337,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 423.1340026855469,
+        "diameter": 108.57685393800732,
+        "rotation": 1.9822657977452947,
+        "depth": 7,
+        "bodyY": 334.84172717844467,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 593.5,
+        "shot": 1,
+        "flightMs": 300,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 409.892578125,
+        "diameter": 106.70918431827506,
+        "rotation": 1.7292705324844553,
+        "depth": 7,
+        "bodyY": 322.72188641807395,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 610,
+        "shot": 1,
+        "flightMs": 316.66666666666663,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 396.9103088378906,
+        "diameter": 104.79123496814844,
+        "rotation": 1.476275267223615,
+        "depth": 7,
+        "bodyY": 311.11917624525375,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 627.1999999284744,
+        "shot": 1,
+        "flightMs": 333.33333333333326,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 384.20166015625,
+        "diameter": 102.82910953956055,
+        "rotation": 1.2232800019627748,
+        "depth": 7,
+        "bodyY": 300.03359665998425,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 644.0999999046326,
+        "shot": 1,
+        "flightMs": 349.9999999999999,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 371.7809143066406,
+        "diameter": 100.8289116844444,
+        "rotation": 0.9702847367019345,
+        "depth": 7,
+        "bodyY": 289.4651476622654,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 660.6999999284744,
+        "shot": 1,
+        "flightMs": 366.6666666666665,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 359.6624755859375,
+        "diameter": 98.79674505473305,
+        "rotation": 0.7172894714410942,
+        "depth": 7,
+        "bodyY": 279.41382925209723,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 676.7999999523163,
+        "shot": 1,
+        "flightMs": 383.33333333333314,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 347.8607177734375,
+        "diameter": 96.73871330235956,
+        "rotation": 0.46429420618025485,
+        "depth": 7,
+        "bodyY": 269.87964142947976,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 693,
+        "shot": 1,
+        "flightMs": 399.9999999999998,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 336.38995361328125,
+        "diameter": 94.66092007925695,
+        "rotation": 0.2112989409194146,
+        "depth": 7,
+        "bodyY": 260.8625841944129,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 710.6999999284744,
+        "shot": 1,
+        "flightMs": 416.6666666666664,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 325.2645568847656,
+        "diameter": 92.56946903735826,
+        "rotation": -0.04169632434142567,
+        "depth": 7,
+        "bodyY": 252.36265754689666,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 726.8999999761581,
+        "shot": 1,
+        "flightMs": 433.33333333333303,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 314.4988708496094,
+        "diameter": 90.47046382859658,
+        "rotation": -0.29469158960226505,
+        "depth": 7,
+        "bodyY": 244.37986148693116,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 744.0999999046326,
+        "shot": 1,
+        "flightMs": 449.99999999999966,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 304.1072998046875,
+        "diameter": 88.37000810490491,
+        "rotation": -0.5476868548631053,
+        "depth": 7,
+        "bodyY": 236.91419601451628,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 760.5999999046326,
+        "shot": 1,
+        "flightMs": 466.6666666666663,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 294.10418701171875,
+        "diameter": 86.27420551821633,
+        "rotation": -0.8006821201239456,
+        "depth": 7,
+        "bodyY": 229.96566112965206,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 777.2999999523163,
+        "shot": 1,
+        "flightMs": 483.3333333333329,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 284.5038757324219,
+        "diameter": 84.18915972046386,
+        "rotation": -1.0536773853847858,
+        "depth": 7,
+        "bodyY": 223.53425683233849,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 793.8999999761581,
+        "shot": 1,
+        "flightMs": 499.99999999999955,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 275.3207702636719,
+        "diameter": 82.12097436358057,
+        "rotation": -1.3066726506456252,
+        "depth": 7,
+        "bodyY": 217.61998312257563,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 810.5,
+        "shot": 1,
+        "flightMs": 516.6666666666662,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 266.56915283203125,
+        "diameter": 80.0757530994995,
+        "rotation": -1.5596679159064655,
+        "depth": 7,
+        "bodyY": 212.22284000036336,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 826.5,
+        "shot": 1,
+        "flightMs": 533.3333333333329,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 258.2634582519531,
+        "diameter": 78.05959958015363,
+        "rotation": -1.8126631811673075,
+        "depth": 7,
+        "bodyY": 207.34282746570173,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 844.0999999046326,
+        "shot": 1,
+        "flightMs": 549.9999999999997,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 250.41798400878906,
+        "diameter": 76.07861745747611,
+        "rotation": -2.0656584464281487,
+        "depth": 7,
+        "bodyY": 202.97994551859077,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 860.2999999523163,
+        "shot": 1,
+        "flightMs": 566.6666666666664,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 243.04714965820312,
+        "diameter": 74.13891038339992,
+        "rotation": -2.3186537116889916,
+        "depth": 7,
+        "bodyY": 199.1341941590305,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 877.3999999761581,
+        "shot": 1,
+        "flightMs": 583.3333333333331,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 236.16526794433594,
+        "diameter": 72.24658200985813,
+        "rotation": -2.5716489769498327,
+        "depth": 7,
+        "bodyY": 195.80557338702087,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 893.8999999761581,
+        "shot": 1,
+        "flightMs": 599.9999999999999,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 229.78672790527344,
+        "diameter": 70.4077359887838,
+        "rotation": -2.824644242210674,
+        "depth": 7,
+        "bodyY": 192.9940832025619,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 910,
+        "shot": 1,
+        "flightMs": 616.6666666666666,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 223.9258575439453,
+        "diameter": 68.62847597210994,
+        "rotation": -3.077639507471517,
+        "depth": 7,
+        "bodyY": 190.6997236056536,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 927.2999999523163,
+        "shot": 1,
+        "flightMs": 633.3333333333334,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 218.59706115722656,
+        "diameter": 66.91490561176967,
+        "rotation": 2.9525505344472283,
+        "depth": 7,
+        "bodyY": 188.92249459629602,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 943.5,
+        "shot": 1,
+        "flightMs": 650.0000000000001,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 213.81466674804688,
+        "diameter": 65.27312855969592,
+        "rotation": 2.699555269186387,
+        "depth": 7,
+        "bodyY": 187.66239617448906,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 959.8999999761581,
+        "shot": 1,
+        "flightMs": 666.6666666666669,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 209.59303283691406,
+        "diameter": 63.70924846782184,
+        "rotation": 2.446560003925544,
+        "depth": 7,
+        "bodyY": 186.91942834023274,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 977.5,
+        "shot": 1,
+        "flightMs": 683.3333333333336,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 205.94654846191406,
+        "diameter": 62.22936898808042,
+        "rotation": 2.193564738664703,
+        "depth": 7,
+        "bodyY": 186.69359109352712,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 994,
+        "shot": 1,
+        "flightMs": 700.0000000000003,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 202.8895263671875,
+        "diameter": 60.83959377240472,
+        "rotation": 1.94056947340386,
+        "depth": 7,
+        "bodyY": 186.98488443437213,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1010.7999999523163,
+        "shot": 1,
+        "flightMs": 716.6666666666671,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 200.43637084960938,
+        "diameter": 59.546026472727796,
+        "rotation": 1.687574208143019,
+        "depth": 7,
+        "bodyY": 187.79330836276787,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1027.2999999523163,
+        "shot": 1,
+        "flightMs": 733.3333333333338,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 198.60142517089844,
+        "diameter": 58.35477074098269,
+        "rotation": 1.4345789428821778,
+        "depth": 7,
+        "bodyY": 189.1188628787142,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1044,
+        "shot": 1,
+        "flightMs": 750.0000000000006,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 197.39903259277344,
+        "diameter": 57.27193022910242,
+        "rotation": 1.1815836776213349,
+        "depth": 7,
+        "bodyY": 190.96154798221124,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1059.5999999046326,
+        "shot": 1,
+        "flightMs": 766.6666666666673,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 196.8435821533203,
+        "diameter": 56.303608589020094,
+        "rotation": 0.9285884123604937,
+        "depth": 7,
+        "bodyY": 193.32136367325893,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1077,
+        "shot": 1,
+        "flightMs": 783.333333333334,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 196.9494171142578,
+        "diameter": 55.455909472668715,
+        "rotation": 0.6755931470996526,
+        "depth": 7,
+        "bodyY": 196.1983099518573,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1093.8999999761581,
+        "shot": 1,
+        "flightMs": 800.0000000000008,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 197.73089599609375,
+        "diameter": 54.734936531981326,
+        "rotation": 0.42259788183880964,
+        "depth": 7,
+        "bodyY": 199.59238681800633,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1110.6999999284744,
+        "shot": 1,
+        "flightMs": 816.6666666666675,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 199.20237731933594,
+        "diameter": 54.14679341889097,
+        "rotation": 0.1696026165779685,
+        "depth": 7,
+        "bodyY": 203.50359427170602,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1127.2999999523163,
+        "shot": 1,
+        "flightMs": 833.3333333333343,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 201.37823486328125,
+        "diameter": 53.69758378533073,
+        "rotation": -0.08339264868287266,
+        "depth": 7,
+        "bodyY": 207.93193231295638,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1143.8999999761581,
+        "shot": 1,
+        "flightMs": 850.000000000001,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 204.27281188964844,
+        "diameter": 53.39341128323363,
+        "rotation": -0.3363879139437156,
+        "depth": 7,
+        "bodyY": 212.87740094175746,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1160.1999999284744,
+        "shot": 1,
+        "flightMs": 866.6666666666678,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 207.90048217773438,
+        "diameter": 53.24037956453271,
+        "rotation": -0.5893831792045567,
+        "depth": 7,
+        "bodyY": 218.34000015810912,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1179.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 212.114501953125,
+        "diameter": 53.22239999999999,
+        "rotation": -0.836127973205997,
+        "depth": 7,
+        "bodyY": 224.17056832149058,
+        "velocity": {
+          "x": 0,
+          "y": 6.105842525334083
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1194.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 216.72384643554688,
+        "diameter": 53.22239999999999,
+        "rotation": -1.08912323846684,
+        "depth": 7,
+        "bodyY": 230.48474418015803,
+        "velocity": {
+          "x": 0,
+          "y": 6.383620303111911
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1210.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 221.53598022460938,
+        "diameter": 53.22239999999999,
+        "rotation": -1.3421185037276828,
+        "depth": 7,
+        "bodyY": 237.0766978166033,
+        "velocity": {
+          "x": 0,
+          "y": 6.6613980808897395
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1226.5,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 226.55088806152344,
+        "diameter": 53.22239999999999,
+        "rotation": -1.5951137689885257,
+        "depth": 7,
+        "bodyY": 243.94642923082642,
+        "velocity": {
+          "x": 0,
+          "y": 6.939175858667568
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1254.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 231.76856994628906,
+        "diameter": 53.22239999999999,
+        "rotation": -1.8481090342493687,
+        "depth": 7,
+        "bodyY": 251.09393842282736,
+        "velocity": {
+          "x": 0,
+          "y": 7.216953636445396
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1271.5999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 237.18902587890625,
+        "diameter": 53.22239999999999,
+        "rotation": -2.1011042995102116,
+        "depth": 7,
+        "bodyY": 258.51922539260613,
+        "velocity": {
+          "x": 0,
+          "y": 7.494731414223224
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1279,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 242.812255859375,
+        "diameter": 53.22239999999999,
+        "rotation": -2.3540995647710545,
+        "depth": 7,
+        "bodyY": 266.2222901401627,
+        "velocity": {
+          "x": 0,
+          "y": 7.772509192001053
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1294,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 248.63827514648438,
+        "diameter": 53.22239999999999,
+        "rotation": -2.6070948300318975,
+        "depth": 7,
+        "bodyY": 274.20313266549715,
+        "velocity": {
+          "x": 0,
+          "y": 8.050286969778881
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1310.6999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 254.6670684814453,
+        "diameter": 53.22239999999999,
+        "rotation": -2.8600900952927404,
+        "depth": 7,
+        "bodyY": 282.4617529686094,
+        "velocity": {
+          "x": 0,
+          "y": 8.32806474755671
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1327.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 260.8986511230469,
+        "diameter": 53.22239999999999,
+        "rotation": -3.1130853605535833,
+        "depth": 7,
+        "bodyY": 290.9981510494995,
+        "velocity": {
+          "x": 0,
+          "y": 8.605842525334538
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1343.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 267.3329772949219,
+        "diameter": 53.22239999999999,
+        "rotation": 2.91710468136516,
+        "depth": 7,
+        "bodyY": 299.8123269081674,
+        "velocity": {
+          "x": 0,
+          "y": 8.883620303112366
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1359.7999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 273.9701232910156,
+        "diameter": 53.22239999999999,
+        "rotation": 2.664109416104317,
+        "depth": 7,
+        "bodyY": 308.90428054461313,
+        "velocity": {
+          "x": 0,
+          "y": 9.161398080890194
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1377.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 280.8100280761719,
+        "diameter": 53.22239999999999,
+        "rotation": 2.411114150843474,
+        "depth": 7,
+        "bodyY": 318.2740119588367,
+        "velocity": {
+          "x": 0,
+          "y": 9.439175858668023
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1393.2999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 287.8526916503906,
+        "diameter": 53.22239999999999,
+        "rotation": 2.158118885582631,
+        "depth": 7,
+        "bodyY": 327.9215211508381,
+        "velocity": {
+          "x": 0,
+          "y": 9.71695363644585
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1410.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 295.0981750488281,
+        "diameter": 53.22239999999999,
+        "rotation": 1.9051236203217883,
+        "depth": 7,
+        "bodyY": 337.8468081206173,
+        "velocity": {
+          "x": 0,
+          "y": 9.99473141422368
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1427.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 302.54638671875,
+        "diameter": 53.22239999999999,
+        "rotation": 1.6521283550609454,
+        "depth": 7,
+        "bodyY": 348.04987286817436,
+        "velocity": {
+          "x": 0,
+          "y": 10.272509192001507
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1443.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 310.1974182128906,
+        "diameter": 53.22239999999999,
+        "rotation": 1.3991330898001024,
+        "depth": 7,
+        "bodyY": 358.53071539350924,
+        "velocity": {
+          "x": 0,
+          "y": 10.550286969779336
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1460.5999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 318.05120849609375,
+        "diameter": 53.22239999999999,
+        "rotation": 1.1461378245392595,
+        "depth": 7,
+        "bodyY": 369.28933569662195,
+        "velocity": {
+          "x": 0,
+          "y": 10.828064747557164
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1476.2999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 326.1077880859375,
+        "diameter": 53.22239999999999,
+        "rotation": 0.8931425592784166,
+        "depth": 7,
+        "bodyY": 380.3257337775125,
+        "velocity": {
+          "x": 0,
+          "y": 11.105842525334992
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1493.3999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 334.36712646484375,
+        "diameter": 53.22239999999999,
+        "rotation": 0.6401472940175736,
+        "depth": 7,
+        "bodyY": 391.63990963618085,
+        "velocity": {
+          "x": 0,
+          "y": 11.38362030311282
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1510.5,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 342.8292541503906,
+        "diameter": 53.22239999999999,
+        "rotation": 0.3871520287567307,
+        "depth": 7,
+        "bodyY": 403.23186327262704,
+        "velocity": {
+          "x": 0,
+          "y": 11.661398080890649
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1526.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 351.494140625,
+        "diameter": 53.22239999999999,
+        "rotation": 0.1341567634958878,
+        "depth": 7,
+        "bodyY": 415.10159468685106,
+        "velocity": {
+          "x": 0,
+          "y": 11.939175858668477
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1544,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 360.3618469238281,
+        "diameter": 53.22239999999999,
+        "rotation": -0.11883850176495514,
+        "depth": 7,
+        "bodyY": 427.2491038788529,
+        "velocity": {
+          "x": 0,
+          "y": 12.216953636446306
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1560.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 369.43231201171875,
+        "diameter": 53.22239999999999,
+        "rotation": -0.37183376702579807,
+        "depth": 7,
+        "bodyY": 439.6743908486326,
+        "velocity": {
+          "x": 0,
+          "y": 12.494731414224134
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1577.2999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 378.7055358886719,
+        "diameter": 53.22239999999999,
+        "rotation": -0.624829032286641,
+        "depth": 7,
+        "bodyY": 452.3774555961901,
+        "velocity": {
+          "x": 0,
+          "y": 12.772509192001962
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1593.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 388.1815490722656,
+        "diameter": 53.22239999999999,
+        "rotation": -0.8778242975474839,
+        "depth": 7,
+        "bodyY": 465.3582981215254,
+        "velocity": {
+          "x": 0,
+          "y": 13.05028696977979
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1610.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 397.8603515625,
+        "diameter": 53.22239999999999,
+        "rotation": -1.1308195628083269,
+        "depth": 7,
+        "bodyY": 478.6169184246386,
+        "velocity": {
+          "x": 0,
+          "y": 13.328064747557619
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1627.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 407.7419128417969,
+        "diameter": 53.22239999999999,
+        "rotation": -1.3838148280691698,
+        "depth": 7,
+        "bodyY": 492.1533165055296,
+        "velocity": {
+          "x": 0,
+          "y": 13.605842525335447
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1644.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 417.8262634277344,
+        "diameter": 53.22239999999999,
+        "rotation": -1.6368100933300127,
+        "depth": 7,
+        "bodyY": 505.9674923641984,
+        "velocity": {
+          "x": 0,
+          "y": 13.883620303113275
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1660.0999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 428.1134033203125,
+        "diameter": 53.22239999999999,
+        "rotation": -1.8898053585908556,
+        "depth": 7,
+        "bodyY": 520.059446000645,
+        "velocity": {
+          "x": 0,
+          "y": 14.161398080891104
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1677.3999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 438.6033020019531,
+        "diameter": 53.22239999999999,
+        "rotation": -2.1428006238516986,
+        "depth": 7,
+        "bodyY": 534.4291774148695,
+        "velocity": {
+          "x": 0,
+          "y": 14.439175858668932
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1694,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 449.2959899902344,
+        "diameter": 53.22239999999999,
+        "rotation": -2.3957958891125415,
+        "depth": 7,
+        "bodyY": 549.0766866068718,
+        "velocity": {
+          "x": 0,
+          "y": 14.71695363644676
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1710.6999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 460.1914367675781,
+        "diameter": 53.22239999999999,
+        "rotation": -2.6487911543733844,
+        "depth": 7,
+        "bodyY": 564.001973576652,
+        "velocity": {
+          "x": 0,
+          "y": 14.994731414224589
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1727.2999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 471.2896728515625,
+        "diameter": 53.22239999999999,
+        "rotation": -2.9017864196342273,
+        "depth": 7,
+        "bodyY": 579.2050383242099,
+        "velocity": {
+          "x": 0,
+          "y": 15.272509192002417
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1743.5999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 482.5906982421875,
+        "diameter": 53.22239999999999,
+        "rotation": 3.128403622284516,
+        "depth": 7,
+        "bodyY": 594.6858808495457,
+        "velocity": {
+          "x": 0,
+          "y": 15.550286969780245
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1760.6999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 494.094482421875,
+        "diameter": 53.22239999999999,
+        "rotation": 2.875408357023673,
+        "depth": 7,
+        "bodyY": 610.4445011526593,
+        "velocity": {
+          "x": 0,
+          "y": 15.828064747558074
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1777.3999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 505.8010559082031,
+        "diameter": 53.22239999999999,
+        "rotation": 2.62241309176283,
+        "depth": 7,
+        "bodyY": 626.4808992335508,
+        "velocity": {
+          "x": 0,
+          "y": 16.105842525335902
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1793.7999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 517.7103881835938,
+        "diameter": 53.22239999999999,
+        "rotation": 2.369417826501987,
+        "depth": 7,
+        "bodyY": 642.79507509222,
+        "velocity": {
+          "x": 0,
+          "y": 16.38362030311373
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1810.7999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 529.822509765625,
+        "diameter": 53.22239999999999,
+        "rotation": 2.1164225612411443,
+        "depth": 7,
+        "bodyY": 659.3870287286671,
+        "velocity": {
+          "x": 0,
+          "y": 16.66139808089156
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1827.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 200,
+        "y": 540.1670532226562,
+        "diameter": 53.22239999999999,
+        "rotation": 1.8634272959803013,
+        "depth": 7,
+        "bodyY": 673.5576545222867,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -10.342314618804494
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1844.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.98590087890625,
+        "y": 532.769287109375,
+        "diameter": 53.22239999999999,
+        "rotation": 1.476193948160386,
+        "depth": 7,
+        "bodyY": 663.4236732368156,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -10.064536841026666
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1860.7999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.9718017578125,
+        "y": 525.5742797851562,
+        "diameter": 53.22239999999999,
+        "rotation": 1.0889606003404708,
+        "depth": 7,
+        "bodyY": 653.5674697291223,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -9.786759063248837
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1877,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.9577178955078,
+        "y": 518.5819702148438,
+        "diameter": 53.22239999999999,
+        "rotation": 0.7017272525205556,
+        "depth": 7,
+        "bodyY": 643.9890439992068,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -9.508981285471009
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1893.2999999523163,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.94361877441406,
+        "y": 511.7925109863281,
+        "diameter": 53.22239999999999,
+        "rotation": 0.3144939047006403,
+        "depth": 7,
+        "bodyY": 634.6883960470692,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -9.23120350769318
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1910.5999999046326,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.9295196533203,
+        "y": 505.2058410644531,
+        "diameter": 53.22239999999999,
+        "rotation": -0.07273944311927494,
+        "depth": 7,
+        "bodyY": 625.6655258727094,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -8.953425729915352
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1927.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.91542053222656,
+        "y": 498.8219299316406,
+        "diameter": 53.22239999999999,
+        "rotation": -0.4599727909391902,
+        "depth": 7,
+        "bodyY": 616.9204334761274,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -8.675647952137524
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1944.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.9013214111328,
+        "y": 492.6407775878906,
+        "diameter": 53.22239999999999,
+        "rotation": -0.8472061387591054,
+        "depth": 7,
+        "bodyY": 608.4531188573233,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -8.397870174359696
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1959.6999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.88722229003906,
+        "y": 486.66241455078125,
+        "diameter": 53.22239999999999,
+        "rotation": -1.2344394865790207,
+        "depth": 7,
+        "bodyY": 600.2635820162969,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -8.120092396581867
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1977.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.87313842773438,
+        "y": 480.8868408203125,
+        "diameter": 53.22239999999999,
+        "rotation": -1.621672834398936,
+        "depth": 7,
+        "bodyY": 592.3518229530484,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -7.842314618804039
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 1994,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.85903930664062,
+        "y": 475.31402587890625,
+        "diameter": 53.22239999999999,
+        "rotation": -2.008906182218851,
+        "depth": 7,
+        "bodyY": 584.7178416675778,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -7.564536841026211
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2010.1999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.84494018554688,
+        "y": 469.9440002441406,
+        "diameter": 53.22239999999999,
+        "rotation": -2.3961395300387665,
+        "depth": 7,
+        "bodyY": 577.3616381598849,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -7.2867590632483825
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2026.6999999284744,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.83084106445312,
+        "y": 464.7767333984375,
+        "diameter": 53.22239999999999,
+        "rotation": -2.7833728778586817,
+        "depth": 7,
+        "bodyY": 570.2832124299699,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -7.008981285470554
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2043.8999999761581,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.81674194335938,
+        "y": 459.8122863769531,
+        "diameter": 53.22239999999999,
+        "rotation": 3.1125790815009893,
+        "depth": 7,
+        "bodyY": 563.4825644778327,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -6.731203507692726
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2060,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.8026580810547,
+        "y": 455.0505676269531,
+        "diameter": 53.22239999999999,
+        "rotation": 2.725345733681074,
+        "depth": 7,
+        "bodyY": 556.9596943034734,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -6.453425729914898
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2076.399999976158,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.78855895996094,
+        "y": 450.49163818359375,
+        "diameter": 53.22239999999999,
+        "rotation": 2.3381123858611588,
+        "depth": 7,
+        "bodyY": 550.7146019068919,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -6.175647952137069
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2093.899999976158,
+        "shot": 1,
+        "flightMs": 874.5882352941177,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": false,
+        "settled": true,
+        "score": 0,
+        "x": 199.7744598388672,
+        "y": 446.135498046875,
+        "diameter": 53.22239999999999,
+        "rotation": 1.9508790380412435,
+        "depth": 7,
+        "bodyY": 544.7472872880882,
+        "velocity": {
+          "x": -0.019310105961494628,
+          "y": -5.897870174359241
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2111.7999999523163,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2127.5,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2143.5,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2160.6999999284744,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2177.399999976158,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2193.899999976158,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2210.6999999284744,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2227.1999999284744,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2243.899999976158,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2260.5999999046326,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2276.7999999523163,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      },
+      {
+        "wallMs": 2294,
+        "shot": 1,
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "ready": true,
+        "settled": false,
+        "score": 0,
+        "x": 200,
+        "y": 673.9840087890625,
+        "diameter": 126.72,
+        "rotation": 0,
+        "depth": 7,
+        "bodyY": 620,
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "netRatio": 1,
+        "netAngle": 0,
+        "zoom": 1
+      }
+    ],
+    "baseline": {
+      "net": 0.08412017167381974
+    }
+  },
+  "errors": []
+}
