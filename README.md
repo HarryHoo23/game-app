@@ -117,3 +117,9 @@ Run `node scripts/layered-hoop-check.mjs` for real-input occlusion, deferred sco
 
 
 Visual perspective is centralized in `src/game/presentation/perspective.ts`: one hoop Container at 73% scale, rim displayed 4% of court height higher, 12% smaller foreground ball with 20% bottom crop, and 42% near-rim ball size relative to its idle size. Shared render projection aligns the ball, aim dots, sensors’ debug view and feedback with the hoop. The simulation origin, canonical rim coordinates, launch model, scoring and level data are unchanged. The ball shares the container’s display list for front-rim/net occlusion; its screen size is compensated for the parent transform. Run `node scripts/perspective-check.mjs` for desktop/mobile composition and projection checks.
+
+## Shot checkpoint — 2026-10-17
+
+The latest checkpoint plans the final screen-space trajectory around a configurable 44% apex and an 800ms ideal flight. Pure projection math now lives in `src/data/courtPerspective.ts` and remains re-exported by `game/presentation/perspective.ts`; the existing scale progression and art are retained. Entry starts sound/camera/net presentation, while ordered EXIT sensors still own score commit. Miss contacts update actual Matter velocities and wait for board contact or spatial clearance. Result cadence is configured in `data/impactFeel.ts`, presentation strength in `data/feedbackFeel.ts`, and net motion in `game/hoop/hoopLayout.ts`.
+
+Read `docs/shot-checkpoint/2026-10-17/report.md` for the measured BEFORE/AFTER comparison, known visual weaknesses and the six AFTER recordings. `node scripts/shot-checkpoint-check.mjs` checks score gating, pause, restoration and the late-board regression. `node scripts/after-shot-check.mjs <new-output-directory>` records real-input scenarios and timing JSON; use a new directory so comparison evidence is preserved.

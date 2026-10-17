@@ -134,3 +134,37 @@ it.each([
     expect(scored).toBe(true);
   },
 );
+
+it("accelerates continuously into a fast centre-to-exit passage", async () => {
+  const { HoopPass } = await import("../game/hoop/HoopPass");
+  const { createShot, assessShot, sampleShot } =
+    await import("../domain/shooting/ShotTrajectory");
+  const { calculateStats, initialProgress } =
+    await import("../domain/progression/progress");
+  const { levels } = await import("../data/levels");
+  const stats = calculateStats(initialProgress()),
+    level = levels[0];
+  const plan = createShot(0, -146, level, stats)!,
+    pass = new HoopPass(level);
+  pass.start(plan, assessShot(plan, level, stats));
+  const arrival = sampleShot(plan, 1);
+  expect(pass.pose).toEqual(arrival);
+  const first = pass.advance(0.0001).pose!;
+  expect(first.velocity.y).toBeCloseTo(arrival.velocity.y, 3);
+  expect(((first.y - arrival.y) / 0.0001) * (1000 / 60)).toBeCloseTo(
+    arrival.velocity.y,
+    3,
+  );
+  let centerMs = 0,
+    exitMs = 0;
+  while (pass.active) {
+    const event = pass.advance(1);
+    if (event.entered) centerMs = pass.elapsedMs;
+    if (event.scored) exitMs = pass.elapsedMs;
+  }
+  expect(centerMs).toBeGreaterThanOrEqual(20);
+  expect(centerMs).toBeLessThanOrEqual(40);
+  expect(exitMs - centerMs).toBeGreaterThanOrEqual(100);
+  expect(exitMs - centerMs).toBeLessThanOrEqual(170);
+  expect(exitMs).toBeLessThanOrEqual(200);
+});

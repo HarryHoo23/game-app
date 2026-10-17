@@ -12,5 +12,4 @@ export const physics = {
   foregroundBallSize: 144,
   maxDrag: 170,
   shotTimeout: 7000,
-  resetDelay: 950,
 } as const;

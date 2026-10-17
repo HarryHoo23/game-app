@@ -1,0 +1,81 @@
+{
+  "baseCommit": "4e3dbb91332c3905ff19f34202dac98fd6dcd925",
+  "source": [
+    {
+      "file": "src/data/courtPerspective.ts",
+      "sha256": "aee78046ba0a232acac36784f9d7e063e94437f918e302fefad6308025d95e43"
+    },
+    {
+      "file": "src/data/feedbackFeel.ts",
+      "sha256": "c46e388cc1976913d4607b56ae621f49573c6bd38e6ef639a49e8db48311d79c"
+    },
+    {
+      "file": "src/data/impactFeel.ts",
+      "sha256": "d51c938ac03d67808c94edcaee6bfcb7efc5fbf37d68185a529974c78144de21"
+    },
+    {
+      "file": "src/data/physics.ts",
+      "sha256": "66d95ee35a727bc56d068a9c50ca9ca2291acc2f2fc4e83aa5bd71d59350c4e2"
+    },
+    {
+      "file": "src/data/shotFeel.ts",
+      "sha256": "7513f25c4c222b889f71b572793bf1b0a119072d8a108d1ca84443e0dcfe091a"
+    },
+    {
+      "file": "src/domain/shooting/ImpactResponse.ts",
+      "sha256": "cbee63eb6191a10c5727c712c016db77b1476f1cb5e0d40fad99cefab800332d"
+    },
+    {
+      "file": "src/domain/shooting/ShotTrajectory.ts",
+      "sha256": "2ec6e66bbe66f802a2039f47e57f49738772e2d4e190ee4bb62bb5940872d870"
+    },
+    {
+      "file": "src/game/effects/ScoreFeedback.ts",
+      "sha256": "2daab88fde30a2ae434647cba4be658749dc4f7ad5b0ac63c2f170256aa719eb"
+    },
+    {
+      "file": "src/game/environments/BallAnimator.ts",
+      "sha256": "102354a0cb023616520c3a5d3d34d6ac264efea345bc30ee885f7ff5b70203bf"
+    },
+    {
+      "file": "src/game/hoop/HoopPass.ts",
+      "sha256": "af26f5db0f44011773665f5c883b77c99b330f11e9eccf5dbf35555f74c4f2e8"
+    },
+    {
+      "file": "src/game/hoop/HoopRenderer.ts",
+      "sha256": "804dae254f02cb9e02ff7b91760f3ab0c52445ae1144191906ba1152cbf9ef51"
+    },
+    {
+      "file": "src/game/hoop/hoopLayout.ts",
+      "sha256": "87d3f9c7a3cb3e37fd53dd0c56dfa4016621fe2e6fb713982cb1d7d7fa0deddf"
+    },
+    {
+      "file": "src/game/presentation/perspective.ts",
+      "sha256": "9979a7444f2bb5d79e84e9f857e8512fdc526ee665baae3450073fa37dff2656"
+    },
+    {
+      "file": "src/game/scenes/GameScene.ts",
+      "sha256": "e5c5ce429a971088a3c066418207c2a4cbac85b53184cd603357eeba08d006fa"
+    },
+    {
+      "file": "src/game/systems/feedback.ts",
+      "sha256": "874772bd6bda59ace7c67e719f41abef1fd1c665ece8067da664cc7f00cd9cac"
+    },
+    {
+      "file": "src/services/feedback.ts",
+      "sha256": "28f9448c2ae372b026e5958888cdb3d139f68c946ccfc7f32cdd9386056ce77c"
+    },
+    {
+      "file": "src/tests/hoopSensors.test.ts",
+      "sha256": "bce60a45d92485cd58aa12ad9bd0cefa42dce669e474228f3cde6805be703dbd"
+    },
+    {
+      "file": "src/tests/impactResponse.test.ts",
+      "sha256": "29f2e539bcac7369013ec8def076be6347e1620e5c66ee408d29aaf266125767"
+    },
+    {
+      "file": "src/tests/shotTrajectory.test.ts",
+      "sha256": "2c5f20003b038790abcceb4df09f5afaf4a182e6593c5a41a6bb2a390f0a86c9"
+    }
+  ]
+}

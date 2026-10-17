@@ -1,0 +1,1401 @@
+{
+  "metadata": {
+    "commit": "4e3dbb91332c3905ff19f34202dac98fd6dcd925",
+    "branch": "feat/basketball-mvp",
+    "baseUrl": "http://localhost:5173/",
+    "viewport": {
+      "width": 400,
+      "height": 712
+    },
+    "browser": "155.0.8059.80",
+    "audio": "Enabled through UI; Playwright WebM captures video only. JSON logs audio adapter invocations, not audible onset.",
+    "instrumentation": "Instance method wrappers delegate original calls; postupdate reads state. No game timers/configuration changed."
+  },
+  "scenarios": [
+    {
+      "name": "01-ideal-perfect-after",
+      "shots": [
+        {
+          "drag": [
+            0,
+            -146
+          ],
+          "result": {
+            "made": true,
+            "score": 4,
+            "impact": "none",
+            "quality": "perfect"
+          },
+          "finalImpact": "none",
+          "flightMs": 800,
+          "releaseToResolveMs": 948.5,
+          "resolveToReadyMs": 666.7000000476837,
+          "releaseToReadyMs": 1615.2000000476837,
+          "netTriggerToResolveMs": 100.19999980926514,
+          "impacts": [],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0
+            },
+            {
+              "sound": "perfect",
+              "afterReleaseMs": 848.5
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 302.5,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 255
+                },
+                "power": 0.8588235294117647,
+                "arcHeight": 172.97411764705882,
+                "durationMs": 800,
+                "rotations": 2,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 302.5,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1100.7000000476837,
+              "flightMs": 800,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": true,
+                "score": 4,
+                "impact": "none",
+                "quality": "perfect"
+              }
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1117.4000000953674,
+              "flightMs": 800,
+              "passMs": 16.666666666666668,
+              "sessionScore": 0,
+              "stage": "AT_RIM"
+            },
+            {
+              "kind": "net-trigger",
+              "shot": 1,
+              "wallMs": 1150.8000001907349,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "strong": true
+            },
+            {
+              "kind": "entry-feedback",
+              "shot": 1,
+              "wallMs": 1151,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "score": 4
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1151,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "sound": "perfect",
+              "enabled": true
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1151.5,
+              "flightMs": 800,
+              "passMs": 50.00000000000001,
+              "sessionScore": 0,
+              "stage": "IN_NET"
+            },
+            {
+              "kind": "net-release",
+              "shot": 1,
+              "wallMs": 1250.7000000476837,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 0
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1251,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 0,
+              "score": 4,
+              "impact": "none"
+            },
+            {
+              "kind": "basket-feedback",
+              "shot": 1,
+              "wallMs": 1251.1000001430511,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4,
+              "score": 4
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1255.2000000476837,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4,
+              "stage": "BELOW_HOOP"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1917.1000001430511,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1917.7000000476837,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1917.7000000476837,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4,
+              "stage": "APPROACHING"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "02-clean-swish-after",
+      "shots": [
+        {
+          "drag": [
+            0,
+            -140
+          ],
+          "result": {
+            "made": true,
+            "score": 3,
+            "impact": "none",
+            "quality": "swish"
+          },
+          "finalImpact": "none",
+          "flightMs": 806.3529411764706,
+          "releaseToResolveMs": 948.9000000953674,
+          "resolveToReadyMs": 600.1999998092651,
+          "releaseToReadyMs": 1549.0999999046326,
+          "netTriggerToResolveMs": 100.40000009536743,
+          "impacts": [],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0.09999990463256836
+            },
+            {
+              "sound": "swish",
+              "afterReleaseMs": 848.7999999523163
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 302.2000000476837,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 263.4705882352941
+                },
+                "power": 0.8235294117647058,
+                "arcHeight": 171.71764705882353,
+                "durationMs": 806.3529411764706,
+                "rotations": 1.9717647058823529,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 302.2999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1117.4000000953674,
+              "flightMs": 806.3529411764706,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": true,
+                "score": 3,
+                "impact": "none",
+                "quality": "swish"
+              }
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1117.7999999523163,
+              "flightMs": 806.3529411764706,
+              "passMs": 8.333333333333334,
+              "sessionScore": 0,
+              "stage": "AT_RIM"
+            },
+            {
+              "kind": "net-trigger",
+              "shot": 1,
+              "wallMs": 1150.7000000476837,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 0,
+              "strong": true
+            },
+            {
+              "kind": "entry-feedback",
+              "shot": 1,
+              "wallMs": 1150.9000000953674,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 0,
+              "score": 3
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1151,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 0,
+              "sound": "swish",
+              "enabled": true
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1151.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "stage": "IN_NET"
+            },
+            {
+              "kind": "net-release",
+              "shot": 1,
+              "wallMs": 1250.6000001430511,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 0
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1251.1000001430511,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 0,
+              "score": 3,
+              "impact": "none"
+            },
+            {
+              "kind": "basket-feedback",
+              "shot": 1,
+              "wallMs": 1251.1000001430511,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 3,
+              "score": 3
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1254.9000000953674,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 3,
+              "stage": "BELOW_HOOP"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1850.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 3
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1851.2999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 3
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1851.2999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 3,
+              "stage": "APPROACHING"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "03-front-rim-miss-after",
+      "shots": [
+        {
+          "drag": [
+            0,
+            -125
+          ],
+          "result": {
+            "made": false,
+            "score": 0,
+            "impact": "frontRim",
+            "quality": "miss"
+          },
+          "finalImpact": "frontRim",
+          "flightMs": 822.2352941176471,
+          "releaseToResolveMs": 832.2999999523163,
+          "resolveToReadyMs": 450.10000014305115,
+          "releaseToReadyMs": 1282.4000000953674,
+          "netTriggerToResolveMs": null,
+          "impacts": [
+            {
+              "impact": "rim",
+              "afterReleaseMs": 831.9000000953674
+            }
+          ],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0
+            },
+            {
+              "sound": "rim",
+              "afterReleaseMs": 832.2000000476837
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 277.09999990463257,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 284.6470588235294
+                },
+                "power": 0.7352941176470589,
+                "arcHeight": 168.57647058823528,
+                "durationMs": 822.2352941176471,
+                "rotations": 1.9011764705882355,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 277.09999990463257,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1108.7999999523163,
+              "flightMs": 822.2352941176471,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": false,
+                "score": 0,
+                "impact": "frontRim",
+                "quality": "miss"
+              }
+            },
+            {
+              "kind": "impact",
+              "shot": 1,
+              "wallMs": 1109,
+              "flightMs": 822.2352941176471,
+              "passMs": 0,
+              "sessionScore": 0,
+              "impact": "rim"
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1109.2999999523163,
+              "flightMs": 822.2352941176471,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "rim",
+              "enabled": true
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1109.3999998569489,
+              "flightMs": 822.2352941176471,
+              "passMs": 0,
+              "sessionScore": 0,
+              "score": 0,
+              "impact": "frontRim"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1558.7000000476837,
+              "flightMs": 822.2352941176471,
+              "passMs": 0,
+              "sessionScore": 0
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1559.5,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "04-back-rim-miss-after",
+      "shots": [
+        {
+          "drag": [
+            0,
+            -230
+          ],
+          "result": {
+            "made": false,
+            "score": 0,
+            "impact": "backRim",
+            "quality": "miss"
+          },
+          "finalImpact": "backRim",
+          "flightMs": 774.5882352941177,
+          "releaseToResolveMs": 898.9000000953674,
+          "resolveToReadyMs": 450.09999990463257,
+          "releaseToReadyMs": 1349,
+          "netTriggerToResolveMs": null,
+          "impacts": [
+            {
+              "impact": "rim",
+              "afterReleaseMs": 898.5
+            }
+          ],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0.09999990463256836
+            },
+            {
+              "sound": "rim",
+              "afterReleaseMs": 898.7999999523163
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 278.09999990463257,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 221.1176470588235
+                },
+                "power": 1,
+                "arcHeight": 178,
+                "durationMs": 774.5882352941177,
+                "rotations": 2.112941176470588,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 278.19999980926514,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1059.8999998569489,
+              "flightMs": 774.5882352941177,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": false,
+                "score": 0,
+                "impact": "backRim",
+                "quality": "miss"
+              }
+            },
+            {
+              "kind": "impact",
+              "shot": 1,
+              "wallMs": 1176.5999999046326,
+              "flightMs": 774.5882352941177,
+              "passMs": 0,
+              "sessionScore": 0,
+              "impact": "rim"
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1176.8999998569489,
+              "flightMs": 774.5882352941177,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "rim",
+              "enabled": true
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1177,
+              "flightMs": 774.5882352941177,
+              "passMs": 0,
+              "sessionScore": 0,
+              "score": 0,
+              "impact": "backRim"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1626.3999998569489,
+              "flightMs": 774.5882352941177,
+              "passMs": 0,
+              "sessionScore": 0
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1627.0999999046326,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "05-backboard-miss-after",
+      "shots": [
+        {
+          "drag": [
+            80,
+            -146
+          ],
+          "result": {
+            "made": false,
+            "score": 0,
+            "impact": "airball",
+            "quality": "miss"
+          },
+          "finalImpact": "backboard",
+          "flightMs": 778.3139915812604,
+          "releaseToResolveMs": 799,
+          "resolveToReadyMs": 449.09999990463257,
+          "releaseToReadyMs": 1248.0999999046326,
+          "netTriggerToResolveMs": null,
+          "impacts": [
+            {
+              "impact": "backboard",
+              "afterReleaseMs": 798.5
+            }
+          ],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0
+            },
+            {
+              "sound": "backboard",
+              "afterReleaseMs": 798.7999999523163
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 290.2000000476837,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 304,
+                  "y": 226.08532210834719
+                },
+                "power": 0.979301353960318,
+                "arcHeight": 177.26312820098732,
+                "durationMs": 778.3139915812604,
+                "rotations": 2.0963822596388426,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 290.2000000476837,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1071.2000000476837,
+              "flightMs": 778.3139915812604,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": false,
+                "score": 0,
+                "impact": "airball",
+                "quality": "miss"
+              }
+            },
+            {
+              "kind": "impact",
+              "shot": 1,
+              "wallMs": 1088.7000000476837,
+              "flightMs": 778.3139915812604,
+              "passMs": 0,
+              "sessionScore": 0,
+              "impact": "backboard"
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1089,
+              "flightMs": 778.3139915812604,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "backboard",
+              "enabled": true
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1089.2000000476837,
+              "flightMs": 778.3139915812604,
+              "passMs": 0,
+              "sessionScore": 0,
+              "score": 0,
+              "impact": "backboard"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1537.6000001430511,
+              "flightMs": 778.3139915812604,
+              "passMs": 0,
+              "sessionScore": 0
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1538.2999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0
+            }
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "06-three-consecutive-after",
+      "shots": [
+        {
+          "drag": [
+            0,
+            -146
+          ],
+          "result": {
+            "made": true,
+            "score": 4,
+            "impact": "none",
+            "quality": "perfect"
+          },
+          "finalImpact": "none",
+          "flightMs": 800,
+          "releaseToResolveMs": 949.0999999046326,
+          "resolveToReadyMs": 666.4000000953674,
+          "releaseToReadyMs": 1615.5,
+          "netTriggerToResolveMs": 101.59999990463257,
+          "impacts": [],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0.09999990463256836
+            },
+            {
+              "sound": "perfect",
+              "afterReleaseMs": 847.8999998569489
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 1,
+              "wallMs": 274.90000009536743,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 255
+                },
+                "power": 0.8588235294117647,
+                "arcHeight": 172.97411764705882,
+                "durationMs": 800,
+                "rotations": 2,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 275,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 0,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 1,
+              "wallMs": 1072.5999999046326,
+              "flightMs": 800,
+              "passMs": 0,
+              "sessionScore": 0,
+              "result": {
+                "made": true,
+                "score": 4,
+                "impact": "none",
+                "quality": "perfect"
+              }
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1089.9000000953674,
+              "flightMs": 800,
+              "passMs": 16.666666666666668,
+              "sessionScore": 0,
+              "stage": "AT_RIM"
+            },
+            {
+              "kind": "net-trigger",
+              "shot": 1,
+              "wallMs": 1122.4000000953674,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "strong": true
+            },
+            {
+              "kind": "entry-feedback",
+              "shot": 1,
+              "wallMs": 1122.7999999523163,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "score": 4
+            },
+            {
+              "kind": "audio-call",
+              "shot": 1,
+              "wallMs": 1122.7999999523163,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 0,
+              "sound": "perfect",
+              "enabled": true
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1123.4000000953674,
+              "flightMs": 800,
+              "passMs": 50.00000000000001,
+              "sessionScore": 0,
+              "stage": "IN_NET"
+            },
+            {
+              "kind": "net-release",
+              "shot": 1,
+              "wallMs": 1223.5999999046326,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 0
+            },
+            {
+              "kind": "resolve",
+              "shot": 1,
+              "wallMs": 1224,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 0,
+              "score": 4,
+              "impact": "none"
+            },
+            {
+              "kind": "basket-feedback",
+              "shot": 1,
+              "wallMs": 1224,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4,
+              "score": 4
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1228.2999999523163,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4,
+              "stage": "BELOW_HOOP"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 1,
+              "wallMs": 1889.5,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 4
+            },
+            {
+              "kind": "ready",
+              "shot": 1,
+              "wallMs": 1890.4000000953674,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 1,
+              "wallMs": 1890.4000000953674,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4,
+              "stage": "APPROACHING"
+            }
+          ]
+        },
+        {
+          "drag": [
+            0,
+            -140
+          ],
+          "result": {
+            "made": true,
+            "score": 3,
+            "impact": "none",
+            "quality": "swish"
+          },
+          "finalImpact": "none",
+          "flightMs": 806.3529411764706,
+          "releaseToResolveMs": 948.7000000476837,
+          "resolveToReadyMs": 601.2999999523163,
+          "releaseToReadyMs": 1550,
+          "netTriggerToResolveMs": 99.20000004768372,
+          "impacts": [],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0
+            },
+            {
+              "sound": "swish",
+              "afterReleaseMs": 849.7000000476837
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 2,
+              "wallMs": 2106.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 263.4705882352941
+                },
+                "power": 0.8235294117647058,
+                "arcHeight": 171.71764705882353,
+                "durationMs": 806.3529411764706,
+                "rotations": 1.9717647058823529,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 2,
+              "wallMs": 2106.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 4,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 2,
+              "wallMs": 2922.5999999046326,
+              "flightMs": 806.3529411764706,
+              "passMs": 0,
+              "sessionScore": 4,
+              "result": {
+                "made": true,
+                "score": 3,
+                "impact": "none",
+                "quality": "swish"
+              }
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 2,
+              "wallMs": 2922.5999999046326,
+              "flightMs": 806.3529411764706,
+              "passMs": 8.333333333333334,
+              "sessionScore": 4,
+              "stage": "AT_RIM"
+            },
+            {
+              "kind": "net-trigger",
+              "shot": 2,
+              "wallMs": 2956.2999999523163,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 4,
+              "strong": true
+            },
+            {
+              "kind": "entry-feedback",
+              "shot": 2,
+              "wallMs": 2956.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 4,
+              "score": 3
+            },
+            {
+              "kind": "audio-call",
+              "shot": 2,
+              "wallMs": 2956.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 33.333333333333336,
+              "sessionScore": 4,
+              "sound": "swish",
+              "enabled": true
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 2,
+              "wallMs": 2957,
+              "flightMs": 806.3529411764706,
+              "passMs": 41.66666666666667,
+              "sessionScore": 4,
+              "stage": "IN_NET"
+            },
+            {
+              "kind": "net-release",
+              "shot": 2,
+              "wallMs": 3055.4000000953674,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 4
+            },
+            {
+              "kind": "resolve",
+              "shot": 2,
+              "wallMs": 3055.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 4,
+              "score": 3,
+              "impact": "none"
+            },
+            {
+              "kind": "basket-feedback",
+              "shot": 2,
+              "wallMs": 3055.5,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 7,
+              "score": 3
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 2,
+              "wallMs": 3059,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 7,
+              "stage": "BELOW_HOOP"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 2,
+              "wallMs": 3656.2999999523163,
+              "flightMs": 806.3529411764706,
+              "passMs": 141.66666666666666,
+              "sessionScore": 7
+            },
+            {
+              "kind": "ready",
+              "shot": 2,
+              "wallMs": 3656.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 7
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 2,
+              "wallMs": 3656.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 7,
+              "stage": "APPROACHING"
+            }
+          ]
+        },
+        {
+          "drag": [
+            0,
+            -146
+          ],
+          "result": {
+            "made": true,
+            "score": 4,
+            "impact": "none",
+            "quality": "perfect"
+          },
+          "finalImpact": "none",
+          "flightMs": 800,
+          "releaseToResolveMs": 947.4000000953674,
+          "resolveToReadyMs": 668.3999998569489,
+          "releaseToReadyMs": 1615.7999999523163,
+          "netTriggerToResolveMs": 98.90000009536743,
+          "impacts": [],
+          "audio": [
+            {
+              "sound": "release",
+              "afterReleaseMs": 0
+            },
+            {
+              "sound": "perfect",
+              "afterReleaseMs": 848.7000000476837
+            }
+          ],
+          "events": [
+            {
+              "kind": "release",
+              "shot": 3,
+              "wallMs": 3874.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 7,
+              "plan": {
+                "start": {
+                  "x": 200,
+                  "y": 620
+                },
+                "rim": {
+                  "x": 200,
+                  "y": 285
+                },
+                "target": {
+                  "x": 200,
+                  "y": 255
+                },
+                "power": 0.8588235294117647,
+                "arcHeight": 172.97411764705882,
+                "durationMs": 800,
+                "rotations": 2,
+                "startScale": 1,
+                "hoopScale": 0.45
+              }
+            },
+            {
+              "kind": "audio-call",
+              "shot": 3,
+              "wallMs": 3874.7999999523163,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 7,
+              "sound": "release",
+              "enabled": true
+            },
+            {
+              "kind": "arrival",
+              "shot": 3,
+              "wallMs": 4672.099999904633,
+              "flightMs": 800,
+              "passMs": 0,
+              "sessionScore": 7,
+              "result": {
+                "made": true,
+                "score": 4,
+                "impact": "none",
+                "quality": "perfect"
+              }
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 3,
+              "wallMs": 4689,
+              "flightMs": 800,
+              "passMs": 16.666666666666668,
+              "sessionScore": 7,
+              "stage": "AT_RIM"
+            },
+            {
+              "kind": "net-trigger",
+              "shot": 3,
+              "wallMs": 4723.299999952316,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 7,
+              "strong": true
+            },
+            {
+              "kind": "entry-feedback",
+              "shot": 3,
+              "wallMs": 4723.5,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 7,
+              "score": 4
+            },
+            {
+              "kind": "audio-call",
+              "shot": 3,
+              "wallMs": 4723.5,
+              "flightMs": 800,
+              "passMs": 41.66666666666667,
+              "sessionScore": 7,
+              "sound": "perfect",
+              "enabled": true
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 3,
+              "wallMs": 4723.900000095367,
+              "flightMs": 800,
+              "passMs": 50.00000000000001,
+              "sessionScore": 7,
+              "stage": "IN_NET"
+            },
+            {
+              "kind": "net-release",
+              "shot": 3,
+              "wallMs": 4822.099999904633,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 7
+            },
+            {
+              "kind": "resolve",
+              "shot": 3,
+              "wallMs": 4822.200000047684,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 7,
+              "score": 4,
+              "impact": "none"
+            },
+            {
+              "kind": "basket-feedback",
+              "shot": 3,
+              "wallMs": 4822.200000047684,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 11,
+              "score": 4
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 3,
+              "wallMs": 4825,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 11,
+              "stage": "BELOW_HOOP"
+            },
+            {
+              "kind": "ball-reset",
+              "shot": 3,
+              "wallMs": 5489.900000095367,
+              "flightMs": 800,
+              "passMs": 150,
+              "sessionScore": 11
+            },
+            {
+              "kind": "ready",
+              "shot": 3,
+              "wallMs": 5490.599999904633,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 11
+            },
+            {
+              "kind": "depth-stage",
+              "shot": 3,
+              "wallMs": 5490.599999904633,
+              "flightMs": 0,
+              "passMs": 0,
+              "sessionScore": 11,
+              "stage": "APPROACHING"
+            }
+          ]
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

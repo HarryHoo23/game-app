@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { theme, colorNumber } from "../themes/theme";
+import { feedbackFeel } from "../../data/feedbackFeel";
 export function showScoreFeedback(
   scene: Phaser.Scene,
   x: number,
@@ -8,6 +9,7 @@ export function showScoreFeedback(
   streak: number,
   reduced: boolean,
 ) {
+  const feel = feedbackFeel.scoreCallout;
   // Below and left of the hoop: the result is visible without covering the ball's entry.
   const fx = scene.add
     .container(Math.max(98, x - 115), y + 126)
@@ -36,7 +38,7 @@ export function showScoreFeedback(
   const title = scene.add
     .text(0, -27, score === 4 ? "PERFECT!" : score === 3 ? "SWISH!" : "MAKE!", {
       fontFamily: "Permanent Marker",
-      fontSize: score === 4 ? "27px" : "32px",
+      fontSize: `${score === 4 ? feel.perfectFontPx : score === 3 ? feel.swishFontPx : feel.makeFontPx}px`,
       color: theme.colors.mint,
     })
     .setOrigin(0.5);
@@ -60,21 +62,29 @@ export function showScoreFeedback(
         .setOrigin(0.5),
     );
   if (!reduced) {
-    fx.setScale(score === 2 ? 0.97 : 0.9);
+    fx.setScale(feel.spawnScale);
     scene.tweens.add({
       targets: fx,
-      scaleX: 1,
-      scaleY: 1,
-      duration: 140,
+      scaleX: feel.peakScale,
+      scaleY: feel.peakScale,
+      duration: feel.popMs,
       ease: "Cubic.easeOut",
+      onComplete: () =>
+        scene.tweens.add({
+          targets: fx,
+          scaleX: 1,
+          scaleY: 1,
+          duration: feel.settleMs,
+          ease: "Sine.easeInOut",
+        }),
     });
   }
   scene.tweens.add({
     targets: fx,
     alpha: 0,
-    y: fx.y - (reduced ? 0 : 15),
-    delay: 430,
-    duration: theme.motion.score - 430,
+    y: fx.y - (reduced ? 0 : feel.risePx),
+    delay: feel.fadeStartMs,
+    duration: feel.lifetimeMs - feel.fadeStartMs,
     onComplete: () => fx.destroy(),
   });
 }

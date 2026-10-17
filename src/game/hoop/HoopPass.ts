@@ -7,7 +7,7 @@ import {
 import type { LevelConfig } from "../../data/levels";
 import { physics } from "../../data/physics";
 import { HoopSensors } from "./HoopSensors";
-import { hoopLayout } from "./hoopLayout";
+import { shotFeel } from "../../data/shotFeel";
 /** Continuous controlled descent through the visible net, then handoff to residual Matter physics. */
 export class HoopPass {
   private plan: ShotPlan | null = null;
@@ -36,11 +36,17 @@ export class HoopPass {
   get pose(): ShotPose | undefined {
     if (!this.arrival || !this.plan) return undefined;
     const m = this.elapsed,
-      c = hoopLayout.passMotion,
+      c = shotFeel.passMotion,
       a = this.arrival,
       perMs = 1 / (1000 / 60),
       decay = Math.exp(-m / c.lateralDampingMs),
       t = Math.min(1, m / c.maxMs);
+    // A bounded pull through the net ramps velocity continuously, then relaxes
+    // acceleration so the lower apex need not create a slow basket entry.
+    const accelerationDecay = Math.exp(-m / c.accelerationDecayMs),
+      addedSpeed = c.gravity * c.accelerationDecayMs,
+      fallDistance =
+        addedSpeed * (m - c.accelerationDecayMs * (1 - accelerationDecay));
     const offset = a.x - this.level.hoopX;
     const contact = this.contacts.rim || this.contacts.backboard;
     // A glancing rim contact redirects toward the opening with continuous position/velocity.
@@ -53,7 +59,7 @@ export class HoopPass {
       x: contact
         ? contactX
         : a.x + a.velocity.x * perMs * c.lateralDampingMs * (1 - decay),
-      y: a.y + a.velocity.y * perMs * m + 0.5 * c.gravity * m * m,
+      y: a.y + a.velocity.y * perMs * m + fallDistance,
       rotation: a.rotation + a.angularVelocity * perMs * m,
       scale: a.scale + (c.exitScale - a.scale) * t * t * (3 - 2 * t),
       velocity: {
@@ -64,7 +70,7 @@ export class HoopPass {
               decay) /
             perMs
           : a.velocity.x * decay,
-        y: a.velocity.y + c.gravity * m * (1000 / 60),
+        y: a.velocity.y + addedSpeed * (1 - accelerationDecay) * (1000 / 60),
       },
     };
   }
@@ -83,7 +89,7 @@ export class HoopPass {
     if (result.impact === "backboard") this.sensors.touch("backboard");
     // The approach may have crossed TOP already: carry the real descending segment into the sensors.
     this.sensors.sample(
-      sampleShot(plan, hoopLayout.passMotion.approachSample),
+      sampleShot(plan, shotFeel.passMotion.approachSample),
       this.arrival,
     );
     return true;
@@ -98,13 +104,12 @@ export class HoopPass {
       };
     const previous = this.pose!;
     this.elapsed = Math.min(
-      hoopLayout.passMotion.maxMs,
+      shotFeel.passMotion.maxMs,
       this.elapsed + Math.max(0, deltaMs),
     );
     const pose = this.pose!;
     const event = this.sensors.sample(previous, pose);
-    const finished =
-      event.scored || this.elapsed >= hoopLayout.passMotion.maxMs;
+    const finished = event.scored || this.elapsed >= shotFeel.passMotion.maxMs;
     if (finished) this.done = true;
     return { ...event, pose, finished };
   }

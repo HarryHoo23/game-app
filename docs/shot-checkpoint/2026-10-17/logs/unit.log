@@ -1,0 +1,19 @@
+
+> afterhours-basketball@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/harry/Desktop/game-app
+
+ ✓ src/tests/impactResponse.test.ts (8 tests) 4ms
+ ✓ src/tests/hoopSensors.test.ts (13 tests) 23ms
+ ✓ src/tests/domain.test.ts (15 tests) 5ms
+ ✓ src/tests/physics.test.ts (11 tests) 24ms
+ ✓ src/tests/shotTrajectory.test.ts (22 tests) 27ms
+ ✓ src/tests/frontCourt.test.ts (7 tests) 25ms
+
+ Test Files  6 passed (6)
+      Tests  76 passed (76)
+   Start at  17:09:56
+   Duration  350ms (transform 241ms, setup 0ms, collect 424ms, tests 110ms, environment 1ms, prepare 409ms)
+

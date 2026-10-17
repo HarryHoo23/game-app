@@ -18,6 +18,8 @@ export class HoopRenderer {
     { x: number; y: number; scaleX: number; scaleY: number }
   >();
   private debug?: Phaser.GameObjects.Graphics;
+  private netMotionGeneration = 0;
+  private netEngaged = false;
   constructor(
     private scene: Phaser.Scene,
     x: number,
@@ -127,6 +129,8 @@ export class HoopRenderer {
       .setRotation(0);
   }
   reset() {
+    this.netMotionGeneration++;
+    this.netEngaged = false;
     for (const image of [
       this.backboard,
       this.rimBack,
@@ -138,7 +142,10 @@ export class HoopRenderer {
     }
     this.drawDebug();
   }
-  playNetSwish(strong = false) {
+  /** CENTER starts the pull; the deformation stays until the exit sensor releases it. */
+  playNetSwish(strong = false, perfect = false) {
+    this.netMotionGeneration++;
+    this.netEngaged = true;
     this.scene.tweens.killTweensOf(this.net);
     this.restore(this.net);
     const base = this.baseline.get(this.net)!,
@@ -147,37 +154,56 @@ export class HoopRenderer {
     this.scene.tweens.add({
       targets: this.net,
       delay: m.delayMs,
-      scaleY: base.scaleY * (strong ? m.stretchY : 1.17),
-      scaleX: base.scaleX * (strong ? m.squeezeX : 0.95),
+      scaleY:
+        base.scaleY *
+        (perfect ? m.perfectStretchY : strong ? m.stretchY : m.rimStretchY),
+      scaleX:
+        base.scaleX *
+        (perfect ? m.perfectSqueezeX : strong ? m.squeezeX : m.rimSqueezeX),
+      y:
+        base.y +
+        (perfect ? m.perfectDropPx : strong ? m.dropPx : m.rimDropPx) /
+          this.assemblyScale,
       duration: m.stretchMs,
       ease: "Sine.easeOut",
-      onComplete: () => {
-        this.scene.tweens.add({
-          targets: this.net,
-          scaleX: base.scaleX,
-          scaleY: base.scaleY,
-          rotation: Phaser.Math.DegToRad(m.swayDegrees),
-          duration: 60,
-          ease: "Sine.easeInOut",
-          onComplete: () => {
-            this.scene.tweens.add({
-              targets: this.net,
-              rotation: -Phaser.Math.DegToRad(m.swayDegrees),
-              duration: 90,
-              ease: "Sine.easeInOut",
-              onComplete: () =>
-                this.scene.tweens.add({
-                  targets: this.net,
-                  rotation: 0,
-                  duration: 95,
-                  ease: "Sine.easeOut",
-                  onComplete: () => this.restore(this.net),
-                }),
-            });
-          },
-        });
-      },
     });
+  }
+  /** EXIT releases the held pull, independently of the score commit or next ball. */
+  releaseNet() {
+    if (!this.netEngaged) return;
+    this.netEngaged = false;
+    const generation = ++this.netMotionGeneration;
+    this.scene.tweens.killTweensOf(this.net);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      this.restore(this.net);
+      return;
+    }
+    const base = this.baseline.get(this.net)!,
+      m = hoopLayout.netMotion;
+    // Recover the pull over the first two sway beats, then dissipate rotation.
+    this.scene.tweens.add({
+      targets: this.net,
+      scaleX: base.scaleX,
+      scaleY: base.scaleY,
+      y: base.y,
+      duration: m.swayDurationMs[0] + m.swayDurationMs[1],
+      ease: "Sine.easeOut",
+    });
+    const sway = (index: number) => {
+      if (generation !== this.netMotionGeneration) return;
+      this.scene.tweens.add({
+        targets: this.net,
+        rotation: Phaser.Math.DegToRad(m.swayDegrees[index]),
+        duration: m.swayDurationMs[index],
+        ease: "Sine.easeInOut",
+        onComplete: () => {
+          if (generation !== this.netMotionGeneration) return;
+          if (index + 1 < m.swayDegrees.length) sway(index + 1);
+          else this.restore(this.net);
+        },
+      });
+    };
+    sway(0);
   }
   playRimHit() {
     for (const image of [this.rimBack, this.rimFront]) {

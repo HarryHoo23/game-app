@@ -1,0 +1,128 @@
+[
+  {
+    "scenario": "01-ideal-perfect-after",
+    "before": {
+      "flightMs": 900,
+      "centerMs": 981.1999999284744,
+      "centerToExitMs": 283.90000009536743,
+      "resolveMs": 1265.1000000238419,
+      "physicalFeedbackMs": 1265.1999999284744,
+      "readyAfterResolveMs": 934.1999999284744,
+      "readyAfterReleaseMs": 2199.2999999523163
+    },
+    "after": {
+      "flightMs": 800,
+      "centerMs": 848.3000001907349,
+      "centerToExitMs": 100.19999980926514,
+      "resolveMs": 948.5,
+      "physicalFeedbackMs": 848.5,
+      "readyAfterResolveMs": 666.7000000476837,
+      "readyAfterReleaseMs": 1615.2000000476837
+    }
+  },
+  {
+    "scenario": "02-clean-swish-after",
+    "before": {
+      "flightMs": 906.3529411764706,
+      "centerMs": 965.3999999761581,
+      "centerToExitMs": 283.39999997615814,
+      "resolveMs": 1248.7999999523163,
+      "physicalFeedbackMs": 1248.7999999523163,
+      "readyAfterResolveMs": 951,
+      "readyAfterReleaseMs": 2199.7999999523163
+    },
+    "after": {
+      "flightMs": 806.3529411764706,
+      "centerMs": 848.5,
+      "centerToExitMs": 100.40000009536743,
+      "resolveMs": 948.9000000953674,
+      "physicalFeedbackMs": 848.7000000476837,
+      "readyAfterResolveMs": 600.1999998092651,
+      "readyAfterReleaseMs": 1549.0999999046326
+    }
+  },
+  {
+    "scenario": "03-front-rim-miss-after",
+    "before": {
+      "flightMs": 922.2352941176471,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 932.8000000715256,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 932.3999999761581,
+      "readyAfterReleaseMs": 1865.2000000476837
+    },
+    "after": {
+      "flightMs": 822.2352941176471,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 832.2999999523163,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 450.10000014305115,
+      "readyAfterReleaseMs": 1282.4000000953674
+    }
+  },
+  {
+    "scenario": "04-back-rim-miss-after",
+    "before": {
+      "flightMs": 874.5882352941177,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 882.5,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 933.7999999523163,
+      "readyAfterReleaseMs": 1816.2999999523163
+    },
+    "after": {
+      "flightMs": 774.5882352941177,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 898.9000000953674,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 450.09999990463257,
+      "readyAfterReleaseMs": 1349
+    }
+  },
+  {
+    "scenario": "05-backboard-miss-after",
+    "before": {
+      "flightMs": 878.3139915812604,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 881.6999999284744,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 951.4000000953674,
+      "readyAfterReleaseMs": 1833.1000000238419
+    },
+    "after": {
+      "flightMs": 778.3139915812604,
+      "centerMs": null,
+      "centerToExitMs": null,
+      "resolveMs": 799,
+      "physicalFeedbackMs": null,
+      "readyAfterResolveMs": 449.09999990463257,
+      "readyAfterReleaseMs": 1248.0999999046326
+    }
+  },
+  {
+    "scenario": "06-three-consecutive-after",
+    "before": {
+      "flightMs": 900,
+      "centerMs": 980.8000000715256,
+      "centerToExitMs": 284.09999990463257,
+      "resolveMs": 1264.8999999761581,
+      "physicalFeedbackMs": 1265.0,
+      "readyAfterResolveMs": 934,
+      "readyAfterReleaseMs": 2198.899999976158
+    },
+    "after": {
+      "flightMs": 800,
+      "centerMs": 847.5,
+      "centerToExitMs": 101.59999990463257,
+      "resolveMs": 949.0999999046326,
+      "physicalFeedbackMs": 847.8999998569489,
+      "readyAfterResolveMs": 666.4000000953674,
+      "readyAfterReleaseMs": 1615.5
+    }
+  }
+]

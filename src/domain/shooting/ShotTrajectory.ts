@@ -1,4 +1,10 @@
 import { shotFeel } from "../../data/shotFeel";
+import {
+  PERSPECTIVE_CONFIG,
+  projectCourtPoint,
+  projectShot,
+  unprojectShot,
+} from "../../data/courtPerspective";
 import { physics } from "../../data/physics";
 import { getHoopGeometry } from "./hoopGeometry";
 import { points } from "../levels/session";
@@ -7,6 +13,7 @@ import type { Stats } from "../progression/progress";
 import type { Vec } from "../scoring/basketDetector";
 export interface ShotPlan {
   start: Vec;
+  rim: Vec;
   target: Vec;
   power: number;
   arcHeight: number;
@@ -51,6 +58,7 @@ export function createShot(
   const power = clamp(ideal + (raw - ideal) * (1 - stats.powerControl), 0, 1);
   return {
     start: { ...physics.origin },
+    rim: { x: level.hoopX, y: level.hoopY },
     target: {
       x:
         physics.origin.x +
@@ -79,18 +87,42 @@ export function sampleShot(plan: ShotPlan, progress: number): ShotPose {
   const t = clamp(progress, 0, 1),
     smooth = t * t * (3 - 2 * t),
     perTick = 1000 / 60 / plan.durationMs;
+  // Plan the visible height first: both branches meet with zero screen velocity
+  // at the explicit apex. Inverting the render transform prevents its foreground
+  // blend from dragging the visible apex toward rim arrival.
+  const rim = plan.rim,
+    screenStart = projectShot({ ...plan.start, t: 0 }, rim),
+    screenEnd = projectShot({ ...plan.target, t: 1 }, rim),
+    apexT = shotFeel.visualApexProgress,
+    apexY = Math.min(
+      screenEnd.y - shotFeel.visualMinDescent,
+      Math.max(
+        shotFeel.visualApexMinY,
+        Math.min(screenStart.y, screenEnd.y) -
+          plan.arcHeight * PERSPECTIVE_CONFIG.hoopScale,
+      ),
+    ),
+    span = t <= apexT ? apexT : 1 - apexT,
+    fromApex = (t - apexT) / span,
+    height = (t <= apexT ? screenStart.y : screenEnd.y) - apexY,
+    screenY = apexY + height * fromApex * fromApex,
+    screenDerivative = (2 * height * fromApex) / span,
+    foregroundOffset =
+      PERSPECTIVE_CONFIG.idleBallY - projectCourtPoint(physics.origin, rim).y,
+    logicalY = unprojectShot({ x: 0, y: screenY }, t, rim).y,
+    logicalDerivative =
+      (screenDerivative + foregroundOffset * 6 * t * (1 - t)) /
+      PERSPECTIVE_CONFIG.hoopScale;
   return {
     t,
     x: lerp(plan.start.x, plan.target.x, t),
-    y: lerp(plan.start.y, plan.target.y, t) - plan.arcHeight * 4 * t * (1 - t),
+    y: t === 0 ? plan.start.y : t === 1 ? plan.target.y : logicalY,
     scale: lerp(plan.startScale, plan.hoopScale, smooth),
     rotation: -Math.PI * 2 * plan.rotations * t,
     angularVelocity: -Math.PI * 2 * plan.rotations * perTick,
     velocity: {
       x: (plan.target.x - plan.start.x) * perTick,
-      y:
-        (plan.target.y - plan.start.y - plan.arcHeight * 4 * (1 - 2 * t)) *
-        perTick,
+      y: logicalDerivative * perTick,
     },
   };
 }

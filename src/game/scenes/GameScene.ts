@@ -1,3 +1,8 @@
+import {
+  MissContact,
+  missVelocity,
+} from "../../domain/shooting/ImpactResponse";
+import { readyDelay } from "../../data/impactFeel";
 import { rimOnScreen } from "../presentation/perspective";
 import { HoopPass } from "../hoop/HoopPass";
 import { HoopRenderer } from "../hoop/HoopRenderer";
@@ -5,12 +10,12 @@ import { ShotController } from "../../domain/shooting/ShotController";
 import {
   assessShot,
   type ShotPlan,
+  type ShotImpact,
 } from "../../domain/shooting/ShotTrajectory";
 import { createCourtEnvironment } from "../environments/NightCourt";
 import { BallAnimator } from "../environments/BallAnimator";
 import { GameHud } from "../ui/GameHud";
 import { theme } from "../themes/theme";
-import { physics } from "../../data/physics";
 import Phaser from "phaser";
 import { AppScene } from "./base";
 import { levels } from "../../data/levels";
@@ -27,6 +32,9 @@ export class GameScene extends AppScene {
   private hoop!: HoopRenderer;
   private pass!: HoopPass;
   private candidateScore = 0;
+  private resultScore = 0;
+  private resultImpact: ShotImpact = "none";
+  private miss: MissContact | null = null;
   private shot = new ShotController();
   private stats!: Stats;
   private aim!: ShotInput;
@@ -47,6 +55,7 @@ export class GameScene extends AppScene {
     this.levelId = data.levelId ?? 1;
     this.accumulator = 0;
     this.shot.reset();
+    this.miss = null;
     this.settling = 0;
     this.settled = false;
     this.paused = false;
@@ -101,8 +110,18 @@ export class GameScene extends AppScene {
           b = pair.bodyB.label;
         if (a !== "ball" && b !== "ball") continue;
         const other = a === "ball" ? b : a;
-        if (!this.shot.active && (other === "rim" || other === "backboard"))
-          this.impact(other);
+        if (this.miss && (other === "rim" || other === "backboard")) {
+          // Secondary physical bounces remain part of this miss's presentation window.
+          if (this.settled) {
+            this.impact(other);
+            continue;
+          }
+          const contact = this.miss.collide(other);
+          if (contact) {
+            this.respondToMiss(contact);
+            this.resolve(0);
+          }
+        }
       }
     };
     const world = this.matter.world;
@@ -128,6 +147,9 @@ export class GameScene extends AppScene {
   private launch(plan: ShotPlan) {
     if (!this.session.launch()) return;
     this.shot.launch(plan);
+    this.feedback.release();
+    this.resultImpact = "none";
+    this.miss = null;
     this.settled = false;
     this.physicsCourt.beginControlled();
     this.hint.setText("");
@@ -136,6 +158,7 @@ export class GameScene extends AppScene {
   private resolve(score: number) {
     if (this.settled || !this.session.inFlight) return;
     this.session.resolve(score);
+    this.resultScore = score;
     this.settled = true;
     this.settling = 0;
     if (score) {
@@ -160,6 +183,7 @@ export class GameScene extends AppScene {
     let steps = 0;
     while (this.accumulator >= STEP_MS && steps++ < 10) {
       this.accumulator -= STEP_MS;
+      const passWasActive = this.pass.active;
       this.physicsCourt.step();
       if (this.shot.active) {
         const { pose, arrived } = this.shot.advance(STEP_MS);
@@ -171,22 +195,30 @@ export class GameScene extends AppScene {
             this.stats,
           );
           this.candidateScore = result.score;
+          this.resultImpact = result.impact;
           if (!this.pass.start(this.shot.currentPlan!, result)) {
             this.physicsCourt.finishControlled(pose);
-            if (result.impact !== "none" && result.impact !== "airball")
-              this.impact(result.impact === "backboard" ? "backboard" : "rim");
-            this.resolve(0);
+            this.miss = new MissContact(
+              result.impact,
+              this.hoop.getRimCenter(),
+            );
           }
         }
       }
-      if (this.pass.active) {
+      if (passWasActive && this.pass.active) {
         const event = this.pass.advance(STEP_MS);
         if (event.pose) this.physicsCourt.placeControlled(event.pose);
         if (event.entered) {
           if (this.pass.contacts.rim) this.impact("rim");
-          this.hoop.playNetSwish(this.candidateScore >= 3);
+          const rim = rimOnScreen(this.hoop.getRimCenter());
+          this.hoop.playNetSwish(
+            this.candidateScore >= 3,
+            this.candidateScore === 4,
+          );
+          this.feedback.entry(rim.x, rim.y, this.candidateScore);
         }
         if (event.finished && event.pose) {
+          this.hoop.releaseNet();
           this.physicsCourt.finishControlled(event.pose);
           const contacted =
             this.pass.contacts.rim || this.pass.contacts.backboard;
@@ -195,9 +227,14 @@ export class GameScene extends AppScene {
           );
         }
       }
+      if (this.miss && !this.settled) {
+        const event = this.miss.advance(STEP_MS, this.physicsCourt.ball);
+        if (event.contact) this.respondToMiss(event.contact);
+        if (event.resolve) this.resolve(0);
+      }
       if (this.settled) {
         this.settling += STEP_MS;
-        if (this.settling >= physics.resetDelay) {
+        if (this.settling >= readyDelay(this.resultScore)) {
           if (this.session.finished) {
             const result = {
               runId: this.runId,
@@ -209,9 +246,9 @@ export class GameScene extends AppScene {
             return;
           }
           this.physicsCourt.reset();
-          this.hoop.reset();
           this.shot.reset();
           this.pass.reset();
+          this.miss = null;
           this.settled = false;
           this.hint.setText("DRAG UP\nTO SHOOT");
         }
@@ -225,12 +262,24 @@ export class GameScene extends AppScene {
         this.shot.elapsedMs + this.pass.elapsedMs,
         this.pass.stage,
       );
-    else if (this.settled)
+    else if (this.settled || this.miss)
       this.ballView.rebound(
         this.pass.pose?.scale ?? this.shot.currentPlan!.hoopScale,
       );
     else this.ballView.idle(this.aim.isAiming ? this.aim.aimPower : 0);
     this.hoop.drawDebug(this.ballView.image);
+  }
+  private respondToMiss(impact: ShotImpact) {
+    this.resultImpact = impact;
+    const ball = this.physicsCourt.ball;
+    const velocity = missVelocity(
+      ball.body!.velocity,
+      impact,
+      ball,
+      this.hoop.getRimCenter(),
+    );
+    ball.setVelocity(velocity.x, velocity.y);
+    this.impact(impact === "backboard" ? "backboard" : "rim");
   }
   private impact(kind: "rim" | "backboard") {
     this.pass.sensors.touch(kind);

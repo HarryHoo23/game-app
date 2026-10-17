@@ -1,12 +1,47 @@
+import { feedbackFeel } from "../data/feedbackFeel";
+
 export class AudioService {
   enabled = false;
   private context?: AudioContext;
-  play(kind: "rim" | "backboard" | "basket" | "swish" | "perfect") {
+  play(kind: "release" | "rim" | "backboard" | "basket" | "swish" | "perfect") {
     if (!this.enabled) return;
     try {
       this.context ??= new AudioContext();
       void this.context.resume();
       const c = this.context;
+      if (kind === "release") {
+        const feel = feedbackFeel.releaseAudio,
+          duration = feel.durationMs / 1000,
+          buffer = c.createBuffer(
+            1,
+            Math.ceil(c.sampleRate * duration),
+            c.sampleRate,
+          ),
+          data = buffer.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+        const noise = c.createBufferSource(),
+          filter = c.createBiquadFilter(),
+          gain = c.createGain();
+        noise.buffer = buffer;
+        filter.type = "lowpass";
+        filter.frequency.value = feel.filterHz;
+        gain.gain.setValueAtTime(0.001, c.currentTime);
+        gain.gain.linearRampToValueAtTime(
+          feel.peakGain,
+          c.currentTime + feel.attackMs / 1000,
+        );
+        gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + duration);
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(c.destination);
+        noise.start();
+        noise.onended = () => {
+          noise.disconnect();
+          filter.disconnect();
+          gain.disconnect();
+        };
+        return;
+      }
       if (kind === "swish" || kind === "perfect") {
         const buffer = c.createBuffer(
           1,
