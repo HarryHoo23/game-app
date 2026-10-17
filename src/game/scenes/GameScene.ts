@@ -26,7 +26,9 @@ import { ShotInput } from "../input/shotInput";
 import { finalizeInputShot, finishInputImpact } from "../input/inputDebug";
 import { Feedback } from "../systems/feedback";
 import { on } from "../ui/screen";
+import { PhysicsAudit } from "../debug/PhysicsAudit";
 export class GameScene extends AppScene {
+  private audit?: PhysicsAudit;
   private levelId = 1;
   private session!: LevelSession;
   private physicsCourt!: MatterCourt;
@@ -53,6 +55,7 @@ export class GameScene extends AppScene {
     super("Game");
   }
   init(data: { levelId?: number }) {
+    if (import.meta.env.DEV) this.audit = undefined;
     this.levelId = data.levelId ?? 1;
     this.accumulator = 0;
     this.shot.reset();
@@ -78,6 +81,21 @@ export class GameScene extends AppScene {
     this.hoop = new HoopRenderer(this, l.hoopX, l.hoopY);
     this.pass = new HoopPass(l);
     this.ballView = new BallAnimator(this, this.physicsCourt.ball, this.hoop);
+    if (
+      import.meta.env.DEV &&
+      new URLSearchParams(location.search).has("debugPhysics")
+    )
+      this.audit = new PhysicsAudit(this, () => ({
+        court: this.physicsCourt,
+        hoop: this.hoop,
+        shot: this.shot,
+        pass: this.pass,
+        image: this.ballView.image,
+        level: l,
+        stats: this.stats,
+        settled: this.settled,
+        score: this.session.score,
+      }));
     this.feedback = new Feedback(this, this.app);
     this.hint = this.add
       .text(285, 566, "DRAG UP\nTO SHOOT", {
@@ -119,6 +137,8 @@ export class GameScene extends AppScene {
           }
           const contact = this.miss.collide(other);
           if (contact) {
+            if (import.meta.env.DEV)
+              this.audit?.event("collision-gate", { contact });
             this.respondToMiss(contact);
             this.resolve(0);
           }
@@ -153,12 +173,14 @@ export class GameScene extends AppScene {
     this.miss = null;
     this.settled = false;
     this.physicsCourt.beginControlled();
+    if (import.meta.env.DEV) this.audit?.event("launch", { plan });
     this.hint.setText("");
     this.renderHud();
   }
   private resolve(score: number) {
     if (this.settled || !this.session.inFlight) return;
     this.session.resolve(score);
+    if (import.meta.env.DEV) this.audit?.event("resolve", { awarded: score });
     this.resultScore = score;
     if (import.meta.env.DEV && this.shot.currentPlan)
       finalizeInputShot(this.shot.currentPlan, {
@@ -211,12 +233,15 @@ export class GameScene extends AppScene {
           );
           this.candidateScore = result.score;
           this.resultImpact = result.impact;
+          if (import.meta.env.DEV) this.audit?.event("prediction", { result });
           if (!this.pass.start(this.shot.currentPlan!, result)) {
             this.physicsCourt.finishControlled(pose);
             this.miss = new MissContact(
               result.impact,
               this.hoop.getRimCenter(),
             );
+            if (import.meta.env.DEV)
+              this.audit?.event("handoff", { path: "miss", pose });
           }
         }
       }
@@ -224,7 +249,11 @@ export class GameScene extends AppScene {
         const event = this.pass.advance(STEP_MS);
         if (event.pose) this.physicsCourt.placeControlled(event.pose);
         if (event.entered) {
-          if (this.pass.contacts.rim) this.impact("rim");
+          if (this.pass.contacts.rim) {
+            if (import.meta.env.DEV)
+              this.audit?.event("candidate-rim-feedback");
+            this.impact("rim");
+          }
           const rim = rimOnScreen(this.hoop.getRimCenter());
           this.hoop.playNetSwish(
             this.candidateScore >= 3,
@@ -235,6 +264,8 @@ export class GameScene extends AppScene {
         if (event.finished && event.pose) {
           this.hoop.releaseNet();
           this.physicsCourt.finishControlled(event.pose);
+          if (import.meta.env.DEV)
+            this.audit?.event("handoff", { path: "exit", pose: event.pose });
           const contacted =
             this.pass.contacts.rim || this.pass.contacts.backboard;
           this.resolve(
@@ -244,7 +275,11 @@ export class GameScene extends AppScene {
       }
       if (this.miss && !this.settled) {
         const event = this.miss.advance(STEP_MS, this.physicsCourt.ball);
-        if (event.contact) this.respondToMiss(event.contact);
+        if (event.contact) {
+          if (import.meta.env.DEV)
+            this.audit?.event("height-gate", { contact: event.contact });
+          this.respondToMiss(event.contact);
+        }
         if (event.resolve) this.resolve(0);
       }
       if (this.settled) {
@@ -261,6 +296,7 @@ export class GameScene extends AppScene {
             return;
           }
           this.physicsCourt.reset();
+          if (import.meta.env.DEV) this.audit?.event("reset");
           this.shot.reset();
           this.pass.reset();
           this.miss = null;
@@ -268,6 +304,7 @@ export class GameScene extends AppScene {
           this.hint.setText("DRAG UP\nTO SHOOT");
         }
       }
+      if (import.meta.env.DEV) this.audit?.sampleStep();
     }
     if (this.shot.active && this.shot.pose)
       this.ballView.flight(this.shot.pose, this.shot.elapsedMs);
@@ -295,10 +332,17 @@ export class GameScene extends AppScene {
       ball,
       this.hoop.getRimCenter(),
     );
+    if (import.meta.env.DEV)
+      this.audit?.event("response", {
+        impact,
+        incoming: { ...ball.body!.velocity },
+        outgoing: velocity,
+      });
     ball.setVelocity(velocity.x, velocity.y);
     this.impact(impact === "backboard" ? "backboard" : "rim");
   }
   private impact(kind: "rim" | "backboard") {
+    if (import.meta.env.DEV) this.audit?.event("feedback-impact", { kind });
     if (import.meta.env.DEV && this.shot.currentPlan)
       finishInputImpact(
         this.shot.currentPlan,

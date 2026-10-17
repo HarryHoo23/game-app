@@ -1,0 +1,154 @@
+{
+  "note": "Counterfactual browser-only method interception; skipped one redundant velocity assignment only. No source fix applied.",
+  "trials": [
+    {
+      "mode": "current",
+      "response": {
+        "type": "response",
+        "shotIndex": 1,
+        "ms": 908.3333333333339,
+        "phase": "MATTER_MISS",
+        "flightMs": 801.0588235294117,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 296.8840925964903,
+          "y": 293.37339071754025
+        },
+        "centerScreen": {
+          "x": 270.7253875954379,
+          "y": 262.63257522380434
+        },
+        "velocity": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "normalizedVelocity": {
+          "x": 1.7920415786877584,
+          "y": 6.924159890832016
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 310.5,
+            "y": 293.37339071754025
+          },
+          "distance": 13.61590740350971,
+          "inside": false,
+          "matterGapLogical": -0.3840925964902908
+        },
+        "impact": "backboard",
+        "incoming": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "outgoing": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "origin": "collision-gate"
+      },
+      "trial": [
+        {
+          "postSolver": {
+            "x": 0.14726587450070383,
+            "y": 3.4820670473445716
+          },
+          "position": {
+            "x": 296.6255822162422,
+            "y": 293.37339071754025
+          }
+        }
+      ],
+      "score": 0
+    },
+    {
+      "mode": "skip-redundant-board-setVelocity",
+      "response": {
+        "type": "response",
+        "shotIndex": 1,
+        "ms": 908.3333333333339,
+        "phase": "MATTER_MISS",
+        "flightMs": 801.0588235294117,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 296.8840925964903,
+          "y": 293.37339071754025
+        },
+        "centerScreen": {
+          "x": 270.7253875954379,
+          "y": 262.63257522380434
+        },
+        "velocity": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "normalizedVelocity": {
+          "x": 1.7920415786877584,
+          "y": 6.924159890832016
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 310.5,
+            "y": 293.37339071754025
+          },
+          "distance": 13.61590740350971,
+          "inside": false,
+          "matterGapLogical": -0.3840925964902908
+        },
+        "impact": "backboard",
+        "incoming": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "outgoing": {
+          "x": 0.8960207893438792,
+          "y": 3.4620799454159954
+        },
+        "origin": "collision-gate"
+      },
+      "trial": [
+        {
+          "requested": {
+            "x": 0.8960207893438792,
+            "y": 3.4620799454159954
+          },
+          "skipped": true
+        },
+        {
+          "postSolver": {
+            "x": 0.3878320157474491,
+            "y": 6.904172788903452
+          },
+          "position": {
+            "x": 296.6255822162422,
+            "y": 293.37339071754025
+          }
+        }
+      ],
+      "score": 0
+    }
+  ]
+}

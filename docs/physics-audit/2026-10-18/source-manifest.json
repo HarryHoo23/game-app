@@ -1,0 +1,163 @@
+{
+  "auditedHead": "a8b4ee28a9bfaddc83a7ec19840408f4ff4a4c60",
+  "branch": "feat/basketball-mvp",
+  "phaserVersion": "3.90.0",
+  "files": [
+    {
+      "path": "src/game/scenes/GameScene.ts",
+      "sha256": "9b77dea850adbf8a6b697f3aab659a1f56c6c5375496a8efe6a21a1fe4582a4a",
+      "baseSha256": "4f7df138f7686bc7233ae34433dde5bb0c4249e19f37fc2245fd2d25ffb9bc84",
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "src/game/physics/court.ts",
+      "sha256": "6c32ca65f3c0e64751858891c8276cb44cb6607f9816fd26dd93e7f8674135a7",
+      "baseSha256": "6c32ca65f3c0e64751858891c8276cb44cb6607f9816fd26dd93e7f8674135a7",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/domain/shooting/ShotTrajectory.ts",
+      "sha256": "b3005dd848f33139268f3bb89ecd2636cb2e0d1a76a4e5d28447ec8cc84ef0c4",
+      "baseSha256": "b3005dd848f33139268f3bb89ecd2636cb2e0d1a76a4e5d28447ec8cc84ef0c4",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/domain/shooting/ImpactResponse.ts",
+      "sha256": "cbee63eb6191a10c5727c712c016db77b1476f1cb5e0d40fad99cefab800332d",
+      "baseSha256": "cbee63eb6191a10c5727c712c016db77b1476f1cb5e0d40fad99cefab800332d",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopPass.ts",
+      "sha256": "af26f5db0f44011773665f5c883b77c99b330f11e9eccf5dbf35555f74c4f2e8",
+      "baseSha256": "af26f5db0f44011773665f5c883b77c99b330f11e9eccf5dbf35555f74c4f2e8",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopSensors.ts",
+      "sha256": "cb18443fc8aa69cbd1ecec526ab083c910a99dbaaf4742abb10035b84d3ac490",
+      "baseSha256": "cb18443fc8aa69cbd1ecec526ab083c910a99dbaaf4742abb10035b84d3ac490",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/hoop/hoopLayout.ts",
+      "sha256": "a97d4f93e0b674103944aec547f1201bd57b5a0328501f3a54292e5141821e62",
+      "baseSha256": "a97d4f93e0b674103944aec547f1201bd57b5a0328501f3a54292e5141821e62",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopRenderer.ts",
+      "sha256": "e82b19b84ad10048ef3fcd151bb4e2939f1dbce8083d24ca47d459f9702d5441",
+      "baseSha256": "e82b19b84ad10048ef3fcd151bb4e2939f1dbce8083d24ca47d459f9702d5441",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/presentation/perspective.ts",
+      "sha256": "9979a7444f2bb5d79e84e9f857e8512fdc526ee665baae3450073fa37dff2656",
+      "baseSha256": "9979a7444f2bb5d79e84e9f857e8512fdc526ee665baae3450073fa37dff2656",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/data/courtPerspective.ts",
+      "sha256": "aee78046ba0a232acac36784f9d7e063e94437f918e302fefad6308025d95e43",
+      "baseSha256": "aee78046ba0a232acac36784f9d7e063e94437f918e302fefad6308025d95e43",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/data/physics.ts",
+      "sha256": "66d95ee35a727bc56d068a9c50ca9ca2291acc2f2fc4e83aa5bd71d59350c4e2",
+      "baseSha256": "66d95ee35a727bc56d068a9c50ca9ca2291acc2f2fc4e83aa5bd71d59350c4e2",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/data/hoop.ts",
+      "sha256": "a65739a8b4bb2366746ca857740ecfe26717a3f67a4c86d009f250bcbdb069b1",
+      "baseSha256": "a65739a8b4bb2366746ca857740ecfe26717a3f67a4c86d009f250bcbdb069b1",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/data/impactFeel.ts",
+      "sha256": "d51c938ac03d67808c94edcaee6bfcb7efc5fbf37d68185a529974c78144de21",
+      "baseSha256": "d51c938ac03d67808c94edcaee6bfcb7efc5fbf37d68185a529974c78144de21",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/data/shotFeel.ts",
+      "sha256": "ce90732eb7ea664cde7d43748341e606e8fa295ed1ad45afc8abfebfc9b1e427",
+      "baseSha256": "ce90732eb7ea664cde7d43748341e606e8fa295ed1ad45afc8abfebfc9b1e427",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/debug/PhysicsAudit.ts",
+      "sha256": "03581c4eef5527cf9da61f88c52ad77305baa31d966f83aa797fe058bc1ba47c",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "src/game/debug/auditGeometry.ts",
+      "sha256": "4bdd41b5165ef18e575d0570a86c5d0316bf2d6088643d27a50703d1e64249ac",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "scripts/physics-audit-check.mjs",
+      "sha256": "1b67c0d4d7639c37452044af4bc4ed2f3c4ebd95617d91b4e165cd5db81ea223",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "scripts/physics-audit-velocity-probe.mjs",
+      "sha256": "edaf9dbc8827ffd48955c4309b58e6ef657acf18a837bb4b330700eb7f607695",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "src/game/environments/BallAnimator.ts",
+      "sha256": "102354a0cb023616520c3a5d3d34d6ac264efea345bc30ee885f7ff5b70203bf",
+      "baseSha256": "102354a0cb023616520c3a5d3d34d6ac264efea345bc30ee885f7ff5b70203bf",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/game/assets/manifest.ts",
+      "sha256": "9467e9d77b3066921c7fd32948f249203de78b2441829403e798668c1993c6c4",
+      "baseSha256": "9467e9d77b3066921c7fd32948f249203de78b2441829403e798668c1993c6c4",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/tests/physicsAudit.test.ts",
+      "sha256": "e112eb7fe8b9d928562161e54fcfc97785b2501ad43ec9b968657576dbceecea",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "scripts/physics-audit-production-check.mjs",
+      "sha256": "ae2f39a21a9beb36024f8b060aac07e309bffae6f59ce3930821a3f1dfbf375f",
+      "baseSha256": null,
+      "unchangedFromAuditedHead": false
+    },
+    {
+      "path": "src/assets/hoop/basketball.png",
+      "sha256": "06d2b12e736646058320729047f5324401ce86fa15505924a214436b32ff3a17",
+      "baseSha256": "06d2b12e736646058320729047f5324401ce86fa15505924a214436b32ff3a17",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/assets/hoop/backboard.png",
+      "sha256": "77c5ab38e478c8a226706fe40f0f3e7981b3b2cdaac33bb80b5c6e581f4e1760",
+      "baseSha256": "77c5ab38e478c8a226706fe40f0f3e7981b3b2cdaac33bb80b5c6e581f4e1760",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/assets/hoop/rim_back.png",
+      "sha256": "1312f0898af11a36f7d42e39625e4300f047027382504b4be8e2fe08a8fa2e31",
+      "baseSha256": "1312f0898af11a36f7d42e39625e4300f047027382504b4be8e2fe08a8fa2e31",
+      "unchangedFromAuditedHead": true
+    },
+    {
+      "path": "src/assets/hoop/net.png",
+      "sha256": "9ffa5501fa63984528e81a7afb7d24c749700e39954dfdd0f305a7d887f8f475",
+      "baseSha256": "9ffa5501fa63984528e81a7afb7d24c749700e39954dfdd0f305a7d887f8f475",
+      "unchangedFromAuditedHead": true
+    }
+  ]
+}
