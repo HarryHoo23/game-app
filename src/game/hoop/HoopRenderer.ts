@@ -1,11 +1,24 @@
 import Phaser from "phaser";
 import { PERSPECTIVE_CONFIG, rimOnScreen } from "../presentation/perspective";
-import { hoopLayout, type HoopLayer } from "./hoopLayout";
+import {
+  canonicalRim,
+  canonicalRimScale,
+  hoopLayout,
+  type HoopLayer,
+} from "./hoopLayout";
 import { assets } from "../assets/manifest";
 import { colorNumber } from "../themes/theme";
-/** Four independently anchored sprites; animation resets use their own baseline transforms. */
+/** One source oval and one parent transform, with depth interleaving inside it. */
 export class HoopRenderer {
   readonly container: Phaser.GameObjects.Container;
+  readonly rimContainer: Phaser.GameObjects.Container;
+  private placedBall?: {
+    image: Phaser.GameObjects.Image;
+    position: { x: number; y: number };
+    width: number;
+    height: number;
+    depth: number;
+  };
   readonly backboard: Phaser.GameObjects.Image;
   readonly rimBack: Phaser.GameObjects.Image;
   readonly net: Phaser.GameObjects.Image;
@@ -28,6 +41,8 @@ export class HoopRenderer {
     this.x = x;
     this.y = y;
     this.container = scene.add.container().setDepth(4);
+    this.rimContainer = scene.add.container().setDepth(3);
+    this.container.add(this.rimContainer);
     const create = (name: HoopLayer) => {
       const l = hoopLayout.layers[name],
         texture = scene.textures.get(assets.hoop[name].key);
@@ -46,13 +61,20 @@ export class HoopRenderer {
         .setFlipY(l.flipY)
         .setDepth(l.depth)
         .setTint(PERSPECTIVE_CONFIG.tint[name]);
-      this.container.add(image);
+      (name === "backboard" ? this.container : this.rimContainer).add(image);
       return image;
     };
     this.backboard = create("backboard");
     this.rimBack = create("rimBack");
     this.net = create("net");
     this.rimFront = create("rimFront");
+    this.container.sort("depth");
+    this.rimFront.setCrop(
+      0,
+      canonicalRim.frontStartY,
+      canonicalRim.frame.width,
+      canonicalRim.frame.height - canonicalRim.frontStartY,
+    );
     this.applyLayout();
     if (
       import.meta.env.DEV &&
@@ -66,11 +88,22 @@ export class HoopRenderer {
     this.container
       .setPosition(position.x, position.y)
       .setScale(this.assemblyScale);
+    this.rimContainer
+      .setPosition(0, 0)
+      .setScale(canonicalRimScale)
+      .setRotation(0);
     for (const name of Object.keys(hoopLayout.layers) as HoopLayer[]) {
       const l = hoopLayout.layers[name],
         image = this[name],
-        scale = l.width / l.frame.width;
-      image.setPosition(l.offsetX, l.offsetY).setScale(scale).setRotation(0);
+        scale =
+          l.width /
+          l.frame.width /
+          (name === "backboard" ? 1 : canonicalRimScale);
+      const divisor = name === "backboard" ? 1 : canonicalRimScale;
+      image
+        .setPosition(l.offsetX / divisor, l.offsetY / divisor)
+        .setScale(scale)
+        .setRotation(0);
       this.baseline.set(image, {
         x: image.x,
         y: image.y,
@@ -78,6 +111,7 @@ export class HoopRenderer {
         scaleY: image.scaleY,
       });
     }
+    this.repositionBall();
   }
   /** Insert the ball in the same display list so front-rim/net occlusion survives grouping. */
   placeBall(
@@ -87,13 +121,24 @@ export class HoopRenderer {
     height: number,
     depth: number,
   ) {
-    if (image.parentContainer !== this.container) this.container.add(image);
-    const local = this.container.getLocalPoint(position.x, position.y);
+    this.placedBall = {
+      image,
+      position: { ...position },
+      width,
+      height,
+      depth,
+    };
+    if (image.parentContainer !== this.rimContainer)
+      this.rimContainer.add(image);
+    const local = this.rimContainer.getLocalPoint(position.x, position.y);
+    const matrix = this.rimContainer.getWorldTransformMatrix();
+    const worldScaleX = Math.hypot(matrix.a, matrix.b);
+    const worldScaleY = Math.hypot(matrix.c, matrix.d);
     image
       .setPosition(local.x, local.y)
-      .setDisplaySize(width / this.assemblyScale, height / this.assemblyScale)
+      .setDisplaySize(width / worldScaleX, height / worldScaleY)
       .setDepth(depth);
-    this.container.sort("depth");
+    this.rimContainer.sort("depth");
   }
   setPosition(x: number, y: number) {
     this.reset();
@@ -131,6 +176,9 @@ export class HoopRenderer {
   reset() {
     this.netMotionGeneration++;
     this.netEngaged = false;
+    this.scene.tweens.killTweensOf(this.rimContainer);
+    this.rimContainer.setPosition(0, 0).setRotation(0);
+    this.repositionBall();
     for (const image of [
       this.backboard,
       this.rimBack,
@@ -163,7 +211,7 @@ export class HoopRenderer {
       y:
         base.y +
         (perfect ? m.perfectDropPx : strong ? m.dropPx : m.rimDropPx) /
-          this.assemblyScale,
+          (this.assemblyScale * canonicalRimScale),
       duration: m.stretchMs,
       ease: "Sine.easeOut",
     });
@@ -205,20 +253,33 @@ export class HoopRenderer {
     };
     sway(0);
   }
+  private repositionBall() {
+    const ball = this.placedBall;
+    if (ball?.image.active)
+      this.placeBall(
+        ball.image,
+        ball.position,
+        ball.width,
+        ball.height,
+        ball.depth,
+      );
+  }
   playRimHit() {
-    for (const image of [this.rimBack, this.rimFront]) {
-      this.scene.tweens.killTweensOf(image);
-      this.restore(image);
-      const base = this.baseline.get(image)!;
-      this.scene.tweens.add({
-        targets: image,
-        x: base.x + hoopLayout.rimMotion.offset,
-        duration: hoopLayout.rimMotion.durationMs / 4,
-        yoyo: true,
-        repeat: 1,
-        onComplete: () => this.restore(image),
-      });
-    }
+    this.scene.tweens.killTweensOf(this.rimContainer);
+    this.rimContainer.setPosition(0, 0);
+    this.scene.tweens.add({
+      targets: this.rimContainer,
+      // Container positions use outer-assembly units, not its scaled source pixels.
+      x: hoopLayout.rimMotion.offset,
+      duration: hoopLayout.rimMotion.durationMs / 4,
+      yoyo: true,
+      repeat: 1,
+      onUpdate: () => this.repositionBall(),
+      onComplete: () => {
+        this.rimContainer.setPosition(0, 0);
+        this.repositionBall();
+      },
+    });
   }
   playBackboardHit() {
     this.scene.tweens.killTweensOf(this.backboard);
@@ -232,7 +293,11 @@ export class HoopRenderer {
       onComplete: () => this.restore(this.backboard),
     });
   }
-  drawDebug(ball?: { x: number; y: number }) {
+  drawDebug(ball?: {
+    x: number;
+    y: number;
+    parentContainer?: Phaser.GameObjects.Container | null;
+  }) {
     const g = this.debug;
     if (!g) return;
     g.clear();
@@ -265,7 +330,7 @@ export class HoopRenderer {
     g.fillCircle(center.x, center.y, 3);
     if (ball) {
       g.lineStyle(1, colorNumber("orange"));
-      const local = this.container
+      const local = (ball.parentContainer ?? this.container)
         .getWorldTransformMatrix()
         .transformPoint(ball.x, ball.y);
       g.strokeCircle(local.x, local.y, 4);

@@ -23,6 +23,7 @@ import { LevelSession } from "../../domain/levels/session";
 import { calculateStats, type Stats } from "../../domain/progression/progress";
 import { MatterCourt, STEP_MS } from "../physics/court";
 import { ShotInput } from "../input/shotInput";
+import { finalizeInputShot, finishInputImpact } from "../input/inputDebug";
 import { Feedback } from "../systems/feedback";
 import { on } from "../ui/screen";
 export class GameScene extends AppScene {
@@ -159,6 +160,20 @@ export class GameScene extends AppScene {
     if (this.settled || !this.session.inFlight) return;
     this.session.resolve(score);
     this.resultScore = score;
+    if (import.meta.env.DEV && this.shot.currentPlan)
+      finalizeInputShot(this.shot.currentPlan, {
+        made: score > 0,
+        score,
+        impact: this.resultImpact,
+        quality:
+          score === 4
+            ? "perfect"
+            : score === 3
+              ? "swish"
+              : score
+                ? "normal"
+                : "miss",
+      });
     this.settled = true;
     this.settling = 0;
     if (score) {
@@ -271,6 +286,8 @@ export class GameScene extends AppScene {
   }
   private respondToMiss(impact: ShotImpact) {
     this.resultImpact = impact;
+    if (import.meta.env.DEV && this.shot.currentPlan)
+      finishInputImpact(this.shot.currentPlan, impact);
     const ball = this.physicsCourt.ball;
     const velocity = missVelocity(
       ball.body!.velocity,
@@ -282,6 +299,17 @@ export class GameScene extends AppScene {
     this.impact(impact === "backboard" ? "backboard" : "rim");
   }
   private impact(kind: "rim" | "backboard") {
+    if (import.meta.env.DEV && this.shot.currentPlan)
+      finishInputImpact(
+        this.shot.currentPlan,
+        kind === "backboard"
+          ? "backboard"
+          : this.resultImpact === "frontRim" || this.resultImpact === "backRim"
+            ? this.resultImpact
+            : this.physicsCourt.ball.y >= this.hoop.getRimCenter().y
+              ? "frontRim"
+              : "backRim",
+      );
     this.pass.sensors.touch(kind);
     if (kind === "rim") this.hoop.playRimHit();
     else this.hoop.playBackboardHit();

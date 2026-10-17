@@ -46,23 +46,27 @@ export function createShot(
   level: LevelConfig,
   stats: Stats,
 ): ShotPlan | null {
-  const distance = Math.hypot(dx, dy);
+  const verticalDrag = Math.max(0, -dy);
   if (
-    !Number.isFinite(distance) ||
-    distance < shotFeel.minDrag ||
+    !Number.isFinite(dx) ||
+    !Number.isFinite(dy) ||
+    verticalDrag < shotFeel.minDrag ||
     dy > -shotFeel.minUpwardDrag
   )
     return null;
   const ideal = shotFeel.idealDrag / shotFeel.powerDrag;
-  const raw = clamp(distance / shotFeel.powerDrag, 0, 1);
+  const raw = clamp(verticalDrag / shotFeel.powerDrag, 0, 1);
+  // Finger drift stays quiet near center; deliberate aim ramps progressively.
+  const aim =
+    Math.sign(dx) *
+    clamp((Math.abs(dx) - shotFeel.aimDeadzone) / shotFeel.aimDrag, 0, 1) **
+      shotFeel.aimExponent;
   const power = clamp(ideal + (raw - ideal) * (1 - stats.powerControl), 0, 1);
   return {
     start: { ...physics.origin },
     rim: { x: level.hoopX, y: level.hoopY },
     target: {
-      x:
-        physics.origin.x +
-        clamp(dx / shotFeel.aimDrag, -1, 1) * shotFeel.aimRange,
+      x: physics.origin.x + aim * shotFeel.aimRange,
       y:
         level.hoopY -
         shotFeel.hoopApproachOffset +

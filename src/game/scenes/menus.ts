@@ -31,7 +31,9 @@ export class PreloadScene extends AppScene {
   preload() {
     this.load.image(assets.nightCourt.key, assets.nightCourt.url);
     this.load.image(assets.ball.key, assets.ball.url);
-    for (const layer of Object.values(assets.hoop))
+    for (const layer of new Map(
+      Object.values(assets.hoop).map((asset) => [asset.key, asset]),
+    ).values())
       this.load.image(layer.key, layer.url);
   }
   create() {

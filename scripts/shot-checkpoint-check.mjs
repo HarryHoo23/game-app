@@ -15,6 +15,6 @@ try{
  await page.waitForFunction(()=>{const s=window.afterHours.scene.getScene('Game');return !s.session.inFlight&&!s.settled});
  assert.deepEqual(await page.evaluate(()=>{const n=window.afterHours.scene.getScene('Game').hoop.net;return {x:n.x,y:n.y,sx:n.scaleX,sy:n.scaleY,r:n.rotation}}),net);
  assert.equal(await page.evaluate(()=>window.afterHours.scene.getScene('Game').ballView.ghosts.filter(g=>g.visible).length),0);
- await page.mouse.move(200,674);await page.mouse.down();await page.mouse.move(265,529,{steps:12});await page.mouse.up();await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').settled);assert.equal(await page.evaluate(()=>window.afterHours.scene.getScene('Game').resultImpact),'backboard');
+ await page.mouse.move(200,674);await page.mouse.down();await page.mouse.move(246,529,{steps:12});await page.mouse.up();await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').settled);assert.equal(await page.evaluate(()=>window.afterHours.scene.getScene('Game').resultImpact),'backboard');
  assert.deepEqual(errors,[]);console.log('Checkpoint: no score before EXIT, no reentrant shot, in-net pause/resume, exact net restoration, pooled ghosts hidden in net/idle.');
 }finally{await browser.close()}

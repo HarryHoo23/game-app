@@ -1,6 +1,26 @@
+/** The full source oval is the only rim geometry. Coordinates are in source pixels.
+ * Its equator is the gameplay anchor. The front crop retains the near arc and
+ * mounting plate; cropping never changes the image origin or transform.
+ */
+export const canonicalRim = {
+  frame: { x: 31, y: 397, width: 1193, height: 514 },
+  width: 104,
+  originX: 0.5,
+  originY: 0.35,
+  frontStartY: 180,
+  // Rear inner underside: the net's highest (central) loop attaches here.
+  netAttachmentSourceY: 490,
+} as const;
+export const canonicalRimScale = canonicalRim.width / canonicalRim.frame.width;
+export const netAttachmentY =
+  (canonicalRim.netAttachmentSourceY -
+    canonicalRim.frame.y -
+    canonicalRim.frame.height * canonicalRim.originY) *
+  canonicalRimScale;
+
 /** Gameplay dimensions never depend on PNG canvas bounds. Layer trims are source pixels. */
 export const hoopLayout = {
-  rimWidth: 104,
+  rimWidth: canonicalRim.width,
   layers: {
     backboard: {
       frame: { x: 20, y: 268, width: 1214, height: 710 },
@@ -13,19 +33,16 @@ export const hoopLayout = {
       flipY: false,
     },
     rimBack: {
-      frame: { x: 31, y: 397, width: 1193, height: 514 },
+      ...canonicalRim,
       offsetX: 0,
       offsetY: 0,
-      width: 104,
-      originX: 0.5,
-      originY: 0.35,
       depth: 3,
       flipY: false,
     },
     net: {
       frame: { x: 50, y: 110, width: 1165, height: 1004 },
       offsetX: 0,
-      offsetY: 8,
+      offsetY: netAttachmentY,
       width: 98,
       originX: 0.5,
       originY: 0,
@@ -33,14 +50,11 @@ export const hoopLayout = {
       flipY: false,
     },
     rimFront: {
-      frame: { x: 0, y: 490, width: 1254, height: 235 },
+      ...canonicalRim,
       offsetX: 0,
-      offsetY: 5,
-      width: 108,
-      originX: 0.5,
-      originY: 0.5,
+      offsetY: 0,
       depth: 6,
-      flipY: true,
+      flipY: false,
     },
   },
   ballDepth: { APPROACHING: 7, AT_RIM: 4, IN_NET: 4, BELOW_HOOP: 7 },

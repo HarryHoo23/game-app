@@ -8,10 +8,11 @@ import type { LevelConfig } from "../../data/levels";
 import Phaser from "phaser";
 import { PERSPECTIVE_CONFIG } from "../presentation/perspective";
 import type { Stats } from "../../domain/progression/progress";
+import { ShotGesture } from "./shotGesture";
+import { recordInputRelease } from "./inputDebug";
 export class ShotInput {
   private pointer: number | null = null;
-  private start = { x: 0, y: 0 };
-  private drag = { x: 0, y: 0 };
+  private gesture: ShotGesture | null = null;
   private preview: TrajectoryPreview;
   private predicted: ShotPlan | null = null;
   constructor(
@@ -47,22 +48,30 @@ export class ShotInput {
     )
       return;
     this.pointer = p.id;
-    this.start = { x: p.x, y: p.y };
-    this.drag = { x: 0, y: 0 };
+    this.gesture = new ShotGesture({ x: p.x, y: p.y }, this.stats.smoothing);
   }
   private move(p: Phaser.Input.Pointer) {
-    if (p.id !== this.pointer) return;
-    const k = 1 - this.stats.smoothing;
-    this.drag.x += (p.x - this.start.x - this.drag.x) * k;
-    this.drag.y += (p.y - this.start.y - this.drag.y) * k;
+    if (p.id !== this.pointer || !this.gesture) return;
+    this.gesture.move(p);
     this.draw();
   }
   private up(p: Phaser.Input.Pointer) {
-    if (p.id !== this.pointer) return;
-    this.move(p);
-    const plan = createShot(this.drag.x, this.drag.y, this.level, this.stats);
+    if (p.id !== this.pointer || !this.gesture) return;
+    const gesture = this.gesture;
+    const { dx, dy } = gesture.release(p);
+    const plan = createShot(dx, dy, this.level, this.stats);
     this.cancel();
-    if (plan && this.canAim()) this.fire(plan);
+    if (plan && this.canAim()) {
+      if (import.meta.env.DEV)
+        recordInputRelease(
+          gesture.start,
+          gesture.current,
+          plan,
+          this.level,
+          this.stats,
+        );
+      this.fire(plan);
+    }
   }
   get aimPower() {
     return this.predicted?.power ?? 0;
@@ -72,12 +81,15 @@ export class ShotInput {
   }
   cancel = () => {
     this.pointer = null;
+    this.gesture = null;
     this.predicted = null;
     this.preview.clear();
   };
   private draw() {
     this.preview.clear();
-    const plan = createShot(this.drag.x, this.drag.y, this.level, this.stats);
+    if (!this.gesture) return;
+    const { x, y } = this.gesture.previewDrag;
+    const plan = createShot(x, y, this.level, this.stats);
     this.predicted = plan;
     if (plan) this.preview.draw(plan);
   }
