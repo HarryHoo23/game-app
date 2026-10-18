@@ -1,0 +1,5 @@
+{
+  "diagnosticsAbsentFromBuiltJavaScript": true,
+  "queryFlagsCannotExposeDiagnostics": true,
+  "actualProductionSwishScore": 3
+}

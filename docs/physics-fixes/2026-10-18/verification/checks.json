@@ -1,0 +1,33 @@
+{
+  "verifiedHead": "26ced8fe3e280093dd90f12046cf183e3a7da4f8",
+  "unitTests": {
+    "command": "npm test",
+    "passed": 99,
+    "failed": 0
+  },
+  "checksPassed": [
+    "npm run lint",
+    "npm run build",
+    "npm run format:check",
+    "git diff --check",
+    "npm run test:browser",
+    "node scripts/perspective-check.mjs",
+    "node scripts/layered-hoop-check.mjs",
+    "node scripts/shot-checkpoint-check.mjs",
+    "npm run test:shot-feel",
+    "node scripts/input-rim-check.mjs",
+    "node scripts/physics-fixes-check.mjs before",
+    "node scripts/physics-fixes-check.mjs after-board",
+    "node scripts/physics-fixes-check.mjs after",
+    "node scripts/physics-audit-check.mjs",
+    "production built-bundle physics diagnostic exclusion + actual swish3",
+    "production built-bundle input diagnostic exclusion + actual PERFECT4"
+  ],
+  "advisories": [
+    "Existing large Phaser vendor chunk warning"
+  ],
+  "limitations": [
+    "No physical phone/Safari or audio capture",
+    "Read-only reviewer preliminary pass found no actionable issue; final reviewer run ended on usage limit, so no completed independent final review claimed"
+  ]
+}

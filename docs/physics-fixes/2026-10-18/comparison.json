@@ -1,0 +1,162 @@
+{
+  "baselineHead": "45271cf59d490e04904b382c73eaac32c7ca1abc",
+  "verifiedHead": "26ced8fe3e280093dd90f12046cf183e3a7da4f8",
+  "cases": [
+    {
+      "case": "backboard",
+      "identicalShotPlan": true,
+      "before": {
+        "name": "backboard",
+        "score": 0,
+        "boardPostSolver": {
+          "x": 0.14726587450070383,
+          "y": 3.4820670473445716
+        },
+        "handoffMs": 808.3333333333348,
+        "handoffGap": 10.36815687563626,
+        "responseOrigin": "collision-gate",
+        "feedbackCount": 2,
+        "resolutions": [
+          0
+        ]
+      },
+      "after": {
+        "name": "backboard",
+        "score": 0,
+        "boardPostSolver": {
+          "x": 0.3878320157474491,
+          "y": 6.904172788903452
+        },
+        "handoffMs": 808.3333333333348,
+        "handoffGap": 10.36815687563626,
+        "feedbackCount": 1,
+        "resolutions": [
+          0
+        ]
+      }
+    },
+    {
+      "case": "rim-handoff",
+      "identicalShotPlan": true,
+      "before": {
+        "name": "rim-handoff",
+        "score": 0,
+        "boardPostSolver": {
+          "x": 0.9311515411421851,
+          "y": -4.177951955761728
+        },
+        "handoffMs": 825.0000000000014,
+        "handoffGap": -9.385459799164295,
+        "responseOrigin": "height-gate",
+        "feedbackCount": 3,
+        "resolutions": [
+          0
+        ]
+      },
+      "after": {
+        "name": "rim-handoff",
+        "score": 0,
+        "boardPostSolver": {
+          "x": -3.7442684395552988,
+          "y": 0.1395681904882622
+        },
+        "handoffMs": 783.3333333333351,
+        "handoffGap": 0.010000003065012919,
+        "feedbackCount": 3,
+        "resolutions": [
+          0
+        ]
+      }
+    },
+    {
+      "case": "board-handoff",
+      "identicalShotPlan": true,
+      "before": {
+        "name": "board-handoff",
+        "score": 0,
+        "boardPostSolver": {
+          "x": 2.7083333333332575,
+          "y": 5.278388240126787
+        },
+        "handoffMs": 800.0000000000016,
+        "handoffGap": -1.5,
+        "feedbackCount": 1,
+        "resolutions": [
+          0
+        ]
+      },
+      "after": {
+        "name": "board-handoff",
+        "score": 0,
+        "handoffMs": 816.6666666666681,
+        "handoffGap": 1.2083333333333712,
+        "feedbackCount": 0,
+        "resolutions": [
+          0
+        ]
+      }
+    }
+  ],
+  "preservedSources": [
+    {
+      "path": "src/domain/shooting/ShotTrajectory.ts",
+      "sha256": "b3005dd848f33139268f3bb89ecd2636cb2e0d1a76a4e5d28447ec8cc84ef0c4",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/data/shotFeel.ts",
+      "sha256": "ce90732eb7ea664cde7d43748341e606e8fa295ed1ad45afc8abfebfc9b1e427",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/data/courtPerspective.ts",
+      "sha256": "aee78046ba0a232acac36784f9d7e063e94437f918e302fefad6308025d95e43",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/input/shotInput.ts",
+      "sha256": "b2d45c3ff0e4d2b24a75216114a5e370a148a3cc8a96f9bf03dd94f60dfdfab5",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/input/shotGesture.ts",
+      "sha256": "781b50bbc774d5817722c154a02b1c0866973f4a31be374455dfe706e87c920b",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopSensors.ts",
+      "sha256": "cb18443fc8aa69cbd1ecec526ab083c910a99dbaaf4742abb10035b84d3ac490",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopPass.ts",
+      "sha256": "af26f5db0f44011773665f5c883b77c99b330f11e9eccf5dbf35555f74c4f2e8",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/hoop/HoopRenderer.ts",
+      "sha256": "e82b19b84ad10048ef3fcd151bb4e2939f1dbce8083d24ca47d459f9702d5441",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/hoop/hoopLayout.ts",
+      "sha256": "a97d4f93e0b674103944aec547f1201bd57b5a0328501f3a54292e5141821e62",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/data/impactFeel.ts",
+      "sha256": "d51c938ac03d67808c94edcaee6bfcb7efc5fbf37d68185a529974c78144de21",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/environments/BallAnimator.ts",
+      "sha256": "102354a0cb023616520c3a5d3d34d6ac264efea345bc30ee885f7ff5b70203bf",
+      "unchangedFromExpectedHead": true
+    },
+    {
+      "path": "src/game/systems/feedback.ts",
+      "sha256": "874772bd6bda59ace7c67e719f41abef1fd1c665ece8067da664cc7f00cd9cac",
+      "unchangedFromExpectedHead": true
+    }
+  ]
+}
