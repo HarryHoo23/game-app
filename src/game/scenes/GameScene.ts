@@ -326,19 +326,25 @@ export class GameScene extends AppScene {
     if (import.meta.env.DEV && this.shot.currentPlan)
       finishInputImpact(this.shot.currentPlan, impact);
     const ball = this.physicsCourt.ball;
-    const velocity = missVelocity(
-      ball.body!.velocity,
-      impact,
-      ball,
-      this.hoop.getRimCenter(),
-    );
-    if (import.meta.env.DEV)
-      this.audit?.event("response", {
+    // collisionStart precedes Matter's velocity normalization and solver.
+    // An ordinary board contact needs no velocity assignment at all.
+    if (impact !== "backboard") {
+      const velocity = missVelocity(
+        ball.body!.velocity,
         impact,
-        incoming: { ...ball.body!.velocity },
-        outgoing: velocity,
-      });
-    ball.setVelocity(velocity.x, velocity.y);
+        ball,
+        this.hoop.getRimCenter(),
+      );
+      if (import.meta.env.DEV)
+        this.audit?.event("response", {
+          impact,
+          incoming: { ...ball.body!.velocity },
+          outgoing: velocity,
+        });
+      ball.setVelocity(velocity.x, velocity.y);
+    } else if (import.meta.env.DEV) {
+      this.audit?.event("engine-response", { impact });
+    }
     this.impact(impact === "backboard" ? "backboard" : "rim");
   }
   private impact(kind: "rim" | "backboard") {

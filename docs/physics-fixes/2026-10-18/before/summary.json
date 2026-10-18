@@ -1,0 +1,46 @@
+[
+  {
+    "name": "backboard",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 0.14726587450070383,
+      "y": 3.4820670473445716
+    },
+    "handoffMs": 808.3333333333348,
+    "handoffGap": 10.36815687563626,
+    "responseOrigin": "collision-gate",
+    "feedbackCount": 2,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "name": "rim-handoff",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 0.9311515411421851,
+      "y": -4.177951955761728
+    },
+    "handoffMs": 825.0000000000014,
+    "handoffGap": -9.385459799164295,
+    "responseOrigin": "height-gate",
+    "feedbackCount": 3,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "name": "board-handoff",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 2.7083333333332575,
+      "y": 5.278388240126787
+    },
+    "handoffMs": 800.0000000000016,
+    "handoffGap": -1.5,
+    "feedbackCount": 1,
+    "resolutions": [
+      0
+    ]
+  }
+]
