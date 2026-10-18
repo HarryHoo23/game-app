@@ -66,3 +66,24 @@ it("observes likely board approaches until contact or spatial clearance", () => 
   const clear = new MissContact("airball", rim);
   expect(clear.advance(20, { x: 340, y: 245 }).resolve).toBe(true);
 });
+
+it("waits for the solver instead of applying a height impulse after a swept handoff", () => {
+  const miss = new MissContact(
+    "frontRim",
+    rim,
+    { minX: 68.5, maxX: 331.5, maxY: 314 },
+    true,
+  );
+  expect(miss.advance(8, { x: 252, y: 280 }).contact).toBeNull();
+  expect(miss.collide("rim")).toBe("frontRim");
+  expect(miss.collide("rim")).toBeNull();
+});
+it("includes actual side-frame thickness in the observation clearance", () => {
+  const miss = new MissContact("airball", rim, {
+    minX: 68.5,
+    maxX: 331.5,
+    maxY: 314,
+  });
+  expect(miss.advance(8, { x: 330, y: 255 }).resolve).toBe(false);
+  expect(miss.advance(8, { x: 332, y: 255 }).resolve).toBe(true);
+});

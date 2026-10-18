@@ -1,0 +1,40 @@
+[
+  {
+    "name": "backboard",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 0.3878320157474491,
+      "y": 6.904172788903452
+    },
+    "handoffMs": 808.3333333333348,
+    "handoffGap": 10.36815687563626,
+    "feedbackCount": 1,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "name": "rim-handoff",
+    "score": 0,
+    "boardPostSolver": {
+      "x": -3.7442684395552988,
+      "y": 0.1395681904882622
+    },
+    "handoffMs": 783.3333333333351,
+    "handoffGap": 0.010000003065012919,
+    "feedbackCount": 3,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "name": "board-handoff",
+    "score": 0,
+    "handoffMs": 816.6666666666681,
+    "handoffGap": 1.2083333333333712,
+    "feedbackCount": 0,
+    "resolutions": [
+      0
+    ]
+  }
+]

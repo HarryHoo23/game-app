@@ -40,4 +40,10 @@ export class ShotController {
     this.elapsed = 0;
     this.delivered = false;
   }
+  /** End controlled motion at an actual eligible contact without changing the plan. */
+  finishAt(progress: number) {
+    if (!this.plan) return;
+    this.elapsed = Math.max(0, Math.min(1, progress)) * this.plan.durationMs;
+    this.delivered = true;
+  }
 }

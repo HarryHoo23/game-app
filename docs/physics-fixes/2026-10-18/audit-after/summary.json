@@ -1,0 +1,2350 @@
+{
+  "auditedHead": "a8b4ee28a9bfaddc83a7ec19840408f4ff4a4c60",
+  "cases": [
+    {
+      "name": "front-rim",
+      "dx": 0,
+      "dy": -125,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "frontRim",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 816.6666666666674,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 825.0000000000007,
+        "phase": "MATTER_MISS",
+        "flightMs": 822.2352941176471,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 284.6470588235294
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 256.26235294117646
+        },
+        "velocity": {
+          "x": 0,
+          "y": 7.166116132358582
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 7.166116132358582
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 284.6470588235294
+          },
+          "distance": 48.196,
+          "inside": false,
+          "matterGapLogical": 34.196
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 200,
+          "y": 284.6470588235294,
+          "scale": 0.44999999999999996,
+          "rotation": -11.945444066355543,
+          "angularVelocity": -0.2421335302237376,
+          "velocity": {
+            "x": 0,
+            "y": 7.1661161323585825
+          }
+        },
+        "physicalOnly": false,
+        "deferredMs": 0
+      },
+      "response": {
+        "type": "response",
+        "shotIndex": 1,
+        "ms": 825.0000000000007,
+        "phase": "MATTER_MISS",
+        "flightMs": 822.2352941176471,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 284.6470588235294
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 256.26235294117646
+        },
+        "velocity": {
+          "x": 0,
+          "y": 7.166116132358582
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 7.166116132358582
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 284.6470588235294
+          },
+          "distance": 48.196,
+          "inside": false,
+          "matterGapLogical": 34.196
+        },
+        "impact": "frontRim",
+        "incoming": {
+          "x": 0,
+          "y": 7.166116132358582
+        },
+        "outgoing": {
+          "x": -3.4,
+          "y": -5.2
+        },
+        "origin": "height-gate"
+      },
+      "actual": [],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 833.3333333333339,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 822.2352941176471,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 198.3,
+          "y": 282.1165032679738
+        },
+        "centerScreen": {
+          "x": 198.75900000000001,
+          "y": 254.41504738562088
+        },
+        "velocity": {
+          "x": -3.3999999999999773,
+          "y": -5.061111111111131
+        },
+        "normalizedVelocity": {
+          "x": -3.3999999999999773,
+          "y": -5.061111111111131
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 283.764
+          },
+          "distance": 46.525178790436016,
+          "inside": false,
+          "matterGapLogical": 32.525178790436016
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 200,
+            "y": 284.6470588235294
+          },
+          "power": 0.7352941176470589,
+          "arcHeight": 168.57647058823528,
+          "durationMs": 822.2352941176471,
+          "rotations": 1.9011764705882355,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "frontRim",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 200,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "back-rim",
+      "dx": 0,
+      "dy": -165,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "backRim",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 775.0000000000017,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 783.3333333333351,
+        "phase": "MATTER_MISS",
+        "flightMs": 779.8823529411765,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 228.17647058823528
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 215.03882352941173
+        },
+        "velocity": {
+          "x": 0,
+          "y": 4.182141821447743
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 4.182141821447743
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 9,
+          "label": "backboard",
+          "point": {
+            "x": 200,
+            "y": 197.5
+          },
+          "distance": 30.676470588235276,
+          "inside": false,
+          "matterGapLogical": 16.676470588235276
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 200,
+          "y": 228.17647058823528,
+          "scale": 0.44999999999999996,
+          "rotation": -13.12816130064817,
+          "angularVelocity": -0.2805585836363188,
+          "velocity": {
+            "x": 0,
+            "y": 4.182141821447735
+          }
+        },
+        "physicalOnly": false,
+        "deferredMs": 0
+      },
+      "response": {
+        "type": "response",
+        "shotIndex": 1,
+        "ms": 883.3333333333342,
+        "phase": "MATTER_MISS",
+        "flightMs": 779.8823529411765,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 258.6859881835892
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 237.31077137402008
+        },
+        "velocity": {
+          "x": 0,
+          "y": 5.848808488114628
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 5.848808488114628
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 283.764
+          },
+          "distance": 54.33011220919796,
+          "inside": false,
+          "matterGapLogical": 40.33011220919796
+        },
+        "impact": "backRim",
+        "incoming": {
+          "x": 0,
+          "y": 5.848808488114628
+        },
+        "outgoing": {
+          "x": 5.8,
+          "y": 10.5
+        },
+        "origin": "height-gate"
+      },
+      "actual": [],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 883.3333333333342,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 779.8823529411765,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 258.6859881835892
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 237.31077137402008
+        },
+        "velocity": {
+          "x": 5.800000000000011,
+          "y": 10.5
+        },
+        "normalizedVelocity": {
+          "x": 5.800000000000011,
+          "y": 10.5
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 283.764
+          },
+          "distance": 54.33011220919796,
+          "inside": false,
+          "matterGapLogical": 40.33011220919796
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 200,
+            "y": 228.17647058823528
+          },
+          "power": 0.9705882352941176,
+          "arcHeight": 176.9529411764706,
+          "durationMs": 779.8823529411765,
+          "rotations": 2.0894117647058823,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "backRim",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.17083333333333334,
+          "point": {
+            "x": 200,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "backboard",
+      "dx": 46,
+      "dy": -145,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "airball",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 800.0000000000014,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 808.3333333333346,
+        "phase": "MATTER_MISS",
+        "flightMs": 801.0588235294117,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 286.13184312436374,
+          "y": 256.4117647058823
+        },
+        "centerScreen": {
+          "x": 262.87624548078554,
+          "y": 235.65058823529407
+        },
+        "velocity": {
+          "x": 1.7920415786877584,
+          "y": 5.257493224165046
+        },
+        "normalizedVelocity": {
+          "x": 1.7920415786877584,
+          "y": 5.257493224165046
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 310.5,
+            "y": 256.4117647058823
+          },
+          "distance": 24.36815687563626,
+          "inside": false,
+          "matterGapLogical": 10.36815687563626
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 286.13184312436374,
+          "y": 256.4117647058823,
+          "scale": 0.44999999999999996,
+          "rotation": -12.536802683501858,
+          "angularVelocity": -0.2608381622601601,
+          "velocity": {
+            "x": 1.7920415786877462,
+            "y": 5.257493224165049
+          }
+        },
+        "physicalOnly": false,
+        "deferredMs": 0
+      },
+      "actual": [
+        {
+          "ms": 908.3333333333337,
+          "other": "backboard",
+          "supports": [
+            {
+              "x": 310.87535342973166,
+              "y": 293.86798175688676
+            }
+          ],
+          "velocity": {
+            "x": 0.8960207893438792,
+            "y": 3.4620799454159954
+          },
+          "normalizedVelocity": {
+            "x": 1.7920415786877584,
+            "y": 6.924159890832016
+          },
+          "nearest": {
+            "id": 13,
+            "label": "backboard",
+            "point": {
+              "x": 310.5,
+              "y": 293.37339071754025
+            },
+            "distance": 13.61590740350971,
+            "inside": false,
+            "matterGapLogical": -0.3840925964902908
+          }
+        }
+      ],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 916.666666666667,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 801.0588235294117,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 296.6483269604322,
+          "y": 296.89492155643643
+        },
+        "centerScreen": {
+          "x": 270.5532786811155,
+          "y": 265.2032927361986
+        },
+        "velocity": {
+          "x": 0.3290953388864182,
+          "y": 7.003166298772385
+        },
+        "normalizedVelocity": {
+          "x": 0.3290953388864182,
+          "y": 7.003166298772385
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 310.5,
+            "y": 296.89492155643643
+          },
+          "distance": 13.8516730395678,
+          "inside": false,
+          "matterGapLogical": -0.1483269604322004
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 286.13184312436374,
+            "y": 256.4117647058823
+          },
+          "power": 0.8529411764705882,
+          "arcHeight": 172.76470588235293,
+          "durationMs": 801.0588235294117,
+          "rotations": 1.9952941176470589,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "airball",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 215.07307254676365,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "swish",
+      "dx": 0,
+      "dy": -140,
+      "score": 3,
+      "prediction": {
+        "made": true,
+        "score": 3,
+        "impact": "none",
+        "quality": "swish"
+      },
+      "controlledFlightLastMs": 800.0000000000016,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 950.0000000000002,
+        "phase": "MATTER_MISS",
+        "flightMs": 806.3529411764706,
+        "passMs": 141.66666666666666,
+        "stage": "BELOW_HOOP",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 421.8100914579253
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 356.39136676428546
+        },
+        "velocity": {
+          "x": 0,
+          "y": 20.731462683510756
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 20.731462683510756
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 25.692394074074063,
+        "visualSolidRadiusScreen": 24.30954899468073,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 150.351,
+            "y": 288.236
+          },
+          "distance": 142.50284597091454,
+          "inside": false,
+          "matterGapLogical": 128.50284597091454
+        },
+        "path": "exit",
+        "pose": {
+          "t": 1,
+          "x": 200,
+          "y": 421.8100914579253,
+          "scale": 0.4362487139917695,
+          "rotation": -14.565557180710277,
+          "angularVelocity": -0.2560699001758824,
+          "velocity": {
+            "x": 0,
+            "y": 20.73146268351073
+          }
+        }
+      },
+      "actual": [
+        {
+          "ms": 1141.6666666666652,
+          "other": "ground",
+          "supports": [
+            {
+              "x": 200.10111397542354,
+              "y": 693.388157620198
+            },
+            {
+              "x": 194.01657031691346,
+              "y": 692.0459454657005
+            }
+          ],
+          "velocity": {
+            "x": 0,
+            "y": 11.96295356397785
+          },
+          "normalizedVelocity": {
+            "x": 0,
+            "y": 23.925907127955725
+          },
+          "nearest": {
+            "id": 10,
+            "label": "rim",
+            "point": {
+              "x": 148,
+              "y": 289
+            },
+            "distance": 393.8365683908783,
+            "inside": false,
+            "matterGapLogical": 379.8365683908783
+          }
+        }
+      ],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 850.0000000000011,
+        "phase": "CONTROLLED_PASS",
+        "flightMs": 806.3529411764706,
+        "passMs": 41.66666666666667,
+        "stage": "IN_NET",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 299.57196687666044
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 267.1575358199621
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.505940740740737,
+        "visualSolidRadiusScreen": 25.079308032930474,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 151.804,
+            "y": 286.236
+          },
+          "distance": 50.0070237920173,
+          "inside": false,
+          "matterGapLogical": 36.0070237920173
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 200,
+            "y": 263.4705882352941
+          },
+          "power": 0.8235294117647058,
+          "arcHeight": 171.71764705882353,
+          "durationMs": 806.3529411764706,
+          "rotations": 1.9717647058823529,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": true,
+          "score": 3,
+          "impact": "none",
+          "quality": "swish"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 200,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "airball",
+      "dx": 80,
+      "dy": -100,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "airball",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 841.6666666666677,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 850.0000000000009,
+        "phase": "MATTER_MISS",
+        "flightMs": 848.7058823529412,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 330,
+          "y": 319.94117647058823
+        },
+        "centerScreen": {
+          "x": 294.9,
+          "y": 282.0270588235294
+        },
+        "velocity": {
+          "x": 2.5529063857314327,
+          "y": 9.417955157498909
+        },
+        "normalizedVelocity": {
+          "x": 2.5529063857314327,
+          "y": 9.417955157498909
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 317.5,
+            "y": 300
+          },
+          "distance": 23.535091226318663,
+          "inside": false,
+          "matterGapLogical": 9.535091226318663
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 330,
+          "y": 319.94117647058823,
+          "scale": 0.44999999999999996,
+          "rotation": -11.206245794922651,
+          "angularVelocity": -0.22006535730718635,
+          "velocity": {
+            "x": 2.5529063857314482,
+            "y": 9.41795515749889
+          }
+        },
+        "physicalOnly": false,
+        "deferredMs": 0
+      },
+      "actual": [
+        {
+          "ms": 1299.9999999999968,
+          "other": "ground",
+          "supports": [
+            {
+              "x": 400.2373695145916,
+              "y": 691.2895888395103
+            },
+            {
+              "x": 394.06054568126467,
+              "y": 690.4773405203086
+            }
+          ],
+          "velocity": {
+            "x": 1.276453192865688,
+            "y": 8.45897757875001
+          },
+          "normalizedVelocity": {
+            "x": 2.552906385731376,
+            "y": 16.917955157500046
+          },
+          "nearest": {
+            "id": 13,
+            "label": "backboard",
+            "point": {
+              "x": 317.5,
+              "y": 300
+            },
+            "distance": 386.0367177509629,
+            "inside": false,
+            "matterGapLogical": 372.0367177509629
+          }
+        }
+      ],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 850.0000000000009,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 848.7058823529412,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 330,
+          "y": 319.94117647058823
+        },
+        "centerScreen": {
+          "x": 294.9,
+          "y": 282.0270588235294
+        },
+        "velocity": {
+          "x": 2.5529063857314327,
+          "y": 9.417955157498909
+        },
+        "normalizedVelocity": {
+          "x": 2.5529063857314327,
+          "y": 9.417955157498909
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 317.5,
+            "y": 300
+          },
+          "distance": 23.535091226318663,
+          "inside": false,
+          "matterGapLogical": 9.535091226318663
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 330,
+            "y": 319.94117647058823
+          },
+          "power": 0.5882352941176471,
+          "arcHeight": 163.34117647058824,
+          "durationMs": 848.7058823529412,
+          "rotations": 1.783529411764706,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "airball",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 222.75,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "airball-then-board",
+      "dx": 80,
+      "dy": -146,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "airball",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 791.6666666666683,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 816.6666666666681,
+        "phase": "MATTER_MISS",
+        "flightMs": 800,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 332.70833333333337,
+          "y": 260.367742987606
+        },
+        "centerScreen": {
+          "x": 296.87708333333336,
+          "y": 238.53845238095235
+        },
+        "velocity": {
+          "x": 2.7083333333333144,
+          "y": 5.43718743205045
+        },
+        "normalizedVelocity": {
+          "x": 2.7083333333333144,
+          "y": 5.43718743205045
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 317.5,
+            "y": 260.367742987606
+          },
+          "distance": 15.208333333333371,
+          "inside": false,
+          "matterGapLogical": 1.2083333333333712
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 332.70833333333337,
+          "y": 260.367742987606,
+          "scale": 0.44999999999999996,
+          "rotation": -12.828170002158323,
+          "angularVelocity": -0.26179938779914946,
+          "velocity": {
+            "x": 2.7083333333333335,
+            "y": 5.437187432050444
+          }
+        },
+        "physicalOnly": true,
+        "deferredMs": 16.666666666666668
+      },
+      "actual": [],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 816.6666666666681,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 800,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 332.70833333333337,
+          "y": 260.367742987606
+        },
+        "centerScreen": {
+          "x": 296.87708333333336,
+          "y": 238.53845238095235
+        },
+        "velocity": {
+          "x": 2.7083333333333144,
+          "y": 5.43718743205045
+        },
+        "normalizedVelocity": {
+          "x": 2.7083333333333144,
+          "y": 5.43718743205045
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.611199999999997,
+        "visualSolidRadiusScreen": 25.178901909341114,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 13,
+          "label": "backboard",
+          "point": {
+            "x": 317.5,
+            "y": 260.367742987606
+          },
+          "distance": 15.208333333333371,
+          "inside": false,
+          "matterGapLogical": 1.2083333333333712
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 330,
+            "y": 255
+          },
+          "power": 0.8588235294117647,
+          "arcHeight": 172.97411764705882,
+          "durationMs": 800,
+          "rotations": 2,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "airball",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 222.75,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "rim-make",
+      "dx": 20,
+      "dy": -146,
+      "score": 2,
+      "prediction": {
+        "made": true,
+        "score": 2,
+        "impact": "frontRim",
+        "quality": "normal"
+      },
+      "controlledFlightLastMs": 791.6666666666683,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 950.0000000000002,
+        "phase": "MATTER_MISS",
+        "flightMs": 800,
+        "passMs": 150,
+        "stage": "BELOW_HOOP",
+        "score": 0,
+        "position": {
+          "x": 209.16572799713998,
+          "y": 418.44464240711665
+        },
+        "centerScreen": {
+          "x": 206.6909814379122,
+          "y": 353.93458895719516
+        },
+        "velocity": {
+          "x": -0.888151937707363,
+          "y": 20.151113388720432
+        },
+        "normalizedVelocity": {
+          "x": -0.888151937707363,
+          "y": 20.151113388720432
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 25.608959999999993,
+        "visualSolidRadiusScreen": 24.230605603664625,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 11,
+          "label": "rim",
+          "point": {
+            "x": 251.30454982894648,
+            "y": 288.77400088018504
+          },
+          "distance": 136.34572079599246,
+          "inside": false,
+          "matterGapLogical": 122.34572079599246
+        },
+        "path": "exit",
+        "pose": {
+          "t": 1,
+          "x": 209.16572799713998,
+          "y": 418.44464240711665,
+          "scale": 0.43499999999999994,
+          "rotation": -14.922565104551516,
+          "angularVelocity": -0.26179938779914946,
+          "velocity": {
+            "x": -0.8881519377073637,
+            "y": 20.151113388720447
+          }
+        }
+      },
+      "actual": [
+        {
+          "ms": 1149.9999999999984,
+          "other": "ground",
+          "supports": [
+            {
+              "x": 200.07556047854288,
+              "y": 695.0036623249423
+            },
+            {
+              "x": 193.88342639569248,
+              "y": 694.3057479319117
+            }
+          ],
+          "velocity": {
+            "x": -0.4440759688536673,
+            "y": 11.74222336102706
+          },
+          "normalizedVelocity": {
+            "x": -0.8881519377073346,
+            "y": 23.484446722054145
+          },
+          "nearest": {
+            "id": 10,
+            "label": "rim",
+            "point": {
+              "x": 148,
+              "y": 289
+            },
+            "distance": 395.3310821648482,
+            "inside": false,
+            "matterGapLogical": 381.3310821648482
+          }
+        }
+      ],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 850.0000000000011,
+        "phase": "CONTROLLED_PASS",
+        "flightMs": 800,
+        "passMs": 50.00000000000001,
+        "stage": "IN_NET",
+        "score": 0,
+        "position": {
+          "x": 214.4854836390837,
+          "y": 298.9557589380482
+        },
+        "centerScreen": {
+          "x": 210.5744030565311,
+          "y": 266.7077040247751
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.462719999999997,
+        "visualSolidRadiusScreen": 25.038413567759413,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 11,
+          "label": "rim",
+          "point": {
+            "x": 248.196,
+            "y": 286.236
+          },
+          "distance": 36.03042021350379,
+          "inside": false,
+          "matterGapLogical": 22.03042021350379
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 215.28481599496703,
+            "y": 255
+          },
+          "power": 0.8588235294117647,
+          "arcHeight": 172.97411764705882,
+          "durationMs": 800,
+          "rotations": 2,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": true,
+          "score": 2,
+          "impact": "frontRim",
+          "quality": "normal"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 202.67484279911923,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    },
+    {
+      "name": "penetrating-handoff",
+      "dx": 38,
+      "dy": -125,
+      "score": 0,
+      "prediction": {
+        "made": false,
+        "score": 0,
+        "impact": "frontRim",
+        "quality": "miss"
+      },
+      "controlledFlightLastMs": 775.0000000000017,
+      "handoff": {
+        "type": "handoff",
+        "shotIndex": 1,
+        "ms": 783.3333333333351,
+        "phase": "MATTER_MISS",
+        "flightMs": 781.8391197981939,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 257.45019537358166,
+          "y": 268.0399442989967
+        },
+        "centerScreen": {
+          "x": 241.9386426227146,
+          "y": 244.13915933826758
+        },
+        "velocity": {
+          "x": 1.2246806689252026,
+          "y": 6.537421231686153
+        },
+        "normalizedVelocity": {
+          "x": 1.2246806689252026,
+          "y": 6.537421231686153
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.86858900662163,
+        "visualSolidRadiusScreen": 25.42243743386721,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 11,
+          "label": "rim",
+          "point": {
+            "x": 253.12028395028074,
+            "y": 281.364056545306
+          },
+          "distance": 14.010000003065013,
+          "inside": false,
+          "matterGapLogical": 0.010000003065012919
+        },
+        "path": "miss",
+        "pose": {
+          "t": 1,
+          "x": 257.45019537358166,
+          "y": 268.0399442989967,
+          "scale": 0.4538522061575315,
+          "rotation": -11.358567968625383,
+          "angularVelocity": -0.2421335302237376,
+          "velocity": {
+            "x": 1.2246806689252243,
+            "y": 6.53742123168617
+          }
+        },
+        "physicalOnly": true,
+        "deferredMs": 0
+      },
+      "actual": [
+        {
+          "ms": 791.6666666666683,
+          "other": "rim",
+          "supports": [
+            {
+              "x": 255.43040408039374,
+              "y": 285.1288171621746
+            },
+            {
+              "x": 249.72442516198797,
+              "y": 282.6245381076945
+            }
+          ],
+          "velocity": {
+            "x": 0.6123403344626013,
+            "y": 3.338155060287521
+          },
+          "normalizedVelocity": {
+            "x": 1.2246806689252026,
+            "y": 6.676310120575067
+          },
+          "nearest": {
+            "id": 11,
+            "label": "rim",
+            "point": {
+              "x": 254.351,
+              "y": 281.764
+            },
+            "distance": 11.029162680408142,
+            "inside": false,
+            "matterGapLogical": -2.9708373195918583
+          }
+        },
+        {
+          "ms": 916.6666666666672,
+          "other": "backboard",
+          "supports": [
+            {
+              "x": 310.5771034121085,
+              "y": 262.9617552281969
+            }
+          ],
+          "velocity": {
+            "x": 2.4976982880368723,
+            "y": 0.05978789809818057
+          },
+          "normalizedVelocity": {
+            "x": 4.995396576073745,
+            "y": 0.11957579619638636
+          },
+          "nearest": {
+            "id": 13,
+            "label": "backboard",
+            "point": {
+              "x": 310.5,
+              "y": 262.5820066210009
+            },
+            "distance": 13.918115342714032,
+            "inside": false,
+            "matterGapLogical": -0.08188465728596839
+          }
+        },
+        {
+          "ms": 1058.3333333333326,
+          "other": "rim",
+          "supports": [
+            {
+              "x": 252.4961364829619,
+              "y": 281.2236438828294
+            },
+            {
+              "x": 254.351,
+              "y": 281.764
+            }
+          ],
+          "velocity": {
+            "x": -1.8721342197776494,
+            "y": 1.2503396507998887
+          },
+          "normalizedVelocity": {
+            "x": -3.7442684395552988,
+            "y": 2.500679301599803
+          },
+          "nearest": {
+            "id": 11,
+            "label": "rim",
+            "point": {
+              "x": 254.4272496262716,
+              "y": 281.8689547505459
+            },
+            "distance": 12.718769147619426,
+            "inside": false,
+            "matterGapLogical": -1.281230852380574
+          }
+        }
+      ],
+      "capture": {
+        "shotIndex": 1,
+        "ms": 800.0000000000016,
+        "phase": "MATTER_SETTLING",
+        "flightMs": 781.8391197981939,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 261.61410862476976,
+          "y": 268.0644204920718
+        },
+        "centerScreen": {
+          "x": 244.97829929608193,
+          "y": 244.1570269592124
+        },
+        "velocity": {
+          "x": 4.995396576073745,
+          "y": -1.8248686482484118
+        },
+        "normalizedVelocity": {
+          "x": 4.995396576073745,
+          "y": -1.8248686482484118
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 26.86858900662163,
+        "visualSolidRadiusScreen": 25.42243743386721,
+        "scoringRadiusLogical": 32.4,
+        "mask": 4294967295,
+        "isStatic": false,
+        "bodyDelta": 8.333333333333334,
+        "nearest": {
+          "id": 11,
+          "label": "rim",
+          "point": {
+            "x": 254.351,
+            "y": 281.764
+          },
+          "distance": 15.505844884728186,
+          "inside": false,
+          "matterGapLogical": 1.5058448847281856
+        }
+      },
+      "launch": {
+        "type": "launch",
+        "shotIndex": 1,
+        "ms": 0,
+        "phase": "CONTROLLED_FLIGHT",
+        "flightMs": 0,
+        "passMs": 0,
+        "stage": "APPROACHING",
+        "score": 0,
+        "position": {
+          "x": 200,
+          "y": 620
+        },
+        "centerScreen": {
+          "x": 200,
+          "y": 501.06999999999994
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "normalizedVelocity": {
+          "x": 0,
+          "y": 0
+        },
+        "radius": 14,
+        "matterRadiusScreen": 10.219999999999999,
+        "visualNominalRadiusScreen": 63.36,
+        "visualSolidRadiusScreen": 59.94976645081218,
+        "scoringRadiusLogical": 32.4,
+        "mask": 0,
+        "isStatic": true,
+        "bodyDelta": 16.666666666666668,
+        "nearest": {
+          "id": 10,
+          "label": "rim",
+          "point": {
+            "x": 148,
+            "y": 289
+          },
+          "distance": 335.0596961736819,
+          "inside": false,
+          "matterGapLogical": 321.0596961736819
+        },
+        "plan": {
+          "start": {
+            "x": 200,
+            "y": 620
+          },
+          "rim": {
+            "x": 200,
+            "y": 285
+          },
+          "target": {
+            "x": 260.4185402008357,
+            "y": 284.6470588235294
+          },
+          "power": 0.7352941176470589,
+          "arcHeight": 168.57647058823528,
+          "durationMs": 822.2352941176471,
+          "rotations": 1.9011764705882355,
+          "startScale": 1,
+          "hoopScale": 0.45
+        },
+        "candidate": {
+          "made": false,
+          "score": 0,
+          "impact": "frontRim",
+          "quality": "miss"
+        },
+        "potentialSweep": {
+          "t": 0.175,
+          "point": {
+            "x": 210.57324453514624,
+            "y": 197.5
+          },
+          "label": "backboard"
+        }
+      }
+    }
+  ],
+  "overlayOffParity": [
+    {
+      "name": "front-rim",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 200,
+          "y": 284.6470588235294
+        },
+        "power": 0.7352941176470589,
+        "arcHeight": 168.57647058823528,
+        "durationMs": 822.2352941176471,
+        "rotations": 1.9011764705882355,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "frontRim",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 200,
+              "y": 284.6470588235294,
+              "scale": 0.44999999999999996,
+              "rotation": -11.945444066355543,
+              "angularVelocity": -0.2421335302237376,
+              "velocity": {
+                "x": 0,
+                "y": 7.1661161323585825
+              }
+            },
+            "velocity": {
+              "x": 0,
+              "y": 7.166116132358582
+            }
+          }
+        ],
+        "responses": [
+          {
+            "impact": "frontRim",
+            "incoming": {
+              "x": 0,
+              "y": 7.166116132358582
+            },
+            "outgoing": {
+              "x": -3.4000000000000057,
+              "y": -5.199999999999989
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "back-rim",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 200,
+          "y": 228.17647058823528
+        },
+        "power": 0.9705882352941176,
+        "arcHeight": 176.9529411764706,
+        "durationMs": 779.8823529411765,
+        "rotations": 2.0894117647058823,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "backRim",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 200,
+              "y": 228.17647058823528,
+              "scale": 0.44999999999999996,
+              "rotation": -13.12816130064817,
+              "angularVelocity": -0.2805585836363188,
+              "velocity": {
+                "x": 0,
+                "y": 4.182141821447735
+              }
+            },
+            "velocity": {
+              "x": 0,
+              "y": 4.182141821447743
+            }
+          }
+        ],
+        "responses": [
+          {
+            "impact": "backRim",
+            "incoming": {
+              "x": 0,
+              "y": 5.848808488114628
+            },
+            "outgoing": {
+              "x": 5.800000000000011,
+              "y": 10.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "backboard",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 286.13184312436374,
+          "y": 256.4117647058823
+        },
+        "power": 0.8529411764705882,
+        "arcHeight": 172.76470588235293,
+        "durationMs": 801.0588235294117,
+        "rotations": 1.9952941176470589,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "backboard",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 286.13184312436374,
+              "y": 256.4117647058823,
+              "scale": 0.44999999999999996,
+              "rotation": -12.536802683501858,
+              "angularVelocity": -0.2608381622601601,
+              "velocity": {
+                "x": 1.7920415786877462,
+                "y": 5.257493224165049
+              }
+            },
+            "velocity": {
+              "x": 1.7920415786877584,
+              "y": 5.257493224165046
+            }
+          }
+        ],
+        "responses": [
+          {
+            "impact": "backboard",
+            "incoming": {
+              "x": 0.8960207893438792,
+              "y": 3.4620799454159954
+            },
+            "outgoing": {
+              "x": 0.8960207893438792,
+              "y": 3.4620799454159954
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "swish",
+      "score": 3,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 200,
+          "y": 263.4705882352941
+        },
+        "power": 0.8235294117647058,
+        "arcHeight": 171.71764705882353,
+        "durationMs": 806.3529411764706,
+        "rotations": 1.9717647058823529,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "none",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 200,
+              "y": 421.8100914579253,
+              "scale": 0.4362487139917695,
+              "rotation": -14.565557180710277,
+              "angularVelocity": -0.2560699001758824,
+              "velocity": {
+                "x": 0,
+                "y": 20.73146268351073
+              }
+            },
+            "velocity": {
+              "x": 0,
+              "y": 20.731462683510756
+            }
+          }
+        ],
+        "responses": []
+      }
+    },
+    {
+      "name": "airball",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 330,
+          "y": 319.94117647058823
+        },
+        "power": 0.5882352941176471,
+        "arcHeight": 163.34117647058824,
+        "durationMs": 848.7058823529412,
+        "rotations": 1.783529411764706,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "airball",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 330,
+              "y": 319.94117647058823,
+              "scale": 0.44999999999999996,
+              "rotation": -11.206245794922651,
+              "angularVelocity": -0.22006535730718635,
+              "velocity": {
+                "x": 2.5529063857314482,
+                "y": 9.41795515749889
+              }
+            },
+            "velocity": {
+              "x": 2.5529063857314327,
+              "y": 9.417955157498909
+            }
+          }
+        ],
+        "responses": []
+      }
+    },
+    {
+      "name": "airball-then-board",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 330,
+          "y": 255
+        },
+        "power": 0.8588235294117647,
+        "arcHeight": 172.97411764705882,
+        "durationMs": 800,
+        "rotations": 2,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "airball",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 332.70833333333337,
+              "y": 260.367742987606,
+              "scale": 0.44999999999999996,
+              "rotation": -12.828170002158323,
+              "angularVelocity": -0.26179938779914946,
+              "velocity": {
+                "x": 2.7083333333333335,
+                "y": 5.437187432050444
+              }
+            },
+            "velocity": {
+              "x": 2.7083333333333144,
+              "y": 5.43718743205045
+            }
+          }
+        ],
+        "responses": []
+      }
+    },
+    {
+      "name": "rim-make",
+      "score": 2,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 215.28481599496703,
+          "y": 255
+        },
+        "power": 0.8588235294117647,
+        "arcHeight": 172.97411764705882,
+        "durationMs": 800,
+        "rotations": 2,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "frontRim",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 209.16572799713998,
+              "y": 418.44464240711665,
+              "scale": 0.43499999999999994,
+              "rotation": -14.922565104551516,
+              "angularVelocity": -0.26179938779914946,
+              "velocity": {
+                "x": -0.8881519377073637,
+                "y": 20.151113388720447
+              }
+            },
+            "velocity": {
+              "x": -0.888151937707363,
+              "y": 20.151113388720432
+            }
+          }
+        ],
+        "responses": []
+      }
+    },
+    {
+      "name": "penetrating-handoff",
+      "score": 0,
+      "plan": {
+        "start": {
+          "x": 200,
+          "y": 620
+        },
+        "rim": {
+          "x": 200,
+          "y": 285
+        },
+        "target": {
+          "x": 260.4185402008357,
+          "y": 284.6470588235294
+        },
+        "power": 0.7352941176470589,
+        "arcHeight": 168.57647058823528,
+        "durationMs": 822.2352941176471,
+        "rotations": 1.9011764705882355,
+        "startScale": 1,
+        "hoopScale": 0.45
+      },
+      "impact": "frontRim",
+      "trace": {
+        "handoffs": [
+          {
+            "pose": {
+              "t": 1,
+              "x": 257.45019537358166,
+              "y": 268.0399442989967,
+              "scale": 0.4538522061575315,
+              "rotation": -11.358567968625383,
+              "angularVelocity": -0.2421335302237376,
+              "velocity": {
+                "x": 1.2246806689252243,
+                "y": 6.53742123168617
+              }
+            },
+            "velocity": {
+              "x": 1.2246806689252026,
+              "y": 6.537421231686153
+            }
+          }
+        ],
+        "responses": [
+          {
+            "impact": "frontRim",
+            "incoming": {
+              "x": 0.6123403344626013,
+              "y": 3.338155060287521
+            },
+            "outgoing": {
+              "x": 3.3999999999999773,
+              "y": -5.2000000000000455
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

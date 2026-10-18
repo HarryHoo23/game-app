@@ -10,6 +10,7 @@ import { ShotController } from "../../domain/shooting/ShotController";
 import {
   assessShot,
   type ShotPlan,
+  type ShotPose,
   type ShotImpact,
 } from "../../domain/shooting/ShotTrajectory";
 import { createCourtEnvironment } from "../environments/NightCourt";
@@ -38,6 +39,7 @@ export class GameScene extends AppScene {
   private resultScore = 0;
   private resultImpact: ShotImpact = "none";
   private miss: MissContact | null = null;
+  private awaitingMissHandoff = false;
   private shot = new ShotController();
   private stats!: Stats;
   private aim!: ShotInput;
@@ -60,6 +62,7 @@ export class GameScene extends AppScene {
     this.accumulator = 0;
     this.shot.reset();
     this.miss = null;
+    this.awaitingMissHandoff = false;
     this.settling = 0;
     this.settled = false;
     this.paused = false;
@@ -139,7 +142,7 @@ export class GameScene extends AppScene {
           if (contact) {
             if (import.meta.env.DEV)
               this.audit?.event("collision-gate", { contact });
-            this.respondToMiss(contact);
+            this.respondToMiss(contact, true);
             this.resolve(0);
           }
         }
@@ -171,6 +174,7 @@ export class GameScene extends AppScene {
     this.feedback.release();
     this.resultImpact = "none";
     this.miss = null;
+    this.awaitingMissHandoff = false;
     this.settled = false;
     this.physicsCourt.beginControlled();
     if (import.meta.env.DEV) this.audit?.event("launch", { plan });
@@ -221,27 +225,44 @@ export class GameScene extends AppScene {
     while (this.accumulator >= STEP_MS && steps++ < 10) {
       this.accumulator -= STEP_MS;
       const passWasActive = this.pass.active;
+      const pendingWasActive = this.physicsCourt.pendingPose !== null;
       this.physicsCourt.step();
+      if (pendingWasActive) {
+        const handoff = this.physicsCourt.advancePending(STEP_MS);
+        if (handoff.released && this.awaitingMissHandoff) {
+          this.awaitingMissHandoff = false;
+          this.observeMiss(handoff.pose, true);
+        }
+      }
       if (this.shot.active) {
+        const previousT = this.shot.pose!.t;
         const { pose, arrived } = this.shot.advance(STEP_MS);
-        if (pose) this.physicsCourt.placeControlled(pose);
-        if (arrived && pose) {
+        if (pose) {
           const result = assessShot(
             this.shot.currentPlan!,
             this.session.config,
             this.stats,
           );
-          this.candidateScore = result.score;
-          this.resultImpact = result.impact;
-          if (import.meta.env.DEV) this.audit?.event("prediction", { result });
-          if (!this.pass.start(this.shot.currentPlan!, result)) {
-            this.physicsCourt.finishControlled(pose);
-            this.miss = new MissContact(
-              result.impact,
-              this.hoop.getRimCenter(),
-            );
+          const contact = !result.made
+            ? this.physicsCourt.findMissContact(
+                this.shot.currentPlan!,
+                previousT,
+                pose.t,
+              )
+            : null;
+          if (arrived || contact) {
+            this.candidateScore = result.score;
+            this.resultImpact = result.impact;
             if (import.meta.env.DEV)
-              this.audit?.event("handoff", { path: "miss", pose });
+              this.audit?.event("prediction", { result });
+          }
+          if (contact) {
+            this.shot.finishAt(contact.progress);
+            this.beginMissHandoff(contact.pose, true);
+          } else {
+            this.physicsCourt.placeControlled(pose);
+            if (arrived && !this.pass.start(this.shot.currentPlan!, result))
+              this.beginMissHandoff(pose, false);
           }
         }
       }
@@ -300,6 +321,7 @@ export class GameScene extends AppScene {
           this.shot.reset();
           this.pass.reset();
           this.miss = null;
+          this.awaitingMissHandoff = false;
           this.settled = false;
           this.hint.setText("DRAG UP\nTO SHOOT");
         }
@@ -314,21 +336,47 @@ export class GameScene extends AppScene {
         this.shot.elapsedMs + this.pass.elapsedMs,
         this.pass.stage,
       );
-    else if (this.settled || this.miss)
-      this.ballView.rebound(
-        this.pass.pose?.scale ?? this.shot.currentPlan!.hoopScale,
+    else if (this.physicsCourt.pendingPose)
+      this.ballView.flight(
+        this.physicsCourt.pendingPose,
+        this.shot.elapsedMs + this.physicsCourt.pendingElapsedMs,
       );
+    else if (this.settled || this.miss)
+      this.ballView.rebound(this.pass.pose?.scale ?? this.shot.pose!.scale);
     else this.ballView.idle(this.aim.isAiming ? this.aim.aimPower : 0);
     this.hoop.drawDebug(this.ballView.image);
   }
-  private respondToMiss(impact: ShotImpact) {
+  private beginMissHandoff(pose: ShotPose, physicalOnly: boolean) {
+    if (this.physicsCourt.finishControlled(pose))
+      this.observeMiss(pose, physicalOnly);
+    else {
+      this.awaitingMissHandoff = true;
+      if (import.meta.env.DEV) this.audit?.event("handoff-deferred", { pose });
+    }
+  }
+  private observeMiss(pose: ShotPose, physicalOnly: boolean) {
+    this.miss = new MissContact(
+      this.resultImpact,
+      this.hoop.getRimCenter(),
+      this.physicsCourt.observationBounds,
+      physicalOnly,
+    );
+    if (import.meta.env.DEV)
+      this.audit?.event("handoff", {
+        path: "miss",
+        pose,
+        physicalOnly,
+        deferredMs: this.physicsCourt.pendingElapsedMs,
+      });
+  }
+  private respondToMiss(impact: ShotImpact, fromMatter = false) {
     this.resultImpact = impact;
     if (import.meta.env.DEV && this.shot.currentPlan)
       finishInputImpact(this.shot.currentPlan, impact);
     const ball = this.physicsCourt.ball;
     // collisionStart precedes Matter's velocity normalization and solver.
     // An ordinary board contact needs no velocity assignment at all.
-    if (impact !== "backboard") {
+    if (impact !== "backboard" && !fromMatter) {
       const velocity = missVelocity(
         ball.body!.velocity,
         impact,

@@ -156,15 +156,17 @@ export class PhysicsAudit {
   }
   private phase() {
     const s = this.state();
-    return s.shot.active
-      ? "CONTROLLED_FLIGHT"
-      : s.pass.active
-        ? "CONTROLLED_PASS"
-        : !s.shot.currentPlan
-          ? "IDLE"
-          : s.settled
-            ? "MATTER_SETTLING"
-            : "MATTER_MISS";
+    return s.court.pendingPose
+      ? "CONTROLLED_HANDOFF"
+      : s.shot.active
+        ? "CONTROLLED_FLIGHT"
+        : s.pass.active
+          ? "CONTROLLED_PASS"
+          : !s.shot.currentPlan
+            ? "IDLE"
+            : s.settled
+              ? "MATTER_SETTLING"
+              : "MATTER_MISS";
   }
   private nearest(point: Point) {
     return this.bodies()
@@ -183,7 +185,10 @@ export class PhysicsAudit {
       plan = s.shot.currentPlan;
     const scale = s.shot.active
       ? s.shot.pose!.scale
-      : (s.pass.pose?.scale ?? plan?.hoopScale ?? 1);
+      : (s.court.pendingPose?.scale ??
+        s.pass.pose?.scale ??
+        s.shot.pose?.scale ??
+        1);
     const nominal = ballDisplaySize(scale) / 2,
       solid = (nominal * this.sourceRadius) / (s.image.frame.width / 2);
     return {
@@ -439,7 +444,7 @@ export class PhysicsAudit {
       ? s.shot.pose!.velocity
       : s.pass.active
         ? s.pass.pose!.velocity
-        : normalizedVelocity(b);
+        : (s.court.pendingPose?.velocity ?? normalizedVelocity(b));
     this.arrow(
       s.shot.active ? projectShot(s.shot.pose!, rim) : this.project(b.position),
       velocity,

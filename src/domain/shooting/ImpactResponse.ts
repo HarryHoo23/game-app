@@ -32,6 +32,8 @@ export class MissContact {
   constructor(
     readonly expected: ShotImpact,
     private rim: Vec,
+    private bounds?: { minX: number; maxX: number; maxY: number },
+    private physicalOnly = false,
   ) {}
   advance(
     delta: number,
@@ -44,6 +46,7 @@ export class MissContact {
         ? impactFeel.backContactLead
         : impactFeel.frontContactLead;
     if (
+      !this.physicalOnly &&
       (this.expected === "frontRim" || this.expected === "backRim") &&
       position.y >= this.rim.y - lead
     ) {
@@ -52,9 +55,12 @@ export class MissContact {
     }
     const rimCandidate =
       this.expected === "frontRim" || this.expected === "backRim";
-    const cleared =
-      Math.abs(position.x - this.rim.x) > impactFeel.contactZoneHalfWidth ||
-      position.y > this.rim.y + impactFeel.contactZoneBottom;
+    const cleared = this.bounds
+      ? position.x < this.bounds.minX ||
+        position.x > this.bounds.maxX ||
+        position.y > this.bounds.maxY
+      : Math.abs(position.x - this.rim.x) > impactFeel.contactZoneHalfWidth ||
+        position.y > this.rim.y + impactFeel.contactZoneBottom;
     if (
       (!rimCandidate && cleared) ||
       this.elapsed >=

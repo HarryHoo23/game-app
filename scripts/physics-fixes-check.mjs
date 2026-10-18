@@ -136,13 +136,27 @@ try {
         ),
         "scripted contact must not precede swept physical contact",
       );
-      assert.ok(
-        result.audit.events.some(
-          (e) =>
-            e.type === "matter:start" &&
-            e.other === (name === "rim-handoff" ? "rim" : "backboard"),
-        ),
-      );
+      if (name === "rim-handoff") {
+        assert.ok(
+          result.audit.events.some(
+            (e) => e.type === "matter:start" && e.other === "rim",
+          ),
+        );
+        assert.equal(
+          result.audit.events.filter((e) => e.type === "response").length,
+          0,
+        );
+      } else {
+        assert.ok(
+          result.audit.events.some((e) => e.type === "handoff-deferred"),
+        );
+        assert.equal(
+          result.audit.events.filter(
+            (e) => e.type === "matter:start" && e.other === "backboard",
+          ).length,
+          0,
+        );
+      }
     }
   }
   await writeFile(

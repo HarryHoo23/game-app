@@ -1,7 +1,7 @@
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
-const root = "docs/physics-audit/2026-10-18";
+const root = "docs/physics-fixes/2026-10-18/audit-after";
 await mkdir(`${root}/cases`, { recursive: true });
 const cases = [
   ["front-rim", 0, -125],
@@ -52,13 +52,17 @@ async function armCapture(p, name) {
           ? s.pass.stage === "IN_NET"
           : name === "rim-make"
             ? events.some((e) => e.type === "candidate-rim-feedback")
-            : name === "backboard" || name === "airball-then-board"
+            : name === "backboard"
               ? events.some(
                   (e) => e.type === "matter:start" && e.other === "backboard",
                 )
               : name === "airball"
                 ? s.settled
-                : events.some((e) => e.type === "response");
+                : name === "airball-then-board"
+                  ? events.some((e) => e.type === "handoff" && e.deferredMs > 0)
+                  : name === "penetrating-handoff"
+                    ? events.some((e) => e.type === "engine-response")
+                    : events.some((e) => e.type === "response");
       if (match) {
         s.events.off("postupdate", stop);
         s.scene.pause();
@@ -117,11 +121,10 @@ try {
     }
     if (name === "backboard") {
       assert.ok(actual.some((c) => c.other === "backboard"));
-      assert.equal(response[0].origin, "collision-gate");
+      assert.ok(find("engine-response").length);
       assert.ok(
-        Math.abs(
-          response[0].incoming.y * 2 - response[0].normalizedVelocity.y,
-        ) < 1e-7,
+        Math.abs(actual[0].velocity.y * 2 - actual[0].normalizedVelocity.y) <
+          1e-7,
       );
     }
     if (name === "swish" || name === "rim-make") {
@@ -135,12 +138,16 @@ try {
     }
     if (name === "airball")
       assert.equal(actual.filter((e) => e.other !== "ground").length, 0);
-    if (name === "airball-then-board")
-      assert.ok(
-        actual.find((c) => c.other === "backboard").ms > find("resolve")[0].ms,
-      );
-    if (name === "penetrating-handoff")
-      assert.ok(handoffs[0].nearest.matterGapLogical < 0);
+    if (name === "airball-then-board") {
+      assert.ok(find("handoff-deferred").length);
+      assert.ok(handoffs[0].nearest.matterGapLogical >= 0);
+      assert.ok(!actual.some((c) => c.other === "backboard"));
+    }
+    if (name === "penetrating-handoff") {
+      assert.ok(handoffs[0].nearest.matterGapLogical >= 0);
+      assert.ok(find("engine-response").length);
+      assert.equal(response.length, 0);
+    }
     const row = {
       name,
       dx,
@@ -203,16 +210,17 @@ try {
       const finish = s.physicsCourt.finishControlled.bind(s.physicsCourt);
       s.physicsCourt.finishControlled = (pose) => {
         const result = finish(pose);
-        window.offAuditTrace.handoffs.push({
-          pose: JSON.parse(JSON.stringify(pose)),
-          velocity: { ...s.physicsCourt.ball.body.velocity },
-        });
+        if (result)
+          window.offAuditTrace.handoffs.push({
+            pose: JSON.parse(JSON.stringify(pose)),
+            velocity: { ...s.physicsCourt.ball.body.velocity },
+          });
         return result;
       };
       const respond = s.respondToMiss.bind(s);
-      s.respondToMiss = (impact) => {
+      s.respondToMiss = (impact, ...args) => {
         const incoming = { ...s.physicsCourt.ball.body.velocity };
-        const result = respond(impact);
+        const result = respond(impact, ...args);
         window.offAuditTrace.responses.push({
           impact,
           incoming,
