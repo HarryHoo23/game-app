@@ -17,9 +17,8 @@ import {
 } from "../../data/courtPerspective";
 import { ballDisplaySize } from "../presentation/perspective";
 import { hoopLayout } from "../hoop/hoopLayout";
-import { impactFeel } from "../../data/impactFeel";
-import { physics } from "../../data/physics";
-import { shotFeel } from "../../data/shotFeel";
+import { ballContactRadius } from "../../data/ballGeometry";
+import { courtPose } from "../physics/SafeHandoff";
 import {
   alphaSilhouette,
   closestSurface,
@@ -122,6 +121,7 @@ export class PhysicsAudit {
         colliders: this.bodies().map((b) => ({
           id: b.id,
           label: b.label,
+          arc: b.plugin?.rimArc,
           position: { ...b.position },
           radius: b.circleRadius,
           vertices: b.vertices.map((v) => ({ x: v.x, y: v.y })),
@@ -146,8 +146,11 @@ export class PhysicsAudit {
     return this.state().court.ball.body as Body;
   }
   private bodies() {
-    return (this.scene.matter.world.localWorld as unknown as { bodies: Body[] })
-      .bodies;
+    return (
+      this.scene.matter.world.localWorld as unknown as { bodies: Body[] }
+    ).bodies.flatMap((b) =>
+      b.parts.length > 1 ? (b.parts.slice(1) as Body[]) : [b],
+    );
   }
   private project = (p: Point) =>
     projectCourtPoint(p, this.state().hoop.getRimCenter());
@@ -170,10 +173,16 @@ export class PhysicsAudit {
   }
   private nearest(point: Point) {
     return this.bodies()
-      .filter((b) => b.label !== "ball" && b.label !== "ground")
+      .filter(
+        (b) =>
+          b.label !== "ball" &&
+          b.label !== "ground" &&
+          this.state().court.isEligibleContact(b),
+      )
       .map((b) => ({
         id: b.id,
         label: b.label,
+        arc: b.plugin?.rimArc,
         ...closestSurface(point, b.vertices),
       }))
       .sort((a, b) => a.distance - b.distance)[0];
@@ -200,16 +209,21 @@ export class PhysicsAudit {
       stage: s.pass.stage,
       score: s.score,
       position: { ...b.position },
-      centerScreen: this.project(b.position),
+      centerScreen: s.shot.active
+        ? projectShot(s.shot.pose!, s.hoop.getRimCenter())
+        : !plan
+          ? projectShot({ ...b.position, t: 0 }, s.hoop.getRimCenter())
+          : this.project(b.position),
+      fixedCourtCenterScreen: this.project(b.position),
+      eligibleArc: s.court.contactMode,
+      quarantinedCategories: s.court.quarantinedCategories,
       velocity: { ...b.velocity },
       normalizedVelocity: normalizedVelocity(b),
       radius: b.circleRadius,
       matterRadiusScreen: b.circleRadius * PERSPECTIVE_CONFIG.hoopScale,
       visualNominalRadiusScreen: nominal,
       visualSolidRadiusScreen: solid,
-      scoringRadiusLogical:
-        (physics.foregroundBallSize * (plan?.hoopScale ?? shotFeel.hoopScale)) /
-        2,
+      scoringRadiusLogical: ballContactRadius(scale),
       mask: b.collisionFilter.mask,
       isStatic: b.isStatic,
       bodyDelta: b.deltaTime,
@@ -236,8 +250,8 @@ export class PhysicsAudit {
       // Counterfactual geometric sweep: surfaces the path would touch IF its mask were enabled.
       for (let i = 0; i <= 240; i++) {
         const pose = sampleShot(plan, i / 240),
-          near = this.nearest(pose);
-        if (near && near.distance <= this.body().circleRadius) {
+          near = this.nearest(courtPose(plan, i / 240));
+        if (near && near.distance <= ballContactRadius(pose.scale)) {
           this.potentialSweep = {
             t: i / 240,
             point: near.point,
@@ -310,6 +324,8 @@ export class PhysicsAudit {
       this.event(type, {
         other:
           pair.bodyA.label === "ball" ? pair.bodyB.label : pair.bodyA.label,
+        arc: (pair.bodyA.label === "ball" ? pair.bodyB : pair.bodyA).plugin
+          ?.rimArc,
         pairId: pair.id,
         supports,
         normal: { ...collision.normal },
@@ -369,15 +385,30 @@ export class PhysicsAudit {
       b = this.body(),
       g = this.graphics;
     g.clear();
-    // All bodies, including the ball, use the SAME fixed court projection. The foreground
-    // blend is deliberately not applied to collider vertices: that mismatch is part of the audit.
-    for (const body of this.bodies())
+    // Controlled foreground centers use the same blend as the visible image;
+    // collisions remain OFF there. Eligible court bodies always use fixed projection.
+    const measuredCenter = this.measure().centerScreen,
+      fixedCenter = this.project(b.position);
+    for (const body of this.bodies()) {
+      const vertices = projectVertices(body.vertices, this.project).map((p) =>
+        body.label === "ball"
+          ? {
+              x: p.x + measuredCenter.x - fixedCenter.x,
+              y: p.y + measuredCenter.y - fixedCenter.y,
+            }
+          : p,
+      );
       this.line(
-        projectVertices(body.vertices, this.project),
-        body.label === "ball" ? 0x4ae9ff : 0xff8559,
+        vertices,
+        body.label === "ball"
+          ? 0x4ae9ff
+          : s.court.isEligibleContact(body)
+            ? 0xff8559
+            : 0x526a77,
         true,
         body.label === "ball" ? 2 : 1,
       );
+    }
     const matrix = s.image.getWorldTransformMatrix();
     const silhouette = this.sourceContour.map((p) =>
       matrix.transformPoint(
@@ -413,24 +444,6 @@ export class PhysicsAudit {
         ].map(this.project),
         0xb49aff,
       );
-    // Height gate is a center threshold, NOT a rim surface or an actual contact point.
-    if (
-      this.predicted?.impact === "frontRim" ||
-      this.predicted?.impact === "backRim"
-    ) {
-      const y =
-        rim.y -
-        (this.predicted.impact === "frontRim"
-          ? impactFeel.frontContactLead
-          : impactFeel.backContactLead);
-      this.line(
-        [
-          { x: rim.x - half, y },
-          { x: rim.x + half, y },
-        ].map(this.project),
-        0xff61cb,
-      );
-    }
     if (this.predictedPoint)
       this.cross(this.project(this.predictedPoint), 0xffe36b);
     if (this.predictedSurface)
@@ -467,7 +480,8 @@ export class PhysicsAudit {
       `prediction=${this.predicted?.impact ?? "none"}; response=${this.lastResponse?.origin ?? "none"}`,
       "ORANGE bodies | GREEN alpha silhouette | CYAN ball/SAT",
       "YELLOW target/current v | AMBER nearest surface",
-      "PINK center/gate + REQUESTED v; PURPLE sensors",
+      `eligible arc=${s.court.contactMode}; GREY inactive depth`,
+      "PURPLE sensors; no scripted height impulse",
       "WHITE hypothetical sweep (mask ignored)",
     ]);
   }

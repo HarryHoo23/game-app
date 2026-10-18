@@ -11,7 +11,7 @@ import {
   rimOnScreen,
 } from "../../data/courtPerspective";
 import { physics } from "../../data/physics";
-import { shotFeel } from "../../data/shotFeel";
+import { rimContactConfig } from "../hoop/rimGeometry";
 export interface ContactShape {
   vertices: readonly Point[];
   bounds: { min: Point; max: Point };
@@ -63,22 +63,26 @@ export function findMissContact(
   from: number,
   to: number,
   shapes: readonly ContactShape[],
-  radius: number,
+  radius: number | ((t: number) => number),
 ) {
-  const start = Math.max(from, shotFeel.passMotion.approachSample);
+  const start = Math.max(from, rimContactConfig.lateApproachProgress);
   if (to <= start) return null;
+  const gap = (t: number) =>
+    contactGap(
+      courtPose(plan, t),
+      typeof radius === "number" ? radius : radius(t),
+      shapes,
+    );
   let previous = start;
-  if (contactGap(courtPose(plan, start), radius, shapes) <= HANDOFF_SKIN)
-    return null;
+  if (gap(start) <= HANDOFF_SKIN) return null;
   for (let i = 1; i <= 16; i++) {
     const current = start + ((to - start) * i) / 16;
-    if (contactGap(courtPose(plan, current), radius, shapes) <= HANDOFF_SKIN) {
+    if (gap(current) <= HANDOFF_SKIN) {
       let safe = previous,
         blocked = current;
       for (let j = 0; j < 24; j++) {
         const mid = (safe + blocked) / 2;
-        if (contactGap(courtPose(plan, mid), radius, shapes) > HANDOFF_SKIN)
-          safe = mid;
+        if (gap(mid) > HANDOFF_SKIN) safe = mid;
         else blocked = mid;
       }
       return { progress: safe, pose: courtPose(plan, safe) };

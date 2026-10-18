@@ -1,0 +1,1 @@
+PASS production: no diagnostic code/strings/globals despite flags; actual input swish+3.

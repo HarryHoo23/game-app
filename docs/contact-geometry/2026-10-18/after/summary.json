@@ -1,0 +1,1450 @@
+[
+  {
+    "gesture": {
+      "dx": 0,
+      "dy": -125
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 200,
+        "y": 284.6470588235294
+      },
+      "power": 0.7352941176470589,
+      "arcHeight": 168.57647058823528,
+      "durationMs": 822.2352941176471,
+      "rotations": 1.9011764705882355,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 766.6666666666683,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 199.76591787049114,
+            "y": 296.85543950302423
+          },
+          {
+            "x": 200.0000000000006,
+            "y": 293.72623637887796
+          }
+        ]
+      },
+      {
+        "ms": 766.6666666666683,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 208.2347146348845,
+            "y": 295.8839677748127
+          },
+          {
+            "x": 200.00000000000065,
+            "y": 293.72623637887676
+          }
+        ]
+      },
+      {
+        "ms": 900.0000000000007,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 199.81593680770078,
+            "y": 196.2401383943639
+          },
+          {
+            "x": 191.34533164786305,
+            "y": 197.19481678974068
+          }
+        ]
+      },
+      {
+        "ms": 1124.9999999999986,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 194.29619426613587,
+            "y": 295.00242487591987
+          },
+          {
+            "x": 200.0000000000006,
+            "y": 293.72623637887796
+          }
+        ]
+      },
+      {
+        "ms": 1124.9999999999986,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 202.81897593817217,
+            "y": 295.16858227978736
+          },
+          {
+            "x": 200.00000000000065,
+            "y": 293.72623637887676
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1133.333333333332,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 756.3815570125984,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 199.27204681724484,
+        "y": 258.1823794468391
+      },
+      "centerScreen": {
+        "x": 199.46859417658874,
+        "y": 236.94313699619252
+      },
+      "fixedCourtCenterScreen": {
+        "x": 199.46859417658874,
+        "y": 236.94313699619252
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": 0.033580436926456514,
+        "y": -0.8372233350993383
+      },
+      "normalizedVelocity": {
+        "x": 0.033580436926456514,
+        "y": -0.8372233350993383
+      },
+      "radius": 35.359310742964254,
+      "matterRadiusScreen": 25.812296842363907,
+      "visualNominalRadiusScreen": 27.280625509593126,
+      "visualSolidRadiusScreen": 25.812296842363907,
+      "scoringRadiusLogical": 35.359310742964254,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 13,
+        "label": "rim",
+        "arc": "front",
+        "point": {
+          "x": 199.27204681724484,
+          "y": 293.72623637887796
+        },
+        "distance": 35.543856932038864,
+        "inside": false,
+        "matterGapLogical": 0.1845461890746094
+      },
+      "visualCenter": {
+        "x": 199.46859741210938,
+        "y": 236.94313049316406
+      },
+      "visualSolidBounds": {
+        "left": 174.04970161616802,
+        "right": 224.88749320805073,
+        "top": 211.33028199896216,
+        "bottom": 262.377254832536
+      }
+    },
+    "name": "front-rim",
+    "score": 0,
+    "boardPostSolver": {
+      "x": -0.020000411735736634,
+      "y": 0.06725337355106831
+    },
+    "handoffMs": 758.333333333335,
+    "handoffGap": 0.010000003266469548,
+    "feedbackCount": 3,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 0,
+      "dy": -165
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 200,
+        "y": 228.17647058823528
+      },
+      "power": 0.9705882352941176,
+      "arcHeight": 176.9529411764706,
+      "durationMs": 779.8823529411765,
+      "rotations": 2.0894117647058823,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 816.6666666666681,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 197.05807345346437,
+            "y": 271.6009994967635
+          },
+          {
+            "x": 200,
+            "y": 269.49153394803017
+          }
+        ]
+      },
+      {
+        "ms": 816.6666666666681,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 205.36780901053285,
+            "y": 271.3066022624138
+          },
+          {
+            "x": 200,
+            "y": 269.49153394803017
+          }
+        ]
+      },
+      {
+        "ms": 833.3333333333346,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 201.55968118566383,
+            "y": 196.39444934929054
+          },
+          {
+            "x": 193.26118086053575,
+            "y": 196.91602125521175
+          }
+        ]
+      },
+      {
+        "ms": 891.6666666666674,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 200,
+            "y": 269.49153394803017
+          }
+        ]
+      },
+      {
+        "ms": 891.6666666666674,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 200,
+            "y": 269.49153394803017
+          }
+        ]
+      },
+      {
+        "ms": 991.6666666666665,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 195.02096082712984,
+            "y": 270.0809782793333
+          }
+        ]
+      },
+      {
+        "ms": 1024.9999999999995,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 194.55611582894042,
+            "y": 270.17836529180386
+          }
+        ]
+      },
+      {
+        "ms": 1041.666666666666,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 194.21428998496646,
+            "y": 270.1250463570804
+          }
+        ]
+      },
+      {
+        "ms": 1058.3333333333326,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 193.82308125844486,
+            "y": 270.1969493428763
+          }
+        ]
+      },
+      {
+        "ms": 1074.999999999999,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 193.3823724785199,
+            "y": 270.3684100407521
+          }
+        ]
+      },
+      {
+        "ms": 1091.6666666666656,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 192.88725020227562,
+            "y": 270.58558731547487
+          }
+        ]
+      },
+      {
+        "ms": 1158.3333333333317,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 190.056893945226,
+            "y": 270.68502992174024
+          }
+        ]
+      },
+      {
+        "ms": 1166.666666666665,
+        "other": "rim",
+        "arc": "back",
+        "supports": [
+          {
+            "x": 184.17770326906958,
+            "y": 271.14786253143336
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1166.666666666665,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 779.8823529411765,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 183.16314462561323,
+        "y": 236.7259012494752
+      },
+      "centerScreen": {
+        "x": 187.70909557669765,
+        "y": 221.2799079121169
+      },
+      "fixedCourtCenterScreen": {
+        "x": 187.70909557669765,
+        "y": 221.2799079121169
+      },
+      "eligibleArc": "back",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -1.3794324846506356,
+        "y": -0.23398462651800855
+      },
+      "normalizedVelocity": {
+        "x": -1.3794324846506356,
+        "y": -0.23398462651800855
+      },
+      "radius": 34.491646451152214,
+      "matterRadiusScreen": 25.178901909341114,
+      "visualNominalRadiusScreen": 26.611199999999997,
+      "visualSolidRadiusScreen": 25.178901909341114,
+      "scoringRadiusLogical": 34.491646451152214,
+      "mask": 61,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 22,
+        "label": "rim",
+        "arc": "back",
+        "point": {
+          "x": 186.7384830430686,
+          "y": 270.87979192148305
+        },
+        "distance": 34.34051969372036,
+        "inside": false,
+        "matterGapLogical": -0.15112675743185378
+      },
+      "visualCenter": {
+        "x": 187.70909118652344,
+        "y": 221.2799072265625
+      },
+      "visualSolidBounds": {
+        "left": 162.68767200224102,
+        "right": 212.77094720862806,
+        "top": 196.41383304819465,
+        "bottom": 246.33351204544306
+      }
+    },
+    "name": "back-rim",
+    "score": 0,
+    "boardPostSolver": {
+      "x": -0.35220963529576466,
+      "y": 0.5163100330178167
+    },
+    "handoffMs": 783.3333333333351,
+    "handoffGap": 6.8234169086426775,
+    "feedbackCount": 11,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 46,
+      "dy": -145
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 286.13184312436374,
+        "y": 256.4117647058823
+      },
+      "power": 0.8529411764705882,
+      "arcHeight": 172.76470588235293,
+      "durationMs": 801.0588235294117,
+      "rotations": 1.9952941176470589,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 691.666666666668,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 311.3855678338661,
+            "y": 224.95834277669817
+          }
+        ]
+      },
+      {
+        "ms": 783.3333333333351,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 251.99999999999605,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 816.6666666666681,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 311.790662197504,
+            "y": 248.17263234369398
+          },
+          {
+            "x": 310.87635096133937,
+            "y": 257.15783243664225
+          }
+        ]
+      },
+      {
+        "ms": 941.666666666667,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 251.35988967697995,
+            "y": 285.5141603773761
+          },
+          {
+            "x": 251.99999999999605,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 983.3333333333333,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 251.31137063911711,
+            "y": 285.12231220180144
+          },
+          {
+            "x": 251.99999999999605,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 1016.6666666666663,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 247.5768866760785,
+            "y": 285.10865978116396
+          },
+          {
+            "x": 247.292539815587,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 1041.666666666666,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 249.23981022042597,
+            "y": 285.0294432352125
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1049.9999999999993,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 679.1625123471024,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 244.8319557787218,
+        "y": 247.90971337903005
+      },
+      "centerScreen": {
+        "x": 232.7273277184669,
+        "y": 229.44409076669191
+      },
+      "fixedCourtCenterScreen": {
+        "x": 232.7273277184669,
+        "y": 229.44409076669191
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -2.1051195331795043,
+        "y": 0.07003786147271285
+      },
+      "normalizedVelocity": {
+        "x": -2.1051195331795043,
+        "y": 0.07003786147271285
+      },
+      "radius": 37.4647523504582,
+      "matterRadiusScreen": 27.349269215834482,
+      "visualNominalRadiusScreen": 28.905028327959347,
+      "visualSolidRadiusScreen": 27.349269215834482,
+      "scoringRadiusLogical": 37.4647523504582,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 17,
+        "label": "rim",
+        "arc": "front",
+        "point": {
+          "x": 247.292539815587,
+          "y": 285.0087175188558
+        },
+        "distance": 37.18051347102786,
+        "inside": false,
+        "matterGapLogical": -0.2842388794303403
+      },
+      "visualCenter": {
+        "x": 232.72732543945312,
+        "y": 229.444091796875
+      },
+      "visualSolidBounds": {
+        "left": 205.59527453780174,
+        "right": 259.83409647643566,
+        "top": 202.25038308277726,
+        "bottom": 256.3699836432934
+      }
+    },
+    "name": "backboard",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 0.5215143273591138,
+      "y": 3.9877613906448346
+    },
+    "handoffMs": 683.3333333333346,
+    "handoffGap": 0.010000000819545107,
+    "feedbackCount": 7,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 0,
+      "dy": -140
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 200,
+        "y": 263.4705882352941
+      },
+      "power": 0.8235294117647058,
+      "arcHeight": 171.71764705882353,
+      "durationMs": 806.3529411764706,
+      "rotations": 1.9717647058823529,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 1124.9999999999986,
+        "other": "ground",
+        "supports": [
+          {
+            "x": 203.20403495714322,
+            "y": 688.6782996363506
+          },
+          {
+            "x": 195.1783759094344,
+            "y": 688.4818849016494
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1299.999999999997,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 806.3529411764706,
+      "passMs": 141.66666666666666,
+      "stage": "BELOW_HOOP",
+      "score": 3,
+      "position": {
+        "x": 199.79158822895386,
+        "y": 491.2126067848558
+      },
+      "centerScreen": {
+        "x": 199.84785940713633,
+        "y": 407.0552029529447
+      },
+      "fixedCourtCenterScreen": {
+        "x": 199.84785940713633,
+        "y": 407.0552029529447
+      },
+      "eligibleArc": "opening",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -0.019848740099632778,
+        "y": -14.150750257163281
+      },
+      "normalizedVelocity": {
+        "x": -0.019848740099632778,
+        "y": -14.150750257163281
+      },
+      "radius": 33.30075204750785,
+      "matterRadiusScreen": 24.30954899468073,
+      "visualNominalRadiusScreen": 25.692394074074063,
+      "visualSolidRadiusScreen": 24.30954899468073,
+      "scoringRadiusLogical": 33.30075204750785,
+      "mask": 57,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 28,
+        "label": "backboard",
+        "point": {
+          "x": 89.5,
+          "y": 300
+        },
+        "distance": 220.74078786559812,
+        "inside": false,
+        "matterGapLogical": 187.44003581809028
+      },
+      "visualCenter": {
+        "x": 199.8478546142578,
+        "y": 407.0552062988281
+      },
+      "visualSolidBounds": {
+        "left": 175.94342586025596,
+        "right": 223.8674020729959,
+        "top": 383.1167070120573,
+        "bottom": 431.1390289179981
+      }
+    },
+    "name": "swish",
+    "score": 3,
+    "handoffMs": 950.0000000000002,
+    "handoffGap": 131.16185276278975,
+    "feedbackCount": 0,
+    "resolutions": [
+      3
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 0,
+      "dy": -146
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 200,
+        "y": 255
+      },
+      "power": 0.8588235294117647,
+      "arcHeight": 172.97411764705882,
+      "durationMs": 800,
+      "rotations": 2,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 1133.3333333333317,
+        "other": "ground",
+        "supports": [
+          {
+            "x": 197.32918630511708,
+            "y": 690.761321110398
+          },
+          {
+            "x": 205.3244787605536,
+            "y": 690.4389593191322
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1349.9999999999964,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 800,
+      "passMs": 150,
+      "stage": "BELOW_HOOP",
+      "score": 4,
+      "position": {
+        "x": 199.7420908449426,
+        "y": 473.3661048978205
+      },
+      "centerScreen": {
+        "x": 199.8117263168081,
+        "y": 394.02725657540896
+      },
+      "fixedCourtCenterScreen": {
+        "x": 199.8117263168081,
+        "y": 394.02725657540896
+      },
+      "eligibleArc": "opening",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -0.019839165773646528,
+        "y": -12.192651300857051
+      },
+      "normalizedVelocity": {
+        "x": -0.019839165773646528,
+        "y": -12.192651300857051
+      },
+      "radius": 33.19261041597894,
+      "matterRadiusScreen": 24.230605603664625,
+      "visualNominalRadiusScreen": 25.608959999999993,
+      "visualSolidRadiusScreen": 24.230605603664625,
+      "scoringRadiusLogical": 33.19261041597894,
+      "mask": 57,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 28,
+        "label": "backboard",
+        "point": {
+          "x": 89.5,
+          "y": 300
+        },
+        "distance": 205.44859435222884,
+        "inside": false,
+        "matterGapLogical": 172.2559839362499
+      },
+      "visualCenter": {
+        "x": 199.8117218017578,
+        "y": 394.0272521972656
+      },
+      "visualSolidBounds": {
+        "left": 175.83903657272458,
+        "right": 223.910830212757,
+        "top": 370.07514204643667,
+        "bottom": 417.85293916612864
+      }
+    },
+    "name": "perfect",
+    "score": 4,
+    "handoffMs": 950,
+    "handoffGap": 128.79313992938242,
+    "feedbackCount": 0,
+    "resolutions": [
+      4
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 80,
+      "dy": -100
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 330,
+        "y": 319.94117647058823
+      },
+      "power": 0.5882352941176471,
+      "arcHeight": 163.34117647058824,
+      "durationMs": 848.7058823529412,
+      "rotations": 1.783529411764706,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1233.3333333333308,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 848.7058823529412,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 388.71684687182164,
+        "y": 611.6235895375197
+      },
+      "centerScreen": {
+        "x": 337.7632982164298,
+        "y": 494.95522036238935
+      },
+      "fixedCourtCenterScreen": {
+        "x": 337.7632982164298,
+        "y": 494.95522036238935
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": 2.552906385731376,
+        "y": 15.806844046388733
+      },
+      "normalizedVelocity": {
+        "x": 2.552906385731376,
+        "y": 15.806844046388733
+      },
+      "radius": 34.491646451152214,
+      "matterRadiusScreen": 25.178901909341114,
+      "visualNominalRadiusScreen": 26.611199999999997,
+      "visualSolidRadiusScreen": 25.178901909341114,
+      "scoringRadiusLogical": 34.491646451152214,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 29,
+        "label": "backboard",
+        "point": {
+          "x": 317.5,
+          "y": 300
+        },
+        "distance": 319.6577870701933,
+        "inside": false,
+        "matterGapLogical": 285.1661406190411
+      },
+      "visualCenter": {
+        "x": 337.7633056640625,
+        "y": 494.9552307128906
+      },
+      "visualSolidBounds": {
+        "left": 312.8902045711875,
+        "right": 362.6608438938856,
+        "top": 469.96512746810913,
+        "bottom": 519.7357667908072
+      }
+    },
+    "name": "airball",
+    "score": 0,
+    "handoffMs": 850.0000000000009,
+    "handoffGap": 50.97341476344639,
+    "feedbackCount": 0,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 38,
+      "dy": -125
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 260.4185402008357,
+        "y": 284.6470588235294
+      },
+      "power": 0.7352941176470589,
+      "arcHeight": 168.57647058823528,
+      "durationMs": 822.2352941176471,
+      "rotations": 1.9011764705882355,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 741.6666666666683,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 248.75670925052384,
+            "y": 287.5505301215309
+          },
+          {
+            "x": 251.99999999999605,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 800.0000000000014,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 262.4076522125638,
+            "y": 196.66041061918787
+          },
+          {
+            "x": 253.69917413112807,
+            "y": 197.0720024118486
+          }
+        ]
+      },
+      {
+        "ms": 958.3333333333333,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 310.8439267279632,
+            "y": 252.17593806233415
+          }
+        ]
+      },
+      {
+        "ms": 983.333333333333,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 251.99999999999605,
+            "y": 285.0087175188558
+          }
+        ]
+      },
+      {
+        "ms": 999.9999999999995,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 311.15012999956974,
+            "y": 255.57503034924892
+          },
+          {
+            "x": 310.72035016009994,
+            "y": 264.2825463051938
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1133.3333333333317,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 729.7373229637747,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 267.8683414438601,
+        "y": 252.21674307340663
+      },
+      "centerScreen": {
+        "x": 249.54388925401787,
+        "y": 232.58822244358683
+      },
+      "fixedCourtCenterScreen": {
+        "x": 249.54388925401787,
+        "y": 232.58822244358683
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -0.9059880071951056,
+        "y": 0.5148000074408401
+      },
+      "normalizedVelocity": {
+        "x": -0.9059880071951056,
+        "y": 0.5148000074408401
+      },
+      "radius": 36.164389112283516,
+      "matterRadiusScreen": 26.400004051966967,
+      "visualNominalRadiusScreen": 27.9017643564142,
+      "visualSolidRadiusScreen": 26.400004051966967,
+      "scoringRadiusLogical": 36.164389112283516,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 17,
+        "label": "rim",
+        "arc": "front",
+        "point": {
+          "x": 251.99999999999605,
+          "y": 285.0087175188558
+        },
+        "distance": 36.42962871359034,
+        "inside": false,
+        "matterGapLogical": 0.2652396013068241
+      },
+      "visualCenter": {
+        "x": 249.54388427734375,
+        "y": 232.58822631835938
+      },
+      "visualSolidBounds": {
+        "left": 223.20043736649677,
+        "right": 275.8055807678029,
+        "top": 206.28248363453895,
+        "bottom": 258.66105410270393
+      }
+    },
+    "name": "rim-handoff",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 1.5718157215158044,
+      "y": 0.5833379789717128
+    },
+    "handoffMs": 733.3333333333348,
+    "handoffGap": 0.010000002839333888,
+    "feedbackCount": 5,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 80,
+      "dy": -146
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 330,
+        "y": 255
+      },
+      "power": 0.8588235294117647,
+      "arcHeight": 172.97411764705882,
+      "durationMs": 800,
+      "rotations": 2,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1266.666666666664,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 800,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 405.8333333333312,
+        "y": 510.2968036529869
+      },
+      "centerScreen": {
+        "x": 350.2583333333318,
+        "y": 420.98666666668043
+      },
+      "fixedCourtCenterScreen": {
+        "x": 350.2583333333318,
+        "y": 420.98666666668043
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": 2.7083333333332575,
+        "y": 12.937187432051815
+      },
+      "normalizedVelocity": {
+        "x": 2.7083333333332575,
+        "y": 12.937187432051815
+      },
+      "radius": 34.491646451152214,
+      "matterRadiusScreen": 25.178901909341114,
+      "visualNominalRadiusScreen": 26.611199999999997,
+      "visualSolidRadiusScreen": 25.178901909341114,
+      "scoringRadiusLogical": 34.491646451152214,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 29,
+        "label": "backboard",
+        "point": {
+          "x": 317.5,
+          "y": 300
+        },
+        "distance": 228.09542609276568,
+        "inside": false,
+        "matterGapLogical": 193.60377964161347
+      },
+      "visualCenter": {
+        "x": 350.2583312988281,
+        "y": 420.9866638183594
+      },
+      "visualSolidBounds": {
+        "left": 325.5000332519412,
+        "right": 375.14811822399497,
+        "top": 396.0756558403373,
+        "bottom": 446.0291606746614
+      }
+    },
+    "name": "board-handoff",
+    "score": 0,
+    "handoffMs": 800.0000000000016,
+    "handoffGap": 25.19294117413007,
+    "feedbackCount": 0,
+    "resolutions": [
+      0
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 19,
+      "dy": -146
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 213.41458907309502,
+        "y": 255
+      },
+      "power": 0.8588235294117647,
+      "arcHeight": 172.97411764705882,
+      "durationMs": 800,
+      "rotations": 2,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 1133.3333333333317,
+        "other": "ground",
+        "supports": [
+          {
+            "x": 196.7991405765806,
+            "y": 690.7613211103983
+          },
+          {
+            "x": 204.79443303201737,
+            "y": 690.4389593191322
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1299.9999999999968,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 800,
+      "passMs": 150,
+      "stage": "BELOW_HOOP",
+      "score": 2,
+      "position": {
+        "x": 191.47677248819335,
+        "y": 510.9857254670559
+      },
+      "centerScreen": {
+        "x": 193.77804391638114,
+        "y": 421.48957959095077
+      },
+      "fixedCourtCenterScreen": {
+        "x": 193.77804391638114,
+        "y": 421.48957959095077
+      },
+      "eligibleArc": "opening",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": -0.7993181783270416,
+        "y": -13.025984634190763
+      },
+      "normalizedVelocity": {
+        "x": -0.7993181783270416,
+        "y": -13.025984634190763
+      },
+      "radius": 33.19261041597894,
+      "matterRadiusScreen": 24.230605603664625,
+      "visualNominalRadiusScreen": 25.608959999999993,
+      "visualSolidRadiusScreen": 24.230605603664625,
+      "scoringRadiusLogical": 33.19261041597894,
+      "mask": 57,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 28,
+        "label": "backboard",
+        "point": {
+          "x": 89.5,
+          "y": 300
+        },
+        "distance": 234.33787247896706,
+        "inside": false,
+        "matterGapLogical": 201.1452620629881
+      },
+      "visualCenter": {
+        "x": 193.77804565429688,
+        "y": 421.4895935058594
+      },
+      "visualSolidBounds": {
+        "left": 169.83589954674244,
+        "right": 217.89644514769316,
+        "top": 397.2991396896541,
+        "bottom": 445.60799299925566
+      }
+    },
+    "name": "normal-make",
+    "score": 2,
+    "handoffMs": 950,
+    "handoffGap": 123.41619990994656,
+    "feedbackCount": 0,
+    "resolutions": [
+      2
+    ]
+  },
+  {
+    "gesture": {
+      "dx": 20,
+      "dy": -146
+    },
+    "plan": {
+      "start": {
+        "x": 200,
+        "y": 620
+      },
+      "rim": {
+        "x": 200,
+        "y": 285
+      },
+      "target": {
+        "x": 215.28481599496703,
+        "y": 255
+      },
+      "power": 0.8588235294117647,
+      "arcHeight": 172.97411764705882,
+      "durationMs": 800,
+      "rotations": 2,
+      "startScale": 1,
+      "hoopScale": 0.45
+    },
+    "contacts": [
+      {
+        "ms": 816.6666666666681,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 208.02506049018385,
+            "y": 294.0163926047317
+          },
+          {
+            "x": 214.6890192791289,
+            "y": 293.72623637887676
+          }
+        ]
+      },
+      {
+        "ms": 816.6666666666681,
+        "other": "rim",
+        "arc": "front",
+        "supports": [
+          {
+            "x": 216.29797751434683,
+            "y": 294.8525142753747
+          },
+          {
+            "x": 224.53034816672954,
+            "y": 293.68412817318745
+          }
+        ]
+      },
+      {
+        "ms": 1008.333333333333,
+        "other": "backboard",
+        "supports": [
+          {
+            "x": 227.66805729335852,
+            "y": 197.24900503830293
+          }
+        ]
+      }
+    ],
+    "radius": {
+      "shotIndex": 1,
+      "ms": 1183.3333333333314,
+      "phase": "MATTER_SETTLING",
+      "flightMs": 800,
+      "passMs": 0,
+      "stage": "APPROACHING",
+      "score": 0,
+      "position": {
+        "x": 243.46287542485413,
+        "y": 248.95623392111915
+      },
+      "centerScreen": {
+        "x": 231.72789906014353,
+        "y": 230.20805076241697
+      },
+      "fixedCourtCenterScreen": {
+        "x": 231.72789906014353,
+        "y": 230.20805076241697
+      },
+      "eligibleArc": "front",
+      "quarantinedCategories": [],
+      "velocity": {
+        "x": 1.2995150791473407,
+        "y": 3.031604099021422
+      },
+      "normalizedVelocity": {
+        "x": 1.2995150791473407,
+        "y": 3.031604099021422
+      },
+      "radius": 34.491646451152214,
+      "matterRadiusScreen": 25.178901909341114,
+      "visualNominalRadiusScreen": 26.611199999999997,
+      "visualSolidRadiusScreen": 25.178901909341114,
+      "scoringRadiusLogical": 34.491646451152214,
+      "mask": 59,
+      "isStatic": false,
+      "bodyDelta": 8.333333333333334,
+      "nearest": {
+        "id": 17,
+        "label": "rim",
+        "arc": "front",
+        "point": {
+          "x": 247.292539815587,
+          "y": 285.0087175188558
+        },
+        "distance": 36.25531551249716,
+        "inside": false,
+        "matterGapLogical": 1.7636690613449488
+      },
+      "visualCenter": {
+        "x": 231.7279052734375,
+        "y": 230.2080535888672
+      },
+      "visualSolidBounds": {
+        "left": 206.61047715321183,
+        "right": 256.7282594740391,
+        "top": 205.39716918766499,
+        "bottom": 255.19172216951847
+      }
+    },
+    "name": "edge-miss",
+    "score": 0,
+    "boardPostSolver": {
+      "x": 1.2595809632202872,
+      "y": -0.641168668158798
+    },
+    "handoffMs": 800.0000000000016,
+    "handoffGap": 4.159986854012175,
+    "feedbackCount": 2,
+    "resolutions": [
+      0
+    ]
+  }
+]

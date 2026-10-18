@@ -1,6 +1,7 @@
 export const physics = {
   width: 400,
   height: 712,
+  // Legacy ballistic preview fixtures only. Gameplay uses ballGeometry.ts.
   ballRadius: 14,
   origin: { x: 200, y: 620 },
   stepMs: 1000 / 120,

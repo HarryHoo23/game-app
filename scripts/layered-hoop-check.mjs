@@ -13,8 +13,8 @@ try{
  await shoot();await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').session.score===4);const frames=await page.evaluate(()=>window.hoopFrames);
  assert.ok(frames.some(f=>f.stage==='AT_RIM'&&f.score===0&&f.depth===4));assert.ok(frames.some(f=>f.stage==='IN_NET'&&f.score===0&&f.depth===4));assert.ok(frames.some(f=>f.netScale>baseline.net.scaleY*1.1));assert.ok(frames.some(f=>f.stage==='BELOW_HOOP'&&f.score===4&&f.y>=413));
  await ready();let s=await state();assert.deepEqual(s.net,baseline.net);assert.deepEqual(s.rim,baseline.rim);
- // Same rim-contact arrival under the new nonlinear aim mapping (old dx10).
- await shoot(20);await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').session.score===6);await ready();
+ // Normal-make arrival within the calibrated visible-ball clearance.
+ await shoot(19);await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').session.score===6);await ready();
  await shoot(0,-140);await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').pass.stage==='IN_NET');await page.getByRole('button',{name:'Pause',exact:true}).click();const paused=await state();await page.waitForTimeout(150);assert.deepEqual(await state(),paused);await page.getByRole('button',{name:'Keep playing'}).click();await page.waitForFunction(()=>window.afterHours.scene.getScene('Game').session.score===9);
  assert.deepEqual(errors,[]);console.log('Layered hoop passes: front/net occlusion, deferred EXIT, top-origin stretch, exact reset, PERFECT +4 / rim MAKE +2 / SWISH +3, in-net pause.');
 }finally{const video=page.video();await context.close();await video.saveAs('test-results/layered-hoop.webm');await browser.close()}

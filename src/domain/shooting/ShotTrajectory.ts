@@ -6,6 +6,7 @@ import {
   unprojectShot,
 } from "../../data/courtPerspective";
 import { physics } from "../../data/physics";
+import { ballContactRadius } from "../../data/ballGeometry";
 import { getHoopGeometry } from "./hoopGeometry";
 import { points } from "../levels/session";
 import type { LevelConfig } from "../../data/levels";
@@ -152,7 +153,7 @@ export function assessShot(
     dx = end.x - level.hoopX,
     dy = end.y - (level.hoopY - shotFeel.hoopApproachOffset),
     geometry = getHoopGeometry(level);
-  const projectedRadius = (physics.foregroundBallSize * plan.hoopScale) / 2;
+  const projectedRadius = ballContactRadius(plan.hoopScale);
   const horizontalClearance = geometry.clearHalfWidth - projectedRadius;
   const error =
     (dx / horizontalClearance) ** 2 + (dy / shotFeel.depthTolerance) ** 2;

@@ -1,0 +1,29 @@
+
+> afterhours-basketball@0.1.0 test:browser
+> node scripts/physics-check.mjs && node scripts/lifecycle-check.mjs && node scripts/mobile-check.mjs && node scripts/campaign-check.mjs && node scripts/failure-check.mjs
+
+Physics body contract passes
+Scene exit and restart pass
+Touch cancel, real touch basket, small-screen pause/navigation, upgrade/reload and desktop aspect ratio passed
+Launched 1 9
+Launched 2 8
+Launched 3 7
+Launched 4 6
+Launched 5 5
+Launched 6 4
+Launched 7 3
+Launched 8 2
+Launched 9 1
+Launched 10 0
+Result COURT 01 / FIRST LIGHT
+↗
+MADE IT.
+MAKE IT AGAIN.
+★★★
+40
+POINTS
+TARGET 10
+COINS EARNED
+● +96
+Campaign: real shots, last airborne shot, pause, three stars, reward, unlock, reload and gear passed.
+Full failed run, no rewards and retry reset passed

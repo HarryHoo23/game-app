@@ -1,29 +1,19 @@
 import { it, expect } from "vitest";
-import {
-  missVelocity,
-  MissContact,
-  postShotDepth,
-} from "../domain/shooting/ImpactResponse";
+import { MissContact, postShotDepth } from "../domain/shooting/ImpactResponse";
 import { resultTiming } from "../data/impactFeel";
-const rim = { x: 200, y: 285 },
-  point = { x: 200, y: 280 };
-it("front and back rim contacts produce different outgoing physical velocities", () => {
-  const v = { x: 0, y: 12 },
-    front = missVelocity(v, "frontRim", point, rim),
-    back = missVelocity(v, "backRim", point, rim);
-  expect(front.y).toBeLessThan(0);
-  expect(back.y).toBeGreaterThan(0);
-  expect(front.x).not.toBe(back.x);
-  expect(back).not.toEqual(v);
-});
-it("waits for visible rear-rim contact instead of sounding at distant arrival", () => {
+const rim = { x: 200, y: 285 };
+it("never turns a height threshold into a contact or scripted impulse", () => {
   const m = new MissContact("backRim", rim);
-  expect(m.advance(8, { x: 200, y: 220 }).resolve).toBe(false);
-  expect(m.advance(40, { x: 200, y: 260 })).toMatchObject({
-    contact: "backRim",
-    resolve: true,
+  expect(m.advance(8, { x: 200, y: 220 })).toMatchObject({
+    contact: null,
+    resolve: false,
   });
-  expect(m.advance(10, point).resolve).toBe(false);
+  expect(m.advance(40, { x: 200, y: 280 })).toMatchObject({
+    contact: null,
+    resolve: false,
+  });
+  expect(m.collide("rim", "front")).toBe("frontRim");
+  expect(m.collide("rim", "back")).toBeNull();
 });
 it("waits for actual residual backboard contact before final miss resolution", () => {
   const m = new MissContact("airball", rim);
@@ -48,8 +38,8 @@ it("does not time out a rear-rim approach before it can physically reach the con
   const miss = new MissContact("backRim", rim);
   expect(miss.advance(90, { x: 200, y: 246 }).resolve).toBe(false);
   expect(miss.advance(35, { x: 200, y: 260 })).toMatchObject({
-    contact: "backRim",
-    resolve: true,
+    contact: null,
+    resolve: false,
   });
 });
 
@@ -64,16 +54,15 @@ it("observes likely board approaches until contact or spatial clearance", () => 
   expect(miss.advance(90, { x: 290, y: 245 }).resolve).toBe(false);
   expect(miss.collide("backboard")).toBe("backboard");
   const clear = new MissContact("airball", rim);
-  expect(clear.advance(20, { x: 340, y: 245 }).resolve).toBe(true);
+  expect(clear.advance(20, { x: 355, y: 245 }).resolve).toBe(true);
 });
 
 it("waits for the solver instead of applying a height impulse after a swept handoff", () => {
-  const miss = new MissContact(
-    "frontRim",
-    rim,
-    { minX: 68.5, maxX: 331.5, maxY: 314 },
-    true,
-  );
+  const miss = new MissContact("frontRim", rim, {
+    minX: 68.5,
+    maxX: 331.5,
+    maxY: 314,
+  });
   expect(miss.advance(8, { x: 252, y: 280 }).contact).toBeNull();
   expect(miss.collide("rim")).toBe("frontRim");
   expect(miss.collide("rim")).toBeNull();

@@ -5,7 +5,7 @@ import {
   type ShotResult,
 } from "../../domain/shooting/ShotTrajectory";
 import type { LevelConfig } from "../../data/levels";
-import { physics } from "../../data/physics";
+import { ballContactRadius } from "../../data/ballGeometry";
 import { HoopSensors } from "./HoopSensors";
 import { shotFeel } from "../../data/shotFeel";
 /** Continuous controlled descent through the visible net, then handoff to residual Matter physics. */
@@ -14,11 +14,12 @@ export class HoopPass {
   private arrival?: ShotPose;
   private elapsed = 0;
   private done = true;
+  private glancingArrival = false;
   sensors: HoopSensors;
   constructor(private level: LevelConfig) {
     this.sensors = new HoopSensors(
       { x: level.hoopX, y: level.hoopY },
-      (physics.foregroundBallSize * 0.45) / 2,
+      ballContactRadius(shotFeel.hoopScale),
     );
   }
   get active() {
@@ -48,8 +49,9 @@ export class HoopPass {
       fallDistance =
         addedSpeed * (m - c.accelerationDecayMs * (1 - accelerationDecay));
     const offset = a.x - this.level.hoopX;
-    const contact = this.contacts.rim || this.contacts.backboard;
-    // A glancing rim contact redirects toward the opening with continuous position/velocity.
+    const contact = this.glancingArrival;
+    // Preserve the existing normal-make passage policy. An arrival quality
+    // classification is not proof of a Matter collision and triggers no clank.
     const k = 1 / c.lateralDampingMs;
     const contactX =
       this.level.hoopX +
@@ -80,13 +82,11 @@ export class HoopPass {
     this.plan = plan;
     this.arrival = sampleShot(plan, 1);
     this.done = false;
+    this.glancingArrival = result.quality === "normal";
     this.sensors = new HoopSensors(
       { x: this.level.hoopX, y: this.level.hoopY },
-      (physics.foregroundBallSize * plan.hoopScale) / 2,
+      ballContactRadius(plan.hoopScale),
     );
-    if (result.impact === "frontRim" || result.impact === "backRim")
-      this.sensors.touch("rim");
-    if (result.impact === "backboard") this.sensors.touch("backboard");
     // The approach may have crossed TOP already: carry the real descending segment into the sensors.
     this.sensors.sample(
       sampleShot(plan, shotFeel.passMotion.approachSample),
@@ -118,6 +118,7 @@ export class HoopPass {
     this.arrival = undefined;
     this.elapsed = 0;
     this.done = true;
+    this.glancingArrival = false;
     this.sensors.reset();
   }
 }

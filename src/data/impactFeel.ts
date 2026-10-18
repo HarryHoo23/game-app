@@ -1,14 +1,13 @@
-import { physics } from "./physics";
+import { ballContactRadius } from "./ballGeometry";
+import { shotFeel } from "./shotFeel";
 import { hoopLayout } from "./hoop";
-/** Physical handoff velocities use Matter's pixels-per-60Hz-tick convention. */
+/** Observation bounds are only fallbacks; runtime supplies actual body bounds. */
 export const impactFeel = {
-  front: { x: -3.4, y: -5.2 },
-  back: { x: 5.8, y: 10.5 },
   upperOcclusionClearance: 46,
-  backContactLead: 28,
-  frontContactLead: 6,
-  contactZoneHalfWidth: hoopLayout.boardWidth / 2 + physics.ballRadius,
-  contactZoneBottom: physics.ballRadius + hoopLayout.rimRadius,
+  contactZoneHalfWidth:
+    hoopLayout.boardWidth / 2 + ballContactRadius(shotFeel.hoopScale),
+  contactZoneBottom:
+    ballContactRadius(shotFeel.hoopScale) + hoopLayout.rimRadius,
   maxMissObservationMs: 350,
   rimContactMaxWaitMs: 240,
 } as const;

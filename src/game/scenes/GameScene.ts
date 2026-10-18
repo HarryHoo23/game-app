@@ -1,7 +1,4 @@
-import {
-  MissContact,
-  missVelocity,
-} from "../../domain/shooting/ImpactResponse";
+import { MissContact } from "../../domain/shooting/ImpactResponse";
 import { readyDelay } from "../../data/impactFeel";
 import { rimOnScreen } from "../presentation/perspective";
 import { HoopPass } from "../hoop/HoopPass";
@@ -127,22 +124,27 @@ export class GameScene extends AppScene {
     const collision = (
       event: Phaser.Physics.Matter.Events.CollisionStartEvent,
     ) => {
+      const handled = new Set<number>();
       for (const pair of event.pairs) {
         const a = pair.bodyA.label,
           b = pair.bodyB.label;
         if (a !== "ball" && b !== "ball") continue;
         const other = a === "ball" ? b : a;
         if (this.miss && (other === "rim" || other === "backboard")) {
+          const part = a === "ball" ? pair.bodyB : pair.bodyA;
+          const parent = part.parent;
+          if (handled.has(parent.id)) continue;
+          handled.add(parent.id);
           // Secondary physical bounces remain part of this miss's presentation window.
           if (this.settled) {
             this.impact(other);
             continue;
           }
-          const contact = this.miss.collide(other);
+          const contact = this.miss.collide(other, part.plugin?.rimArc);
           if (contact) {
             if (import.meta.env.DEV)
               this.audit?.event("collision-gate", { contact });
-            this.respondToMiss(contact, true);
+            this.respondToMiss(contact);
             this.resolve(0);
           }
         }
@@ -176,7 +178,10 @@ export class GameScene extends AppScene {
     this.miss = null;
     this.awaitingMissHandoff = false;
     this.settled = false;
-    this.physicsCourt.beginControlled();
+    this.physicsCourt.beginControlled(
+      plan,
+      assessShot(plan, this.session.config, this.stats),
+    );
     if (import.meta.env.DEV) this.audit?.event("launch", { plan });
     this.hint.setText("");
     this.renderHud();
@@ -231,7 +236,7 @@ export class GameScene extends AppScene {
         const handoff = this.physicsCourt.advancePending(STEP_MS);
         if (handoff.released && this.awaitingMissHandoff) {
           this.awaitingMissHandoff = false;
-          this.observeMiss(handoff.pose, true);
+          this.observeMiss(handoff.pose);
         }
       }
       if (this.shot.active) {
@@ -252,17 +257,19 @@ export class GameScene extends AppScene {
             : null;
           if (arrived || contact) {
             this.candidateScore = result.score;
-            this.resultImpact = result.impact;
+            // Arrival quality can still be a normal make, but is not evidence
+            // of a physical rim collision. Only Matter records actual contact.
+            this.resultImpact = result.made ? "none" : result.impact;
             if (import.meta.env.DEV)
               this.audit?.event("prediction", { result });
           }
           if (contact) {
             this.shot.finishAt(contact.progress);
-            this.beginMissHandoff(contact.pose, true);
+            this.beginMissHandoff(contact.pose);
           } else {
             this.physicsCourt.placeControlled(pose);
             if (arrived && !this.pass.start(this.shot.currentPlan!, result))
-              this.beginMissHandoff(pose, false);
+              this.beginMissHandoff(pose);
           }
         }
       }
@@ -296,11 +303,6 @@ export class GameScene extends AppScene {
       }
       if (this.miss && !this.settled) {
         const event = this.miss.advance(STEP_MS, this.physicsCourt.ball);
-        if (event.contact) {
-          if (import.meta.env.DEV)
-            this.audit?.event("height-gate", { contact: event.contact });
-          this.respondToMiss(event.contact);
-        }
         if (event.resolve) this.resolve(0);
       }
       if (this.settled) {
@@ -346,53 +348,32 @@ export class GameScene extends AppScene {
     else this.ballView.idle(this.aim.isAiming ? this.aim.aimPower : 0);
     this.hoop.drawDebug(this.ballView.image);
   }
-  private beginMissHandoff(pose: ShotPose, physicalOnly: boolean) {
-    if (this.physicsCourt.finishControlled(pose))
-      this.observeMiss(pose, physicalOnly);
+  private beginMissHandoff(pose: ShotPose) {
+    if (this.physicsCourt.finishControlled(pose)) this.observeMiss(pose);
     else {
       this.awaitingMissHandoff = true;
       if (import.meta.env.DEV) this.audit?.event("handoff-deferred", { pose });
     }
   }
-  private observeMiss(pose: ShotPose, physicalOnly: boolean) {
+  private observeMiss(pose: ShotPose) {
     this.miss = new MissContact(
       this.resultImpact,
       this.hoop.getRimCenter(),
       this.physicsCourt.observationBounds,
-      physicalOnly,
     );
     if (import.meta.env.DEV)
       this.audit?.event("handoff", {
         path: "miss",
         pose,
-        physicalOnly,
         deferredMs: this.physicsCourt.pendingElapsedMs,
       });
   }
-  private respondToMiss(impact: ShotImpact, fromMatter = false) {
+  private respondToMiss(impact: ShotImpact) {
     this.resultImpact = impact;
     if (import.meta.env.DEV && this.shot.currentPlan)
       finishInputImpact(this.shot.currentPlan, impact);
-    const ball = this.physicsCourt.ball;
-    // collisionStart precedes Matter's velocity normalization and solver.
-    // An ordinary board contact needs no velocity assignment at all.
-    if (impact !== "backboard" && !fromMatter) {
-      const velocity = missVelocity(
-        ball.body!.velocity,
-        impact,
-        ball,
-        this.hoop.getRimCenter(),
-      );
-      if (import.meta.env.DEV)
-        this.audit?.event("response", {
-          impact,
-          incoming: { ...ball.body!.velocity },
-          outgoing: velocity,
-        });
-      ball.setVelocity(velocity.x, velocity.y);
-    } else if (import.meta.env.DEV) {
-      this.audit?.event("engine-response", { impact });
-    }
+    // Both arc and board impulses belong exclusively to Matter's solver.
+    if (import.meta.env.DEV) this.audit?.event("engine-response", { impact });
     this.impact(impact === "backboard" ? "backboard" : "rim");
   }
   private impact(kind: "rim" | "backboard") {

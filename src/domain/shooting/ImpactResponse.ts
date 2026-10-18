@@ -2,18 +2,6 @@ import type { Vec } from "../scoring/basketDetector";
 import type { ShotImpact } from "./ShotTrajectory";
 import { impactFeel } from "../../data/impactFeel";
 import { hoopLayout, type BallDepthState } from "../../game/hoop/hoopLayout";
-/** The projected front/rear rim planes are real 2.5D contacts, not a sound-only classification. */
-export function missVelocity(
-  velocity: Vec,
-  impact: ShotImpact,
-  point: Vec,
-  rim: Vec,
-): Vec {
-  if (impact !== "frontRim" && impact !== "backRim") return { ...velocity };
-  const response = impact === "frontRim" ? impactFeel.front : impactFeel.back;
-  const side = Math.sign(point.x - rim.x);
-  return { x: side ? Math.abs(response.x) * side : response.x, y: response.y };
-}
 export function postShotDepth(
   point: Vec,
   rim: Vec,
@@ -33,7 +21,6 @@ export class MissContact {
     readonly expected: ShotImpact,
     private rim: Vec,
     private bounds?: { minX: number; maxX: number; maxY: number },
-    private physicalOnly = false,
   ) {}
   advance(
     delta: number,
@@ -41,18 +28,6 @@ export class MissContact {
   ): { resolve: boolean; contact: ShotImpact | null } {
     if (this.resolved) return { resolve: false, contact: null };
     this.elapsed += delta;
-    const lead =
-      this.expected === "backRim"
-        ? impactFeel.backContactLead
-        : impactFeel.frontContactLead;
-    if (
-      !this.physicalOnly &&
-      (this.expected === "frontRim" || this.expected === "backRim") &&
-      position.y >= this.rim.y - lead
-    ) {
-      this.resolved = true;
-      return { resolve: true, contact: this.expected };
-    }
     const rimCandidate =
       this.expected === "frontRim" || this.expected === "backRim";
     const cleared = this.bounds
@@ -73,12 +48,15 @@ export class MissContact {
     }
     return { resolve: false, contact: null };
   }
-  collide(kind: "rim" | "backboard"): ShotImpact | null {
+  collide(
+    kind: "rim" | "backboard",
+    arc?: "front" | "back",
+  ): ShotImpact | null {
     if (this.resolved) return null;
     this.resolved = true;
     return kind === "backboard"
       ? "backboard"
-      : this.expected === "backRim"
+      : (arc ? arc === "back" : this.expected === "backRim")
         ? "backRim"
         : "frontRim";
   }
