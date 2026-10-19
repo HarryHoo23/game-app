@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo,type Ref } from 'react';
 import { BufferGeometry, Float32BufferAttribute } from 'three';
-import { RigidBody, BallCollider } from '@react-three/rapier';
+import { RigidBody, BallCollider,type RapierRigidBody } from '@react-three/rapier';
 import { config as c, BALL_GROUPS } from '../config';
 export function BallMesh() {
   const seams=useMemo(()=>{
@@ -13,7 +13,7 @@ export function BallMesh() {
   },[]);
   return <group><mesh castShadow><sphereGeometry args={[c.ball.radius,32,24]}/><meshStandardMaterial color="#cf702e" roughness={0.85}/></mesh><lineSegments geometry={seams}><lineBasicMaterial color="#3c251c"/></lineSegments></group>;
 }
-export function Ball() {
+export function Ball({bodyRef}:{bodyRef?:Ref<RapierRigidBody>}) {
   const o=c.ball.origin;
-  return <RigidBody type="fixed" colliders={false} position={[o.x,o.y,o.z]}><BallCollider args={[c.ball.radius]} mass={c.ball.mass} restitution={c.ball.restitution} friction={c.ball.friction} collisionGroups={BALL_GROUPS}/><BallMesh/></RigidBody>;
+  return <RigidBody ref={bodyRef} type="fixed" colliders={false} ccd position={[o.x,o.y,o.z]}><BallCollider args={[c.ball.radius]} mass={c.ball.mass} restitution={c.ball.restitution} friction={c.ball.friction} collisionGroups={BALL_GROUPS}/><BallMesh/></RigidBody>;
 }
