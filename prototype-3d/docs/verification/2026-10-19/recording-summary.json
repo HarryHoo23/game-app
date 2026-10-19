@@ -1,0 +1,709 @@
+{
+  "capturedAt": "2026-10-19T02:31:51.822Z",
+  "commit": "99948342c501436e620650f63f4c660f5fb7f422",
+  "browser": "155.0.8059.82",
+  "viewport": {
+    "width": 400,
+    "height": 712
+  },
+  "source": "automated native touch gestures; real Rapier positions/contacts/scoring, no injected scores or ball transforms",
+  "scenarios": [
+    {
+      "name": "01-typical-make",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.27999997942635185
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.4570391311538344
+          },
+          "result": "swish",
+          "made": true,
+          "contacts": []
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 1,
+        "makes": 1,
+        "simTime": 2.2749999999999946,
+        "bodyCount": 2,
+        "dynamicCount": 1,
+        "worldBodies": 5,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 2,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 40,
+        "frames": 55,
+        "durationSeconds": 2.2
+      }
+    },
+    {
+      "name": "02-clean-swish",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.2999999657105864
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.4669446806396413
+          },
+          "result": "swish",
+          "made": true,
+          "contacts": []
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 1,
+        "makes": 1,
+        "simTime": 2.2249999999999948,
+        "bodyCount": 2,
+        "dynamicCount": 1,
+        "worldBodies": 5,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 2,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 41,
+        "frames": 56,
+        "durationSeconds": 2.24
+      }
+    },
+    {
+      "name": "03-front-rim-miss",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.1499999828552932
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.2688335210956456
+          },
+          "result": "rim-miss",
+          "made": false,
+          "contacts": [
+            {
+              "kind": "rim",
+              "time": 1.1916666666666624,
+              "position": {
+                "x": -1.0396047356309168e-9,
+                "y": 3.1836297512054443,
+                "z": 0.3416332006454468
+              },
+              "before": {
+                "x": 0,
+                "y": -4.263124942779541,
+                "z": -3.268833637237549
+              },
+              "after": {
+                "x": -1.258096062883851e-7,
+                "y": 2.671316385269165,
+                "z": 1.2117202281951904
+              }
+            },
+            {
+              "kind": "rim",
+              "time": 1.1916666666666624,
+              "position": {
+                "x": -1.0396047356309168e-9,
+                "y": 3.1836297512054443,
+                "z": 0.3416332006454468
+              },
+              "before": {
+                "x": 0,
+                "y": -4.263124942779541,
+                "z": -3.268833637237549
+              },
+              "after": {
+                "x": -1.258096062883851e-7,
+                "y": 2.671316385269165,
+                "z": 1.2117202281951904
+              }
+            }
+          ]
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 1,
+        "makes": 0,
+        "simTime": 2.966666666666659,
+        "bodyCount": 2,
+        "dynamicCount": 1,
+        "worldBodies": 5,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 2,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 53,
+        "frames": 73,
+        "durationSeconds": 2.92
+      }
+    },
+    {
+      "name": "04-back-rim-miss",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.4499999914276466
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.6650557977266733
+          },
+          "result": "rim-miss",
+          "made": false,
+          "contacts": [
+            {
+              "kind": "rim",
+              "time": 1.1999999999999957,
+              "position": {
+                "x": 0.0035224438179284334,
+                "y": 3.1418468952178955,
+                "z": -0.14556506276130676
+              },
+              "before": {
+                "x": 0,
+                "y": -4.344875812530518,
+                "z": -3.665055751800537
+              },
+              "after": {
+                "x": 0.22004514932632446,
+                "y": 1.8605679273605347,
+                "z": 2.548354148864746
+              }
+            },
+            {
+              "kind": "rim",
+              "time": 1.1999999999999957,
+              "position": {
+                "x": 0.0035224438179284334,
+                "y": 3.1418468952178955,
+                "z": -0.14556506276130676
+              },
+              "before": {
+                "x": 0,
+                "y": -4.344875812530518,
+                "z": -3.665055751800537
+              },
+              "after": {
+                "x": 0.22004514932632446,
+                "y": 1.8605679273605347,
+                "z": 2.548354148864746
+              }
+            },
+            {
+              "kind": "rim",
+              "time": 1.1999999999999957,
+              "position": {
+                "x": 0.0035224438179284334,
+                "y": 3.1418468952178955,
+                "z": -0.14556506276130676
+              },
+              "before": {
+                "x": 0,
+                "y": -4.344875812530518,
+                "z": -3.665055751800537
+              },
+              "after": {
+                "x": 0.22004514932632446,
+                "y": 1.8605679273605347,
+                "z": 2.548354148864746
+              }
+            },
+            {
+              "kind": "rim",
+              "time": 1.1999999999999957,
+              "position": {
+                "x": 0.0035224438179284334,
+                "y": 3.1418468952178955,
+                "z": -0.14556506276130676
+              },
+              "before": {
+                "x": 0,
+                "y": -4.344875812530518,
+                "z": -3.665055751800537
+              },
+              "after": {
+                "x": 0.22004514932632446,
+                "y": 1.8605679273605347,
+                "z": 2.548354148864746
+              }
+            }
+          ]
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 1,
+        "makes": 0,
+        "simTime": 2.858333333333326,
+        "bodyCount": 2,
+        "dynamicCount": 1,
+        "worldBodies": 5,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 2,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 52,
+        "frames": 70,
+        "durationSeconds": 2.8
+      }
+    },
+    {
+      "name": "05-backboard-contact",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.5499999657105864
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.9622224096717735
+          },
+          "result": "board-make",
+          "made": true,
+          "contacts": [
+            {
+              "kind": "board",
+              "time": 1.1416666666666626,
+              "position": {
+                "x": 0,
+                "y": 3.3427979946136475,
+                "z": -0.2719830274581909
+              },
+              "before": {
+                "x": 0,
+                "y": -3.7726223468780518,
+                "z": -3.9622223377227783
+              },
+              "after": {
+                "x": 0,
+                "y": -2.4556725025177,
+                "z": 2.4763894081115723
+              }
+            }
+          ]
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 1,
+        "makes": 1,
+        "simTime": 2.2999999999999945,
+        "bodyCount": 2,
+        "dynamicCount": 1,
+        "worldBodies": 5,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 2,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 42,
+        "frames": 56,
+        "durationSeconds": 2.24
+      }
+    },
+    {
+      "name": "06-consecutive-attempts",
+      "shots": [
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.27999997942635185
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.4570391311538344
+          },
+          "result": "swish",
+          "made": true,
+          "contacts": []
+        },
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.06999995199482092
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.0311000786944926
+          },
+          "result": "short",
+          "made": false,
+          "contacts": [
+            {
+              "kind": "floor",
+              "time": 1.658333333333347,
+              "position": {
+                "x": 0,
+                "y": 0.14441806077957153,
+                "z": -0.8204363584518433
+              },
+              "before": {
+                "x": 0,
+                "y": -8.841154098510742,
+                "z": -3.031100034713745
+              },
+              "after": {
+                "x": 0,
+                "y": 6.0357513427734375,
+                "z": -2.2970237731933594
+              }
+            }
+          ]
+        },
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.319999994856588
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.4768502513539308
+          },
+          "result": "swish",
+          "made": true,
+          "contacts": []
+        },
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.1499999828552932
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.2688335210956456
+          },
+          "result": "rim-miss",
+          "made": false,
+          "contacts": [
+            {
+              "kind": "rim",
+              "time": 1.1916666666666913,
+              "position": {
+                "x": -1.0396047356309168e-9,
+                "y": 3.1836297512054443,
+                "z": 0.3416332006454468
+              },
+              "before": {
+                "x": 0,
+                "y": -4.263124942779541,
+                "z": -3.268833637237549
+              },
+              "after": {
+                "x": -1.258096062883851e-7,
+                "y": 2.671316385269165,
+                "z": 1.2117202281951904
+              }
+            },
+            {
+              "kind": "rim",
+              "time": 1.1916666666666913,
+              "position": {
+                "x": -1.0396047356309168e-9,
+                "y": 3.1836297512054443,
+                "z": 0.3416332006454468
+              },
+              "before": {
+                "x": 0,
+                "y": -4.263124942779541,
+                "z": -3.268833637237549
+              },
+              "after": {
+                "x": -1.258096062883851e-7,
+                "y": 2.671316385269165,
+                "z": 1.2117202281951904
+              }
+            }
+          ]
+        },
+        {
+          "normalized": {
+            "dx": 0,
+            "up": 0.5499999657105864
+          },
+          "velocity": {
+            "x": 0,
+            "y": 7.345406728017176,
+            "z": -3.9622224096717735
+          },
+          "result": "board-make",
+          "made": true,
+          "contacts": [
+            {
+              "kind": "board",
+              "time": 1.1416666666666018,
+              "position": {
+                "x": 0,
+                "y": 3.3427979946136475,
+                "z": -0.2719830274581909
+              },
+              "before": {
+                "x": 0,
+                "y": -3.7726223468780518,
+                "z": -3.9622223377227783
+              },
+              "after": {
+                "x": 0,
+                "y": -2.4556725025177,
+                "z": 2.4763894081115723
+              }
+            }
+          ]
+        }
+      ],
+      "final": {
+        "ready": true,
+        "phase": "ready",
+        "sessionId": 1,
+        "attempts": 5,
+        "makes": 3,
+        "simTime": 11.658333333333312,
+        "bodyCount": 3,
+        "dynamicCount": 2,
+        "worldBodies": 6,
+        "ballScreen": {
+          "x": 200,
+          "y": 619.9358692275789,
+          "radius": 44.26289722608717
+        },
+        "width": 400,
+        "height": 712,
+        "active": {
+          "id": 6,
+          "position": {
+            "x": 0,
+            "y": 1.350000023841858,
+            "z": 4.199999809265137
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        "projection": {
+          "ball": {
+            "x": 200,
+            "y": 619.9358692275789
+          },
+          "rim": {
+            "x": 200,
+            "y": 247.3337432885873
+          },
+          "apex": {
+            "x": 200,
+            "y": 44.312256677851366
+          }
+        }
+      },
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 212,
+        "frames": 290,
+        "durationSeconds": 11.6
+      }
+    }
+  ]
+}

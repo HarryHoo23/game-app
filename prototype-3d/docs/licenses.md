@@ -1,0 +1,7 @@
+# Asset and code provenance
+
+The court, basketball sphere and seams, hollow rim, backboard, static net, materials and UI are original procedural geometry/code created for AFTER HOURS. No external models, textures, fonts or audio are incorporated. Fonts use the operating system's sans-serif stack.
+
+Gameplay inspiration was studied from [thaslle/basketball](https://github.com/thaslle/basketball), commit `7b0c302482db574bece0ac55ea2ba71063edbcfd`. Its code license is MIT, copyright (c) 2024 Thalles Lopes. No source code or assets were copied into this prototype; the ballistic solver, directional scoring, pointer input and scene are original implementations. If reference code is copied later, include its full MIT notice with the copied material. The reference repository's model/texture/audio reuse rights have not been assumed.
+
+Open-source dependencies and their resolved versions are recorded in package-lock.json. Their own license files remain in node_modules; the production bundler preserves applicable legal comments. Main runtime packages: React/React DOM, Three.js, React Three Fiber, Drei, React Three Rapier and Zustand (MIT); the underlying Rapier engine package is Apache-2.0. These dependency licenses are separate from the reference game's asset permissions.
