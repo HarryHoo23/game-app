@@ -2,6 +2,22 @@
 
 Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Scope remains unlimited practice; the user has now reported improved shooting feel and successful human baskets.
 
+## Image integration and synchronized net refinement — 2026-10-19
+
+Baseline HEAD: `409732cacce6043df18ff8d4fa6fad925384ca63`. See [integration report](integration-pass.md) for exact implementation files, source-art compromise, media, timings, budgets and phone instructions. [Before/after page](verification/integration-2026-10-19/comparison.html).
+
+- Prototype unit/actual-Rapier tests: **42 passed across 17 files**. [Output](verification/integration-2026-10-19/checks/unit.log).
+- ESLint and packed-art reproducibility check passed. [Lint](verification/integration-2026-10-19/checks/lint.log), [art check](verification/integration-2026-10-19/checks/assets.log).
+- Final production TypeScript/build passed. JavaScript: 3,463,967 bytes raw / about 1.18 MB gzip. [Build output](verification/integration-2026-10-19/checks/build.log).
+- Final complete browser suite: **24/24 passed** with runtime source held unchanged, including 30-shot GPU/resource bounds. [Output](verification/integration-2026-10-19/checks/browser.log), [structured results](verification/integration-2026-10-19/checks/browser-results.json).
+- All three VP8/Opus recordings loaded in Chrome at 400×712 without media errors. [Media check](verification/integration-2026-10-19/checks/media.json).
+- A real Rapier test verifies descending net entry/motion before authoritative scoring, and a non-scoring brush without celebration. Texture tests verify metadata, alpha-derived board proportions, render/collider size parity, one full ring, fixed net attachment and no repeated texture version/upload requests.
+- Actual native-touch recordings compare three launch velocities/outcomes and **138 physical position samples** with the baseline: **zero position deviation**. [Comparison](verification/integration-2026-10-19/after/physical-comparison.json).
+- Four source-derived WebPs total **515,010 bytes**, down **92.83%** from **7,184,030 bytes** of PNGs. Their originals and all parent Phaser files remain unchanged.
+- The source hashes in the final [recording summary](verification/integration-2026-10-19/after/recording-summary.json) match all 40 delivered runtime files. Videos contain native-touch gameplay plus a tap of actual Web Audio output; no scores, body transforms or clocks are injected.
+
+Browser coverage now includes three portrait sizes, pre-score net entry and post-score swish timing, muted/reloaded/unmuted shooting, accessible controls outside the shot area, bounded geometries/textures/art uploads across 30 shots, pause/restart cleanup and production WebP loads. Human sound quality approval and physical phone load/performance remain pending. Older sections below describe their original commits and media.
+
 ## Hoop, audio, net and HUD pass — 2026-10-19
 
 The shared rim is now 0.232 m inner radius / 0.017 m tube radius; ball radius remains 0.12 m. Real Rapier tests preserve makes across five straight 20–40% upward swipes, as well as front/back-rim and board responses. The supplied project PNGs now texture the 3D sphere, board, hollow rim and deformable net. A confirmed basket triggers a 280 ms net pull with directional sway and a restrained animated HUD reward. Audio is original synthesis driven by accepted release, physical contacts and confirmed makes, unlocked only after player interaction. Full file/asset list and replacement instructions: [presentation pass](presentation-pass.md).
@@ -61,7 +77,7 @@ See recording-summary.json and browser-results.json in that directory for machin
 ## Limits and next action
 
 - Human learnability, enjoyment and the provisional 50–70% make-rate goal await a 20–30 shot playtest on the user's device. Automated chosen gestures cannot establish them.
-- No physical iPhone/Android performance or thermal testing has been done. The current production JavaScript is approximately 3.45 MB / 1.17 MB gzip, plus 7.18 MB of supplied PNGs; cold-load cost remains to measure and the art can be optimized later.
+- No physical iPhone/Android performance or thermal testing has been done. The current production JavaScript is approximately 3.45 MB / 1.17 MB gzip, plus about 0.511 MB of external WebPs (the small rim map is inlined; all four total 0.515 MB); cold-load cost remains to measure and the art can be optimized later.
 - Environment meshes and lighting remain simple. Visual net feedback and audio are now implemented in the presentation pass above; three-miss arcade rules/best-score persistence remain deferred as agreed.
 - Independent review identified one minor tuning defect deferred to the next feel pass: the configured X spin is forward spin for travel toward negative Z, despite the `backspin` name. Physics remains active and plausible, but correcting that sign should include retesting rim/board responses; the headless contact helper also needs to apply the same angular velocity.
 - The rim uses 32 capsules rather than an exact torus collider; chord approximation differs by about 1.3 mm at segment midpoints. Geometry parameters are shared with rendering.

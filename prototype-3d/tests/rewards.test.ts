@@ -53,7 +53,7 @@ it("net is anchored, directional, strongest for a swish and fully settles in 280
   expect(netPose(swish, 1, c).stretch).toBe(0);
   const peak = netPose(swish, 1.075, c),
     rim = netPose({ ...swish, result: "rim-make" }, 1.075, c);
-  expect(peak.stretch).toBeGreaterThan(0.2);
+  expect(peak.stretch).toBeGreaterThan(0.08);
   expect(peak.stretch).toBeGreaterThan(rim.stretch);
   expect(peak.x).toBeGreaterThan(0);
   expect(peak.z).toBeLessThan(0);
@@ -61,7 +61,7 @@ it("net is anchored, directional, strongest for a swish and fully settles in 280
   expect(netPose(null, 2, c)).toEqual({ stretch: 0, x: 0, z: 0 });
 });
 it("procedural sounds are bounded, finite, deterministic, and rim differs from glass", () => {
-  const sounds = ["release", "rim", "board", "swish", "make"] as const;
+  const sounds = ["release", "rim", "board", "swish", "make", "net"] as const;
   const samples = sounds.map((k) => synthesizeSound(k, 24000));
   for (const s of samples) {
     expect(s.length).toBeGreaterThan(1000);

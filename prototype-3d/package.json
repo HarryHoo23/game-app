@@ -9,7 +9,9 @@
     "preview": "vite preview --host 0.0.0.0 --port 4174 --strictPort",
     "test": "vitest run",
     "lint": "eslint src tests",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "assets:build": "python3 scripts/prepare-art.py",
+    "assets:check": "python3 scripts/prepare-art.py --check"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",

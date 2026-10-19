@@ -97,7 +97,7 @@ export function App() {
           </Suspense>
         </Canvas>
       </GameBoundary>
-      <PracticeHud />
+      <PracticeHud audio={audio} />
       {!loaded && <p className="loading">Opening the court…</p>}
       <PauseOverlay />
     </main>

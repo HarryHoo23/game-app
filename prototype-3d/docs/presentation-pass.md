@@ -1,5 +1,7 @@
 # Hoop, sound and reward pass — 2026-10-19
 
+Historical record for commit `409732c`. The follow-up [image integration report](integration-pass.md) describes the current materials, earlier physical net response, mute control and compressed assets.
+
 The rim now has a 0.232 m inner radius and 0.017 m tube radius. The ball stays at 0.12 m. Visual torus halves, capsule colliders, scoring clearance and preview sweeps all use the same configuration. The launch solver, gesture mapping, spin, recovery and scoring rules are unchanged. Five straight swipes from 20–40% of screen height still make physical baskets in Rapier regression tests; this is not a claim about human make rate.
 
 ## Presentation

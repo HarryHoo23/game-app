@@ -59,3 +59,24 @@ it("denied audio initialization does not escape into gameplay", () => {
   expect(audio.play("release")).toBe(false);
   expect(() => audio.dispose()).not.toThrow();
 });
+it("persists mute and does not create an audio context for a muted shot", () => {
+  const saved = new Map<string, string>();
+  const storage = {
+    getItem: (key: string) => saved.get(key) ?? null,
+    setItem: (key: string, value: string) => {
+      saved.set(key, value);
+    },
+  };
+  const factory = vi.fn(() => {
+    throw new Error("should stay locked");
+  });
+  const audio = createShotAudio(factory, storage);
+  audio.setMuted(true);
+  audio.unlock();
+  expect(audio.play("swish")).toBe(false);
+  expect(factory).not.toHaveBeenCalled();
+  const next = createShotAudio(factory, storage);
+  expect(next.snapshot().muted).toBe(true);
+  next.setMuted(false);
+  expect(createShotAudio(factory, storage).snapshot().muted).toBe(false);
+});

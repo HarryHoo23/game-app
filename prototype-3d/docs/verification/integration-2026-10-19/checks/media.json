@@ -1,0 +1,23 @@
+[
+  {
+    "src": "after/recordings/clean-swish.webm",
+    "width": 400,
+    "height": 712,
+    "duration": 2.72,
+    "error": null
+  },
+  {
+    "src": "after/recordings/rim-miss.webm",
+    "width": 400,
+    "height": 712,
+    "duration": 3.24,
+    "error": null
+  },
+  {
+    "src": "after/recordings/board-contact.webm",
+    "width": 400,
+    "height": 712,
+    "duration": 2.44,
+    "error": null
+  }
+]

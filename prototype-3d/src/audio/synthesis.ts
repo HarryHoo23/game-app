@@ -1,9 +1,10 @@
-export type SoundKind = "release" | "rim" | "board" | "swish" | "make";
+export type SoundKind = "release" | "rim" | "board" | "swish" | "make" | "net";
 export const soundDuration: Record<SoundKind, number> = {
-  release: 0.12,
+  net: 0.14,
+  release: 0.09,
   rim: 0.28,
   board: 0.22,
-  swish: 0.26,
+  swish: 0.2,
   make: 0.24,
 };
 /** Original, deterministic mono sounds. No network, sample license, or runtime oscillator pool. */
@@ -33,15 +34,18 @@ export function synthesizeSound(kind: SoundKind, rate: number): Float32Array {
     if (kind === "board")
       value =
         (0.45 * tone(126) + 0.18 * tone(208) + low * 0.4) * Math.exp(-t * 32);
+    if (kind === "net")
+      value =
+        (band * 1.8 + high * 0.04) * Math.min(1, t / 0.012) * Math.exp(-t * 24);
     if (kind === "swish")
       value =
-        (band * 2.8 + high * 0.08) *
+        (band * 2.5 + high * 0.06) *
         Math.min(1, t / 0.018) *
-        Math.exp(-t * 14) *
+        Math.exp(-t * 18) *
         (0.8 + 0.2 * Math.sin(t * 115));
     if (kind === "make")
       value =
-        (0.22 * tone(740) + 0.12 * tone(1110)) *
+        (0.12 * tone(740) + 0.06 * tone(1110)) *
         Math.min(1, t / 0.006) *
         Math.exp(-t * 23);
     const edge = Math.min(

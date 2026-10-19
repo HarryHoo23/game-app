@@ -1,0 +1,57 @@
+[
+  {
+    "case": "clean-swish",
+    "matchedPhysicalSamples": 38,
+    "maximumPositionDeviationMetres": 0,
+    "velocityUnchanged": true,
+    "resultUnchanged": true,
+    "velocity": {
+      "x": 0,
+      "y": 7.345406728017176,
+      "z": -3.4669446806396413
+    },
+    "result": "swish",
+    "beforeContacts": [],
+    "afterContacts": []
+  },
+  {
+    "case": "rim-miss",
+    "matchedPhysicalSamples": 61,
+    "maximumPositionDeviationMetres": 0,
+    "velocityUnchanged": true,
+    "resultUnchanged": true,
+    "velocity": {
+      "x": 0,
+      "y": 7.345406728017176,
+      "z": -3.2688335210956456
+    },
+    "result": "rim-miss",
+    "beforeContacts": [
+      "rim",
+      "rim"
+    ],
+    "afterContacts": [
+      "rim",
+      "rim"
+    ]
+  },
+  {
+    "case": "board-contact",
+    "matchedPhysicalSamples": 39,
+    "maximumPositionDeviationMetres": 0,
+    "velocityUnchanged": true,
+    "resultUnchanged": true,
+    "velocity": {
+      "x": 0,
+      "y": 7.345406728017176,
+      "z": -3.9622224096717735
+    },
+    "result": "board-make",
+    "beforeContacts": [
+      "board"
+    ],
+    "afterContacts": [
+      "board"
+    ]
+  }
+]

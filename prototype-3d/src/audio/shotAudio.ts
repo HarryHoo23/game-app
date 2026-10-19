@@ -3,20 +3,34 @@ import { synthesizeSound, type SoundKind } from "./synthesis";
 /** One lazily unlocked context; at most eight short voices, with no queued autoplay. */
 export function createShotAudio(
   factory: () => AudioContext = () => new AudioContext(),
+  storage?: Pick<Storage, "getItem" | "setItem">,
 ) {
   let context: AudioContext | null = null,
     master: GainNode | null = null;
   let paused = false,
     played = 0;
+  let muted = false;
+  try {
+    storage ??= globalThis.localStorage;
+    muted = storage?.getItem("afterhours3d-muted") === "1";
+  } catch {
+    /* Storage can be unavailable in private/embedded contexts. */
+  }
   const buffers = new Map<SoundKind, AudioBuffer>(),
     voices = new Set<AudioBufferSourceNode>();
   const stop = () => {
-    for (const source of voices) source.stop();
+    for (const source of voices) {
+      try {
+        source.stop();
+      } catch {
+        source.disconnect();
+      }
+    }
     voices.clear();
   };
   return {
     unlock() {
-      if (paused) return;
+      if (paused || muted) return;
       try {
         if (!context || context.state === "closed") {
           context = factory();
@@ -25,14 +39,13 @@ export function createShotAudio(
           master.connect(context.destination);
           buffers.clear();
         }
-        if (context.state === "suspended")
-          void context.resume().catch(() => {});
+        if (context.state !== "running") void context.resume().catch(() => {});
       } catch {
         /* Audio is optional; unsupported/denied playback must not interrupt play. */
       }
     },
     play(kind: SoundKind, strength = 1) {
-      if (paused || !context || context.state !== "running" || !master)
+      if (paused || muted || !context || context.state !== "running" || !master)
         return false;
       if (voices.size >= 8) return false;
       try {
@@ -66,11 +79,21 @@ export function createShotAudio(
       paused = value;
       if (value) stop();
     },
+    setMuted(value: boolean) {
+      muted = value;
+      if (value) stop();
+      try {
+        storage?.setItem("afterhours3d-muted", value ? "1" : "0");
+      } catch {
+        /* Preference remains valid for this session. */
+      }
+    },
     stop,
     snapshot: () => ({
       state: context?.state ?? "locked",
       played,
       voices: voices.size,
+      muted,
     }),
     dispose() {
       stop();

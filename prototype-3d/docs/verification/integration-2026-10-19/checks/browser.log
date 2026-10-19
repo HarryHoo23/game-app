@@ -1,0 +1,37 @@
+[2m[WebServer] [22m(node:94699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:94800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 24 tests using 1 worker
+
+(node:94813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:94813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 320x568 (4.0s)
+  ✓   2 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 400x712 (3.3s)
+  ✓   3 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 430x820 (3.0s)
+  ✓   4 tests/browser/integration.spec.ts:49:1 › mute persists across reload and never consumes/intercepts a shot (6.1s)
+  ✓   5 tests/browser/integration.spec.ts:95:1 › production loads optimized art successfully and does not fetch source PNGs (3.6s)
+  ✓   6 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (1.4s)
+  ✓   7 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (1.4s)
+  ✓   8 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.0m)
+  ✓   9 tests/browser/lifecycle.spec.ts:84:1 › resize cancels aiming and preserves released physics (2.9s)
+  ✓  10 tests/browser/lifecycle.spec.ts:112:1 › native touch cancellation and extra touches do not add shots (3.2s)
+  ✓  11 tests/browser/lifecycle.spec.ts:150:1 › pause and simulated background visibility suspend physical time until explicit resume (4.2s)
+  ✓  12 tests/browser/lifecycle.spec.ts:195:1 › clipboard denial provides a JSON download (1.3s)
+  ✓  13 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (3.7s)
+  ✓  14 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (814ms)
+  ✓  15 tests/browser/rewards.spec.ts:3:1 › audio stays locked before interaction; real swish animates the net and rewards HUD (5.6s)
+  ✓  16 tests/browser/rewards.spec.ts:52:1 › rim and glass audio correspond to physical contacts; makes react once and pause stops voices (6.4s)
+  ✓  17 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (3.2s)
+  ✓  18 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (3.1s)
+  ✓  19 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (3.1s)
+  ✓  20 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (3.0s)
+  ✓  21 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (14.2s)
+  ✓  22 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (7.3s)
+  ✓  23 tests/browser/shotVisuals.spec.ts:3:1 › prepared arc follows the swipe, becomes a real trail, and clears on restart (3.4s)
+  ✓  24 tests/browser/shotVisuals.spec.ts:58:1 › cancelled aim and paused preview return to the baseline without consuming shots (1.5s)
+
+  24 passed (2.6m)

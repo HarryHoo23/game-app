@@ -53,11 +53,17 @@ export function createShotFeedback(audio: {
   let net: NetPulse | null = null,
     activeId: number | null = null,
     resolved = false,
-    time = 0;
+    time = 0,
+    entered = false,
+    lastTouch = -Infinity;
+  const pose = { stretch: 0, x: 0, z: 0, bulge: 0, depth: 0 };
+  const speed = { stretch: 0, x: 0, z: 0, bulge: 0 };
+  const touch = { stretch: 0, x: 0, z: 0, bulge: 0, depth: 0 };
+  const passages: { shotId: number; at: number; position: Vec3 }[] = [];
   const contacts = new Map<string, number>();
-  const events: { kind: SoundKind; shotId: number }[] = [];
-  const play = (kind: SoundKind, shotId: number, strength = 1) => {
-    events.push({ kind, shotId });
+  const events: { kind: SoundKind; shotId: number; at: number }[] = [];
+  const play = (kind: SoundKind, shotId: number, strength = 1, at = time) => {
+    events.push({ kind, shotId, at });
     if (events.length > 32) events.shift();
     audio.play(kind, strength);
   };
@@ -68,12 +74,81 @@ export function createShotFeedback(audio: {
     get time() {
       return time;
     },
+    get pose() {
+      return pose;
+    },
     step(now: number) {
+      const dt = Math.min(1 / 60, Math.max(0, now - time));
       time = now;
+      const reward = netPose(net, now, c),
+        touching = now - lastTouch < 0.025;
+      const targets = {
+        stretch: Math.max(touching ? touch.stretch : 0, reward.stretch),
+        x: (touching ? touch.x : 0) + reward.x * 0.45,
+        z: (touching ? touch.z : 0) + reward.z * 0.45,
+        bulge: touching ? touch.bulge : 0,
+      };
+      for (const key of ["stretch", "x", "z", "bulge"] as const) {
+        speed[key] +=
+          (1600 * (targets[key] - pose[key]) - 80 * speed[key]) * dt;
+        pose[key] += speed[key] * dt;
+        if (
+          Math.abs(pose[key]) < 0.00015 &&
+          Math.abs(speed[key]) < 0.003 &&
+          Math.abs(targets[key]) < 0.0001
+        )
+          pose[key] = speed[key] = 0;
+      }
+      pose.depth = touch.depth;
+    },
+    passage(id: number, prev: Sample, next: Sample) {
+      if (
+        id !== activeId ||
+        next.position.y >= prev.position.y ||
+        next.velocity.y >= 0
+      )
+        return;
+      const h = c.hoop.center,
+        bottom = h.y - c.feedback.netHeight;
+      const y = Math.max(bottom, Math.min(h.y, next.position.y));
+      const depth = (h.y - y) / c.feedback.netHeight;
+      const radius =
+        (c.hoop.innerRadius + c.hoop.tubeRadius) * (1 - 0.44 * depth);
+      const radial = Math.hypot(next.position.x - h.x, next.position.z - h.z);
+      if (
+        Math.hypot(next.position.y - y, Math.max(0, radial - radius)) >
+        c.ball.radius
+      )
+        return;
+      if (!entered) {
+        entered = true;
+        passages.push({ shotId: id, at: time, position: { ...next.position } });
+        if (passages.length > 16) passages.shift();
+        play("net", id, 0.38);
+      }
+      lastTouch = time;
+      touch.stretch = 0.025 + depth * 0.065;
+      touch.depth = depth;
+      touch.bulge = 0.009 * (1 - depth * 0.3);
+      touch.x = Math.max(
+        -0.035,
+        Math.min(
+          0.035,
+          (next.position.x - h.x) * 0.15 + next.velocity.x * 0.006,
+        ),
+      );
+      touch.z = Math.max(
+        -0.035,
+        Math.min(
+          0.035,
+          (next.position.z - h.z) * 0.12 + next.velocity.z * 0.006,
+        ),
+      );
     },
     launch(id: number) {
       activeId = id;
       resolved = false;
+      entered = false;
       contacts.clear();
       play("release", id, 0.65);
     },
@@ -108,6 +183,7 @@ export function createShotFeedback(audio: {
         result === "swish" ? "swish" : "make",
         id,
         result === "swish" ? 1 : 0.55,
+        now,
       );
     },
     reset() {
@@ -115,11 +191,20 @@ export function createShotFeedback(audio: {
       time = 0;
       activeId = null;
       resolved = false;
+      entered = false;
       contacts.clear();
       events.length = 0;
+      passages.length = 0;
+      lastTouch = -Infinity;
+      for (const key of ["stretch", "x", "z", "bulge"] as const) {
+        pose[key] = speed[key] = touch[key] = 0;
+      }
+      pose.depth = touch.depth = 0;
     },
     snapshot: () => ({
       events: events.map((e) => ({ ...e })),
+      passages: passages.map((p) => ({ ...p, position: { ...p.position } })),
+      pose: { ...pose },
       net: net
         ? {
             ...net,

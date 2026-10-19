@@ -1,0 +1,5 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-19T04_16_17_804Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 lint
+> eslint src tests
+

@@ -30,7 +30,7 @@ test("30 consecutive shots and rapid retries keep bodies and listeners bounded",
   page,
 }) => {
   await page.goto("/?automation");
-  await waitReady(page);
+  const initial = await waitReady(page);
   const listeners = await eventListenerCount(page),
     errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -44,6 +44,11 @@ test("30 consecutive shots and rapid retries keep bodies and listeners bounded",
     const s = await page.evaluate(() => window.afterHours3D!.snapshot());
     expect(s.bodyCount).toBeLessThanOrEqual(3);
     expect(s.worldBodies).toBeLessThanOrEqual(6);
+    expect(s.render.geometries).toBeLessThanOrEqual(
+      initial.render.geometries + 4,
+    );
+    expect(s.render.textures).toBeLessThanOrEqual(initial.render.textures + 1);
+    expect(s.render.artUploads).toBe(initial.render.artUploads);
   }
   await waitReady(page);
   expect(

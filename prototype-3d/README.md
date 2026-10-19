@@ -14,7 +14,9 @@ Start near the ball, swipe upward and release. Normal swipes are forgiving; swip
 
 A faint dotted arc shows the baseline shot while ready. During a swipe it brightens and follows the same launch calculation used on release, stopping at the first predicted rim/board/floor contact. It previews free flight, not bounce outcomes or a guaranteed basket. After release, a short shrinking trail follows actual physics samples, including rebounds. Pausing hides both; restarting clears the old trail.
 
-The current presentation uses the supplied hoop/ball/net art on 3D geometry, a slightly smaller physical rim (0.232 m inner radius, 0.017 m tube), and a 280 ms visual net pull on confirmed makes. Sound unlocks when starting a shot: a soft release, metal rim, lower glass knock, clean swish or restrained make tone. Pause/restart stops current audio; unavailable audio never blocks shooting. See [presentation pass](docs/presentation-pass.md) for exact files, event wiring, asset replacement and remaining work.
+The current presentation uses materials derived from the supplied hoop/ball/net art on 3D geometry, a physical rim of 0.232 m inner radius / 0.017 m tube, and a net that responds to actual descending passage before its 280 ms confirmed-make reward. Sound unlocks when starting a shot: soft release, metal rim, lower glass knock, a quiet entry brush and confirmed swish or restrained make tone. Pause/restart stops current audio; unavailable audio never blocks shooting. See [presentation pass](docs/presentation-pass.md) for exact files, event wiring, asset replacement and remaining work.
+
+Current refinement: [image integration and swish report](docs/integration-pass.md), including before/after frames, three recordings with actual game audio, exact changed files, packed-art preparation and phone playtest instructions. Production art is about 0.515 MB; source PNGs remain editable. Use the small speaker button to mute/unmute; the preference survives reload.
 
 ## First human playtest
 

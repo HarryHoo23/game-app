@@ -16,15 +16,18 @@ test("audio stays locked before interaction; real swish animates the net and rew
   });
   await swipe(page, { up: 0.3, touch: true });
   await page.waitForFunction(
-    () => window.afterHours3D!.snapshot().rewards.netPose.stretch > 0.12,
+    () => window.afterHours3D!.snapshot().rewards.netPose.stretch > 0.02,
   );
+  // Entry now precedes confirmation; inspect celebration only after the physical score resolves.
+  await shotResult(page, 1);
   s = await page.evaluate(() => window.afterHours3D!.snapshot());
   expect(s.rewards.feedback.events.map((e) => e.kind)).toEqual([
     "release",
+    "net",
     "swish",
   ]);
   expect(s.rewards.audio.state).toBe("running");
-  expect(s.rewards.audio.played).toBe(2);
+  expect(s.rewards.audio.played).toBe(3);
   expect(s.rewards.feedback.net!.result).toBe("swish");
   await expect(page.locator(".reward-title")).toHaveText("SWISH");
   await expect(page.getByTestId("makes")).toHaveText("1");

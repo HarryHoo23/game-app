@@ -124,6 +124,11 @@ button {
   color: #b1c5bf;
 }
 .feedback.made {
+  top: 47%;
+  left: 20px;
+  width: 40%;
+  padding: 0;
+  text-align: left;
   font-size: 18px;
   color: #f5d9a6;
 }
@@ -240,6 +245,7 @@ button:focus-visible {
   gap: 5px;
 }
 .feedback.made .feedback-content {
+  align-items: flex-start;
   animation: reward-arrive 0.32s cubic-bezier(0.2, 0.8, 0.25, 1) both;
 }
 .reward-point {
@@ -249,14 +255,14 @@ button:focus-visible {
   color: #bddbc6;
 }
 .reward-title {
-  font-size: 25px;
+  font-size: 17px;
   letter-spacing: 0.15em;
   line-height: 1.1;
   font-weight: 800;
   text-shadow: 0 0 25px #ebb76630;
 }
 .swish .reward-title {
-  font-size: 30px;
+  font-size: 24px;
 }
 .feedback-detail {
   font-size: 12px;
@@ -322,10 +328,10 @@ button:focus-visible {
     top: 47%;
   }
   .reward-title {
-    font-size: 20px;
+    font-size: 14px;
   }
   .swish .reward-title {
-    font-size: 23px;
+    font-size: 20px;
   }
   .feedback-content {
     gap: 3px;

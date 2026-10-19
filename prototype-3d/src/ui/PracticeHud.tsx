@@ -3,6 +3,7 @@ import { usePracticeStore as store } from "../store";
 import { copySession, sessionLog } from "../debug/sessionLog";
 import type { ShotResult } from "../domain/shot";
 import { isMake } from "../domain/shot";
+import type { ShotAudio } from "../audio/shotAudio";
 const feedback: Record<ShotResult, string> = {
   swish: "Nothing but net.",
   "rim-make": "Off the rim. In.",
@@ -25,7 +26,8 @@ function download(text: string) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-export function PracticeHud() {
+export function PracticeHud({ audio }: { audio: ShotAudio }) {
+  const [muted, setMuted] = useState(() => audio.snapshot().muted);
   const s = store(),
     [copied, setCopied] = useState("Copy session JSON");
   const made = s.feedback !== null && isMake(s.feedback);
@@ -49,6 +51,25 @@ export function PracticeHud() {
         </div>
       </div>
       <div className="court-controls">
+        <button
+          aria-label={muted ? "Unmute audio" : "Mute audio"}
+          aria-pressed={muted}
+          onClick={() => {
+            const value = !muted;
+            audio.setMuted(value);
+            if (!value) audio.unlock();
+            setMuted(value);
+          }}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+            {muted ? (
+              <path d="m16 9 5 6m0-6-5 6" />
+            ) : (
+              <path d="M16 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14" />
+            )}
+          </svg>
+        </button>
         <button onClick={s.pause} aria-label="Pause practice">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 6v12M16 6v12" />

@@ -1,0 +1,22 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-19T04_16_05_835Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 623 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.43 kB │ gzip:     0.31 kB
+dist/assets/leather-D0LOFqaV.webp     32.02 kB
+dist/assets/board-B7doru5f.webp      163.54 kB
+dist/assets/net-DO5YuQXH.webp        315.43 kB
+dist/assets/index-D5CADrqn.css         4.70 kB │ gzip:     1.63 kB
+dist/assets/index-DcRk4kTs.js      3,463.97 kB │ gzip: 1,179.57 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 7.29s

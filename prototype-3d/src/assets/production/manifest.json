@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "sourceBytes": 7184030,
+  "productionBytes": 515010,
+  "assets": {
+    "board": {
+      "file": "board.webp",
+      "width": 768,
+      "height": 449,
+      "bytes": 163540,
+      "alpha": true,
+      "repeat": [
+        1,
+        1
+      ],
+      "sources": [
+        {
+          "file": "backboard.png",
+          "width": 1254,
+          "height": 1254,
+          "crop": [
+            0.017543859649122806,
+            0.21451355661881977,
+            0.9641148325358851,
+            0.5637958532695375
+          ],
+          "sha256": "77c5ab38e478c8a226706fe40f0f3e7981b3b2cdaac33bb80b5c6e581f4e1760"
+        }
+      ]
+    },
+    "leather": {
+      "file": "leather.webp",
+      "width": 256,
+      "height": 256,
+      "bytes": 32024,
+      "alpha": false,
+      "repeat": [
+        1,
+        1
+      ],
+      "sources": [
+        {
+          "file": "basketball.png",
+          "width": 1254,
+          "height": 1254,
+          "crop": [
+            0.3189792663476874,
+            0.1594896331738437,
+            0.07974481658692185,
+            0.07974481658692185
+          ],
+          "sha256": "06d2b12e736646058320729047f5324401ce86fa15505924a214436b32ff3a17"
+        }
+      ]
+    },
+    "rim": {
+      "file": "rim.webp",
+      "width": 128,
+      "height": 128,
+      "bytes": 4016,
+      "alpha": false,
+      "repeat": [
+        8,
+        1
+      ],
+      "sources": [
+        {
+          "file": "rim_front.png",
+          "width": 1254,
+          "height": 1254,
+          "crop": [
+            0.41467304625199364,
+            0.4082934609250399,
+            0.1674641148325359,
+            0.017543859649122806
+          ],
+          "sha256": "267c62d2be7d349acc91d91c3219338c15724d7116f72bfc9ab48b5df33c81b4"
+        },
+        {
+          "file": "rim_back.png",
+          "width": 1254,
+          "height": 1254,
+          "crop": [
+            0.41467304625199364,
+            0.3277511961722488,
+            0.1674641148325359,
+            0.017543859649122806
+          ],
+          "sha256": "1312f0898af11a36f7d42e39625e4300f047027382504b4be8e2fe08a8fa2e31"
+        }
+      ]
+    },
+    "net": {
+      "file": "net.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 315430,
+      "alpha": true,
+      "repeat": [
+        2,
+        1
+      ],
+      "sources": [
+        {
+          "file": "net.png",
+          "width": 1254,
+          "height": 1254,
+          "crop": [
+            0.050239234449760764,
+            0.09808612440191387,
+            0.8995215311004785,
+            0.75518341307815
+          ],
+          "sha256": "9ffa5501fa63984528e81a7afb7d24c749700e39954dfdd0f305a7d887f8f475"
+        }
+      ]
+    }
+  }
+}

@@ -35,8 +35,9 @@ import type { Sample, Contact } from "../domain/types";
 import { usePracticeStore as store } from "../store";
 import { sessionLog } from "../debug/sessionLog";
 import type { ShotAudio } from "../audio/shotAudio";
-import { netPose, type ShotFeedback } from "../domain/shotFeedback";
+import { type ShotFeedback } from "../domain/shotFeedback";
 import { hasPhysicalContact } from "../domain/physicalContact";
+import { artUploadCount } from "./artGeometry";
 type Flight = {
   prev: Sample;
   basket: BasketState;
@@ -57,12 +58,18 @@ export type DebugSnapshot = {
   bodyCount: number;
   dynamicCount: number;
   worldBodies: number;
+  render: {
+    geometries: number;
+    textures: number;
+    calls: number;
+    artUploads: number;
+  };
   ballScreen: ShotBridge["screen"];
   shotVisuals: ShotVisualDiagnostics | null;
   rewards: {
     audio: ReturnType<ShotAudio["snapshot"]>;
     feedback: ReturnType<ShotFeedback["snapshot"]>;
-    netPose: ReturnType<typeof netPose>;
+    netPose: ShotFeedback["pose"];
   };
   width: number;
   height: number;
@@ -106,7 +113,7 @@ export function PracticeScene({
   const bodies = useRef(new Map<number, RapierRigidBody>()),
     flights = useRef(new Map<number, Flight>());
   const { rapier, world } = useRapier(),
-    { camera, size } = useThree();
+    { camera, size, gl } = useThree();
   const register = useCallback(
     (id: number, body: RapierRigidBody | null) => {
       if (body) {
@@ -207,7 +214,11 @@ export function PracticeScene({
         time: life.time - s.launchedAt,
       };
       appendTrailSample(s.trail, next, c.shotVisuals.trail.sampleInterval);
-      if (s.resolved) continue;
+      feedback.passage(id, s.prev, next);
+      if (s.resolved) {
+        s.prev = next;
+        continue;
+      }
       const handles = new Set<number>(),
         collider = body.collider(0);
       // Collision events dispatch after all render-frame substeps. Read physical contacts
@@ -300,6 +311,12 @@ export function PracticeScene({
             b.isDynamic(),
           ).length,
           worldBodies: world.bodies.len(),
+          render: {
+            geometries: gl.info.memory.geometries,
+            textures: gl.info.memory.textures,
+            calls: gl.info.render.calls,
+            artUploads: artUploadCount(),
+          },
           ballScreen: bridge.current.screen
             ? { ...bridge.current.screen }
             : null,
@@ -314,7 +331,7 @@ export function PracticeScene({
           rewards: {
             audio: audio.snapshot(),
             feedback: feedback.snapshot(),
-            netPose: netPose(feedback.net, life.time, c),
+            netPose: { ...feedback.pose },
           },
           width: size.width,
           height: size.height,
@@ -346,7 +363,7 @@ export function PracticeScene({
     return () => {
       if (window.afterHours3D === api) delete window.afterHours3D;
     };
-  }, [bridge, camera, life, sessionId, size, world, audio, feedback]);
+  }, [bridge, camera, life, sessionId, size, world, audio, feedback, gl]);
   return (
     <>
       {ids.map((id) => (

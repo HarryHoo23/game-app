@@ -7,14 +7,17 @@ import {
 import { Quaternion, Euler } from "three";
 import { config as c, COURT_GROUPS } from "../config";
 import { createRimSegments } from "./geometry";
+import { rimGeometry } from "./artGeometry";
+import { useEffect } from "react";
 import { hoopArt, useArtTexture } from "./art";
 import { Net } from "./Net";
 import type { ShotFeedback } from "../domain/shotFeedback";
 export function Hoop({ feedback }: { feedback: ShotFeedback }) {
   const segments = useMemo(() => createRimSegments(c), []);
-  const board = useArtTexture(hoopArt.board, [22, 269, 1209, 707]);
-  const front = useArtTexture(hoopArt.rimFront, [520, 512, 210, 22]);
-  const back = useArtTexture(hoopArt.rimBack, [520, 411, 210, 22]);
+  const board = useArtTexture(hoopArt.board),
+    paint = useArtTexture(hoopArt.rim);
+  const geometry = useMemo(() => rimGeometry(c), []);
+  useEffect(() => () => geometry.dispose(), [geometry]);
   const h = c.hoop,
     b = c.board;
   return (
@@ -43,25 +46,14 @@ export function Hoop({ feedback }: { feedback: ShotFeedback }) {
             name="rim"
           />
         ))}
-        {[front, back].map((map, i) => (
-          <mesh
-            key={i}
-            position={[h.center.x, h.center.y, h.center.z]}
-            rotation={[Math.PI / 2, 0, i * Math.PI]}
-            castShadow
-          >
-            <torusGeometry
-              args={[
-                h.innerRadius + h.tubeRadius,
-                h.tubeRadius,
-                12,
-                64,
-                Math.PI,
-              ]}
-            />
-            <meshStandardMaterial map={map} metalness={0.32} roughness={0.38} />
-          </mesh>
-        ))}
+        <mesh
+          geometry={geometry}
+          position={[h.center.x, h.center.y, h.center.z]}
+          rotation={[Math.PI / 2, 0, 0]}
+          castShadow
+        >
+          <meshStandardMaterial map={paint} metalness={0.35} roughness={0.42} />
+        </mesh>
       </RigidBody>
       <RigidBody
         type="fixed"
@@ -88,14 +80,22 @@ export function Hoop({ feedback }: { feedback: ShotFeedback }) {
           position={[b.center.x, b.center.y, b.center.z + b.size.z / 2 + 0.001]}
         >
           <planeGeometry args={[b.size.x, b.size.y]} />
-          <meshBasicMaterial
+          <meshStandardMaterial
             map={board}
             transparent
             alphaTest={0.1}
-            toneMapped={false}
+            roughness={0.65}
+            metalness={0.18}
+            emissiveMap={board}
+            emissive="#ffffff"
+            emissiveIntensity={0.16}
           />
         </mesh>
       </RigidBody>
+      <mesh position={[0, h.center.y - 0.045, -0.335]} castShadow>
+        <boxGeometry args={[0.12, 0.075, 0.15]} />
+        <meshStandardMaterial map={paint} metalness={0.35} roughness={0.5} />
+      </mesh>
       <Net feedback={feedback} />
     </>
   );
