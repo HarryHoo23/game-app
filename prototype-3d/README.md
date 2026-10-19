@@ -18,6 +18,8 @@ The current presentation uses materials derived from the supplied hoop/ball/net 
 
 Current refinement: [image integration and swish report](docs/integration-pass.md), including before/after frames, three recordings with actual game audio, exact changed files, packed-art preparation and phone playtest instructions. Production art is about 0.515 MB; source PNGs remain editable. Use the small speaker button to mute/unmute; the preference survives reload.
 
+Latest: [final visual/mobile acceptance](docs/mobile-acceptance.md), with three before/after portrait sizes, four sound recordings, unchanged-flight comparison and a reproducible 25–30-shot iPhone/Android checklist. Only the non-colliding decorative support moved in this pass.
+
 ## First human playtest
 
 Take a few familiarization shots, then shoot 20–30 times naturally without interruption. Try small horizontal variations and shorter/longer swipes. Note whether misses are understandable, whether front/back-rim contacts look believable, and whether you want to retry. In development, expand **Session log** to copy JSON; a download is offered if the clipboard is unavailable. Restart clears the current log, so export first.

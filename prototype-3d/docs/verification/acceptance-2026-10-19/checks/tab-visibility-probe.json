@@ -1,0 +1,6 @@
+{
+  "before": false,
+  "hidden": false,
+  "after": false,
+  "environment": "isolated headless desktop Chrome, not a physical device"
+}

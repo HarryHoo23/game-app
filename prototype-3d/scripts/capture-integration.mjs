@@ -8,6 +8,7 @@ import { createHash } from "node:crypto";
 import { swipe, waitReady, shotResult } from "./lib/pointer-input.mjs";
 import { startFrameRecorder } from "./lib/frame-recorder.mjs";
 const out = process.argv[2] ?? "docs/verification/integration-2026-10-19/after";
+const baselineDir = process.argv[3];
 await mkdir(out + "/recordings", { recursive: true });
 await mkdir(out + "/traces", { recursive: true });
 const require = createRequire(import.meta.url);
@@ -35,7 +36,9 @@ async function hashSources(path) {
 await hashSources("src");
 const summary = {
   sourceHashes,
-  startingHead: "409732cacce6043df18ff8d4fa6fad925384ca63",
+  startingHead: execFileSync("git", ["rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim(),
   capturedHead: execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim(),
@@ -49,6 +52,11 @@ try {
     { name: "clean-swish", up: 0.3, result: "swish" },
     { name: "rim-miss", up: 0.15, result: "rim-miss" },
     { name: "board-contact", up: 0.55, result: "board-make" },
+    {
+      name: "consecutive",
+      sequence: [0.3, 0.15, 0.55, 0.3],
+      results: ["swish", "rim-miss", "board-make", "swish"],
+    },
   ]) {
     const context = await browser.newContext({
       viewport: { width: 400, height: 712 },
@@ -102,23 +110,64 @@ try {
       out + "/recordings/" + scenario.name + "-silent.webm",
     );
     const observations = [];
+    const eventFrames = [];
+    const capturedEntries = new Set();
     let observe = true;
     const monitor = (async () => {
       while (observe) {
-        observations.push(
-          await page.evaluate(() => window.afterHours3D.snapshot()),
-        );
+        const snapshot = await page.evaluate(() => ({
+          wallTime: performance.now(),
+          ...window.afterHours3D.snapshot(),
+        }));
+        observations.push(snapshot);
+        const entry = snapshot.rewards.feedback.passages.at(-1);
+        if (entry && !capturedEntries.has(entry.shotId)) {
+          capturedEntries.add(entry.shotId);
+          const file = `${scenario.name}-${entry.shotId}-entry.png`;
+          // Use Playwright's full-viewport capture: native CDP screenshots can
+          // show the host's underlying 500x625 surface instead of this portrait.
+          // Keep both timestamps because screenshot latency can cross scoring.
+          await page.screenshot({ path: out + "/" + file });
+          const after = await page.evaluate(() => ({
+            wallTime: performance.now(),
+            ...window.afterHours3D.snapshot(),
+          }));
+          eventFrames.push({ file, before: snapshot, after });
+        }
         await page.waitForTimeout(12);
       }
     })();
-    const input = await swipe(page, {
-      up: scenario.up,
-      touch: true,
-      duration: 240,
-      steps: 12,
-    });
-    const shot = await shotResult(page, input.attempt);
-    await page.waitForTimeout(450);
+    const inputs = [],
+      shots = [],
+      frames = [];
+    for (const up of scenario.sequence ?? [scenario.up]) {
+      const input = await swipe(page, {
+        up,
+        touch: true,
+        duration: 240,
+        steps: 12,
+      });
+      inputs.push(input);
+      // Save actual rendered frames during rotation, net entry, confirmation and recovery.
+      for (const delay of [300, 300, 300]) {
+        await page.waitForTimeout(delay);
+        const file = `${scenario.name}-${input.attempt}-rotation-${frames.length}.png`;
+        const snapshot = await page.evaluate(() => ({
+          wallTime: performance.now(),
+          ...window.afterHours3D.snapshot(),
+        }));
+        await page.screenshot({ path: out + "/" + file });
+        frames.push({ file, snapshot });
+      }
+      const shot = await shotResult(page, input.attempt);
+      shots.push(shot);
+      await page.screenshot({
+        path: `${out}/${scenario.name}-${input.attempt}-confirmed.png`,
+      });
+      await page.waitForTimeout(450);
+    }
+    const input = inputs[0],
+      shot = shots[0];
     observe = false;
     await monitor;
     await page.screenshot({ path: out + "/" + scenario.name + "-result.png" });
@@ -136,7 +185,10 @@ try {
       for (const b of new Uint8Array(buffer)) binary += String.fromCharCode(b);
       return { data: btoa(binary), start: s.start };
     });
-    assert.equal(shot.result, scenario.result);
+    assert.deepEqual(
+      shots.map((s) => s.result),
+      scenario.results ?? [scenario.result],
+    );
     assert.deepEqual(errors, []);
     if (scenario.result === "swish") assert.equal(shot.contacts.length, 0);
     const rewards = observations.at(-1).rewards;
@@ -144,6 +196,10 @@ try {
       scenario,
       input,
       shot,
+      shots,
+      inputs,
+      frames,
+      eventFrames,
       rewards,
       observations,
       recording,
@@ -180,7 +236,7 @@ try {
     );
     summary.scenarios.push({
       name: scenario.name,
-      result: shot.result,
+      result: shots.map((s) => s.result),
       recording,
       audio: !!audio,
       rewards,
@@ -204,17 +260,25 @@ for (const [current, baseline] of [
 ]) {
   const before = JSON.parse(
     await readFile(
-      out.replace(/after\/?$/, "before") + "/traces/" + baseline + ".json",
+      (baselineDir ?? out.replace(/after\/?$/, "before")) +
+        "/traces/" +
+        (baselineDir ? current : baseline) +
+        ".json",
       "utf8",
     ),
   );
   const after = JSON.parse(
     await readFile(out + "/traces/" + current + ".json", "utf8"),
   );
-  const a = before.shots[0],
+  const a = before.shot ?? before.shots[0],
     b = after.shot;
   assert.deepEqual(b.launch.velocity, a.launch.velocity);
+  assert.deepEqual(b.launch.angularVelocity, a.launch.angularVelocity);
   assert.equal(b.result, a.result);
+  assert.deepEqual(
+    b.contacts.map((c) => c.kind),
+    a.contacts.map((c) => c.kind),
+  );
   const matched = a.samples.flatMap((before) =>
     b.samples
       .filter((after) => Math.abs(before.time - after.time) < 1e-6)
@@ -227,7 +291,7 @@ for (const [current, baseline] of [
       ),
     ),
   );
-  assert.ok(maximumPositionDeviation < 1e-6);
+  assert.ok(matched.length > 0 && maximumPositionDeviation < 1e-6);
   comparison.push({
     case: current,
     matchedPhysicalSamples: matched.length,

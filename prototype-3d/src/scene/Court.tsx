@@ -71,8 +71,9 @@ export function Court() {
       <lineSegments geometry={fence}>
         <lineBasicMaterial color="#406269" transparent opacity={0.055} />
       </lineSegments>
-      <mesh position={[0, 1.35, -0.62]}>
-        <boxGeometry args={[0.075, 2.7, 0.075]} />
+      {/* Decorative only: offset behind the board, clear of the shooting corridor. */}
+      <mesh position={[0.65, 1.6, -0.62]}>
+        <boxGeometry args={[0.075, 3.2, 0.075]} />
         <meshStandardMaterial color="#30484b" metalness={0.4} roughness={0.7} />
       </mesh>
       <RigidBody

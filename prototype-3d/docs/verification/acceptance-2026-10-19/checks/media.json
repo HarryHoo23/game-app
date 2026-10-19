@@ -1,0 +1,38 @@
+{
+  "environment": "Isolated desktop Chrome; muted playback verifies decoding, not subjective audio quality",
+  "media": [
+    {
+      "url": "http://localhost:5174/docs/verification/acceptance-2026-10-19/after/recordings/clean-swish.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 2.72,
+      "error": null,
+      "streams": "[libvpx @ 0xa47058000] v1.14.1\n[aist#0:1/opus @ 0xa46c08300] Guessed Channel Layout: stereo\nInput #0, matroska,webm, from 'docs/verification/acceptance-2026-10-19/after/recordings/clean-swish.webm':\n  Metadata:\n    ENCODER         : Lavf61.1.100\n  Duration: 00:00:02.72, start: 0.000000, bitrate: 381 kb/s\n  Stream #0:0: Video: vp8 (libvpx), yuv420p(tv, progressive), 400x712, SAR 1:1 DAR 50:89, 25 fps, 25 tbr, 1k tbn\n      Metadata:\n        ENCODER         : Lavc61.3.100 libvpx\n        DURATION        : 00:00:02.720000000\n  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo (default)\n      Metadata:\n        DURATION        : 00:00:02.038000000\nAt least one output file must be specified\n"
+    },
+    {
+      "url": "http://localhost:5174/docs/verification/acceptance-2026-10-19/after/recordings/rim-miss.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 3.16,
+      "error": null,
+      "streams": "[libvpx @ 0xafd068000] v1.14.1\n[aist#0:1/opus @ 0xafcc08300] Guessed Channel Layout: stereo\nInput #0, matroska,webm, from 'docs/verification/acceptance-2026-10-19/after/recordings/rim-miss.webm':\n  Metadata:\n    ENCODER         : Lavf61.1.100\n  Duration: 00:00:03.16, start: 0.000000, bitrate: 364 kb/s\n  Stream #0:0: Video: vp8 (libvpx), yuv420p(tv, progressive), 400x712, SAR 1:1 DAR 50:89, 25 fps, 25 tbr, 1k tbn\n      Metadata:\n        ENCODER         : Lavc61.3.100 libvpx\n        DURATION        : 00:00:03.160000000\n  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo (default)\n      Metadata:\n        DURATION        : 00:00:01.857000000\nAt least one output file must be specified\n"
+    },
+    {
+      "url": "http://localhost:5174/docs/verification/acceptance-2026-10-19/after/recordings/board-contact.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 2.4,
+      "error": null,
+      "streams": "[libvpx @ 0xb5d058000] v1.14.1\n[aist#0:1/opus @ 0xb5cc08300] Guessed Channel Layout: stereo\nInput #0, matroska,webm, from 'docs/verification/acceptance-2026-10-19/after/recordings/board-contact.webm':\n  Metadata:\n    ENCODER         : Lavf61.1.100\n  Duration: 00:00:02.40, start: 0.000000, bitrate: 461 kb/s\n  Stream #0:0: Video: vp8 (libvpx), yuv420p(tv, progressive), 400x712, SAR 1:1 DAR 50:89, 25 fps, 25 tbr, 1k tbn\n      Metadata:\n        ENCODER         : Lavc61.3.100 libvpx\n        DURATION        : 00:00:02.400000000\n  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo (default)\n      Metadata:\n        DURATION        : 00:00:01.862000000\nAt least one output file must be specified\n"
+    },
+    {
+      "url": "http://localhost:5174/docs/verification/acceptance-2026-10-19/after/recordings/consecutive.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 10.08,
+      "error": null,
+      "streams": "[libvpx @ 0x951058000] v1.14.1\n[aist#0:1/opus @ 0x950c08300] Guessed Channel Layout: stereo\nInput #0, matroska,webm, from 'docs/verification/acceptance-2026-10-19/after/recordings/consecutive.webm':\n  Metadata:\n    ENCODER         : Lavf61.1.100\n  Duration: 00:00:10.08, start: 0.000000, bitrate: 459 kb/s\n  Stream #0:0: Video: vp8 (libvpx), yuv420p(tv, progressive), 400x712, SAR 1:1 DAR 50:89, 25 fps, 25 tbr, 1k tbn\n      Metadata:\n        ENCODER         : Lavc61.3.100 libvpx\n        DURATION        : 00:00:10.080000000\n  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo (default)\n      Metadata:\n        DURATION        : 00:00:09.378000000\nAt least one output file must be specified\n"
+    }
+  ],
+  "errors": []
+}

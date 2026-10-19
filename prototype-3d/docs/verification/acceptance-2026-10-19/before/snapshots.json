@@ -1,0 +1,266 @@
+[
+  {
+    "ready": true,
+    "phase": "ready",
+    "sessionId": 1,
+    "attempts": 0,
+    "makes": 0,
+    "simTime": 0.20833333333333331,
+    "bodyCount": 1,
+    "dynamicCount": 0,
+    "worldBodies": 4,
+    "render": {
+      "geometries": 16,
+      "textures": 7,
+      "calls": 18,
+      "artUploads": 4
+    },
+    "ballScreen": {
+      "x": 160,
+      "y": 494.5555810691921,
+      "radius": 35.31085059609201
+    },
+    "shotVisuals": {
+      "previewCount": 36,
+      "previewHit": false,
+      "previewVelocity": {
+        "x": 0,
+        "y": 7.345406728017176,
+        "z": -3.466944697622427
+      },
+      "trailCount": 0
+    },
+    "rewards": {
+      "audio": {
+        "state": "locked",
+        "played": 0,
+        "voices": 0,
+        "muted": false
+      },
+      "feedback": {
+        "events": [],
+        "passages": [],
+        "pose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0
+        },
+        "net": null
+      },
+      "netPose": {
+        "stretch": 0,
+        "x": 0,
+        "z": 0,
+        "bulge": 0,
+        "depth": 0
+      }
+    },
+    "width": 320,
+    "height": 568,
+    "active": {
+      "id": 1,
+      "position": {
+        "x": 0,
+        "y": 1.350000023841858,
+        "z": 4.199999809265137
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "projection": {
+      "ball": {
+        "x": 160,
+        "y": 494.5555810691921
+      },
+      "rim": {
+        "x": 160,
+        "y": 197.3111884661764
+      },
+      "apex": {
+        "x": 160,
+        "y": 35.350227237387045
+      }
+    }
+  },
+  {
+    "ready": true,
+    "phase": "ready",
+    "sessionId": 1,
+    "attempts": 0,
+    "makes": 0,
+    "simTime": 0.22499999999999998,
+    "bodyCount": 1,
+    "dynamicCount": 0,
+    "worldBodies": 4,
+    "render": {
+      "geometries": 16,
+      "textures": 7,
+      "calls": 18,
+      "artUploads": 4
+    },
+    "ballScreen": {
+      "x": 200,
+      "y": 619.9358692275789,
+      "radius": 44.26289722608717
+    },
+    "shotVisuals": {
+      "previewCount": 36,
+      "previewHit": false,
+      "previewVelocity": {
+        "x": 0,
+        "y": 7.345406728017176,
+        "z": -3.466944697622427
+      },
+      "trailCount": 0
+    },
+    "rewards": {
+      "audio": {
+        "state": "locked",
+        "played": 0,
+        "voices": 0,
+        "muted": false
+      },
+      "feedback": {
+        "events": [],
+        "passages": [],
+        "pose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0
+        },
+        "net": null
+      },
+      "netPose": {
+        "stretch": 0,
+        "x": 0,
+        "z": 0,
+        "bulge": 0,
+        "depth": 0
+      }
+    },
+    "width": 400,
+    "height": 712,
+    "active": {
+      "id": 1,
+      "position": {
+        "x": 0,
+        "y": 1.350000023841858,
+        "z": 4.199999809265137
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "projection": {
+      "ball": {
+        "x": 200,
+        "y": 619.9358692275789
+      },
+      "rim": {
+        "x": 200,
+        "y": 247.3337432885873
+      },
+      "apex": {
+        "x": 200,
+        "y": 44.312256677851366
+      }
+    }
+  },
+  {
+    "ready": true,
+    "phase": "ready",
+    "sessionId": 1,
+    "attempts": 0,
+    "makes": 0,
+    "simTime": 0.21666666666666665,
+    "bodyCount": 1,
+    "dynamicCount": 0,
+    "worldBodies": 4,
+    "render": {
+      "geometries": 16,
+      "textures": 7,
+      "calls": 18,
+      "artUploads": 4
+    },
+    "ballScreen": {
+      "x": 215,
+      "y": 713.9710853463689,
+      "radius": 50.97693219858354
+    },
+    "shotVisuals": {
+      "previewCount": 36,
+      "previewHit": false,
+      "previewVelocity": {
+        "x": 0,
+        "y": 7.345406728017176,
+        "z": -3.466944697622427
+      },
+      "trailCount": 0
+    },
+    "rewards": {
+      "audio": {
+        "state": "locked",
+        "played": 0,
+        "voices": 0,
+        "muted": false
+      },
+      "feedback": {
+        "events": [],
+        "passages": [],
+        "pose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0
+        },
+        "net": null
+      },
+      "netPose": {
+        "stretch": 0,
+        "x": 0,
+        "z": 0,
+        "bulge": 0,
+        "depth": 0
+      }
+    },
+    "width": 430,
+    "height": 820,
+    "active": {
+      "id": 1,
+      "position": {
+        "x": 0,
+        "y": 1.350000023841858,
+        "z": 4.199999809265137
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "projection": {
+      "ball": {
+        "x": 215,
+        "y": 713.9710853463689
+      },
+      "rim": {
+        "x": 215,
+        "y": 284.8506594053955
+      },
+      "apex": {
+        "x": 215,
+        "y": 51.03377875819961
+      }
+    }
+  }
+]

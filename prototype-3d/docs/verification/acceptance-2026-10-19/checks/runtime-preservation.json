@@ -1,0 +1,12 @@
+{
+  "baseline": "084a6378076411faed351a4415bbc9872687c7b6",
+  "capturedHead": "084a6378076411faed351a4415bbc9872687c7b6",
+  "sourceFiles": 40,
+  "changedRuntimeFiles": [
+    "src/scene/Court.tsx"
+  ],
+  "allDeliveredHashesMatch": true,
+  "matchedSamples": 138,
+  "maximumPositionDeviation": 0,
+  "baselineRecordingCapturedHead": "409732cacce6043df18ff8d4fa6fad925384ca63"
+}

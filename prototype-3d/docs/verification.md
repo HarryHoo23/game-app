@@ -2,6 +2,16 @@
 
 Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Scope remains unlimited practice; the user has now reported improved shooting feel and successful human baskets.
 
+## Final visual/mobile acceptance — 2026-10-19
+
+Baseline HEAD: `084a6378076411faed351a4415bbc9872687c7b6`. [Acceptance report and phone checklist](mobile-acceptance.md), [portraits and four sound videos](verification/acceptance-2026-10-19/comparison.html).
+
+Only the non-colliding decorative support moved/extended behind the right side of the board; no physical settings, camera, gameplay, ball material or source art changed. The three recorded launch/outcome comparisons retain zero deviation across 138 matched physical samples. Real entry frames and event traces show cloth feedback before scoring and a once-only reward.
+
+Final checks: **42 unit/real-Rapier**, **27 browser** and **106 original Phaser unit** tests pass; ESLint, art regeneration and TypeScript/production build pass. [Logs and browser JSON](verification/acceptance-2026-10-19/checks/). New browser cases cover compact native HUD taps, native held aim across rotation/restart, and real WebGL context loss/restoration with bounded restart uploads. The existing 30-shot resource, production art and lifecycle cases also pass.
+
+This is desktop Chrome touch/viewport emulation. There was **no physical iPhone/Android test**, device FPS/thermal measurement or human make-rate/audio approval. Actual OS background switching remains for the manual checklist; a two-tab headless probe did not alter visibility, so only simulated visibility logic is automated. The ball's reconstructed unseen surface, illustrated net intersections, existing bundle warning and known spin sign remain documented in the report. Earlier reports below retain their original evidence.
+
 ## Image integration and synchronized net refinement — 2026-10-19
 
 Baseline HEAD: `409732cacce6043df18ff8d4fa6fad925384ca63`. See [integration report](integration-pass.md) for exact implementation files, source-art compromise, media, timings, budgets and phone instructions. [Before/after page](verification/integration-2026-10-19/comparison.html).

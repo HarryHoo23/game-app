@@ -1,0 +1,413 @@
+{
+  "sourceHashes": {
+    "src/App.tsx": "fc6f59ff6fe2934ab4d17cdf9dedb22ca3d3c7e873b9c60c17543d0600dd2240",
+    "src/assets/hoop/backboard.png": "77c5ab38e478c8a226706fe40f0f3e7981b3b2cdaac33bb80b5c6e581f4e1760",
+    "src/assets/hoop/basketball.png": "06d2b12e736646058320729047f5324401ce86fa15505924a214436b32ff3a17",
+    "src/assets/hoop/net.png": "9ffa5501fa63984528e81a7afb7d24c749700e39954dfdd0f305a7d887f8f475",
+    "src/assets/hoop/rim_back.png": "1312f0898af11a36f7d42e39625e4300f047027382504b4be8e2fe08a8fa2e31",
+    "src/assets/hoop/rim_front.png": "267c62d2be7d349acc91d91c3219338c15724d7116f72bfc9ab48b5df33c81b4",
+    "src/assets/production/board.webp": "c9a687a72d6ad114043f650c7e969162f063ca3709c5d30519f13c6f3ff9e749",
+    "src/assets/production/leather.webp": "21041f136542c515b2ac958814545d90b42bdd6f3d7a0bd9109321f7ba78cb99",
+    "src/assets/production/manifest.json": "841cd2d8092032d14d2901b3a7b3652efee0647dad1a9f6b6b6254b5628714ec",
+    "src/assets/production/net.webp": "30e6b750008add4a58c90cbde78e646fb7d6fd0818727600a2cafdd7b878fd11",
+    "src/assets/production/rim.webp": "10f5b27d09ff151bc63e789f422a83934b58b679b0d83157f29f8702a0fdd238",
+    "src/audio/shotAudio.ts": "2b6bbe2747a9fc7b59d561f2dea3b4cc2f8f70bebcd03ede4e2894a763a85fd5",
+    "src/audio/synthesis.ts": "1efa8e9977b5b59c452f16f671c0c7140444e455b4e1ee972b67f7e622950e2b",
+    "src/config.ts": "2ad2e35b5a53debfbc53c6cb2abff5f33e349d4bc7fe94fbf4d718560b0e48f4",
+    "src/debug/sessionLog.ts": "503cc4917d02fe90f8009d26f5f117bfe0174487a4df2974fde0a033b9d38dd1",
+    "src/domain/launch.ts": "3519cae2793f2d6b0b0dfcb8967995306c1432306fcc683301a3825ea1b9b704",
+    "src/domain/physicalContact.ts": "5a7c0bbf73f0a4589909439685c96577ecdc7ed737b766f638feed4b8c8df97c",
+    "src/domain/practice.ts": "eabb853c7b2cdccd1d618f5d353387c5c88e325135e3668802e481ee13886422",
+    "src/domain/scoring.ts": "e5ad8ea988d955b547b2d611bd9dc7ea9e8fd097a4f4006116c5b6d39db74b85",
+    "src/domain/shot.ts": "a084da95036d9f791f630d3931d3d2326803745261114c9a9e135756cbd61c1c",
+    "src/domain/shotFeedback.ts": "02e5f81af77d61e6c8ecc36f844708e3472a50b8f7026c8f33aa216c3077c204",
+    "src/domain/shotVisuals.ts": "bb5181558417db7e7e48964aa5d91f2470c29c6ec86f86393af8646b97484925",
+    "src/domain/types.ts": "9b0674a94dfa5c4761f372875f67f2bca053a09bd55d22377897aa3fb1925008",
+    "src/input/pointerGesture.ts": "1a157d52dbd49a5c4212def2e670123d2c438201527ec8f9c9445f8299cc4aaa",
+    "src/input/useShotInput.ts": "07592924f78cf01b740d1479fa614195586b8dd1b3f5e5881944531d85512c80",
+    "src/main.tsx": "62db4b85f2360651e39bc14955c7cef5786492810d89d85e3f38aecfb206cb68",
+    "src/scene/Ball.tsx": "01e68e530c60353744cb99c42d3442c1aa1f27b89a515860002c7459ba039f93",
+    "src/scene/CameraRig.tsx": "7610d5d8a63654afe28ffd21e4174759cacf9b0626100121533581d9fcf99043",
+    "src/scene/Court.tsx": "fcc990c6024a00b910a68cbd3d997fea6a049c81a492d6aca25c5e6ae570753f",
+    "src/scene/Hoop.tsx": "5397d155836a912f97fdf646c9a8733c16768ca0b97b834cc010219d021fc045",
+    "src/scene/Net.tsx": "430885cc0fe701a85d32af44bed812451ff0fc7962df2c5375dbfbc481b8a58f",
+    "src/scene/PracticeScene.tsx": "c74b847f7fef5be6f20b5933a3b9058c0791c36e78db97a3039860d1f99537fc",
+    "src/scene/ShotPaths.tsx": "ac5d0c34110d525d70cdb20e721452835f4c363aa45a76fdf816df9d9e1befb7",
+    "src/scene/art.ts": "11d15f834f909cea4d9038afcb56dd5847c03fdc074cf2828faeffa87ec44348",
+    "src/scene/artGeometry.ts": "7966759e4958ca443f2334d354c850a1c098d8afe7dec789047a3a45859b659e",
+    "src/scene/geometry.ts": "a9258860f7b273d73f4f47da8b22f5dbb2b2627c70528c2a21ecd5f9041640b1",
+    "src/store.ts": "1031c6e63ad9ccb9dd4fce665f4be720478b45387883c65727e86d8f60701918",
+    "src/ui/PauseOverlay.tsx": "1f75f751cd9876cfe9d34b461b606d89c0e65f509a167e79f7957fd6e77fa57e",
+    "src/ui/PracticeHud.tsx": "2def6a93fa5cf1fb17f5f00b8fd5ba1facf2896ff077d19a1b979776f065fc7b",
+    "src/ui/styles.css": "9d2b34ebcb2058e7fa66f9782e4492974fedc5e565947c5a7c868a47a8eafe1a"
+  },
+  "startingHead": "084a6378076411faed351a4415bbc9872687c7b6",
+  "capturedHead": "084a6378076411faed351a4415bbc9872687c7b6",
+  "workingTree": " prototype-3d/README.md                       |  2 +\n prototype-3d/docs/verification.md            | 10 +++\n prototype-3d/scripts/capture-integration.mjs | 98 +++++++++++++++++++++++-----\n prototype-3d/src/scene/Court.tsx             |  5 +-\n 4 files changed, 96 insertions(+), 19 deletions(-)\n",
+  "source": "native touch only; no score, body or clock injection; Web Audio tapped only for recording",
+  "scenarios": [
+    {
+      "name": "clean-swish",
+      "result": [
+        "swish"
+      ],
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 35,
+        "frames": 68,
+        "durationSeconds": 2.72
+      },
+      "audio": true,
+      "rewards": {
+        "audio": {
+          "state": "running",
+          "played": 3,
+          "voices": 0,
+          "muted": false
+        },
+        "feedback": {
+          "events": [
+            {
+              "kind": "release",
+              "shotId": 1,
+              "at": 0.9583333333333324
+            },
+            {
+              "kind": "net",
+              "shotId": 1,
+              "at": 2.1416666666666617
+            },
+            {
+              "kind": "swish",
+              "shotId": 1,
+              "at": 2.208333333333328
+            }
+          ],
+          "passages": [
+            {
+              "shotId": 1,
+              "at": 2.1416666666666617,
+              "position": {
+                "x": 0,
+                "y": 3.161576509475708,
+                "z": 0.09742993116378784
+              }
+            }
+          ],
+          "pose": {
+            "stretch": 0,
+            "x": 0,
+            "z": 0,
+            "bulge": 0,
+            "depth": 0.8291099288246845
+          },
+          "net": {
+            "result": "swish",
+            "at": 2.208333333333328,
+            "position": {
+              "x": 0,
+              "y": 2.854886531829834,
+              "z": -0.13369973003864288
+            },
+            "velocity": {
+              "x": 0,
+              "y": -4.9171319007873535,
+              "z": -3.466944694519043
+            }
+          }
+        },
+        "netPose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0.8291099288246845
+        }
+      }
+    },
+    {
+      "name": "rim-miss",
+      "result": [
+        "rim-miss"
+      ],
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 56,
+        "frames": 79,
+        "durationSeconds": 3.16
+      },
+      "audio": true,
+      "rewards": {
+        "audio": {
+          "state": "running",
+          "played": 2,
+          "voices": 0,
+          "muted": false
+        },
+        "feedback": {
+          "events": [
+            {
+              "kind": "release",
+              "shotId": 1,
+              "at": 0.6833333333333333
+            },
+            {
+              "kind": "rim",
+              "shotId": 1,
+              "at": 1.8749999999999958
+            }
+          ],
+          "passages": [],
+          "pose": {
+            "stretch": 0,
+            "x": 0,
+            "z": 0,
+            "bulge": 0,
+            "depth": 0
+          },
+          "net": null
+        },
+        "netPose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "name": "board-contact",
+      "result": [
+        "board-make"
+      ],
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 41,
+        "frames": 60,
+        "durationSeconds": 2.4
+      },
+      "audio": true,
+      "rewards": {
+        "audio": {
+          "state": "running",
+          "played": 4,
+          "voices": 0,
+          "muted": false
+        },
+        "feedback": {
+          "events": [
+            {
+              "kind": "release",
+              "shotId": 1,
+              "at": 0.6500000000000001
+            },
+            {
+              "kind": "board",
+              "shotId": 1,
+              "at": 1.7916666666666627
+            },
+            {
+              "kind": "net",
+              "shotId": 1,
+              "at": 1.8583333333333292
+            },
+            {
+              "kind": "make",
+              "shotId": 1,
+              "at": 1.9416666666666622
+            }
+          ],
+          "passages": [
+            {
+              "shotId": 1,
+              "at": 1.8583333333333292,
+              "position": {
+                "x": 0,
+                "y": 3.1566050052642822,
+                "z": -0.10689052939414978
+              }
+            }
+          ],
+          "pose": {
+            "stretch": 0,
+            "x": 0,
+            "z": 0,
+            "bulge": 0,
+            "depth": 0.9859546748074615
+          },
+          "net": {
+            "result": "board-make",
+            "at": 1.9416666666666622,
+            "position": {
+              "x": 0,
+              "y": 2.862551689147949,
+              "z": 0.09947528690099716
+            },
+            "velocity": {
+              "x": 0,
+              "y": -3.927170991897583,
+              "z": 2.4763894081115723
+            }
+          }
+        },
+        "netPose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0.9859546748074615
+        }
+      }
+    },
+    {
+      "name": "consecutive",
+      "result": [
+        "swish",
+        "rim-miss",
+        "board-make",
+        "swish"
+      ],
+      "recording": {
+        "method": "real viewport screenshots paced by wall time; repeated frames where capture is slower than encoding",
+        "encodedFps": 25,
+        "captures": 137,
+        "frames": 252,
+        "durationSeconds": 10.08
+      },
+      "audio": true,
+      "rewards": {
+        "audio": {
+          "state": "running",
+          "played": 12,
+          "voices": 0,
+          "muted": false
+        },
+        "feedback": {
+          "events": [
+            {
+              "kind": "release",
+              "shotId": 1,
+              "at": 0.6416666666666668
+            },
+            {
+              "kind": "net",
+              "shotId": 1,
+              "at": 1.824999999999996
+            },
+            {
+              "kind": "swish",
+              "shotId": 1,
+              "at": 1.8916666666666624
+            },
+            {
+              "kind": "release",
+              "shotId": 2,
+              "at": 2.891666666666659
+            },
+            {
+              "kind": "rim",
+              "shotId": 2,
+              "at": 4.083333333333326
+            },
+            {
+              "kind": "release",
+              "shotId": 3,
+              "at": 5.941666666666752
+            },
+            {
+              "kind": "board",
+              "shotId": 3,
+              "at": 7.083333333333475
+            },
+            {
+              "kind": "net",
+              "shotId": 3,
+              "at": 7.150000000000145
+            },
+            {
+              "kind": "make",
+              "shotId": 3,
+              "at": 7.233333333333483
+            },
+            {
+              "kind": "release",
+              "shotId": 4,
+              "at": 8.258333333333505
+            },
+            {
+              "kind": "net",
+              "shotId": 4,
+              "at": 9.441666666666771
+            },
+            {
+              "kind": "swish",
+              "shotId": 4,
+              "at": 9.508333333333434
+            }
+          ],
+          "passages": [
+            {
+              "shotId": 1,
+              "at": 1.824999999999996,
+              "position": {
+                "x": 0,
+                "y": 3.161576509475708,
+                "z": 0.09742993116378784
+              }
+            },
+            {
+              "shotId": 3,
+              "at": 7.150000000000145,
+              "position": {
+                "x": 0,
+                "y": 3.1566050052642822,
+                "z": -0.10689052939414978
+              }
+            },
+            {
+              "shotId": 4,
+              "at": 9.441666666666771,
+              "position": {
+                "x": 0,
+                "y": 3.161576509475708,
+                "z": 0.09742993116378784
+              }
+            }
+          ],
+          "pose": {
+            "stretch": 0,
+            "x": 0,
+            "z": 0,
+            "bulge": 0,
+            "depth": 0.8291099288246845
+          },
+          "net": {
+            "result": "swish",
+            "at": 9.508333333333434,
+            "position": {
+              "x": 0,
+              "y": 2.854886531829834,
+              "z": -0.13369973003864288
+            },
+            "velocity": {
+              "x": 0,
+              "y": -4.9171319007873535,
+              "z": -3.466944694519043
+            }
+          }
+        },
+        "netPose": {
+          "stretch": 0,
+          "x": 0,
+          "z": 0,
+          "bulge": 0,
+          "depth": 0.8291099288246845
+        }
+      }
+    }
+  ]
+}

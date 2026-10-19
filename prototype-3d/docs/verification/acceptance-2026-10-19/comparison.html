@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  /><title>AFTER HOURS · final acceptance</title
+  ><style>
+    body {
+      background: #071820;
+      color: #e5eee9;
+      font: 16px system-ui;
+      margin: 24px auto;
+      padding: 0 18px;
+      max-width: 1100px;
+    }
+    h1 {
+      font-size: 25px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    a {
+      color: #edc88f;
+    }
+    .pair,
+    .clips {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    figure {
+      margin: 0 0 24px;
+    }
+    img,
+    video {
+      width: 200px;
+      max-width: 42vw;
+      display: block;
+      border: 1px solid #28434b;
+    }
+    figcaption {
+      font-size: 13px;
+      margin: 8px 0;
+    }
+    .clips figure {
+      max-width: 220px;
+    }
+    p {
+      line-height: 1.6;
+      max-width: 850px;
+    }
+  </style>
+  <h1>AFTER HOURS · visual & mobile acceptance</h1>
+  <p>
+    The only runtime edit moves/extends the non-colliding decorative support
+    behind the right of the board. Ball material, supplied assets, camera and
+    all physical settings are unchanged. Tests and recordings use desktop Chrome
+    with touch emulation; no physical iPhone/Android testing or device FPS
+    claim.
+  </p>
+  <p>
+    <a href="../../mobile-acceptance.md"
+      >Report and 25–30-shot phone checklist</a
+    >
+    · <a href="after/physical-comparison.json">Unchanged flight comparison</a>
+  </p>
+  <section>
+    <h2>320x568</h2>
+    <div class="pair">
+      <figure>
+        <img src="before/ready-320x568.png" />
+        <figcaption>Before · 084a637</figcaption>
+      </figure>
+      <figure>
+        <img src="after/ready-320x568.png" />
+        <figcaption>After · offset decorative support</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section>
+    <h2>400x712</h2>
+    <div class="pair">
+      <figure>
+        <img src="before/ready-400x712.png" />
+        <figcaption>Before · 084a637</figcaption>
+      </figure>
+      <figure>
+        <img src="after/ready-400x712.png" />
+        <figcaption>After · offset decorative support</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section>
+    <h2>430x820</h2>
+    <div class="pair">
+      <figure>
+        <img src="before/ready-430x820.png" />
+        <figcaption>Before · 084a637</figcaption>
+      </figure>
+      <figure>
+        <img src="after/ready-430x820.png" />
+        <figcaption>After · offset decorative support</figcaption>
+      </figure>
+    </div>
+  </section>
+  <h2>Actual gameplay with sound</h2>
+  <p>
+    Use the player controls to hear audio. Full portrait screenshots are paced
+    by wall time at 25 encoded fps; duplicate frames preserve duration. This
+    recording method is not a device performance measurement.
+  </p>
+  <div class="clips">
+    <figure>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        src="after/recordings/clean-swish.webm"
+      ></video>
+      <figcaption>Clean swish · captured game audio</figcaption>
+      <a href="after/traces/clean-swish.json">Physical/event trace</a>
+    </figure>
+    <figure>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        src="after/recordings/rim-miss.webm"
+      ></video>
+      <figcaption>Rim miss · captured game audio</figcaption>
+      <a href="after/traces/rim-miss.json">Physical/event trace</a>
+    </figure>
+    <figure>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        src="after/recordings/board-contact.webm"
+      ></video>
+      <figcaption>Board contact · captured game audio</figcaption>
+      <a href="after/traces/board-contact.json">Physical/event trace</a>
+    </figure>
+    <figure>
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        src="after/recordings/consecutive.webm"
+      ></video>
+      <figcaption>Four consecutive shots · captured game audio</figcaption>
+      <a href="after/traces/consecutive.json">Physical/event trace</a>
+    </figure>
+  </div>
+  <h2>Observed passage</h2>
+  <div class="pair">
+    <figure>
+      <img src="after/consecutive-1-entry.png" />
+      <figcaption>Physical entry · not scored yet</figcaption>
+    </figure>
+    <figure>
+      <img src="after/clean-swish-1-confirmed.png" />
+      <figcaption>Downward passage confirmed · one SWISH</figcaption>
+    </figure>
+    <figure>
+      <img src="after/clean-swish-result.png" />
+      <figcaption>Net settled · next shot available</figcaption>
+    </figure>
+  </div>
+</html>

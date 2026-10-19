@@ -1,0 +1,53 @@
+[2m[WebServer] [22m(node:18244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:18263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:18265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges (2.3s)
+(node:18342) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18342) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/browser/acceptance.spec.ts:46:1 › native held aim cancels on viewport rotation and restart; both orientations remain playable (21.6s)
+  ✓  3 tests/browser/acceptance.spec.ts:106:1 › real WebGL context loss restores rendering and bounded uploads across restart (5.4s)
+
+
+  1) tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: >= [32m36[39m
+    Received:    [31m34.75738525390625[39m
+
+      11 |     const button = page.getByRole("button", { name, exact: true });
+      12 |     const box = (await button.boundingBox())!;
+    > 13 |     expect(box.width).toBeGreaterThanOrEqual(36);
+         |                       ^
+      14 |     expect(box.height).toBeGreaterThanOrEqual(36);
+      15 |     await page.touchscreen.tap(box.x + 3, box.y + box.height / 2);
+      16 |     if (name === "Mute audio")
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/acceptance.spec.ts:13:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/acceptance-small-portrait--22bf4--taps-near-its-inside-edges/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/acceptance-small-portrait--22bf4--taps-near-its-inside-edges/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/acceptance-small-portrait--22bf4--taps-near-its-inside-edges/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/acceptance-small-portrait--22bf4--taps-near-its-inside-edges/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges
+  2 passed (35.2s)
