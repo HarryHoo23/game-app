@@ -6,13 +6,14 @@ export function createPracticeLifecycle(c: GameConfig) {
   const r = {
     time: 0,
     paused: false,
+    finished: false,
     readyId: 1 as number | null,
     balls: [
       { id: 1, status: "ready" as "ready" | "flying" | "resolved", born: 0 },
     ],
     launch() {
       const id = r.readyId;
-      if (id === null || r.paused) return null;
+      if (id === null || r.paused || r.finished) return null;
       const ball = r.balls.find((b) => b.id === id)!;
       ball.status = "flying";
       ball.born = r.time;
@@ -21,10 +22,15 @@ export function createPracticeLifecycle(c: GameConfig) {
     },
     resolve(id: number, result: ShotResult) {
       const ball = r.balls.find((b) => b.id === id);
-      if (!ball || ball.status !== "flying") return false;
+      if (r.finished || !ball || ball.status !== "flying") return false;
       ball.status = "resolved";
       due = r.time + (isMake(result) ? c.recovery.make : c.recovery.miss);
       return true;
+    },
+    finish() {
+      r.finished = true;
+      due = null;
+      r.readyId = null;
     },
     step(dt: number) {
       if (r.paused || !Number.isFinite(dt) || dt < 0) return false;

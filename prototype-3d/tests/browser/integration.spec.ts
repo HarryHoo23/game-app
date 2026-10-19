@@ -9,7 +9,7 @@ for (const viewport of [
     page,
   }) => {
     await page.setViewportSize(viewport);
-    await page.goto("/?automation");
+    await page.goto("/?automation&mode=practice");
     await waitReady(page);
     const controls = page.locator(".court-controls");
     const box = await controls.boundingBox();
@@ -42,7 +42,7 @@ for (const viewport of [
 test("mute persists across reload and never consumes/intercepts a shot", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await waitReady(page);
   await page.getByRole("button", { name: "Mute audio", exact: true }).click();
   expect(
@@ -84,7 +84,7 @@ test("production loads optimized art successfully and does not fetch source PNGs
       if (r.headers()["content-type"]?.startsWith("image/")) art.push(r.url());
     }
   });
-  await page.goto("http://localhost:4174/");
+  await page.goto("http://localhost:4174/?mode=practice");
   await page.locator(".loading").waitFor({ state: "detached" });
   await page.mouse.move(200, 620);
   await page.mouse.down();

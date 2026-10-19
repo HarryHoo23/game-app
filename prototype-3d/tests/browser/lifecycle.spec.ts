@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { swipe, waitReady, shotResult, eventListenerCount } from "./helpers";
 for (const transition of ["restart", "pause"] as const) {
   test(`held drag is cancelled across ${transition}`, async ({ page }) => {
-    await page.goto("/?automation");
+    await page.goto("/?automation&mode=practice");
     const s = await waitReady(page),
       p = s.ballScreen;
     await page.mouse.move(p.x, p.y);
@@ -29,7 +29,7 @@ for (const transition of ["restart", "pause"] as const) {
 test("30 consecutive shots and rapid retries keep bodies and listeners bounded", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const initial = await waitReady(page);
   const listeners = await eventListenerCount(page),
     errors: string[] = [];
@@ -78,7 +78,7 @@ test("30 consecutive shots and rapid retries keep bodies and listeners bounded",
 test("resize cancels aiming and preserves released physics", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const s = await waitReady(page),
     p = s.ballScreen;
   await page.mouse.move(p.x, p.y);
@@ -101,7 +101,7 @@ test("native touch cancellation and extra touches do not add shots", async ({
   page,
   context,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const s = await waitReady(page),
     p = s.ballScreen;
   const cd = await context.newCDPSession(page);
@@ -129,7 +129,7 @@ test("native touch cancellation and extra touches do not add shots", async ({
 test("pause and simulated background visibility suspend physical time until explicit resume", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await swipe(page, { up: 0.3 });
   await page.getByRole("button", { name: "Pause practice" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
@@ -168,7 +168,7 @@ test("pause and simulated background visibility suspend physical time until expl
   await waitReady(page);
 });
 test("clipboard denial provides a JSON download", async ({ page }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await waitReady(page);
   await page.evaluate(() =>
     Object.defineProperty(navigator, "clipboard", {

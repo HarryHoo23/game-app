@@ -4,7 +4,7 @@ import { waitReady, swipe, shotResult } from "./helpers";
 test("audio stays locked before interaction; real swish animates the net and rewards HUD", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await waitReady(page);
   let s = await page.evaluate(() => window.afterHours3D!.snapshot());
   expect(s.rewards.audio.state).toBe("locked");
@@ -57,7 +57,7 @@ test("rim and glass audio correspond to physical contacts; makes react once and 
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   for (const up of [0.15, 0.55]) {
     const input = await swipe(page, { up, touch: true });
     const shot = await shotResult(page, input.attempt);

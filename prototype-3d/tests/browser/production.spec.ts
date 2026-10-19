@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 test("production swipes score physically without DEV controls", async ({
   page,
 }) => {
-  await page.goto("http://localhost:4174/");
+  await page.goto("http://localhost:4174/?mode=practice");
   await page.locator(".loading").waitFor({ state: "detached" });
   expect(await page.evaluate(() => typeof window.afterHours3D)).toBe(
     "undefined",
@@ -26,7 +26,7 @@ test("failed WebGL initialization gives a retry action", async ({ page }) => {
       return original.apply(this, args);
     } as typeof original;
   });
-  await page.goto("/");
+  await page.goto("/?mode=practice");
   await expect(
     page.getByRole("button", { name: "Reload court" }),
   ).toBeVisible();

@@ -3,7 +3,7 @@ import { waitReady, shotResult } from "./helpers";
 test("prepared arc follows the swipe, becomes a real trail, and clears on restart", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const s = await waitReady(page),
     p = s.ballScreen;
   await expect
@@ -79,7 +79,7 @@ test("cancelled aim and paused preview return to the baseline without consuming 
   context,
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const s = await waitReady(page),
     p = s.ballScreen;
   const client = await context.newCDPSession(page);

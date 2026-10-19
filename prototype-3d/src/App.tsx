@@ -49,7 +49,13 @@ export function App() {
   const onReady = useCallback(() => setLoaded(true), []);
   const sessionId = store((s) => s.sessionId),
     phase = store((s) => s.phase);
-  useShotInput(el, bridge, sessionId, phase === "paused", audio);
+  useShotInput(
+    el,
+    bridge,
+    sessionId,
+    phase === "paused" || phase === "gameover",
+    audio,
+  );
   useEffect(() => {
     audio.setPaused(phase === "paused");
   }, [audio, phase]);

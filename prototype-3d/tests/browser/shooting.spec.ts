@@ -12,7 +12,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("/?automation");
+    await page.goto("/?automation&mode=practice");
     const s = await waitReady(page);
     for (const p of Object.values(s.projection) as { x: number; y: number }[]) {
       expect(p.x).toBeGreaterThan(0);
@@ -39,7 +39,7 @@ for (const viewport of [
 test("actual pointer inputs yield readable physical misses and board contact", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await waitReady(page);
   for (const [up, dx, expected] of [
     [0.07, 0, "short"],
@@ -65,7 +65,7 @@ test("actual pointer inputs yield readable physical misses and board contact", a
 test("mouse move event count does not change the launched velocity", async ({
   page,
 }) => {
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const velocities = [];
   for (const steps of [1, 5, 50]) {
     const input = await swipe(page, {

@@ -54,6 +54,9 @@ export type DebugSnapshot = {
   sessionId: number;
   attempts: number;
   makes: number;
+  mode: "practice" | "endless";
+  missesLeft: number;
+  best: number;
   simTime: number;
   bodyCount: number;
   dynamicCount: number;
@@ -121,11 +124,13 @@ export function PracticeScene({
         onReady();
       } else bodies.current.delete(id);
       bridge.current.ready =
+        store.getState().sessionId === sessionId &&
         life.readyId !== null &&
         bodies.current.has(life.readyId) &&
-        store.getState().phase !== "paused";
+        (store.getState().phase === "ready" ||
+          store.getState().phase === "aiming");
     },
-    [bridge, life, onReady],
+    [bridge, life, onReady, sessionId],
   );
   useLayoutEffect(() => {
     const o = c.ball.origin,
@@ -148,11 +153,13 @@ export function PracticeScene({
       if (
         !b ||
         id === null ||
-        store.getState().phase === "paused" ||
+        (store.getState().phase !== "ready" &&
+          store.getState().phase !== "aiming") ||
         store.getState().sessionId !== sessionId
       )
         return false;
       if (life.launch() === null) return false;
+      if (!store.getState().recordLaunch(sessionId, id)) return false;
       bridge.current.ready = false;
       b.setBodyType(rapier.RigidBodyType.Dynamic, true);
       b.setLinvel(launch.velocity, true);
@@ -174,7 +181,6 @@ export function PracticeScene({
         resolved: false,
         trail,
       });
-      store.getState().recordLaunch(sessionId, id);
       feedback.launch(id);
       sessionLog?.recordLaunch({
         sessionId,
@@ -214,7 +220,8 @@ export function PracticeScene({
         time: life.time - s.launchedAt,
       };
       appendTrailSample(s.trail, next, c.shotVisuals.trail.sampleInterval);
-      feedback.passage(id, s.prev, next);
+      if (store.getState().phase !== "gameover")
+        feedback.passage(id, s.prev, next);
       if (s.resolved) {
         s.prev = next;
         continue;
@@ -267,8 +274,9 @@ export function PracticeScene({
       if (a.made || shouldRetire(next, s.contacts, next.time, c)) {
         s.resolved = true;
         const result = resolveShot(s.trace, s.contacts, a.made, c);
+        if (!store.getState().recordResult(sessionId, id, result)) continue;
         life.resolve(id, result);
-        store.getState().recordResult(sessionId, id, result);
+        if (store.getState().phase === "gameover") life.finish();
         feedback.result(id, result, next, life.time);
         sessionLog?.recordResult(id, result);
       }
@@ -276,7 +284,8 @@ export function PracticeScene({
     bridge.current.ready =
       life.readyId !== null &&
       bodies.current.has(life.readyId) &&
-      store.getState().phase !== "paused";
+      (store.getState().phase === "ready" ||
+        store.getState().phase === "aiming");
   });
   useEffect(() => {
     if (!import.meta.env.DEV) return;
@@ -305,6 +314,9 @@ export function PracticeScene({
           sessionId,
           attempts: s.attempts,
           makes: s.makes,
+          mode: s.mode,
+          missesLeft: s.missesLeft,
+          best: s.best,
           simTime: life.time,
           bodyCount: bodies.current.size,
           dynamicCount: [...bodies.current.values()].filter((b) =>

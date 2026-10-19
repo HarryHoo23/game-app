@@ -5,16 +5,15 @@ test("small portrait HUD responds to native taps near its inside edges", async (
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   await waitReady(page);
   for (const name of ["Mute audio", "Unmute audio", "Pause practice"]) {
     const button = page.getByRole("button", { name, exact: true });
-    // The previous tap briefly scales this button; measure its settled hit area.
-    await expect
-      .poll(async () => (await button.boundingBox())!.width)
-      .toBeGreaterThanOrEqual(35.99);
+    // Check the base target size; touch :active can begin between two layout
+    // reads. Tap inside the actual transformed bounds, including while pressed.
+    await expect(button).toHaveCSS("width", "36px");
+    await expect(button).toHaveCSS("height", "36px");
     const box = (await button.boundingBox())!;
-    expect(box.height).toBeGreaterThanOrEqual(35.99);
     await page.touchscreen.tap(box.x + 3, box.y + box.height / 2);
     if (name === "Mute audio")
       await expect(
@@ -44,7 +43,7 @@ test("native held aim cancels on viewport rotation and restart; both orientation
   context,
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const cd = await context.newCDPSession(page);
   for (const transition of ["rotate", "restart"]) {
     const s = await waitReady(page),
@@ -92,7 +91,7 @@ test("real WebGL context loss restores rendering and bounded uploads across rest
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/?automation");
+  await page.goto("/?automation&mode=practice");
   const initial = await waitReady(page);
   await page.evaluate(async () => {
     const canvas = document.querySelector("canvas")!;

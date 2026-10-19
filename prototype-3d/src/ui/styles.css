@@ -44,6 +44,72 @@ body {
   letter-spacing: 0.24em;
   color: #91aaa9;
 }
+.brand .mode-switch {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  min-height: 28px;
+  margin-top: -6px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.brand .mode-switch small {
+  letter-spacing: 0.12em;
+}
+.brand .mode-switch span {
+  font-size: 9px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #c7dbcb;
+}
+.swipe-tutorial {
+  position: absolute;
+  top: 64%;
+  left: 20px;
+  right: 20px;
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+  color: #c7dbcb;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.chances strong {
+  color: #f3d49c;
+}
+.game-over h1 {
+  margin-bottom: 0;
+}
+.run-totals {
+  display: flex;
+  gap: 48px;
+  margin: 8px 0 18px;
+}
+.run-totals div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.run-totals strong {
+  font-size: 44px;
+  color: #f3d49c;
+  font-variant-numeric: tabular-nums;
+}
+.run-totals span {
+  color: #a5bcb6;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.game-over .retry {
+  background: #f3d49c;
+  color: #102a32;
+  border-color: #f3d49c;
+  font-size: 18px;
+  font-weight: 700;
+}
 .error {
   position: absolute;
   inset: 0;
@@ -143,6 +209,9 @@ button {
   cursor: pointer;
   list-style: none;
   text-align: right;
+}
+.game[data-phase="gameover"] .debug {
+  z-index: 6;
 }
 .debug button {
   font-size: 10px;

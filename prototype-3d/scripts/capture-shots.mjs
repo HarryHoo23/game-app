@@ -36,7 +36,7 @@ try {
     const page = await context.newPage(),
       errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.goto("http://localhost:5174/?automation");
+    await page.goto("http://localhost:5174/?automation&mode=practice");
     await waitReady(page);
     await page.screenshot({ path: `${out}/${scenario.name}-idle.png` });
     const recorder = await startFrameRecorder(
