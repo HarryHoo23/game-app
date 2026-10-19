@@ -1,0 +1,26 @@
+{
+  "note": "Runtime after final gesture ownership fix, verified with 25 unit/physics tests and 15 browser cases. No changes to launch mapping, geometry or scoring since recorded clips.",
+  "files": {
+    "src/App.tsx": "fd6aba920d8a2655b8684a2111a4702c155c9e38a58484b71927a4a09e354dff",
+    "src/config.ts": "03db4ac6560758625b98da1db30d11a6957a4d7bddcabe7d5365f5db11904d6c",
+    "src/debug/sessionLog.ts": "503cc4917d02fe90f8009d26f5f117bfe0174487a4df2974fde0a033b9d38dd1",
+    "src/domain/launch.ts": "3519cae2793f2d6b0b0dfcb8967995306c1432306fcc683301a3825ea1b9b704",
+    "src/domain/practice.ts": "eabb853c7b2cdccd1d618f5d353387c5c88e325135e3668802e481ee13886422",
+    "src/domain/scoring.ts": "e5ad8ea988d955b547b2d611bd9dc7ea9e8fd097a4f4006116c5b6d39db74b85",
+    "src/domain/shot.ts": "a084da95036d9f791f630d3931d3d2326803745261114c9a9e135756cbd61c1c",
+    "src/domain/types.ts": "9b0674a94dfa5c4761f372875f67f2bca053a09bd55d22377897aa3fb1925008",
+    "src/input/pointerGesture.ts": "1a79ccd171239b5d68ea742247196d762c040406c2714abe99b0f83a615b01b8",
+    "src/input/useShotInput.ts": "b2d948085a7655fddf3293fbb846080915ccfcd0ae2714997c6a15b6a803ce6a",
+    "src/main.tsx": "62db4b85f2360651e39bc14955c7cef5786492810d89d85e3f38aecfb206cb68",
+    "src/scene/Ball.tsx": "e7d3e6b7051ee1dca4798b04c2a5e1e685f9e2cb19de8a7c56d1199a685dc118",
+    "src/scene/CameraRig.tsx": "7610d5d8a63654afe28ffd21e4174759cacf9b0626100121533581d9fcf99043",
+    "src/scene/Court.tsx": "cf63a3439269c95d93f2ec73ea5d27bdd6ae1f41d0d4463755cf20b0b02f2329",
+    "src/scene/Hoop.tsx": "4ee6feffaaf98f8f60c0d18c3dda3f879abff2b9b5fe69fcba1ea511bc4a505e",
+    "src/scene/PracticeScene.tsx": "c7dd9e948c2c57e547401974e69ba897d6ea4195a51d80d418676747171f9bd3",
+    "src/scene/geometry.ts": "a9258860f7b273d73f4f47da8b22f5dbb2b2627c70528c2a21ecd5f9041640b1",
+    "src/store.ts": "1031c6e63ad9ccb9dd4fce665f4be720478b45387883c65727e86d8f60701918",
+    "src/ui/PauseOverlay.tsx": "1f75f751cd9876cfe9d34b461b606d89c0e65f509a167e79f7957fd6e77fa57e",
+    "src/ui/PracticeHud.tsx": "0685a4499ceb9ae0e2d7ad6a612845f81b8509a0f2ddd940859231c579327653",
+    "src/ui/styles.css": "52f6468e7dd0d73e5b8f380ea6021d9065c8bf6b52be18601d31b3388c9daffe"
+  }
+}

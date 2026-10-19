@@ -3,6 +3,12 @@ import { usePracticeStore as store } from "../src/store";
 import { createPracticeLifecycle } from "../src/domain/practice";
 import { config as c } from "../src/config";
 beforeEach(() => store.getState().restart());
+it("pause cancels aiming rather than restoring an orphaned drag", () => {
+  store.getState().setAiming(true);
+  store.getState().pause();
+  store.getState().resume();
+  expect(store.getState().phase).toBe("ready");
+});
 it("practice_survives_30_attempts and one_result_per_shot", () => {
   const session = store.getState().sessionId;
   for (let i = 1; i <= 30; i++) {

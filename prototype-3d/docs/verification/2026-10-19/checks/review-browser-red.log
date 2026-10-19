@@ -1,0 +1,82 @@
+[2m[WebServer] [22m(node:1091) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:1117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:1119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (1.6s)
+(node:1186) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1186) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (1.5s)
+
+
+  1) tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart ───────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      11 |     }
+      12 |     await waitReady(page);await page.mouse.up();await page.waitForTimeout(100);
+    > 13 |     const after=await page.evaluate(()=>window.afterHours3D!.snapshot());expect(after.attempts).toBe(0);expect(after.phase).toBe('ready');
+         |                                                                                                 ^
+      14 |   });
+      15 | }
+      16 | test("30 consecutive shots and rapid retries keep bodies and listeners bounded", async ({
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/lifecycle.spec.ts:13:97
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lifecycle-held-drag-is-cancelled-across-restart/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lifecycle-held-drag-is-cancelled-across-restart/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lifecycle-held-drag-is-cancelled-across-restart/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lifecycle-held-drag-is-cancelled-across-restart/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause ─────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      11 |     }
+      12 |     await waitReady(page);await page.mouse.up();await page.waitForTimeout(100);
+    > 13 |     const after=await page.evaluate(()=>window.afterHours3D!.snapshot());expect(after.attempts).toBe(0);expect(after.phase).toBe('ready');
+         |                                                                                                 ^
+      14 |   });
+      15 | }
+      16 | test("30 consecutive shots and rapid retries keep bodies and listeners bounded", async ({
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/lifecycle.spec.ts:13:97
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lifecycle-held-drag-is-cancelled-across-pause/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lifecycle-held-drag-is-cancelled-across-pause/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lifecycle-held-drag-is-cancelled-across-pause/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lifecycle-held-drag-is-cancelled-across-pause/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart ────────────────────
+    tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause ──────────────────────

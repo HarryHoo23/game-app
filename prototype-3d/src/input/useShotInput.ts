@@ -11,10 +11,16 @@ export type ShotBridge = {
 export function useShotInput(
   element: RefObject<HTMLElement | null>,
   bridge: RefObject<ShotBridge>,
+  sessionId: number,
+  paused: boolean,
 ) {
   useEffect(() => {
     const el = element.current;
     if (!el) return;
+    if (paused) {
+      bridge.current.ready = false;
+      return;
+    }
     const gesture = createPointerGesture(config);
     let pointer: number | null = null;
     const cancel = () => {
@@ -101,5 +107,5 @@ export function useShotInput(
       el.removeEventListener("lostpointercapture", lost);
       document.removeEventListener("visibilitychange", hidden);
     };
-  }, [element, bridge]);
+  }, [element, bridge, sessionId, paused]);
 }

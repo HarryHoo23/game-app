@@ -45,7 +45,7 @@ export function App() {
   const onReady = useCallback(() => setLoaded(true), []);
   const sessionId = store((s) => s.sessionId),
     phase = store((s) => s.phase);
-  useShotInput(el, bridge);
+  useShotInput(el, bridge, sessionId, phase === "paused");
   useEffect(() => {
     const visibility = () => {
       setHidden(document.hidden);

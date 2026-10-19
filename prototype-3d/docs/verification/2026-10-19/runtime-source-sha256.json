@@ -1,5 +1,5 @@
 {
-  "note": "Runtime source present for final 13-case browser suite and full-viewport recordings; formatting-only script edits followed capture.",
+  "note": "Recorded runtime at 2a7d65f: 13-case browser suite and full-viewport native-touch clips. Final held-gesture ownership fix follows; physics, launch mapping and scoring unchanged.",
   "files": {
     "src/App.tsx": "8207a68427c05165fc8c960f2101d8bd41a70bc8657073a360d3b12f1e32641c",
     "src/config.ts": "03db4ac6560758625b98da1db30d11a6957a4d7bddcabe7d5365f5db11904d6c",

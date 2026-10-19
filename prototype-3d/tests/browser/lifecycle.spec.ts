@@ -1,5 +1,31 @@
 import { test, expect } from "@playwright/test";
 import { swipe, waitReady, shotResult, eventListenerCount } from "./helpers";
+for (const transition of ["restart", "pause"] as const) {
+  test(`held drag is cancelled across ${transition}`, async ({ page }) => {
+    await page.goto("/?automation");
+    const s = await waitReady(page),
+      p = s.ballScreen;
+    await page.mouse.move(p.x, p.y);
+    await page.mouse.down();
+    await page.mouse.move(p.x, p.y - s.height * 0.3);
+    const control = page.getByRole("button", {
+      name: transition === "restart" ? "Restart practice" : "Pause practice",
+      exact: true,
+    });
+    await control.focus();
+    await page.keyboard.press("Enter");
+    if (transition === "pause") {
+      await page.getByRole("button", { name: "Continue shooting" }).focus();
+      await page.keyboard.press("Enter");
+    }
+    await waitReady(page);
+    await page.mouse.up();
+    await page.waitForTimeout(100);
+    const after = await page.evaluate(() => window.afterHours3D!.snapshot());
+    expect(after.attempts).toBe(0);
+    expect(after.phase).toBe("ready");
+  });
+}
 test("30 consecutive shots and rapid retries keep bodies and listeners bounded", async ({
   page,
 }) => {

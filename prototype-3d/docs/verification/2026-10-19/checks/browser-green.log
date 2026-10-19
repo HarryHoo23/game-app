@@ -1,0 +1,28 @@
+[2m[WebServer] [22m(node:3020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:3069) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 15 tests using 1 worker
+
+(node:3072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (1.6s)
+  ✓   2 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (1.2s)
+  ✓   3 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.0m)
+  ✓   4 tests/browser/lifecycle.spec.ts:81:1 › resize cancels aiming and preserves released physics (2.9s)
+  ✓   5 tests/browser/lifecycle.spec.ts:109:1 › native touch cancellation and extra touches do not add shots (3.1s)
+  ✓   6 tests/browser/lifecycle.spec.ts:147:1 › pause and simulated background visibility suspend physical time until explicit resume (4.2s)
+  ✓   7 tests/browser/lifecycle.spec.ts:192:1 › clipboard denial provides a JSON download (1.2s)
+  ✓   8 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (3.5s)
+  ✓   9 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (784ms)
+  ✓  10 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (4.3s)
+  ✓  11 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (3.2s)
+  ✓  12 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (3.0s)
+  ✓  13 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (2.9s)
+  ✓  14 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (14.3s)
+  ✓  15 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (7.0s)
+
+  15 passed (2.0m)

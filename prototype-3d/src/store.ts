@@ -74,7 +74,10 @@ export const usePracticeStore = create<PracticeStore>((set) => ({
   pause: () =>
     set((s) =>
       s.phase !== "paused"
-        ? { phaseBeforePause: s.phase, phase: "paused" }
+        ? {
+            phaseBeforePause: s.phase === "aiming" ? "ready" : s.phase,
+            phase: "paused",
+          }
         : {},
     ),
   resume: () =>
