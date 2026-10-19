@@ -1,6 +1,18 @@
-# First playable 3D practice slice — 2026-10-19
+# 3D practice prototype — verification log
 
-Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. This milestone stops at unlimited practice for the user's first human playtest.
+Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Scope remains unlimited practice; the user has now reported improved shooting feel and successful human baskets.
+
+## Hoop, audio, net and HUD pass — 2026-10-19
+
+The shared rim is now 0.232 m inner radius / 0.017 m tube radius; ball radius remains 0.12 m. Real Rapier tests preserve makes across five straight 20–40% upward swipes, as well as front/back-rim and board responses. The supplied project PNGs now texture the 3D sphere, board, hollow rim and deformable net. A confirmed basket triggers a 280 ms net pull with directional sway and a restrained animated HUD reward. Audio is original synthesis driven by accepted release, physical contacts and confirmed makes, unlocked only after player interaction. Full file/asset list and replacement instructions: [presentation pass](presentation-pass.md).
+
+Current unit/integration verification: **36 passed across 15 files**; prototype TypeScript/build and ESLint passed. Original Phaser tests: **106 passed**, with original lint passed and no changes outside `prototype-3d/`.
+
+The final full Chrome run passed **19/19 cases**, including the 30-shot loop, production build, four viewport sizes, physical rim/board outcomes, audio/net rewards and existing trajectory controls. The earlier distance-only observer caused one failing rim fixture; after the impulse-based fix, all 19 passed in one unchanged-source run. The final browser report is saved as [polish-browser-results.json](verification/2026-10-19/polish-browser-results.json).
+
+A new real-Rapier regression reproduced missed contact observation: a thin-rim rebound had positive impulses at +1.97 mm solver separation, beyond the old 1 mm distance threshold. Contact observation now also recognizes positive physical impulses; the regression failed first and then passed. No force, launch or flight correction was added.
+
+New browser checks read actual Web Audio state/playback counts and physical event records. They verify no pre-interaction context, release/swish playback, distinct real rim/board events, one reward per make, no new net pulse on a miss, 320×568 touch input, paused voices/net time and restart cleanup. Current screenshots: [Ready](verification/2026-10-19/polish-ready.png), [Swish](verification/2026-10-19/polish-swish.png), [Small-screen pause](verification/2026-10-19/polish-pause-small.png). Phone and desktop renders were visually inspected. Listening quality and device performance still need human review.
 
 ## Trajectory visualization follow-up — 2026-10-19
 
@@ -12,7 +24,7 @@ Current visuals: [Ready](verification/2026-10-19/trajectory-ready.png), [Aiming]
 
 A separate review of this visualization change found no actionable issues.
 
-## Verified
+## Original first-slice checks (before presentation updates)
 
 | Check | Result |
 | --- | --- |
@@ -49,14 +61,14 @@ See recording-summary.json and browser-results.json in that directory for machin
 ## Limits and next action
 
 - Human learnability, enjoyment and the provisional 50–70% make-rate goal await a 20–30 shot playtest on the user's device. Automated chosen gestures cannot establish them.
-- No physical iPhone/Android performance or thermal testing has been done. The production bundle is approximately 3.44 MB / 1.17 MB gzip, largely Three/Rapier and embedded WASM; cold-load cost remains to measure.
-- Environment meshes and lighting are simple; the visual net is static, audio is absent, and three-miss arcade rules/best-score persistence are deferred as agreed.
+- No physical iPhone/Android performance or thermal testing has been done. The current production JavaScript is approximately 3.45 MB / 1.17 MB gzip, plus 7.18 MB of supplied PNGs; cold-load cost remains to measure and the art can be optimized later.
+- Environment meshes and lighting remain simple. Visual net feedback and audio are now implemented in the presentation pass above; three-miss arcade rules/best-score persistence remain deferred as agreed.
 - Independent review identified one minor tuning defect deferred to the next feel pass: the configured X spin is forward spin for travel toward negative Z, despite the `backspin` name. Physics remains active and plausible, but correcting that sign should include retesting rim/board responses; the headless contact helper also needs to apply the same angular velocity.
 - The rim uses 32 capsules rather than an exact torus collider; chord approximation differs by about 1.3 mm at segment midpoints. Geometry parameters are shared with rendering.
 - Rebounds remain physical; a previous ball can briefly remain visible while the next one is ready. Cleanup and collision groups prevent it blocking the next shot.
 - Missing/inaccessible clipboard falls back to download. Pausing preserves simulation rather than elapsed wall time; returning from the background requires an explicit Continue.
 
-Next: run `npm run dev` from prototype-3d/, take a few familiarization shots and then 20–30 natural swipes. Export Session log before restarting. Adjust src/config.ts only after observing real misses and the user's feedback. No further features or replacement of the Phaser application are included in this milestone.
+Next: run `npm run dev` from prototype-3d/, listen on phone speakers/headphones and try 20–30 natural swipes with the smaller rim. Export Session log before restarting. Tune sound and feedback after human observations. No game modes or replacement of the Phaser application are included in this pass.
 
 ## Implementation decisions and independent review
 

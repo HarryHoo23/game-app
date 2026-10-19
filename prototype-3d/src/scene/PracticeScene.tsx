@@ -34,6 +34,9 @@ import { resolveShot, shouldRetire } from "../domain/shot";
 import type { Sample, Contact } from "../domain/types";
 import { usePracticeStore as store } from "../store";
 import { sessionLog } from "../debug/sessionLog";
+import type { ShotAudio } from "../audio/shotAudio";
+import { netPose, type ShotFeedback } from "../domain/shotFeedback";
+import { hasPhysicalContact } from "../domain/physicalContact";
 type Flight = {
   prev: Sample;
   basket: BasketState;
@@ -56,6 +59,11 @@ export type DebugSnapshot = {
   worldBodies: number;
   ballScreen: ShotBridge["screen"];
   shotVisuals: ShotVisualDiagnostics | null;
+  rewards: {
+    audio: ReturnType<ShotAudio["snapshot"]>;
+    feedback: ReturnType<ShotFeedback["snapshot"]>;
+    netPose: ReturnType<typeof netPose>;
+  };
   width: number;
   height: number;
   active: {
@@ -84,10 +92,14 @@ export function PracticeScene({
   bridge,
   onReady,
   sessionId,
+  audio,
+  feedback,
 }: {
   bridge: RefObject<ShotBridge>;
   onReady: () => void;
   sessionId: number;
+  audio: ShotAudio;
+  feedback: ShotFeedback;
 }) {
   const [life] = useState(() => createPracticeLifecycle(c)),
     [ids, setIds] = useState([1]);
@@ -120,6 +132,8 @@ export function PracticeScene({
   }, [bridge, camera, size]);
   useEffect(() => {
     sessionLog?.reset();
+    feedback.reset();
+    audio.stop();
     bridge.current.aiming = (active) => store.getState().setAiming(active);
     bridge.current.launch = (launch, gesture) => {
       const id = life.readyId,
@@ -154,6 +168,7 @@ export function PracticeScene({
         trail,
       });
       store.getState().recordLaunch(sessionId, id);
+      feedback.launch(id);
       sessionLog?.recordLaunch({
         sessionId,
         shotId: id,
@@ -169,7 +184,7 @@ export function PracticeScene({
       bridge.current.aiming = undefined;
       bridge.current.ready = false;
     };
-  }, [bridge, life, rapier, sessionId]);
+  }, [bridge, life, rapier, sessionId, feedback, audio]);
   useAfterPhysicsStep(() => {
     if (
       store.getState().sessionId !== sessionId ||
@@ -182,6 +197,7 @@ export function PracticeScene({
         if (!life.balls.some((b) => b.id === id)) flights.current.delete(id);
       if (life.readyId !== null) store.getState().recordReady(sessionId);
     }
+    feedback.step(life.time);
     for (const [id, s] of flights.current) {
       const body = bodies.current.get(id);
       if (!body) continue;
@@ -203,8 +219,7 @@ export function PracticeScene({
         if (!kind) return;
         let touching = false;
         world.contactPair(collider, other, (manifold) => {
-          for (let i = 0; i < manifold.numSolverContacts(); i++)
-            if (manifold.solverContactDist(i) <= 0.001) touching = true;
+          if (hasPhysicalContact(manifold)) touching = true;
         });
         if (!touching) return;
         handles.add(other.handle);
@@ -217,6 +232,7 @@ export function PracticeScene({
             after: next.velocity,
           };
           s.contacts.push(contact);
+          feedback.contact(id, contact);
           sessionLog?.recordContact(id, contact);
         }
       });
@@ -242,6 +258,7 @@ export function PracticeScene({
         const result = resolveShot(s.trace, s.contacts, a.made, c);
         life.resolve(id, result);
         store.getState().recordResult(sessionId, id, result);
+        feedback.result(id, result, next, life.time);
         sessionLog?.recordResult(id, result);
       }
     }
@@ -294,6 +311,11 @@ export function PracticeScene({
                   : null,
               }
             : null,
+          rewards: {
+            audio: audio.snapshot(),
+            feedback: feedback.snapshot(),
+            netPose: netPose(feedback.net, life.time, c),
+          },
           width: size.width,
           height: size.height,
           active:
@@ -324,7 +346,7 @@ export function PracticeScene({
     return () => {
       if (window.afterHours3D === api) delete window.afterHours3D;
     };
-  }, [bridge, camera, life, sessionId, size, world]);
+  }, [bridge, camera, life, sessionId, size, world, audio, feedback]);
   return (
     <>
       {ids.map((id) => (

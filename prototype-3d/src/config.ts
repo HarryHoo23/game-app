@@ -12,8 +12,8 @@ export const config = {
   },
   hoop: {
     center: { x: 0, y: 3.05, z: 0 },
-    innerRadius: 0.24,
-    tubeRadius: 0.018,
+    innerRadius: 0.232,
+    tubeRadius: 0.017,
     segments: 32,
     restitution: 0.45,
   },
@@ -42,6 +42,13 @@ export const config = {
     fov: 54,
     dpr: 1.5,
     maxWidth: 480,
+  },
+  feedback: {
+    netDuration: 0.28,
+    netHeight: 0.44,
+    netStretch: 0.34,
+    impactCooldown: 0.075,
+    audioGain: 0.38,
   },
   shotVisuals: {
     preview: {

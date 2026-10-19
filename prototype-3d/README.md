@@ -14,6 +14,8 @@ Start near the ball, swipe upward and release. Normal swipes are forgiving; swip
 
 A faint dotted arc shows the baseline shot while ready. During a swipe it brightens and follows the same launch calculation used on release, stopping at the first predicted rim/board/floor contact. It previews free flight, not bounce outcomes or a guaranteed basket. After release, a short shrinking trail follows actual physics samples, including rebounds. Pausing hides both; restarting clears the old trail.
 
+The current presentation uses the supplied hoop/ball/net art on 3D geometry, a slightly smaller physical rim (0.232 m inner radius, 0.017 m tube), and a 280 ms visual net pull on confirmed makes. Sound unlocks when starting a shot: a soft release, metal rim, lower glass knock, clean swish or restrained make tone. Pause/restart stops current audio; unavailable audio never blocks shooting. See [presentation pass](docs/presentation-pass.md) for exact files, event wiring, asset replacement and remaining work.
+
 ## First human playtest
 
 Take a few familiarization shots, then shoot 20–30 times naturally without interruption. Try small horizontal variations and shorter/longer swipes. Note whether misses are understandable, whether front/back-rim contacts look believable, and whether you want to retry. In development, expand **Session log** to copy JSON; a download is offered if the clipboard is unavailable. Restart clears the current log, so export first.
@@ -39,6 +41,6 @@ The DEV-only, read-only `window.afterHours3D` inspection interface exports actua
 
 ## Scope and evidence
 
-The first slice deliberately has a simple court, static visual net and no audio. Arcade lives, best score and further polish wait for human approval of the feel. See [verification](docs/verification.md) for results, recordings and limits, and [provenance](docs/licenses.md) for asset/licensing notes.
+The prototype retains a simple court and unlimited practice. Arcade lives, best score and game-over rules remain deferred. See [verification](docs/verification.md) for results, recordings and limits, and [provenance](docs/licenses.md) for asset/licensing notes.
 
 Root `vitest.config.ts` scopes the Phaser tests to their original src/tests directory so its npm test never loads this separately installed app. No original game source, dependency or lockfile was changed.

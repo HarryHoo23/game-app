@@ -60,3 +60,9 @@ it("rejects taps, downward, empty dimensions and invalid data", () => {
   ])
     expect(mapGesture(g, c)).toBeNull();
 });
+it("smaller hoop preserves physical makes across the familiar straight-swipe band", () => {
+  for (const up of [0.2, 0.25, 0.3, 0.35, 0.4]) {
+    const s = simulateShot(c.hoop.center, mapGesture(gesture(up), c)!.velocity);
+    expect(s.makes, `up=${up}`).toBe(1);
+  }
+});

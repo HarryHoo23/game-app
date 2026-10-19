@@ -18,6 +18,8 @@ import { useShotInput, type ShotBridge } from "./input/useShotInput";
 import { usePracticeStore as store } from "./store";
 import { PracticeHud } from "./ui/PracticeHud";
 import { PauseOverlay } from "./ui/PauseOverlay";
+import { createShotAudio } from "./audio/shotAudio";
+import { createShotFeedback } from "./domain/shotFeedback";
 export class GameBoundary extends Component<
   { children: ReactNode },
   { failed: boolean }
@@ -38,6 +40,8 @@ export class GameBoundary extends Component<
   }
 }
 export function App() {
+  const [audio] = useState(createShotAudio);
+  const [feedback] = useState(() => createShotFeedback(audio));
   const el = useRef<HTMLElement>(null),
     bridge = useRef<ShotBridge>({ ready: false, screen: null, launch: null });
   const [loaded, setLoaded] = useState(false),
@@ -45,7 +49,11 @@ export function App() {
   const onReady = useCallback(() => setLoaded(true), []);
   const sessionId = store((s) => s.sessionId),
     phase = store((s) => s.phase);
-  useShotInput(el, bridge, sessionId, phase === "paused");
+  useShotInput(el, bridge, sessionId, phase === "paused", audio);
+  useEffect(() => {
+    audio.setPaused(phase === "paused");
+  }, [audio, phase]);
+  useEffect(() => () => audio.dispose(), [audio]);
   useEffect(() => {
     const visibility = () => {
       setHidden(document.hidden);
@@ -76,12 +84,14 @@ export function App() {
               paused={phase === "paused"}
             >
               <Court />
-              <Hoop />
+              <Hoop feedback={feedback} />
               <PracticeScene
                 key={sessionId}
                 sessionId={sessionId}
                 bridge={bridge}
                 onReady={onReady}
+                audio={audio}
+                feedback={feedback}
               />
             </Physics>
           </Suspense>

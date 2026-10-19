@@ -1,43 +1,39 @@
 import { useMemo, useCallback, useEffect, memo } from "react";
-import { BufferGeometry, Float32BufferAttribute } from "three";
+import { SphereGeometry } from "three";
 import {
   RigidBody,
   BallCollider,
   type RapierRigidBody,
 } from "@react-three/rapier";
 import { config as c, BALL_GROUPS } from "../config";
+import { hoopArt, useArtTexture } from "./art";
 export function BallMesh() {
-  const seams = useMemo(() => {
-    const p: number[] = [],
-      r = c.ball.radius + 0.0008;
-    for (let plane = 0; plane < 3; plane++)
-      for (let i = 0; i < 96; i++)
-        for (const t of [
-          (i / 96) * Math.PI * 2,
-          ((i + 1) / 96) * Math.PI * 2,
-        ]) {
-          const a = Math.cos(t) * r,
-            b = Math.sin(t) * r;
-          p.push(
-            ...(plane === 0 ? [a, b, 0] : plane === 1 ? [a, 0, b] : [0, a, b]),
-          );
-        }
-    return new BufferGeometry().setAttribute(
-      "position",
-      new Float32BufferAttribute(p, 3),
-    );
+  const texture = useArtTexture(hoopArt.ball);
+  const geometry = useMemo(() => {
+    const g = new SphereGeometry(c.ball.radius, 48, 32),
+      p = g.attributes.position,
+      uv = g.attributes.uv;
+    // The supplied art is a photographed sphere, not an equirectangular map.
+    // Project onto both hemispheres while retaining a rotating 3D silhouette.
+    for (let i = 0; i < p.count; i++)
+      uv.setXY(
+        i,
+        0.5 + (0.463 * p.getX(i)) / c.ball.radius,
+        0.497 + (0.46 * p.getY(i)) / c.ball.radius,
+      );
+    return g;
   }, []);
-  useEffect(() => () => seams.dispose(), [seams]);
+  useEffect(() => () => geometry.dispose(), [geometry]);
   return (
-    <group>
-      <mesh castShadow>
-        <sphereGeometry args={[c.ball.radius, 32, 24]} />
-        <meshStandardMaterial color="#cf702e" roughness={0.85} />
-      </mesh>
-      <lineSegments geometry={seams}>
-        <lineBasicMaterial color="#3c251c" />
-      </lineSegments>
-    </group>
+    <mesh castShadow geometry={geometry}>
+      <meshStandardMaterial
+        map={texture}
+        roughness={0.88}
+        emissiveMap={texture}
+        emissive="#ffffff"
+        emissiveIntensity={0.18}
+      />
+    </mesh>
   );
 }
 export const Ball = memo(function Ball({

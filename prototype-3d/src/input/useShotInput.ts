@@ -3,6 +3,7 @@ import { config } from "../config";
 import { mapGesture, type Gesture, type Launch } from "../domain/launch";
 import { createPointerGesture } from "./pointerGesture";
 import type { ShotVisualDiagnostics } from "../domain/shotVisuals";
+import type { ShotAudio } from "../audio/shotAudio";
 export type ShotBridge = {
   ready: boolean;
   screen: { x: number; y: number; radius: number } | null;
@@ -16,6 +17,7 @@ export function useShotInput(
   bridge: RefObject<ShotBridge>,
   sessionId: number,
   paused: boolean,
+  audio: ShotAudio,
 ) {
   useEffect(() => {
     const el = element.current;
@@ -62,6 +64,7 @@ export function useShotInput(
         })
       ) {
         pointer = e.pointerId;
+        audio.unlock();
         bridge.current.preview = null;
         el.setPointerCapture(e.pointerId);
         bridge.current.aiming?.(true);
@@ -135,5 +138,5 @@ export function useShotInput(
       el.removeEventListener("lostpointercapture", lost);
       document.removeEventListener("visibilitychange", hidden);
     };
-  }, [element, bridge, sessionId, paused]);
+  }, [element, bridge, sessionId, paused, audio]);
 }

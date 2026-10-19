@@ -1,47 +1,20 @@
-import { useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import {
   RigidBody,
   CapsuleCollider,
   CuboidCollider,
 } from "@react-three/rapier";
-import {
-  Quaternion,
-  Euler,
-  BufferGeometry,
-  Float32BufferAttribute,
-} from "three";
+import { Quaternion, Euler } from "three";
 import { config as c, COURT_GROUPS } from "../config";
 import { createRimSegments } from "./geometry";
-export function Hoop() {
+import { hoopArt, useArtTexture } from "./art";
+import { Net } from "./Net";
+import type { ShotFeedback } from "../domain/shotFeedback";
+export function Hoop({ feedback }: { feedback: ShotFeedback }) {
   const segments = useMemo(() => createRimSegments(c), []);
-  const net = useMemo(() => {
-    const p: number[] = [];
-    for (let ring = 0; ring < 4; ring++)
-      for (let i = 0; i < 16; i++) {
-        const point = (r: number, n: number) => {
-          const angle = ((n + (r % 2) * 0.5) / 16) * Math.PI * 2;
-          const radius = 0.245 - r * 0.025;
-          return [
-            Math.cos(angle) * radius,
-            -r * 0.13,
-            Math.sin(angle) * radius,
-          ];
-        };
-        p.push(...point(ring, i), ...point(ring, i + 1));
-        if (ring < 3) {
-          p.push(...point(ring, i), ...point(ring + 1, i));
-          p.push(
-            ...point(ring, i),
-            ...point(ring + 1, i + (ring % 2 ? 1 : -1)),
-          );
-        }
-      }
-    return new BufferGeometry().setAttribute(
-      "position",
-      new Float32BufferAttribute(p, 3),
-    );
-  }, []);
-  useEffect(() => () => net.dispose(), [net]);
+  const board = useArtTexture(hoopArt.board, [22, 269, 1209, 707]);
+  const front = useArtTexture(hoopArt.rimFront, [520, 512, 210, 22]);
+  const back = useArtTexture(hoopArt.rimBack, [520, 411, 210, 22]);
   const h = c.hoop,
     b = c.board;
   return (
@@ -70,20 +43,25 @@ export function Hoop() {
             name="rim"
           />
         ))}
-        <mesh
-          position={[h.center.x, h.center.y, h.center.z]}
-          rotation={[Math.PI / 2, 0, 0]}
-          castShadow
-        >
-          <torusGeometry
-            args={[h.innerRadius + h.tubeRadius, h.tubeRadius, 10, 64]}
-          />
-          <meshStandardMaterial
-            color="#ed8a42"
-            metalness={0.25}
-            roughness={0.45}
-          />
-        </mesh>
+        {[front, back].map((map, i) => (
+          <mesh
+            key={i}
+            position={[h.center.x, h.center.y, h.center.z]}
+            rotation={[Math.PI / 2, 0, i * Math.PI]}
+            castShadow
+          >
+            <torusGeometry
+              args={[
+                h.innerRadius + h.tubeRadius,
+                h.tubeRadius,
+                12,
+                64,
+                Math.PI,
+              ]}
+            />
+            <meshStandardMaterial map={map} metalness={0.32} roughness={0.38} />
+          </mesh>
+        ))}
       </RigidBody>
       <RigidBody
         type="fixed"
@@ -101,28 +79,24 @@ export function Hoop() {
         <mesh position={[b.center.x, b.center.y, b.center.z]}>
           <boxGeometry args={[b.size.x, b.size.y, b.size.z]} />
           <meshStandardMaterial
-            color="#adc3c7"
-            roughness={0.7}
+            color="#29383b"
+            roughness={0.6}
+            metalness={0.4}
+          />
+        </mesh>
+        <mesh
+          position={[b.center.x, b.center.y, b.center.z + b.size.z / 2 + 0.001]}
+        >
+          <planeGeometry args={[b.size.x, b.size.y]} />
+          <meshBasicMaterial
+            map={board}
             transparent
-            opacity={0.48}
+            alphaTest={0.1}
+            toneMapped={false}
           />
         </mesh>
       </RigidBody>
-      {/* Painted target, on the front surface of the backboard. */}
-      {[
-        [0, 3.68, 0.6, 0.018],
-        [0, 3.25, 0.6, 0.018],
-        [-0.3, 3.465, 0.018, 0.43],
-        [0.3, 3.465, 0.018, 0.43],
-      ].map(([x, y, w, h], i) => (
-        <mesh key={i} position={[x, y, b.center.z + b.size.z / 2 + 0.002]}>
-          <planeGeometry args={[w, h]} />
-          <meshBasicMaterial color="#e0e6d8" />
-        </mesh>
-      ))}
-      <lineSegments geometry={net} position={[0, h.center.y - 0.02, 0]}>
-        <lineBasicMaterial color="#e4e2cb" transparent opacity={0.8} />
-      </lineSegments>
+      <Net feedback={feedback} />
     </>
   );
 }

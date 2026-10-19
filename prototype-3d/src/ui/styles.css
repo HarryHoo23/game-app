@@ -25,24 +25,24 @@ body {
 }
 .game > header {
   position: absolute;
-  top: max(24px, env(safe-area-inset-top));
-  left: 24px;
   right: 24px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 6px;
   pointer-events: none;
+  top: max(26px, env(safe-area-inset-top));
+  left: 22px;
 }
 .game > header span {
-  font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  font-size: 15px;
+  letter-spacing: 0.14em;
 }
 .game > header small {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  color: #99b8b6;
+  font-size: 8px;
+  letter-spacing: 0.24em;
+  color: #91aaa9;
 }
 .error {
   position: absolute;
@@ -67,71 +67,65 @@ button {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: max(12px, env(safe-area-inset-bottom));
-  font-size: 10px;
-  letter-spacing: 0.15em;
   text-align: center;
   pointer-events: none;
-  color: #bacbc1;
+  margin: 0;
+  bottom: max(19px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #cad8cb;
 }
 .stats {
   position: absolute;
-  left: 24px;
-  top: max(90px, calc(env(safe-area-inset-top) + 64px));
   display: flex;
-  align-items: baseline;
-  gap: 12px;
   pointer-events: none;
-}
-.stats > strong {
-  font-size: 38px;
-  font-weight: 500;
-  letter-spacing: -0.06em;
-}
-.stats > span {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: #a4c1bc;
-}
-.stats i {
-  font-style: normal;
-  margin: 0 5px;
-  color: #466d72;
-}
-.stats b {
-  font-weight: 400;
-  color: #e1e6d8;
+  top: max(88px, calc(env(safe-area-inset-top) + 68px));
+  left: 22px;
+  align-items: center;
+  gap: 18px;
 }
 .court-controls {
   position: absolute;
-  top: max(24px, env(safe-area-inset-top));
-  right: 22px;
   display: flex;
-  gap: 6px;
+  top: max(22px, env(safe-area-inset-top));
+  right: 20px;
+  gap: 8px;
+  z-index: 3;
 }
 .court-controls button {
-  width: 36px;
-  height: 36px;
   padding: 0;
-  background: #102a32aa;
   color: #bacbc1;
   font-size: 20px;
-  border-color: #33535a66;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #102a32b3;
+  border-color: #8da9a62b;
+  transition:
+    background 0.15s,
+    transform 0.15s;
 }
 .feedback {
   position: absolute;
-  top: 47%;
   width: 100%;
   text-align: center;
-  padding: 0 20px;
-  color: #afc3bd;
-  font-size: 14px;
   letter-spacing: 0.015em;
   pointer-events: none;
+  top: 46%;
+  padding: 0 24px;
+  font-size: 12px;
+  color: #b1c5bf;
 }
 .feedback.made {
-  color: #e5bc7c;
   font-size: 18px;
+  color: #f5d9a6;
 }
 .debug {
   position: absolute;
@@ -193,25 +187,159 @@ button:focus-visible {
   outline: 2px solid #efbc78;
   outline-offset: 3px;
 }
+
+/* Compact reward pass: court and swipe area stay unobstructed. */
+.stat-made,
+.stat-attempts {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.stat-made strong {
+  color: #f3d49c;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+  animation: score-arrive 0.25s ease-out;
+}
+.stat-attempts strong {
+  font-size: 21px;
+  color: #e1e8df;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.stats div > span {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: #a5bcb6;
+}
+.stats > .stat-divider {
+  height: 24px;
+  width: 1px;
+  background: #78958a3d;
+}
+.court-controls button:active {
+  transform: scale(0.94);
+  background: #24494c;
+}
+.court-controls svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.feedback-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.feedback.made .feedback-content {
+  animation: reward-arrive 0.32s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+.reward-point {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #bddbc6;
+}
+.reward-title {
+  font-size: 25px;
+  letter-spacing: 0.15em;
+  line-height: 1.1;
+  font-weight: 800;
+  text-shadow: 0 0 25px #ebb76630;
+}
+.swish .reward-title {
+  font-size: 30px;
+}
+.feedback-detail {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  color: #afc5bb;
+}
+.shot-prompt svg {
+  width: 12px;
+  height: 17px;
+  fill: none;
+  stroke: #a9d8c1;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@keyframes reward-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes score-arrive {
+  from {
+    transform: scale(1.13);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 @media (max-height: 600px) {
-  .stats {
-    top: 65px;
-  }
-  .stats > strong {
-    font-size: 30px;
-  }
   .game > header {
-    top: 18px;
+    top: 19px;
+    left: 20px;
+  }
+  .game > header span {
+    font-size: 13px;
   }
   .court-controls {
     top: 16px;
+    right: 16px;
+  }
+  .court-controls button {
+    width: 36px;
+    height: 36px;
+  }
+  .stats {
+    top: 74px;
+    left: 20px;
+    gap: 14px;
+  }
+  .stat-made strong {
+    font-size: 29px;
+  }
+  .stat-attempts strong {
+    font-size: 18px;
   }
   .feedback {
-    font-size: 12px;
+    top: 47%;
+  }
+  .reward-title {
+    font-size: 20px;
+  }
+  .swish .reward-title {
+    font-size: 23px;
+  }
+  .feedback-content {
+    gap: 3px;
+  }
+  .feedback-detail {
+    font-size: 11px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto;
+  .feedback.made .feedback-content,
+  .stat-made strong {
+    animation: none;
+  }
+  .court-controls button {
+    transition: none;
   }
 }

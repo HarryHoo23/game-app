@@ -1,6 +1,8 @@
 # Asset and code provenance
 
-The court, basketball sphere and seams, hollow rim, backboard, static net, materials and UI are original procedural geometry/code created for AFTER HOURS. No external models, textures, fonts or audio are incorporated. Fonts use the operating system's sans-serif stack.
+The court, basketball sphere, hollow rim, backboard, deformable visual net and UI use original procedural geometry/code created for AFTER HOURS. Fonts use the operating system's sans-serif stack. All five sounds are original deterministic synthesis in `src/audio/synthesis.ts`; no external audio or models were downloaded.
+
+At the user's explicit request, five existing project images from the parent `src/assets/hoop/` were copied unchanged into `prototype-3d/src/assets/hoop/`: `basketball.png`, `backboard.png`, `net.png`, `rim_front.png`, and `rim_back.png`. These are user-supplied project art, not assets taken from the reference repository. SHA-256 comparisons confirmed exact copies; the parent images were not edited. Their original source/ownership records remain those of the parent project. See [presentation pass](presentation-pass.md) for mapping and replacement details.
 
 Gameplay inspiration was studied from [thaslle/basketball](https://github.com/thaslle/basketball), commit `7b0c302482db574bece0ac55ea2ba71063edbcfd`. Its code license is MIT, copyright (c) 2024 Thalles Lopes. No source code or assets were copied into this prototype; the ballistic solver, directional scoring, pointer input and scene are original implementations. If reference code is copied later, include its full MIT notice with the copied material. The reference repository's model/texture/audio reuse rights have not been assumed.
 
