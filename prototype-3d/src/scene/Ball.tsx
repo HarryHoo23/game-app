@@ -1,4 +1,4 @@
-import { useMemo,type Ref } from 'react';
+import { useMemo,useCallback,useEffect,memo } from 'react';
 import { BufferGeometry, Float32BufferAttribute } from 'three';
 import { RigidBody, BallCollider,type RapierRigidBody } from '@react-three/rapier';
 import { config as c, BALL_GROUPS } from '../config';
@@ -11,9 +11,14 @@ export function BallMesh() {
     }
     return new BufferGeometry().setAttribute('position',new Float32BufferAttribute(p,3));
   },[]);
+  useEffect(()=>()=>seams.dispose(),[seams]);
   return <group><mesh castShadow><sphereGeometry args={[c.ball.radius,32,24]}/><meshStandardMaterial color="#cf702e" roughness={0.85}/></mesh><lineSegments geometry={seams}><lineBasicMaterial color="#3c251c"/></lineSegments></group>;
 }
-export function Ball({bodyRef}:{bodyRef?:Ref<RapierRigidBody>}) {
+export const Ball=memo(function Ball({id,register}:{id:number;register:(id:number,body:RapierRigidBody|null)=>void}) {
   const o=c.ball.origin;
-  return <RigidBody ref={bodyRef} type="fixed" colliders={false} ccd position={[o.x,o.y,o.z]}><BallCollider args={[c.ball.radius]} mass={c.ball.mass} restitution={c.ball.restitution} friction={c.ball.friction} collisionGroups={BALL_GROUPS}/><BallMesh/></RigidBody>;
-}
+  const ref=useCallback((body:RapierRigidBody|null)=>register(id,body),[id,register]);
+  // Rapier's callback ref registers creation but does not call null on removal.
+  useEffect(()=>()=>register(id,null),[id,register]);
+  const position=useMemo<[number,number,number]>(()=>[o.x,o.y,o.z],[o.x,o.y,o.z]);
+  return <RigidBody ref={ref} type="fixed" colliders={false} ccd position={position}><BallCollider args={[c.ball.radius]} mass={c.ball.mass} restitution={c.ball.restitution} friction={c.ball.friction} collisionGroups={BALL_GROUPS}/><BallMesh/></RigidBody>;
+});

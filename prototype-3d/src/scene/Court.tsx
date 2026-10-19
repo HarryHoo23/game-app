@@ -6,7 +6,7 @@ export function Court() {
     <ambientLight intensity={0.8} color="#8bb9bc"/>
     <directionalLight position={[3,7,4]} color="#ffce91" intensity={2.6} castShadow shadow-mapSize={[512,512]} shadow-camera-left={-6} shadow-camera-right={6} shadow-camera-top={7} shadow-camera-bottom={-5}/>
     <hemisphereLight args={['#72aeb4','#10232e',1]}/>
-    <RigidBody type="fixed" colliders={false} name="floor"><CuboidCollider args={[c.court.width/2,0.05,c.court.length/2]} position={[0,-0.05,c.court.centerZ]} collisionGroups={COURT_GROUPS} restitution={c.court.floorRestitution} name="floor"/>
+    <RigidBody type="fixed" colliders={false} name="floor" userData={{kind:'floor'}}><CuboidCollider args={[c.court.width/2,0.05,c.court.length/2]} position={[0,-0.05,c.court.centerZ]} collisionGroups={COURT_GROUPS} restitution={c.court.floorRestitution} name="floor"/>
       <mesh position={[0,-0.05,c.court.centerZ]} receiveShadow><boxGeometry args={[c.court.width,0.1,c.court.length]}/><meshStandardMaterial color="#112d36" roughness={0.92}/></mesh>
     </RigidBody>
     <mesh rotation={[-Math.PI/2,0,0]} position={[0,0.003,0.7]}><planeGeometry args={[2.7,3.2]}/><meshStandardMaterial color="#183e47" roughness={0.9}/></mesh>

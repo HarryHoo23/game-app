@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo,useEffect } from 'react';
 import { RigidBody, CapsuleCollider, CuboidCollider } from '@react-three/rapier';
 import { Quaternion, Euler, BufferGeometry, Float32BufferAttribute } from 'three';
 import { config as c, COURT_GROUPS } from '../config';
@@ -14,13 +14,14 @@ export function Hoop() {
     }
     return new BufferGeometry().setAttribute('position',new Float32BufferAttribute(p,3));
   },[]);
+  useEffect(()=>()=>net.dispose(),[net]);
   const h=c.hoop,b=c.board;
   return <>
-    <RigidBody type="fixed" colliders={false} name="rim">
+    <RigidBody type="fixed" colliders={false} name="rim" userData={{kind:'rim'}}>
       {segments.map((s,i)=><CapsuleCollider key={i} args={[s.halfLength,h.tubeRadius]} position={[s.center.x,s.center.y,s.center.z]} rotation={new Euler().setFromQuaternion(new Quaternion(s.rotation.x,s.rotation.y,s.rotation.z,s.rotation.w))} collisionGroups={COURT_GROUPS} restitution={h.restitution} name="rim" />)}
       <mesh position={[h.center.x,h.center.y,h.center.z]} rotation={[Math.PI/2,0,0]} castShadow><torusGeometry args={[h.innerRadius+h.tubeRadius,h.tubeRadius,10,64]}/><meshStandardMaterial color="#ed8a42" metalness={0.25} roughness={0.45}/></mesh>
     </RigidBody>
-    <RigidBody type="fixed" colliders={false} name="board">
+    <RigidBody type="fixed" colliders={false} name="board" userData={{kind:'board'}}>
       <CuboidCollider args={[b.size.x/2,b.size.y/2,b.size.z/2]} position={[b.center.x,b.center.y,b.center.z]} collisionGroups={COURT_GROUPS} restitution={b.restitution} name="board"/>
       <mesh position={[b.center.x,b.center.y,b.center.z]}><boxGeometry args={[b.size.x,b.size.y,b.size.z]}/><meshStandardMaterial color="#adc3c7" roughness={0.7} transparent opacity={0.48}/></mesh>
     </RigidBody>
