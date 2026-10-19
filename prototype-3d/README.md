@@ -12,6 +12,8 @@ Requires **Node.js 22+**, npm and a WebGL2-capable browser. Open http://localhos
 
 Start near the ball, swipe upward and release. Normal swipes are forgiving; swipe farther for more range, shorter for less, and sideways to change aim. Speed does not change launch power. Taps, downward swipes and cancelled touches do not count. There is no timer, lives limit or game-over screen. Use ↻ to start a fresh practice; Ⅱ pauses. Returning from the background requires Continue shooting.
 
+A faint dotted arc shows the baseline shot while ready. During a swipe it brightens and follows the same launch calculation used on release, stopping at the first predicted rim/board/floor contact. It previews free flight, not bounce outcomes or a guaranteed basket. After release, a short shrinking trail follows actual physics samples, including rebounds. Pausing hides both; restarting clears the old trail.
+
 ## First human playtest
 
 Take a few familiarization shots, then shoot 20–30 times naturally without interruption. Try small horizontal variations and shorter/longer swipes. Note whether misses are understandable, whether front/back-rim contacts look believable, and whether you want to retry. In development, expand **Session log** to copy JSON; a download is offered if the clipboard is unavailable. Restart clears the current log, so export first.

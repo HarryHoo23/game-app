@@ -21,6 +21,15 @@ it("identical endpoints do not depend on move count", () => {
   expect(outputs[1]).toEqual(outputs[0]);
   expect(outputs[2]).toEqual(outputs[0]);
 });
+it("move previews the same raw gesture without consuming the release", () => {
+  const p = createPointerGesture(config);
+  p.begin(start);
+  expect(p.move(2, 220, 420, 300)).toBeNull();
+  expect(p.move(1, 220, 420, 300)).toEqual(p.end(1, 220, 420, 300));
+  p.begin(start);
+  p.cancel();
+  expect(p.move(1, 220, 420, 300)).toBeNull();
+});
 it("cancel_resize_multitouch_does_not_launch", () => {
   const p = createPointerGesture(config);
   p.begin(start);

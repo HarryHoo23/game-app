@@ -43,6 +43,24 @@ export const config = {
     dpr: 1.5,
     maxWidth: 480,
   },
+  shotVisuals: {
+    preview: {
+      points: 36,
+      startTime: 0.018,
+      endBelowRim: 0.18,
+      nearRadius: 0.009,
+      farRadius: 0.016,
+      idleOpacity: 0.3,
+      aimOpacity: 0.8,
+    },
+    trail: {
+      points: 24,
+      duration: 0.32,
+      sampleInterval: 1 / 60,
+      radius: 0.04,
+      opacity: 0.4,
+    },
+  },
   recovery: {
     make: 0.35,
     miss: 0.15,

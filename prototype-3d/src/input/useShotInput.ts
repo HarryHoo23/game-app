@@ -2,11 +2,14 @@ import { useEffect, type RefObject } from "react";
 import { config } from "../config";
 import { mapGesture, type Gesture, type Launch } from "../domain/launch";
 import { createPointerGesture } from "./pointerGesture";
+import type { ShotVisualDiagnostics } from "../domain/shotVisuals";
 export type ShotBridge = {
   ready: boolean;
   screen: { x: number; y: number; radius: number } | null;
   launch: ((launch: Launch, gesture: Gesture) => boolean) | null;
   aiming?: (active: boolean) => void;
+  preview?: Launch | null;
+  visuals?: ShotVisualDiagnostics | null;
 };
 export function useShotInput(
   element: RefObject<HTMLElement | null>,
@@ -19,12 +22,14 @@ export function useShotInput(
     if (!el) return;
     if (paused) {
       bridge.current.ready = false;
+      bridge.current.preview = null;
       return;
     }
     const gesture = createPointerGesture(config);
     let pointer: number | null = null;
     const cancel = () => {
       gesture.cancel();
+      bridge.current.preview = null;
       bridge.current.aiming?.(false);
       const id = pointer;
       pointer = null;
@@ -57,10 +62,30 @@ export function useShotInput(
         })
       ) {
         pointer = e.pointerId;
+        bridge.current.preview = null;
         el.setPointerCapture(e.pointerId);
         bridge.current.aiming?.(true);
         e.preventDefault();
       }
+    };
+    const move = (e: PointerEvent) => {
+      if (e.pointerId !== pointer) return;
+      const r = el.getBoundingClientRect(),
+        g = gesture.move(
+          e.pointerId,
+          e.clientX - r.left,
+          e.clientY - r.top,
+          e.timeStamp,
+        );
+      if (
+        g &&
+        (Math.abs(g.width - r.width) >= 0.5 ||
+          Math.abs(g.height - r.height) >= 0.5)
+      ) {
+        cancel();
+        return;
+      }
+      bridge.current.preview = g ? mapGesture(g, config) : null;
     };
     const up = (e: PointerEvent) => {
       if (e.pointerId !== pointer) return;
@@ -72,6 +97,7 @@ export function useShotInput(
           e.timeStamp,
         );
       pointer = null;
+      bridge.current.preview = null;
       if (el.hasPointerCapture(e.pointerId))
         el.releasePointerCapture(e.pointerId);
       bridge.current.aiming?.(false);
@@ -94,6 +120,7 @@ export function useShotInput(
     const resize = new ResizeObserver(cancel);
     resize.observe(el);
     el.addEventListener("pointerdown", down);
+    el.addEventListener("pointermove", move);
     el.addEventListener("pointerup", up);
     el.addEventListener("pointercancel", lost);
     el.addEventListener("lostpointercapture", lost);
@@ -102,6 +129,7 @@ export function useShotInput(
       cancel();
       resize.disconnect();
       el.removeEventListener("pointerdown", down);
+      el.removeEventListener("pointermove", move);
       el.removeEventListener("pointerup", up);
       el.removeEventListener("pointercancel", lost);
       el.removeEventListener("lostpointercapture", lost);

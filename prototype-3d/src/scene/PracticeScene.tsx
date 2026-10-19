@@ -15,6 +15,13 @@ import {
 import { Vector3 } from "three";
 import { config as c } from "../config";
 import { Ball } from "./Ball";
+import { ShotPaths } from "./ShotPaths";
+import {
+  createTrailBuffer,
+  appendTrailSample,
+  type TrailBuffer,
+  type ShotVisualDiagnostics,
+} from "../domain/shotVisuals";
 import type { ShotBridge } from "../input/useShotInput";
 import {
   advanceBasket,
@@ -35,6 +42,7 @@ type Flight = {
   handles: Set<number>;
   launchedAt: number;
   resolved: boolean;
+  trail: TrailBuffer;
 };
 export type DebugSnapshot = {
   ready: boolean;
@@ -47,6 +55,7 @@ export type DebugSnapshot = {
   dynamicCount: number;
   worldBodies: number;
   ballScreen: ShotBridge["screen"];
+  shotVisuals: ShotVisualDiagnostics | null;
   width: number;
   height: number;
   active: {
@@ -132,6 +141,8 @@ export function PracticeScene({
         velocity: { ...launch.velocity },
         time: 0,
       };
+      const trail = createTrailBuffer(c.shotVisuals.trail.points);
+      appendTrailSample(trail, prev, c.shotVisuals.trail.sampleInterval);
       flights.current.set(id, {
         prev,
         basket: createBasketState(),
@@ -140,6 +151,7 @@ export function PracticeScene({
         handles: new Set(),
         launchedAt: life.time,
         resolved: false,
+        trail,
       });
       store.getState().recordLaunch(sessionId, id);
       sessionLog?.recordLaunch({
@@ -172,12 +184,14 @@ export function PracticeScene({
     }
     for (const [id, s] of flights.current) {
       const body = bodies.current.get(id);
-      if (!body || s.resolved) continue;
+      if (!body) continue;
       const next: Sample = {
         position: { ...body.translation() },
         velocity: { ...body.linvel() },
         time: life.time - s.launchedAt,
       };
+      appendTrailSample(s.trail, next, c.shotVisuals.trail.sampleInterval);
+      if (s.resolved) continue;
       const handles = new Set<number>(),
         collider = body.collider(0);
       // Collision events dispatch after all render-frame substeps. Read physical contacts
@@ -272,6 +286,14 @@ export function PracticeScene({
           ballScreen: bridge.current.screen
             ? { ...bridge.current.screen }
             : null,
+          shotVisuals: bridge.current.visuals
+            ? {
+                ...bridge.current.visuals,
+                previewVelocity: bridge.current.visuals.previewVelocity
+                  ? { ...bridge.current.visuals.previewVelocity }
+                  : null,
+              }
+            : null,
           width: size.width,
           height: size.height,
           active:
@@ -308,6 +330,7 @@ export function PracticeScene({
       {ids.map((id) => (
         <Ball key={id} id={id} register={register} />
       ))}
+      <ShotPaths bridge={bridge} flights={flights} clock={life} />
     </>
   );
 }

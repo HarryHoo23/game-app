@@ -2,6 +2,16 @@
 
 Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. This milestone stops at unlimited practice for the user's first human playtest.
 
+## Trajectory visualization follow-up — 2026-10-19
+
+Added an idle dotted baseline arc, live swipe preview using the release launch calculation, and a 0.32-second shrinking trail sampled from actual Rapier positions. A ball-sized shape sweep stops the preview at the first solid contact; it does not predict rebounds or guarantee makes. Trails continue sampling resolved balls while they remain in the bounded body pool. Cancelled aiming restores the baseline; pause hides both effects; restart removes old samples. No launch tuning, scoring or original Phaser source changed.
+
+Fresh verification: **29 logic/actual-Rapier tests**, TypeScript/production build and ESLint passed. Browser coverage comprises **17 cases**: 16 passed in the full run; the 30-shot case timed out during a documented Vite hot update while source was being saved, then passed on a clean isolated rerun with unchanged source. The run exercised live-preview/release velocity agreement, native touch cancellation at 320×568, pause/resume, restart cleanup, physical baskets/contacts and continuous shooting. Screenshots were visually inspected at phone and desktop sizes. This remains automated evidence, not human playtesting.
+
+Current visuals: [Ready](verification/2026-10-19/trajectory-ready.png), [Aiming](verification/2026-10-19/trajectory-aiming.png), [Actual flight trail](verification/2026-10-19/trajectory-flight.png). The older recordings below predate this visual addition. Settings live in `config.shotVisuals`; fixed-size buffers and instanced dots bound memory and draw calls.
+
+A separate review of this visualization change found no actionable issues.
+
 ## Verified
 
 | Check | Result |
