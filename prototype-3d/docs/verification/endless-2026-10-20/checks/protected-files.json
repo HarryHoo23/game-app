@@ -1,0 +1,24 @@
+{
+  "baseline": "969922972edd0a5d2a608b6a2502695d9272c2e8",
+  "allUnchanged": true,
+  "sha256": {
+    "config.ts": "2ad2e35b5a53debfbc53c6cb2abff5f33e349d4bc7fe94fbf4d718560b0e48f4",
+    "domain/launch.ts": "3519cae2793f2d6b0b0dfcb8967995306c1432306fcc683301a3825ea1b9b704",
+    "domain/scoring.ts": "e5ad8ea988d955b547b2d611bd9dc7ea9e8fd097a4f4006116c5b6d39db74b85",
+    "domain/shot.ts": "a084da95036d9f791f630d3931d3d2326803745261114c9a9e135756cbd61c1c",
+    "domain/physicalContact.ts": "5a7c0bbf73f0a4589909439685c96577ecdc7ed737b766f638feed4b8c8df97c",
+    "domain/shotFeedback.ts": "02e5f81af77d61e6c8ecc36f844708e3472a50b8f7026c8f33aa216c3077c204",
+    "input/useShotInput.ts": "07592924f78cf01b740d1479fa614195586b8dd1b3f5e5881944531d85512c80",
+    "input/pointerGesture.ts": "1a157d52dbd49a5c4212def2e670123d2c438201527ec8f9c9445f8299cc4aaa",
+    "scene/Ball.tsx": "01e68e530c60353744cb99c42d3442c1aa1f27b89a515860002c7459ba039f93",
+    "scene/Hoop.tsx": "5397d155836a912f97fdf646c9a8733c16768ca0b97b834cc010219d021fc045",
+    "scene/Net.tsx": "430885cc0fe701a85d32af44bed812451ff0fc7962df2c5375dbfbc481b8a58f",
+    "scene/CameraRig.tsx": "7610d5d8a63654afe28ffd21e4174759cacf9b0626100121533581d9fcf99043",
+    "scene/Court.tsx": "fcc990c6024a00b910a68cbd3d997fea6a049c81a492d6aca25c5e6ae570753f",
+    "scene/art.ts": "11d15f834f909cea4d9038afcb56dd5847c03fdc074cf2828faeffa87ec44348",
+    "scene/artGeometry.ts": "7966759e4958ca443f2334d354c850a1c098d8afe7dec789047a3a45859b659e",
+    "scene/geometry.ts": "a9258860f7b273d73f4f47da8b22f5dbb2b2627c70528c2a21ecd5f9041640b1",
+    "audio/shotAudio.ts": "2b6bbe2747a9fc7b59d561f2dea3b4cc2f8f70bebcd03ede4e2894a763a85fd5",
+    "audio/synthesis.ts": "1efa8e9977b5b59c452f16f671c0c7140444e455b4e1ee972b67f7e622950e2b"
+  }
+}

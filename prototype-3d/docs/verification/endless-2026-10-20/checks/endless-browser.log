@@ -1,0 +1,21 @@
+[2m[WebServer] [22m(node:81996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:82031) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:82090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 320x568 (8.4s)
+  ✓  2 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 400x712 (5.1s)
+  ✓  3 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 430x820 (5.9s)
+  ✓  4 tests/browser/endless.spec.ts:47:1 › genuine complete Endless run ends after three misses; blocked shots, Retry and reload keep best (22.2s)
+  ✓  5 tests/browser/endless.spec.ts:149:1 › switching modes cancels the old flight; Practice remains unlimited and does not set Endless best (18.6s)
+  ✓  6 tests/browser/endless.spec.ts:205:1 › Endless native aiming/restart, resize and paused flight preserve the run (4.6s)
+  ✓  7 tests/browser/endless.spec.ts:265:1 › unavailable local storage keeps a playable run and in-memory best on restart (4.3s)
+  ✓  8 tests/browser/endless.spec.ts:288:1 › production default is Endless with saved best and reachable Practice (4.6s)
+
+  8 passed (1.4m)

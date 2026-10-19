@@ -1,6 +1,22 @@
 # 3D practice prototype — verification log
 
-Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Scope remains unlimited practice; the user has now reported improved shooting feel and successful human baskets.
+Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Current modes are Endless Hoops and Unlimited Practice; the user has reported improved shooting feel and successful human baskets.
+
+## Endless Hoops MVP — 2026-10-20
+
+Baseline HEAD: `969922972edd0a5d2a608b6a2502695d9272c2e8`. [MVP report and browser instructions](endless-mvp.md), [complete run / Game Over / Retry and portraits](verification/endless-2026-10-20/review.html).
+
+Default entry now starts Endless immediately; `?mode=practice` and the title/result buttons retain Unlimited Practice. Confirmed makes add one point, exactly three resolved misses end a run, and Retry clears the run while retaining locally saved Best. First-time swipe help is inline and ends on an accepted release. Session/shot/phase guards reject duplicate and stale events; terminal lifecycle cancellation prevents another prepared ball after Game Over.
+
+- **51/51 unit and real-Rapier tests**, including nine new rules/progress/lifecycle cases. [Log](verification/endless-2026-10-20/checks/unit.log).
+- **35/35 browser cases**, including eight new default-Endless, portrait-touch, complete-run, Retry/export, persistence/fallback, mode-switch, Practice and production cases. Existing 30-shot, physical collision, net/audio, visibility/pause, WebGL and resource checks remain. [Log](verification/endless-2026-10-20/checks/browser.log), [JSON](verification/endless-2026-10-20/checks/browser-results.json).
+- ESLint, TypeScript/production build and packed-art reproducibility pass. [Lint](verification/endless-2026-10-20/checks/lint.log), [build](verification/endless-2026-10-20/checks/build.log), [art](verification/endless-2026-10-20/checks/assets.log). Original Phaser unit tests: **106/106** pass. [Log](verification/endless-2026-10-20/checks/phaser-unit.log).
+- [18 protected file hashes](verification/endless-2026-10-20/checks/protected-files.json) confirm unchanged shooting/input/configuration, scoring, scene/art, net and audio implementation. The known spin sign remains documented without correction.
+- The new input-driven sound recording contains two real makes, three rim misses, Game Over, a native Retry tap and a further real make. [Trace](verification/endless-2026-10-20/run-trace.json) and [source manifest](verification/endless-2026-10-20/recording-manifest.json) preserve both sessions and the accepted physical baseline comparison.
+
+The first full browser run passed 34 cases; one existing compact-control assertion sampled the press-scale animation between reads. It was corrected to check the 36px base CSS size and actual native tap bounds; the clean full rerun above passes. Initial and final outputs remain in the check folder. No runtime control styling was changed for that assertion.
+
+This is automated desktop Chrome native-touch/viewport emulation, not physical iPhone/Android or human engagement testing. No new runtime image/audio assets, dependencies or gameplay mechanics beyond the requested MVP. Older reports below retain their original scope and evidence.
 
 ## Final visual/mobile acceptance — 2026-10-19
 

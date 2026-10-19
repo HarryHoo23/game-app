@@ -1,0 +1,25 @@
+
+> afterhours-basketball@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/harry.hu/Desktop/game-app/game-app
+
+ ✓ src/tests/hoopSensors.test.ts (13 tests) 106ms
+ ✓ src/tests/domain.test.ts (15 tests) 21ms
+ ✓ src/tests/contactGeometry.test.ts (8 tests) 90ms
+ ✓ src/tests/frontCourt.test.ts (7 tests) 327ms
+ ✓ src/tests/physics.test.ts (11 tests) 371ms
+ ✓ src/tests/shotTrajectory.test.ts (22 tests) 403ms
+ ✓ src/tests/humanInput.test.ts (7 tests) 657ms
+   ✓ seeded human gesture coverage > repeats the same gestures and classifications while retaining skill misses  528ms
+ ✓ src/tests/physicsAudit.test.ts (4 tests) 13ms
+ ✓ src/tests/impactResponse.test.ts (9 tests) 10ms
+ ✓ src/tests/inputDebug.test.ts (2 tests) 22ms
+ ✓ src/tests/safeHandoff.test.ts (5 tests) 26ms
+ ✓ src/tests/canonicalRim.test.ts (3 tests) 134ms
+
+ Test Files  12 passed (12)
+      Tests  106 passed (106)
+   Start at  09:43:53
+   Duration  5.14s (transform 2.43s, setup 0ms, collect 6.06s, tests 2.18s, environment 5ms, prepare 5.83s)

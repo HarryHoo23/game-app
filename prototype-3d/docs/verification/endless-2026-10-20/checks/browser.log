@@ -1,0 +1,48 @@
+[2m[WebServer] [22m(node:92059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:92082) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 35 tests using 1 worker
+
+(node:92134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:92134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges (5.0s)
+  ✓   2 tests/browser/acceptance.spec.ts:48:1 › native held aim cancels on viewport rotation and restart; both orientations remain playable (6.0s)
+  ✓   3 tests/browser/acceptance.spec.ts:108:1 › real WebGL context loss restores rendering and bounded uploads across restart (4.8s)
+  ✓   4 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 320x568 (4.6s)
+  ✓   5 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 400x712 (4.7s)
+  ✓   6 tests/browser/endless.spec.ts:13:3 › Endless starts immediately with non-blocking first swipe help 430x820 (4.3s)
+  ✓   7 tests/browser/endless.spec.ts:47:1 › genuine complete Endless run ends after three misses; blocked shots, Retry and reload keep best (22.1s)
+  ✓   8 tests/browser/endless.spec.ts:171:1 › switching modes cancels the old flight; Practice remains unlimited and does not set Endless best (18.9s)
+  ✓   9 tests/browser/endless.spec.ts:227:1 › Endless native aiming/restart, resize and paused flight preserve the run (5.3s)
+  ✓  10 tests/browser/endless.spec.ts:287:1 › unavailable local storage keeps a playable run and in-memory best on restart (3.9s)
+  ✓  11 tests/browser/endless.spec.ts:310:1 › production default is Endless with saved best and reachable Practice (4.4s)
+  ✓  12 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 320x568 (3.5s)
+  ✓  13 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 400x712 (3.6s)
+  ✓  14 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 430x820 (3.5s)
+  ✓  15 tests/browser/integration.spec.ts:49:1 › mute persists across reload and never consumes/intercepts a shot (6.7s)
+  ✓  16 tests/browser/integration.spec.ts:95:1 › production loads optimized art successfully and does not fetch source PNGs (3.3s)
+  ✓  17 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (1.7s)
+  ✓  18 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (1.8s)
+  ✓  19 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.1m)
+  ✓  20 tests/browser/lifecycle.spec.ts:84:1 › resize cancels aiming and preserves released physics (5.3s)
+  ✓  21 tests/browser/lifecycle.spec.ts:112:1 › native touch cancellation and extra touches do not add shots (4.2s)
+  ✓  22 tests/browser/lifecycle.spec.ts:150:1 › pause and simulated background visibility suspend physical time until explicit resume (4.9s)
+  ✓  23 tests/browser/lifecycle.spec.ts:195:1 › clipboard denial provides a JSON download (1.6s)
+  ✓  24 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (3.5s)
+  ✓  25 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (1.2s)
+  ✓  26 tests/browser/rewards.spec.ts:3:1 › audio stays locked before interaction; real swish animates the net and rewards HUD (6.1s)
+  ✓  27 tests/browser/rewards.spec.ts:52:1 › rim and glass audio correspond to physical contacts; makes react once and pause stops voices (7.2s)
+  ✓  28 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (3.7s)
+  ✓  29 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (3.5s)
+  ✓  30 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (3.6s)
+  ✓  31 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (4.0s)
+  ✓  32 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (20.4s)
+  ✓  33 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (8.9s)
+  ✓  34 tests/browser/shotVisuals.spec.ts:3:1 › prepared arc follows the swipe, becomes a real trail, and clears on restart (18.6s)
+  ✓  35 tests/browser/shotVisuals.spec.ts:58:1 › cancelled aim and paused preview return to the baseline without consuming shots (5.0s)
+
+  35 passed (4.8m)

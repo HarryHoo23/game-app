@@ -1,0 +1,21 @@
+{
+  "capturedHead": "14eef474adbf46de802737bb8f8fc423b6848e7e",
+  "allSourceHashesMatch": true,
+  "sourceFiles": 41,
+  "media": {
+    "width": 400,
+    "height": 712,
+    "duration": 16.56,
+    "seeks": [
+      4.139999,
+      8.279999,
+      12.419999,
+      16.2288
+    ],
+    "error": null
+  },
+  "streams": "[libvpx @ 0xcb0c28000] v1.14.1\n[aist#0:1/opus @ 0xcb0c08300] Guessed Channel Layout: stereo\nInput #0, matroska,webm, from 'docs/verification/endless-2026-10-20/complete-run.webm':\n  Metadata:\n    ENCODER         : Lavf61.1.100\n  Duration: 00:00:16.56, start: 0.000000, bitrate: 458 kb/s\n  Stream #0:0: Video: vp8 (libvpx), yuv420p(tv, progressive), 400x712, SAR 1:1 DAR 50:89, 25 fps, 25 tbr, 1k tbn\n      Metadata:\n        ENCODER         : Lavc61.3.100 libvpx\n        DURATION        : 00:00:16.560000000\n  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo (default)\n      Metadata:\n        DURATION        : 00:00:15.591000000\nAt least one output file must be specified\n",
+  "errors": [],
+  "failed": [],
+  "scope": "Desktop Chrome muted decoding/seek verification; not subjective listening or device FPS"
+}

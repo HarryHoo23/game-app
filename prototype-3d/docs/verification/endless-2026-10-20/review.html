@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>AFTER HOURS · Endless MVP</title
+  ><style>
+    body {
+      background: #071820;
+      color: #edf0dc;
+      font: 16px system-ui;
+      max-width: 1100px;
+      padding: 24px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 26px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 32px;
+    }
+    p {
+      line-height: 1.6;
+      max-width: 820px;
+    }
+    a {
+      color: #f3d49c;
+    }
+    video {
+      width: 280px;
+      max-width: 100%;
+      display: block;
+    }
+    figure {
+      margin: 0 0 22px;
+    }
+    figcaption {
+      font-size: 13px;
+      margin-top: 8px;
+      color: #aac1b7;
+    }
+    .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .row img {
+      width: 220px;
+      max-width: 42vw;
+      display: block;
+      border: 1px solid #28474b;
+    }
+  </style>
+  <h1>AFTER HOURS · Endless Hoops MVP</h1>
+  <p>
+    <a href="/?mode=endless">Play Endless</a> ·
+    <a href="/?mode=practice">Unlimited Practice</a> ·
+    <a href="../../endless-mvp.md">Report and browser instructions</a>
+  </p>
+  <p>
+    Confirmed baskets +1. Three resolved misses end the run. Best persists
+    locally. Retry starts a fresh run immediately. Current shooting, physics,
+    artwork, net and audio are retained.
+  </p>
+  <h2>Complete run with actual game audio</h2>
+  <video
+    controls
+    playsinline
+    preload="metadata"
+    src="complete-run.webm"
+  ></video>
+  <p>
+    Native touch: two baskets → three misses → Game Over → Retry → another
+    basket. No game state or scores injected. This is automated chosen input,
+    not a human playtest or phone FPS measurement.
+  </p>
+  <p>
+    <a href="run-trace.json">Physical and run trace</a> ·
+    <a href="recording-manifest.json">Captured source manifest</a> ·
+    <a href="checks/browser-results.json">Browser results</a>
+  </p>
+  <h2>Portraits</h2>
+  <div class="row">
+    <figure>
+      <img src="ready-320x568.png" alt="Endless ready at 320x568" />
+      <figcaption>320x568 · first-time swipe hint</figcaption>
+    </figure>
+    <figure>
+      <img src="ready-400x712.png" alt="Endless ready at 400x712" />
+      <figcaption>400x712 · first-time swipe hint</figcaption>
+    </figure>
+    <figure>
+      <img src="ready-430x820.png" alt="Endless ready at 430x820" />
+      <figcaption>430x820 · first-time swipe hint</figcaption>
+    </figure>
+  </div>
+  <h2>Unlimited Practice</h2>
+  <div class="row">
+    <figure>
+      <img
+        src="practice-ready.png"
+        alt="Unlimited Practice remains accessible"
+      />
+      <figcaption>Practice · unlimited attempts, no miss limit</figcaption>
+    </figure>
+  </div>
+  <h2>Game Over and one-tap Retry</h2>
+  <div class="row">
+    <figure>
+      <img src="game-over.png" alt="Small portrait Game Over" />
+      <figcaption>320×568 · compact result screen</figcaption>
+    </figure>
+    <figure>
+      <img src="run-game-over.png" alt="Game Over after five actual shots" />
+      <figcaption>400×712 · Score 2 / Best 2</figcaption>
+    </figure>
+    <figure>
+      <img src="run-retry-ready.png" alt="Fresh run after Retry" />
+      <figcaption>Retry · Score 0 / three chances / Best retained</figcaption>
+    </figure>
+  </div>
+  <p>
+    Physical iPhone/Android performance and how motivating the short loop feels
+    still need human play. No new gameplay mechanics are included beyond this
+    MVP.
+  </p>
+</html>
