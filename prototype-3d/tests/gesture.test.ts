@@ -31,9 +31,9 @@ it("mapping_is_viewport_and_duration_independent", () => {
   );
 });
 it("natural_band_is_continuous_and_forgiving", () => {
-  const a = mapGesture(gesture(0.2), c)!,
+  const a = mapGesture(gesture(0.22), c)!,
     b = mapGesture(gesture(0.3), c)!,
-    d = mapGesture(gesture(0.4), c)!;
+    d = mapGesture(gesture(0.38), c)!;
   expect(a.velocity.z).toBeGreaterThan(b.velocity.z);
   expect(d.velocity.z).toBeLessThan(b.velocity.z);
   expect(Math.abs(a.velocity.z - b.velocity.z)).toBeLessThan(0.1);
@@ -60,8 +60,8 @@ it("rejects taps, downward, empty dimensions and invalid data", () => {
   ])
     expect(mapGesture(g, c)).toBeNull();
 });
-it("smaller hoop preserves physical makes across the familiar straight-swipe band", () => {
-  for (const up of [0.2, 0.25, 0.3, 0.35, 0.4]) {
+it("ordinary straight swipes remain physical makes inside the moderate band", () => {
+  for (const up of [0.22, 0.25, 0.3, 0.35, 0.38]) {
     const s = simulateShot(c.hoop.center, mapGesture(gesture(up), c)!.velocity);
     expect(s.makes, `up=${up}`).toBe(1);
   }

@@ -5,6 +5,7 @@ export type ShotVisualDiagnostics = {
   previewHit: boolean;
   previewVelocity: Vec3 | null;
   trailCount: number;
+  previewEnd?: Vec3 | null;
 };
 export type PreviewCast = (from: Vec3, to: Vec3) => number | null;
 /** Free-flight centre prediction; a sphere sweep truncates it at the first solid. */
@@ -14,16 +15,19 @@ export function writePreviewPoints(
   out: Float32Array,
   cast?: PreviewCast,
   origin: Vec3 = c.ball.origin,
+  maxDuration = Infinity,
 ): { count: number; hit: boolean } {
   const p = c.shotVisuals.preview;
   const count = Math.min(p.points, Math.floor(out.length / 3));
   const targetY = c.hoop.center.y - p.endBelowRim;
-  const end =
+  const end = Math.min(
+    maxDuration,
     (velocity.y +
       Math.sqrt(
         Math.max(0, velocity.y ** 2 + 2 * c.gravity * (origin.y - targetY)),
       )) /
-    c.gravity;
+      c.gravity,
+  );
   let prev = origin;
   for (let i = 0; i < count; i++) {
     const t = p.startTime + ((end - p.startTime) * i) / Math.max(1, count - 1);

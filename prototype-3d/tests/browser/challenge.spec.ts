@@ -1,7 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 import { swipe, waitReady, shotResult, eventListenerCount } from "./helpers";
-const output = "docs/verification/five-spot-2026-10-20/browser";
+const output = "docs/verification/calibration-2026-10-20/regression/challenge";
 const snap = (page: Page) =>
   page.evaluate(() => window.afterHours3D!.snapshot());
 async function aimedTouch(page: Page, up: number, dx = 0) {

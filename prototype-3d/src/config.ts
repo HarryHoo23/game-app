@@ -1,3 +1,4 @@
+import { activeTuning, launchTuningPresets } from "./tuning";
 /** Metres, seconds, kilograms. All gameplay tuning belongs here. */
 export const config = {
   gravity: 9.81,
@@ -27,8 +28,7 @@ export const config = {
     apex: 4.1,
     minUp: 0.055,
     normalUp: 0.3,
-    softBand: 0.1,
-    softDepth: 0.06,
+    ...launchTuningPresets[activeTuning],
     outerDepth: 3.6,
     maxDepth: 1.2,
     aimDeadzone: 0.018,

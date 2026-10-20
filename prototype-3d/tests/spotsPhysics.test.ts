@@ -1,3 +1,4 @@
+import { launchTuningPresets } from "../src/tuning";
 import { readFileSync } from "node:fs";
 import { beforeAll, it, expect } from "vitest";
 import { initPhysics, createTestWorld } from "./helpers/rapierWorld";
@@ -112,7 +113,7 @@ for (const spot of shootingSpots) {
     }
   });
 }
-it("straight frontal launch and spin stay unchanged; ascending passage cannot score", () => {
+it("original A/B preset reproduces the accepted frontal shot and spin; ascending passage cannot score", () => {
   const baseline = JSON.parse(
     readFileSync(
       new URL(
@@ -122,7 +123,11 @@ it("straight frontal launch and spin stay unchanged; ascending passage cannot sc
       "utf8",
     ),
   ).shot;
-  const l = mapGesture(baseline.gesture, c, practiceSpot)!;
+  const l = mapGesture(
+    baseline.gesture,
+    { ...c, launch: { ...c.launch, ...launchTuningPresets.original } },
+    practiceSpot,
+  )!;
   expect(l.angularVelocity).toEqual({ x: -7, y: 0, z: 0 });
   expect(l.velocity).toEqual(baseline.launch.velocity);
   for (const spot of shootingSpots) {

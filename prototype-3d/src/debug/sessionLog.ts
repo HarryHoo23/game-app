@@ -1,10 +1,13 @@
 import { config } from "../config";
+import { activeTuning } from "../tuning";
 import type { Gesture, Launch } from "../domain/launch";
 import type { Contact, Sample, Vec3 } from "../domain/types";
 import { isMake, type ShotResult } from "../domain/shot";
 export type ShotLog = {
   spot?: { id: string; index: number; ballInSpot: number; angle: number };
   viewBasis?: import("../domain/spots").ViewBasis;
+  tuning: { preset: string; softBand: number; softDepth: number };
+  mappedTarget: { position: Vec3; screenRight: number; depth: number };
   sessionId: number;
   shotId: number;
   gesture: Gesture;
@@ -33,8 +36,35 @@ export class SessionLog {
     this.shots.clear();
   }
   recordLaunch(record: LaunchRecord) {
+    const { origin, launch } = record,
+      v = launch.velocity,
+      h = config.hoop.center;
+    const time =
+      (v.y + Math.sqrt(v.y * v.y - 2 * config.gravity * (h.y - origin.y))) /
+      config.gravity;
+    const position = {
+      x: origin.x + v.x * time,
+      y: h.y,
+      z: origin.z + v.z * time,
+    };
+    const basis = record.viewBasis ?? {
+      right: { x: 1, y: 0, z: 0 },
+      forward: { x: 0, y: 0, z: -1 },
+    };
+    const dx = position.x - h.x,
+      dz = position.z - h.z;
     this.shots.set(record.shotId, {
       ...record,
+      tuning: {
+        preset: activeTuning,
+        softBand: config.launch.softBand,
+        softDepth: config.launch.softDepth,
+      },
+      mappedTarget: {
+        position,
+        screenRight: dx * basis.right.x + dz * basis.right.z,
+        depth: -(dx * basis.forward.x + dz * basis.forward.z),
+      },
       samples: [],
       contacts: [],
       result: null,
@@ -70,7 +100,10 @@ export class SessionLog {
   exportSession() {
     return JSON.stringify(
       {
-        version: 1,
+        version: 2,
+        tuning: activeTuning,
+        guidance:
+          "challenge: no idle path, first 0.55 seconds while aiming; practice: full",
         source: this.source,
         exportedAt: new Date().toISOString(),
         config,

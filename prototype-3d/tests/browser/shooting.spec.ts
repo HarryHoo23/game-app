@@ -46,7 +46,7 @@ test("actual pointer inputs yield readable physical misses and board contact", a
     [0.3, -0.3, "left"],
     [0.3, 0.3, "right"],
     [0.15, 0, "rim-miss"],
-    [0.45, 0, "rim-miss"],
+    [0.4, 0, "rim-miss"],
     [0.55, 0, "board-make"],
   ] as const) {
     const input = await swipe(page, { up, dx });

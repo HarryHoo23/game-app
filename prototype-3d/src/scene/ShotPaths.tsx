@@ -65,7 +65,9 @@ export function ShotPaths({
   }, [bridge, data]);
   useFrame(() => {
     if (!preview.current || !trail.current) return;
-    const paused = store.getState().phase === "paused";
+    const state = store.getState(),
+      paused = state.phase === "paused",
+      challenge = state.mode === "challenge";
     const context = bridge.current.context ?? practiceSpot;
     if (data.context !== context) {
       data.context = context;
@@ -79,7 +81,8 @@ export function ShotPaths({
     }
     const velocity =
       !paused && bridge.current.ready
-        ? (bridge.current.preview?.velocity ?? data.baseline)
+        ? (bridge.current.preview?.velocity ??
+          (challenge ? null : data.baseline))
         : null;
     if (velocity !== data.previousVelocity) {
       data.previousVelocity = velocity;
@@ -87,7 +90,7 @@ export function ShotPaths({
         ? writePreviewPoints(
             velocity,
             c,
-            data.dots,
+            challenge ? data.dots.subarray(0, 12 * 3) : data.dots,
             (from, to) =>
               world.castShape(
                 from,
@@ -101,9 +104,17 @@ export function ShotPaths({
                 BALL_GROUPS,
               )?.time_of_impact ?? null,
             context.origin,
+            challenge ? 0.55 : undefined,
           )
         : { count: 0, hit: false };
       data.diagnostics.previewCount = preview.current.count = result.count;
+      data.diagnostics.previewEnd = result.count
+        ? {
+            x: data.dots[(result.count - 1) * 3],
+            y: data.dots[(result.count - 1) * 3 + 1],
+            z: data.dots[(result.count - 1) * 3 + 2],
+          }
+        : null;
       data.diagnostics.previewHit = result.hit;
       data.diagnostics.previewVelocity = velocity ? { ...velocity } : null;
       for (let i = 0; i < result.count; i++) {
@@ -121,7 +132,9 @@ export function ShotPaths({
     const material = preview.current.material;
     if (!Array.isArray(material))
       material.opacity = bridge.current.preview
-        ? c.shotVisuals.preview.aimOpacity
+        ? challenge
+          ? 0.34
+          : c.shotVisuals.preview.aimOpacity
         : c.shotVisuals.preview.idleOpacity;
     let count = 0;
     if (!paused)
