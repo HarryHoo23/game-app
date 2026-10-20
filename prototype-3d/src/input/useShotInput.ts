@@ -1,3 +1,4 @@
+import type { ShotContext } from "../domain/spots";
 import { useEffect, type RefObject } from "react";
 import { config } from "../config";
 import { mapGesture, type Gesture, type Launch } from "../domain/launch";
@@ -6,6 +7,8 @@ import type { ShotVisualDiagnostics } from "../domain/shotVisuals";
 import type { ShotAudio } from "../audio/shotAudio";
 export type ShotBridge = {
   ready: boolean;
+  context?: ShotContext;
+  mapGesture?: (g: Gesture) => Launch | null;
   screen: { x: number; y: number; radius: number } | null;
   launch: ((launch: Launch, gesture: Gesture) => boolean) | null;
   aiming?: (active: boolean) => void;
@@ -88,7 +91,11 @@ export function useShotInput(
         cancel();
         return;
       }
-      bridge.current.preview = g ? mapGesture(g, config) : null;
+      bridge.current.preview = g
+        ? bridge.current.mapGesture
+          ? bridge.current.mapGesture(g)
+          : mapGesture(g, config)
+        : null;
     };
     const up = (e: PointerEvent) => {
       if (e.pointerId !== pointer) return;
@@ -110,7 +117,9 @@ export function useShotInput(
         Math.abs(g.width - r.width) < 0.5 &&
         Math.abs(g.height - r.height) < 0.5
       ) {
-        const launch = mapGesture(g, config);
+        const launch = bridge.current.mapGesture
+          ? bridge.current.mapGesture(g)
+          : mapGesture(g, config);
         if (launch) bridge.current.launch?.(launch, g);
       }
     };

@@ -1,23 +1,22 @@
 import { create } from "zustand";
 import { isMake, type ShotResult } from "./domain/shot";
 import { createPlayerProgress } from "./domain/playerProgress";
-export type Mode = "practice" | "endless";
-export type Phase =
-  "ready" | "aiming" | "flying" | "recovering" | "paused" | "gameover";
-type GameStore = {
+import {
+  advanceRound,
+  createRound,
+  type RoundState,
+  type Phase,
+} from "./domain/round";
+export type { Phase } from "./domain/round";
+export type Mode = "practice" | "challenge";
+type GameStore = RoundState & {
   mode: Mode;
-  missesLeft: number;
   best: number;
+  newBest: boolean;
   tutorialVisible: boolean;
-  sessionId: number;
-  attempts: number;
-  makes: number;
-  phase: Phase;
-  phaseBeforePause: Phase;
-  feedback: ShotResult | null;
-  currentShotId: number | null;
-  resolved: boolean;
-  recordReady: (sessionId: number) => void;
+  recordReady: (id: number) => void;
+  cameraSettled: (id: number, spotIndex: number) => void;
+  settle: (id: number) => void;
   recordLaunch: (sessionId: number, shotId: number) => boolean;
   recordResult: (
     sessionId: number,
@@ -35,22 +34,30 @@ export function createGameStore(
   mode: Mode = "practice",
 ) {
   return create<GameStore>((set) => ({
+    ...createRound(1),
     mode,
-    missesLeft: 3,
+    phase: mode === "practice" ? "ready" : "changingSpot",
     best: progress.readBest(),
+    newBest: false,
     tutorialVisible: !progress.hasLearnedSwipe(),
-    sessionId: 1,
-    attempts: 0,
-    makes: 0,
-    phase: "ready",
-    phaseBeforePause: "ready",
-    feedback: null,
-    currentShotId: null,
-    resolved: false,
     recordReady: (id) =>
       set((s) =>
-        id === s.sessionId && s.phase === "recovering"
+        id === s.sessionId && s.mode === "practice" && s.phase === "recovering"
           ? { phase: "ready" }
+          : {},
+      ),
+    cameraSettled: (id, spotIndex) =>
+      set((s) =>
+        s.mode === "practice"
+          ? id === s.sessionId && s.phase === "changingSpot"
+            ? { phase: "ready" }
+            : {}
+          : advanceRound(s, { type: "cameraReady", sessionId: id, spotIndex }),
+      ),
+    settle: (id) =>
+      set((s) =>
+        s.mode === "challenge"
+          ? advanceRound(s, { type: "settle", sessionId: id })
           : {},
       ),
     recordLaunch: (sessionId, shotId) => {
@@ -58,21 +65,26 @@ export function createGameStore(
       set((s) => {
         if (
           sessionId !== s.sessionId ||
+          (s.phase !== "ready" && s.phase !== "aiming") ||
           !Number.isSafeInteger(shotId) ||
-          shotId <= (s.currentShotId ?? 0) ||
-          (s.phase !== "ready" && s.phase !== "aiming")
+          shotId <= (s.currentShotId ?? 0)
         )
           return {};
+        const next =
+          s.mode === "challenge"
+            ? advanceRound(s, { type: "launch", sessionId, shotId })
+            : {
+                ...s,
+                attempts: s.attempts + 1,
+                currentShotId: shotId,
+                resolved: false,
+                phase: "flying" as Phase,
+                feedback: null,
+              };
+        if (next === s) return {};
         accepted = true;
         progress.learnSwipe();
-        return {
-          attempts: s.attempts + 1,
-          currentShotId: shotId,
-          resolved: false,
-          phase: "flying",
-          feedback: null,
-          tutorialVisible: false,
-        };
+        return { ...next, tutorialVisible: false };
       });
       return accepted;
     },
@@ -87,72 +99,58 @@ export function createGameStore(
         )
           return {};
         accepted = true;
-        const made = isMake(result),
-          makes = s.makes + Number(made);
-        const missesLeft = s.missesLeft - Number(s.mode === "endless" && !made);
-        return {
-          makes,
-          missesLeft,
-          best:
-            s.mode === "endless" && made ? progress.recordBest(makes) : s.best,
-          resolved: true,
-          phase: missesLeft === 0 ? "gameover" : "recovering",
-          feedback: result,
-        };
+        if (s.mode === "practice")
+          return {
+            makes: s.makes + Number(isMake(result)),
+            resolved: true,
+            phase: "recovering",
+            feedback: result,
+          };
+        const next = advanceRound(s, {
+          type: "result",
+          sessionId,
+          shotId,
+          result,
+        });
+        return next.phase === "completed"
+          ? {
+              ...next,
+              newBest: next.makes > progress.readBest(),
+              best: progress.recordBest(next.makes),
+            }
+          : next;
       });
       return accepted;
     },
-    setAiming: (active) =>
-      set((s) =>
-        s.phase === "ready" || s.phase === "aiming"
-          ? { phase: active ? "aiming" : "ready" }
-          : {},
-      ),
+    setAiming: (active) => set((s) => advanceRound(s, { type: "aim", active })),
     restart: () =>
       set((s) => ({
-        sessionId: s.sessionId + 1,
-        attempts: 0,
-        makes: 0,
-        missesLeft: 3,
+        ...createRound(s.sessionId + 1),
+        phase:
+          s.mode === "practice" &&
+          s.phase !== "changingSpot" &&
+          s.phaseBeforePause !== "changingSpot"
+            ? "ready"
+            : "changingSpot",
+        mode: s.mode,
         best: progress.readBest(),
-        phase: "ready",
-        phaseBeforePause: "ready",
-        feedback: null,
-        currentShotId: null,
-        resolved: false,
+        newBest: false,
       })),
     startMode: (mode) =>
       set((s) => ({
+        ...createRound(s.sessionId + 1),
         mode,
-        sessionId: s.sessionId + 1,
-        attempts: 0,
-        makes: 0,
-        missesLeft: 3,
         best: progress.readBest(),
-        phase: "ready",
-        phaseBeforePause: "ready",
-        feedback: null,
-        currentShotId: null,
-        resolved: false,
+        newBest: false,
       })),
-    pause: () =>
-      set((s) =>
-        s.phase !== "paused" && s.phase !== "gameover"
-          ? {
-              phaseBeforePause: s.phase === "aiming" ? "ready" : s.phase,
-              phase: "paused",
-            }
-          : {},
-      ),
-    resume: () =>
-      set((s) => (s.phase === "paused" ? { phase: s.phaseBeforePause } : {})),
+    pause: () => set((s) => advanceRound(s, { type: "pause" })),
+    resume: () => set((s) => advanceRound(s, { type: "resume" })),
   }));
 }
-// Keep the existing hook contract; only the default browser mode changes.
 const initialMode: Mode =
   typeof window !== "undefined" &&
   new URLSearchParams(window.location.search).get("mode") !== "practice"
-    ? "endless"
+    ? "challenge"
     : "practice";
 export const usePracticeStore = createGameStore(
   createPlayerProgress(),

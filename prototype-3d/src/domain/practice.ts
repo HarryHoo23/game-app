@@ -20,12 +20,27 @@ export function createPracticeLifecycle(c: GameConfig) {
       r.readyId = null;
       return id;
     },
-    resolve(id: number, result: ShotResult) {
+    resolve(id: number, result: ShotResult, autoPrepare = true) {
       const ball = r.balls.find((b) => b.id === id);
       if (r.finished || !ball || ball.status !== "flying") return false;
       ball.status = "resolved";
-      due = r.time + (isMake(result) ? c.recovery.make : c.recovery.miss);
+      due = autoPrepare
+        ? r.time + (isMake(result) ? c.recovery.make : c.recovery.miss)
+        : null;
       return true;
+    },
+    prepare() {
+      if (
+        r.finished ||
+        r.paused ||
+        r.readyId !== null ||
+        r.balls.some((b) => b.status === "flying")
+      )
+        return null;
+      r.readyId = nextId++;
+      r.balls.push({ id: r.readyId, status: "ready", born: r.time });
+      r.step(0);
+      return r.readyId;
     },
     finish() {
       r.finished = true;

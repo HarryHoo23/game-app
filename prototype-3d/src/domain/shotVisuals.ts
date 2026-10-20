@@ -13,9 +13,9 @@ export function writePreviewPoints(
   c: GameConfig,
   out: Float32Array,
   cast?: PreviewCast,
+  origin: Vec3 = c.ball.origin,
 ): { count: number; hit: boolean } {
-  const origin = c.ball.origin,
-    p = c.shotVisuals.preview;
+  const p = c.shotVisuals.preview;
   const count = Math.min(p.points, Math.floor(out.length / 3));
   const targetY = c.hoop.center.y - p.endBelowRim;
   const end =

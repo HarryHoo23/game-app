@@ -1,3 +1,4 @@
+import { practiceSpot, type ShotContext } from "../domain/spots";
 import { useEffect, useMemo, useRef, type RefObject } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useRapier } from "@react-three/rapier";
@@ -38,6 +39,7 @@ export function ShotPaths({
       ),
       transform: new Object3D(),
       shape: new rapier.Ball(c.ball.radius),
+      context: null as ShotContext | null,
       baseline: solveBallistic(
         c.ball.origin,
         c.hoop.center,
@@ -64,6 +66,17 @@ export function ShotPaths({
   useFrame(() => {
     if (!preview.current || !trail.current) return;
     const paused = store.getState().phase === "paused";
+    const context = bridge.current.context ?? practiceSpot;
+    if (data.context !== context) {
+      data.context = context;
+      data.baseline = solveBallistic(
+        context.origin,
+        c.hoop.center,
+        c.launch.apex,
+        c.gravity,
+      );
+      data.previousVelocity = null;
+    }
     const velocity =
       !paused && bridge.current.ready
         ? (bridge.current.preview?.velocity ?? data.baseline)
@@ -87,6 +100,7 @@ export function ShotPaths({
                 undefined,
                 BALL_GROUPS,
               )?.time_of_impact ?? null,
+            context.origin,
           )
         : { count: 0, hit: false };
       data.diagnostics.previewCount = preview.current.count = result.count;

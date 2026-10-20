@@ -1,5 +1,5 @@
 type StorageAccess = () => Pick<Storage, "getItem" | "setItem"> | undefined;
-export const BEST_KEY = "afterhours3d-endless-best";
+export const BEST_KEY = "afterhours3d-five-spot-best";
 export const TUTORIAL_KEY = "afterhours3d-swipe-learned";
 
 /** Keep a session-memory fallback even when the storage getter or writes fail. */
@@ -25,7 +25,7 @@ export function createPlayerProgress(
   const readBest = () => {
     const value = read(BEST_KEY);
     const parsed = value && /^\d+$/.test(value) ? Number(value) : 0;
-    if (Number.isSafeInteger(parsed) && parsed >= 0)
+    if (Number.isSafeInteger(parsed) && parsed >= 0 && parsed <= 10)
       best = Math.max(best, parsed);
     return best;
   };
@@ -33,7 +33,7 @@ export function createPlayerProgress(
     readBest,
     recordBest(score: number) {
       readBest();
-      if (Number.isSafeInteger(score) && score > best) {
+      if (Number.isSafeInteger(score) && score > best && score <= 10) {
         best = score;
         write(BEST_KEY, String(best));
       }

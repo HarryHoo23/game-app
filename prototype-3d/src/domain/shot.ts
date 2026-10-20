@@ -1,3 +1,4 @@
+import type { ViewBasis } from "./spots";
 import type { GameConfig } from "../config";
 import type { Contact, Sample } from "./types";
 import { crossing } from "./scoring";
@@ -19,6 +20,10 @@ export function resolveShot(
   contacts: readonly Contact[],
   made: boolean,
   c: GameConfig,
+  basis: ViewBasis = {
+    right: { x: 1, y: 0, z: 0 },
+    forward: { x: 0, y: 0, z: -1 },
+  },
 ): ShotResult {
   const board = contacts.some((k) => k.kind === "board"),
     rim = contacts.some((k) => k.kind === "rim");
@@ -28,8 +33,10 @@ export function resolveShot(
   for (let i = 1; i < trace.length; i++) {
     const at = crossing(trace[i - 1], trace[i], c.hoop.center.y);
     if (!at) continue;
-    const x = at.x - c.hoop.center.x,
-      z = at.z - c.hoop.center.z;
+    const dx = at.x - c.hoop.center.x,
+      dz = at.z - c.hoop.center.z;
+    const x = dx * basis.right.x + dz * basis.right.z,
+      z = -(dx * basis.forward.x + dz * basis.forward.z);
     if (Math.max(Math.abs(x), Math.abs(z)) < c.hoop.innerRadius - c.ball.radius)
       return "miss";
     return Math.abs(x) > Math.abs(z)

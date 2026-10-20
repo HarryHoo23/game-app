@@ -6,13 +6,18 @@ import {
   BallCollider,
   type RapierRigidBody,
 } from "@react-three/rapier";
+import type { Vec3 } from "../domain/types";
 import { config as c, BALL_GROUPS } from "../config";
 import { hoopArt, useArtTexture } from "./art";
-export function BallMesh() {
+export function BallMesh({ standby = false }: { standby?: boolean } = {}) {
   const texture = useArtTexture(hoopArt.ball);
   const geometry = useMemo(() => ballSurface(c), []);
   const material = useMemo(() => {
-    const m = new MeshStandardMaterial({ map: texture, roughness: 0.74 });
+    const m = new MeshStandardMaterial({
+      map: texture,
+      roughness: 0.74,
+      color: standby ? "#b8c6c2" : "#ffffff",
+    });
     m.customProgramCacheKey = () => "after-hours-leather-v1";
     m.onBeforeCompile = (shader) => {
       shader.vertexShader =
@@ -50,7 +55,7 @@ export function BallMesh() {
       );
     };
     return m;
-  }, [texture]);
+  }, [texture, standby]);
   useEffect(
     () => () => {
       geometry.dispose();
@@ -63,11 +68,13 @@ export function BallMesh() {
 export const Ball = memo(function Ball({
   id,
   register,
+  origin = c.ball.origin,
 }: {
   id: number;
+  origin?: Vec3;
   register: (id: number, body: RapierRigidBody | null) => void;
 }) {
-  const o = c.ball.origin;
+  const o = origin;
   const ref = useCallback(
     (body: RapierRigidBody | null) => register(id, body),
     [id, register],

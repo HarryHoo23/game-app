@@ -3,6 +3,8 @@ import type { Gesture, Launch } from "../domain/launch";
 import type { Contact, Sample, Vec3 } from "../domain/types";
 import { isMake, type ShotResult } from "../domain/shot";
 export type ShotLog = {
+  spot?: { id: string; index: number; ballInSpot: number; angle: number };
+  viewBasis?: import("../domain/spots").ViewBasis;
   sessionId: number;
   shotId: number;
   gesture: Gesture;
@@ -16,7 +18,13 @@ export type ShotLog = {
 };
 type LaunchRecord = Pick<
   ShotLog,
-  "sessionId" | "shotId" | "gesture" | "launch" | "origin"
+  | "sessionId"
+  | "shotId"
+  | "gesture"
+  | "launch"
+  | "origin"
+  | "spot"
+  | "viewBasis"
 >;
 export class SessionLog {
   private shots = new Map<number, ShotLog>();

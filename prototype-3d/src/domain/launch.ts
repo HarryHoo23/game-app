@@ -1,3 +1,4 @@
+import type { ShotContext } from "./spots";
 import type { Vec3 } from "./types";
 import type { GameConfig } from "../config";
 export type Gesture = {
@@ -30,7 +31,14 @@ export function solveBallistic(
   const t = y / gravity + Math.sqrt((2 * (apex - target.y)) / gravity);
   return { x: (target.x - origin.x) / t, y, z: (target.z - origin.z) / t };
 }
-export function mapGesture(g: Gesture, c: GameConfig): Launch | null {
+export function mapGesture(
+  g: Gesture,
+  c: GameConfig,
+  context: ShotContext = {
+    origin: c.ball.origin,
+    basis: { right: { x: 1, y: 0, z: 0 }, forward: { x: 0, y: 0, z: -1 } },
+  },
+): Launch | null {
   if (
     ![
       g.start.x,
@@ -66,18 +74,31 @@ export function mapGesture(g: Gesture, c: GameConfig): Launch | null {
       Math.pow(Math.max(0, Math.abs(dx) - p.aimDeadzone), p.aimExponent) *
         p.aimSensitivity,
     );
+  const velocity = solveBallistic(
+    context.origin,
+    {
+      x:
+        c.hoop.center.x +
+        context.basis.right.x * aim -
+        context.basis.forward.x * depth,
+      y: c.hoop.center.y,
+      z:
+        c.hoop.center.z +
+        context.basis.right.z * aim -
+        context.basis.forward.z * depth,
+    },
+    p.apex,
+    c.gravity,
+  );
+  const horizontal = Math.hypot(velocity.x, velocity.z);
   return {
-    velocity: solveBallistic(
-      c.ball.origin,
-      {
-        x: c.hoop.center.x + aim,
-        y: c.hoop.center.y,
-        z: c.hoop.center.z + depth,
-      },
-      p.apex,
-      c.gravity,
-    ),
-    angularVelocity: { x: c.ball.backspin, y: 0, z: 0 },
+    velocity,
+    // Preserve the legacy sign, rotating the axis perpendicular to actual travel.
+    angularVelocity: {
+      x: velocity.z === 0 ? 0 : (-velocity.z / horizontal) * c.ball.backspin,
+      y: 0,
+      z: velocity.x === 0 ? 0 : (velocity.x / horizontal) * c.ball.backspin,
+    },
     normalized: { dx, up },
   };
 }

@@ -1,12 +1,12 @@
 import { usePracticeStore as store } from "../store";
 export function PauseOverlay() {
   const paused = store((s) => s.phase === "paused"),
-    endless = store((s) => s.mode === "endless");
+    challenge = store((s) => s.mode === "challenge");
   return paused ? (
     <div
       className="pause"
       role="dialog"
-      aria-label={endless ? "Endless paused" : "Practice paused"}
+      aria-label={challenge ? "Challenge paused" : "Practice paused"}
     >
       <span>TAKE A BREATH</span>
       <h1>The court can wait.</h1>

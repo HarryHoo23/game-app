@@ -12,6 +12,7 @@ import { Physics } from "@react-three/rapier";
 import { config } from "./config";
 import { CameraRig } from "./scene/CameraRig";
 import { Court } from "./scene/Court";
+import { SpotRack } from "./scene/SpotRack";
 import { Hoop } from "./scene/Hoop";
 import { PracticeScene } from "./scene/PracticeScene";
 import { useShotInput, type ShotBridge } from "./input/useShotInput";
@@ -48,12 +49,13 @@ export function App() {
     [hidden, setHidden] = useState(document.hidden);
   const onReady = useCallback(() => setLoaded(true), []);
   const sessionId = store((s) => s.sessionId),
-    phase = store((s) => s.phase);
+    phase = store((s) => s.phase),
+    mode = store((s) => s.mode);
   useShotInput(
     el,
     bridge,
     sessionId,
-    phase === "paused" || phase === "gameover",
+    phase === "paused" || phase === "completed" || phase === "changingSpot",
     audio,
   );
   useEffect(() => {
@@ -72,7 +74,7 @@ export function App() {
     return () => document.removeEventListener("visibilitychange", visibility);
   }, []);
   return (
-    <main className="game" ref={el} data-phase={phase}>
+    <main className="game" ref={el} data-phase={phase} data-mode={mode}>
       <GameBoundary>
         <Canvas
           shadows
@@ -91,6 +93,7 @@ export function App() {
             >
               <Court />
               <Hoop feedback={feedback} />
+              <SpotRack />
               <PracticeScene
                 key={sessionId}
                 sessionId={sessionId}

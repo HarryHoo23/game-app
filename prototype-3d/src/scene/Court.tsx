@@ -72,8 +72,12 @@ export function Court() {
         <lineBasicMaterial color="#406269" transparent opacity={0.055} />
       </lineSegments>
       {/* Decorative only: offset behind the board, clear of the shooting corridor. */}
-      <mesh position={[0.65, 1.6, -0.62]}>
+      <mesh position={[1.4, 1.6, -0.62]}>
         <boxGeometry args={[0.075, 3.2, 0.075]} />
+        <meshStandardMaterial color="#30484b" metalness={0.4} roughness={0.7} />
+      </mesh>
+      <mesh position={[1.025, 3.2, -0.62]}>
+        <boxGeometry args={[0.75, 0.075, 0.075]} />
         <meshStandardMaterial color="#30484b" metalness={0.4} roughness={0.7} />
       </mesh>
       <RigidBody

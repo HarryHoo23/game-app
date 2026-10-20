@@ -77,39 +77,6 @@ body {
   font-size: 12px;
   line-height: 1.6;
 }
-.chances strong {
-  color: #f3d49c;
-}
-.game-over h1 {
-  margin-bottom: 0;
-}
-.run-totals {
-  display: flex;
-  gap: 48px;
-  margin: 8px 0 18px;
-}
-.run-totals div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.run-totals strong {
-  font-size: 44px;
-  color: #f3d49c;
-  font-variant-numeric: tabular-nums;
-}
-.run-totals span {
-  color: #a5bcb6;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-}
-.game-over .retry {
-  background: #f3d49c;
-  color: #102a32;
-  border-color: #f3d49c;
-  font-size: 18px;
-  font-weight: 700;
-}
 .error {
   position: absolute;
   inset: 0;
@@ -209,9 +176,6 @@ button {
   cursor: pointer;
   list-style: none;
   text-align: right;
-}
-.game[data-phase="gameover"] .debug {
-  z-index: 6;
 }
 .debug button {
   font-size: 10px;
@@ -416,5 +380,254 @@ button:focus-visible {
   }
   .court-controls button {
     transition: none;
+  }
+}
+/* Five-spot challenge: clear centre corridor, grouped shape-coded outcomes. */
+.game[data-mode="challenge"] .brand small {
+  font-size: 7px;
+  letter-spacing: 0.12em;
+}
+.challenge-score {
+  position: absolute;
+  left: 20px;
+  top: 76px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  pointer-events: none;
+}
+.challenge-score > span,
+.shot-counter {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  color: #a9c0b8;
+}
+.challenge-score strong {
+  font-size: 32px;
+  font-weight: 600;
+  color: #f3d49c;
+  font-variant-numeric: tabular-nums;
+}
+.challenge-score strong small {
+  font-size: 15px;
+  color: #92aaa7;
+  font-weight: 400;
+}
+.shot-counter {
+  position: absolute;
+  right: 22px;
+  top: 91px;
+  pointer-events: none;
+}
+.shot-counter strong {
+  font-size: 15px;
+  color: #e3e8d9;
+}
+.spot-progress {
+  position: absolute;
+  top: 124px;
+  left: 20px;
+  right: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+  pointer-events: none;
+}
+.spot-pair {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+}
+.spot-pair > div {
+  display: flex;
+  gap: 6px;
+}
+.spot-pair > small {
+  font-size: 6px;
+  letter-spacing: 0.08em;
+  color: #7e9d9d;
+  white-space: nowrap;
+}
+.shot-marker {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #577a7d;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+.shot-marker.current {
+  border: 2px solid #efcc93;
+  color: #efcc93;
+  box-shadow: 0 0 10px #d3a36830;
+}
+.shot-marker.made {
+  border-color: #acd7be;
+  background: #7da98c24;
+  color: #c2ebcf;
+}
+.shot-marker.missed {
+  border-style: dashed;
+  border-color: #b4a08e;
+  color: #d1b39b;
+}
+.spot-caption {
+  position: absolute;
+  left: 20px;
+  top: 67%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  pointer-events: none;
+}
+.spot-caption > span {
+  font-size: 9px;
+  color: #9badaa;
+  letter-spacing: 0.14em;
+}
+.spot-caption strong {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #e4d7b7;
+}
+.spot-caption small {
+  font-size: 9px;
+  color: #94b3ad;
+  letter-spacing: 0.12em;
+}
+.game[data-mode="challenge"] .swipe-tutorial {
+  top: 76%;
+  font-size: 11px;
+}
+.challenge-feedback,
+.challenge-feedback.made {
+  left: 20px;
+  top: 52%;
+  width: 42%;
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+  color: #c6d9cb;
+}
+.challenge-feedback .feedback-content {
+  align-items: flex-start;
+}
+.challenge-feedback.made {
+  color: #f3d49c;
+}
+.challenge-feedback strong {
+  font-size: 15px;
+  letter-spacing: 0.12em;
+}
+.spot-transition {
+  position: absolute;
+  top: 52%;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+  pointer-events: none;
+}
+.spot-transition span {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: #91b6b1;
+}
+.spot-transition strong {
+  font-size: 16px;
+  letter-spacing: 0.13em;
+  color: #edcc96;
+}
+.challenge-results h1 {
+  font-size: 76px;
+  font-weight: 600;
+  color: #f3d49c;
+  margin: 0;
+  letter-spacing: -0.06em;
+}
+.challenge-results h1 small {
+  font-size: 30px;
+  color: #aec4b8;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.challenge-results .best-label {
+  color: #edcf98;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.challenge-results p {
+  font-size: 9px;
+  color: #98b3ac;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+.challenge-results p b {
+  color: #c9daca;
+  margin-left: 10px;
+}
+.results-progress {
+  position: static;
+  width: min(100%, 320px);
+  margin: 16px 0;
+}
+.challenge-results .retry {
+  background: #f3d49c;
+  color: #102a32;
+  border-color: #f3d49c;
+  font-weight: 700;
+}
+.game[data-phase="completed"] .debug {
+  z-index: 6;
+}
+@media (max-height: 600px) {
+  .challenge-score {
+    top: 68px;
+  }
+  .challenge-score strong {
+    font-size: 27px;
+  }
+  .shot-counter {
+    top: 80px;
+  }
+  .spot-progress {
+    top: 108px;
+    gap: 5px;
+  }
+  .shot-marker {
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+  }
+  .spot-pair {
+    gap: 5px;
+  }
+  .spot-pair > small {
+    font-size: 5.5px;
+  }
+  .spot-caption strong {
+    font-size: 11px;
+  }
+  .spot-caption {
+    gap: 6px;
+  }
+  .challenge-results {
+    gap: 10px;
+  }
+  .results-progress {
+    margin: 12px 0;
+  }
+  .challenge-results h1 {
+    font-size: 64px;
+  }
+  .game[data-mode="challenge"] .swipe-tutorial {
+    top: 75%;
+    font-size: 10px;
   }
 }

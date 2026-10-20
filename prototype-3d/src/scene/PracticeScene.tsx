@@ -1,12 +1,11 @@
 import {
-  useLayoutEffect,
   useEffect,
   useRef,
   useState,
   useCallback,
   type RefObject,
 } from "react";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import {
   useAfterPhysicsStep,
   useRapier,
@@ -28,10 +27,11 @@ import {
   createBasketState,
   type BasketState,
 } from "../domain/scoring";
-import { solveBallistic } from "../domain/launch";
+import { activeSpot, spotSettings, type ShotContext } from "../domain/spots";
+import { mapGesture, solveBallistic } from "../domain/launch";
 import { createPracticeLifecycle } from "../domain/practice";
 import { resolveShot, shouldRetire } from "../domain/shot";
-import type { Sample, Contact } from "../domain/types";
+import type { Sample, Contact, Vec3 } from "../domain/types";
 import { usePracticeStore as store } from "../store";
 import { sessionLog } from "../debug/sessionLog";
 import type { ShotAudio } from "../audio/shotAudio";
@@ -47,6 +47,7 @@ type Flight = {
   launchedAt: number;
   resolved: boolean;
   trail: TrailBuffer;
+  context: ShotContext;
 };
 export type DebugSnapshot = {
   ready: boolean;
@@ -54,8 +55,15 @@ export type DebugSnapshot = {
   sessionId: number;
   attempts: number;
   makes: number;
-  mode: "practice" | "endless";
-  missesLeft: number;
+  mode: "practice" | "challenge";
+  spotIndex: number;
+  ballInSpot: number;
+  outcomes:
+    | import("../domain/shot").ShotResult[]
+    | (import("../domain/shot").ShotResult | null)[];
+  origin: Vec3;
+  spot: { id: string; name: string; angle: number };
+  camera: { position: Vec3; right: Vec3 };
   best: number;
   simTime: number;
   bodyCount: number;
@@ -113,6 +121,10 @@ export function PracticeScene({
 }) {
   const [life] = useState(() => createPracticeLifecycle(c)),
     [ids, setIds] = useState([1]);
+  const origins = useRef(
+    new Map<number, Vec3>([[1, activeSpot(store.getState()).origin]]),
+  );
+  const settleAt = useRef<number | null>(null);
   const bodies = useRef(new Map<number, RapierRigidBody>()),
     flights = useRef(new Map<number, Flight>());
   const { rapier, world } = useRapier(),
@@ -132,20 +144,30 @@ export function PracticeScene({
     },
     [bridge, life, onReady, sessionId],
   );
-  useLayoutEffect(() => {
-    const o = c.ball.origin,
-      p = new Vector3(o.x, o.y, o.z).project(camera),
-      edge = new Vector3(o.x + c.ball.radius, o.y, o.z).project(camera);
+  useFrame(() => {
+    const context = activeSpot(store.getState()),
+      o = context.origin;
+    bridge.current.context = context;
+    const p = new Vector3(o.x, o.y, o.z).project(camera),
+      edge = new Vector3(
+        o.x + context.basis.right.x * c.ball.radius,
+        o.y,
+        o.z + context.basis.right.z * c.ball.radius,
+      ).project(camera);
     bridge.current.screen = {
       x: ((p.x + 1) / 2) * size.width,
       y: ((1 - p.y) / 2) * size.height,
-      radius: (Math.abs(edge.x - p.x) / 2) * size.width,
+      radius:
+        Math.hypot((edge.x - p.x) * size.width, (edge.y - p.y) * size.height) /
+        2,
     };
-  }, [bridge, camera, size]);
+  });
   useEffect(() => {
     sessionLog?.reset();
     feedback.reset();
     audio.stop();
+    bridge.current.mapGesture = (g) =>
+      mapGesture(g, c, activeSpot(store.getState()));
     bridge.current.aiming = (active) => store.getState().setAiming(active);
     bridge.current.launch = (launch, gesture) => {
       const id = life.readyId,
@@ -180,6 +202,7 @@ export function PracticeScene({
         launchedAt: life.time,
         resolved: false,
         trail,
+        context: activeSpot(store.getState()),
       });
       feedback.launch(id);
       sessionLog?.recordLaunch({
@@ -188,12 +211,20 @@ export function PracticeScene({
         gesture,
         launch,
         origin: prev.position,
+        spot: {
+          id: activeSpot(store.getState()).id,
+          index: store.getState().spotIndex,
+          ballInSpot: store.getState().ballInSpot,
+          angle: activeSpot(store.getState()).angle,
+        },
+        viewBasis: activeSpot(store.getState()).basis,
       });
       sessionLog?.recordSample(id, prev);
       return true;
     };
     return () => {
       bridge.current.launch = null;
+      bridge.current.mapGesture = undefined;
       bridge.current.aiming = undefined;
       bridge.current.ready = false;
     };
@@ -205,10 +236,37 @@ export function PracticeScene({
     )
       return;
     if (life.step(c.timeStep)) {
+      for (const b of life.balls)
+        if (!origins.current.has(b.id))
+          origins.current.set(b.id, activeSpot(store.getState()).origin);
       setIds(life.balls.map((b) => b.id));
       for (const id of flights.current.keys())
-        if (!life.balls.some((b) => b.id === id)) flights.current.delete(id);
+        if (!life.balls.some((b) => b.id === id)) {
+          flights.current.delete(id);
+          origins.current.delete(id);
+        }
       if (life.readyId !== null) store.getState().recordReady(sessionId);
+    }
+    if (settleAt.current !== null && life.time >= settleAt.current) {
+      store.getState().settle(sessionId);
+      settleAt.current = null;
+    }
+    if (
+      store.getState().mode === "challenge" &&
+      store.getState().phase === "ready" &&
+      life.readyId === null
+    ) {
+      const id = life.prepare();
+      if (id !== null) {
+        origins.current.set(id, activeSpot(store.getState()).origin);
+        setIds(life.balls.map((b) => b.id));
+        // prepare() also trims the pool; retire the corresponding diagnostic data.
+        for (const old of flights.current.keys())
+          if (!life.balls.some((b) => b.id === old)) {
+            flights.current.delete(old);
+            origins.current.delete(old);
+          }
+      }
     }
     feedback.step(life.time);
     for (const [id, s] of flights.current) {
@@ -220,7 +278,7 @@ export function PracticeScene({
         time: life.time - s.launchedAt,
       };
       appendTrailSample(s.trail, next, c.shotVisuals.trail.sampleInterval);
-      if (store.getState().phase !== "gameover")
+      if (store.getState().phase !== "changingSpot")
         feedback.passage(id, s.prev, next);
       if (s.resolved) {
         s.prev = next;
@@ -273,10 +331,25 @@ export function PracticeScene({
       s.prev = next;
       if (a.made || shouldRetire(next, s.contacts, next.time, c)) {
         s.resolved = true;
-        const result = resolveShot(s.trace, s.contacts, a.made, c);
+        const result = resolveShot(
+          s.trace,
+          s.contacts,
+          a.made,
+          c,
+          s.context.basis,
+        );
         if (!store.getState().recordResult(sessionId, id, result)) continue;
-        life.resolve(id, result);
-        if (store.getState().phase === "gameover") life.finish();
+        const state = store.getState();
+        life.resolve(id, result, state.mode === "practice");
+        if (state.phase === "completed") life.finish();
+        else if (state.mode === "challenge")
+          settleAt.current =
+            life.time +
+            (state.ballInSpot === 1
+              ? spotSettings.feedbackSeconds
+              : a.made
+                ? c.recovery.make
+                : c.recovery.miss);
         feedback.result(id, result, next, life.time);
         sessionLog?.recordResult(id, result);
       }
@@ -296,18 +369,20 @@ export function PracticeScene({
         y: ((1 - v.y) / 2) * size.height,
       };
     };
-    const v = solveBallistic(
-        c.ball.origin,
-        c.hoop.center,
-        c.launch.apex,
-        c.gravity,
-      ),
-      at = v.y / c.gravity;
     const api = Object.freeze({
       snapshot: (): DebugSnapshot => {
         const s = store.getState(),
           id = life.readyId ?? s.currentShotId,
-          b = id === null ? null : bodies.current.get(id);
+          b = id === null ? null : bodies.current.get(id),
+          context = activeSpot(s),
+          v = solveBallistic(
+            context.origin,
+            c.hoop.center,
+            c.launch.apex,
+            c.gravity,
+          ),
+          at = v.y / c.gravity;
+        const right = new Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
         return {
           ready: bridge.current.ready,
           phase: s.phase,
@@ -315,7 +390,19 @@ export function PracticeScene({
           attempts: s.attempts,
           makes: s.makes,
           mode: s.mode,
-          missesLeft: s.missesLeft,
+          spotIndex: s.spotIndex,
+          ballInSpot: s.ballInSpot,
+          outcomes: [...s.outcomes],
+          origin: context.origin,
+          spot: { id: context.id, name: context.name, angle: context.angle },
+          camera: {
+            position: {
+              x: camera.position.x,
+              y: camera.position.y,
+              z: camera.position.z,
+            },
+            right: { x: right.x, y: right.y, z: right.z },
+          },
           best: s.best,
           simTime: life.time,
           bodyCount: bodies.current.size,
@@ -356,12 +443,12 @@ export function PracticeScene({
                 }
               : null,
           projection: {
-            ball: project(c.ball.origin),
+            ball: project(context.origin),
             rim: project(c.hoop.center),
             apex: project({
-              x: c.ball.origin.x + v.x * at,
+              x: context.origin.x + v.x * at,
               y: c.launch.apex,
-              z: c.ball.origin.z + v.z * at,
+              z: context.origin.z + v.z * at,
             }),
           },
         };
@@ -379,7 +466,12 @@ export function PracticeScene({
   return (
     <>
       {ids.map((id) => (
-        <Ball key={id} id={id} register={register} />
+        <Ball
+          key={id}
+          id={id}
+          origin={origins.current.get(id)}
+          register={register}
+        />
       ))}
       <ShotPaths bridge={bridge} flights={flights} clock={life} />
     </>
