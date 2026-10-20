@@ -1,0 +1,87 @@
+[2m[WebServer] [22m(node:12096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:12158) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 37 tests using 1 worker
+
+(node:12172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges (5.8s)
+  ✓   2 tests/browser/acceptance.spec.ts:48:1 › native held aim cancels on viewport rotation and restart; both orientations remain playable (6.3s)
+  ✓   3 tests/browser/acceptance.spec.ts:108:1 › real WebGL context loss restores rendering and bounded uploads across restart (4.9s)
+  ✓   4 tests/browser/calibration.spec.ts:6:1 › challenge hides ideal idle shot, shows only an early aim segment, and Practice retains full help (6.2s)
+  ✓   5 tests/browser/calibration.spec.ts:55:3 › native A/B round original: all five angles, partial preview and attributable telemetry (28.4s)
+  ✓   6 tests/browser/calibration.spec.ts:55:3 › native A/B round moderate: all five angles, partial preview and attributable telemetry (30.7s)
+  ✓   7 tests/browser/calibration.spec.ts:140:1 › production ignores development tuning URL parameters (4.3s)
+  ✓   8 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 320x568 (40.5s)
+  ✓   9 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 400x712 (35.7s)
+  ✓  10 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 430x820 (35.6s)
+  ✓  11 tests/browser/challenge.spec.ts:181:1 › moving camera rejects held input, pause freezes transition, and restart returns safely to corner (15.6s)
+  ✓  12 tests/browser/challenge.spec.ts:255:1 › two real rounds keep render and physical resources bounded (53.6s)
+  ✓  13 tests/browser/challenge.spec.ts:285:1 › production default challenge completes a native ten-shot round without developer hooks (28.0s)
+  ✓  14 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 320x568 (3.6s)
+  ✓  15 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 400x712 (3.6s)
+  ✓  16 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 430x820 (3.6s)
+  ✓  17 tests/browser/integration.spec.ts:49:1 › mute persists across reload and never consumes/intercepts a shot (7.1s)
+  ✓  18 tests/browser/integration.spec.ts:95:1 › production loads optimized art successfully and does not fetch source PNGs (3.8s)
+  ✓  19 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (1.9s)
+  ✓  20 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (1.8s)
+  ✓  21 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.1m)
+  ✓  22 tests/browser/lifecycle.spec.ts:84:1 › resize cancels aiming and preserves released physics (4.2s)
+  ✓  23 tests/browser/lifecycle.spec.ts:112:1 › native touch cancellation and extra touches do not add shots (5.4s)
+  ✓  24 tests/browser/lifecycle.spec.ts:150:1 › pause and simulated background visibility suspend physical time until explicit resume (5.9s)
+  ✓  25 tests/browser/lifecycle.spec.ts:195:1 › clipboard denial provides a JSON download (2.7s)
+  ✓  26 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (4.3s)
+  ✓  27 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (1.9s)
+  ✓  28 tests/browser/rewards.spec.ts:3:1 › audio stays locked before interaction; real swish animates the net and rewards HUD (7.9s)
+  ✓  29 tests/browser/rewards.spec.ts:52:1 › rim and glass audio correspond to physical contacts; makes react once and pause stops voices (9.1s)
+  ✓  30 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (7.4s)
+  ✓  31 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (5.5s)
+  ✓  32 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (9.3s)
+  ✓  33 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (11.1s)
+  ✘  34 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (30.1s)
+(node:21901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  35 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (11.2s)
+  ✓  36 tests/browser/shotVisuals.spec.ts:3:1 › prepared arc follows the swipe, becomes a real trail, and clears on restart (6.2s)
+  ✓  37 tests/browser/shotVisuals.spec.ts:58:1 › cancelled aim and paused preview return to the baseline without consuming shots (4.7s)
+
+
+  1) tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"rim-miss"[39m
+    Received: [31m"board-make"[39m
+
+      52 |     const input = await swipe(page, { up, dx });
+      53 |     const result = await shotResult(page, input.attempt);
+    > 54 |     expect(result.result).toBe(expected);
+         |                           ^
+      55 |     if (expected.includes("rim"))
+      56 |       expect(
+      57 |         result.contacts.some((k: { kind: string }) => k.kind === "rim"),
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/shooting.spec.ts:54:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/shooting-actual-pointer-in-1b438-al-misses-and-board-contact/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/shooting-actual-pointer-in-1b438-al-misses-and-board-contact/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shooting-actual-pointer-in-1b438-al-misses-and-board-contact/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/shooting-actual-pointer-in-1b438-al-misses-and-board-contact/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact
+  36 passed (8.9m)

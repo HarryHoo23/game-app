@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>AFTER HOURS · Difficulty Calibration</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #071820;
+      color: #e8e9dc;
+      font:
+        15px/1.65 system-ui,
+        sans-serif;
+    }
+    main {
+      max-width: 1160px;
+      margin: auto;
+      padding: 34px 24px;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+    h2 {
+      font-size: 23px;
+      margin-top: 42px;
+    }
+    p {
+      max-width: 900px;
+      color: #b0c6be;
+    }
+    a {
+      color: #edce9c;
+    }
+    small {
+      color: #93b4ad;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-variant-numeric: tabular-nums;
+    }
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #29454c;
+      text-align: right;
+    }
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+    th {
+      font-size: 12px;
+      color: #a8c5b8;
+    }
+    select,
+    button {
+      font: inherit;
+      padding: 8px 12px;
+      background: #12313a;
+      border: 1px solid #48666b;
+      border-radius: 5px;
+      color: #e3e4d7;
+    }
+    label {
+      display: inline-flex;
+      gap: 9px;
+      align-items: center;
+      margin-right: 18px;
+      margin-bottom: 16px;
+    }
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+    .plot {
+      width: 100%;
+      display: block;
+      background: #0b2029;
+      border-radius: 7px;
+    }
+    .hint {
+      min-height: 3.5em;
+      font-size: 12px;
+      color: #c2d3c5;
+    }
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #bfd0c6;
+    }
+    .legend i {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .videos video {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 400/712;
+      border-radius: 8px;
+      background: #071820;
+    }
+    .videos figure {
+      margin: 0;
+    }
+    figcaption {
+      color: #afc5bd;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .callout {
+      border-left: 2px solid #e5c28b;
+      padding: 4px 20px;
+      margin: 26px 0;
+      background: #102831;
+    }
+    .screens {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 220px));
+      gap: 20px;
+    }
+    .screens img {
+      width: 100%;
+      border-radius: 7px;
+      border: 1px solid #29454c;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    code {
+      color: #d9d7bd;
+    }
+    @media (max-width: 700px) {
+      .pair {
+        grid-template-columns: 1fr;
+      }
+      .screens {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      main {
+        padding: 24px 16px;
+      }
+      th,
+      td {
+        padding: 8px;
+      }
+    }
+  </style>
+  <main>
+    <small>AFTER HOURS · FIVE-SPOT CALIBRATION</small>
+    <h1>More meaningful swipe variation.<br />The same physical hoop.</h1>
+    <p>
+      Default candidate: <code>softBand .08 / softDepth .075</code>. Neutral
+      remains <code>.30</code>, the rim stays <code>.232 m</code>, and
+      horizontal aim, spin, physics and scoring remain unchanged.
+    </p>
+    <p>
+      <a href="http://localhost:5174/?tuning=original">Human A — original</a> ·
+      <a href="http://localhost:5174/?tuning=moderate">Human B — moderate</a> ·
+      <a href="../../difficulty-calibration.md"
+        >Full report and two-round instructions</a
+      >
+      · <a href="summary.json">Measured summary</a> ·
+      <a href="delivery-files.txt">Changed files</a>
+    </p>
+    <div class="callout">
+      <p>
+        <b>These rates are sensitivity measurements, not human make rates.</b>
+        The grid equally weights explicit gestures, including many samples near
+        the horizontal dead zone. Both configurations still make 405/405 shots
+        in the defined core subset. Human A/B acceptance remains pending.
+      </p>
+    </div>
+    <h2>Paired before / after, five angles</h2>
+    <p>
+      195 shots per position. Main grid: upward .18–.42, horizontal −.18–.18 at
+      the listed fixed sample points. “Swish” means a make with no physical rim
+      or board contact before confirmation.
+    </p>
+    <div class="table-wrap">
+      <table id="rates">
+        <thead>
+          <tr>
+            <th>Spot</th>
+            <th>Original make</th>
+            <th>Moderate make</th>
+            <th>Original swish</th>
+            <th>Moderate swish</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <h2>Explore the actual Rapier outcomes</h2>
+    <label
+      >Spot
+      <select id="spot">
+        <option value="left-corner">Left corner</option>
+        <option value="left-wing">Left wing</option>
+        <option value="top">Top of the key</option>
+        <option value="right-wing">Right wing</option>
+        <option value="right-corner">Right corner</option>
+      </select></label
+    >
+    <label
+      >Comparison
+      <select id="comparison">
+        <option value="mapping">Gesture mapping · .232 rim</option>
+        <option value="rim-original">Rim size · original mapping</option>
+        <option value="rim-moderate">Rim size · moderate mapping</option>
+      </select></label
+    >
+    <div class="legend">
+      <span><i style="background: #93c7a0"></i>Swish</span
+      ><span><i style="background: #ebc48e"></i>Rim make</span
+      ><span><i style="background: #83bdd3"></i>Board make</span
+      ><span><i style="background: #a77970"></i>Rim miss</span
+      ><span><i style="background: #665b74"></i>Board miss</span>
+    </div>
+    <div class="pair">
+      <section>
+        <h3 id="title-a">Original</h3>
+        <canvas
+          id="plot-a"
+          class="plot"
+          width="520"
+          height="370"
+          aria-label="Original shot sensitivity map"
+        ></canvas>
+        <div id="hint-a" class="hint">
+          Each square is one real physical shot. Hover or tap for its target
+          offsets and outcome.
+        </div>
+      </section>
+      <section>
+        <h3 id="title-b">Moderate</h3>
+        <canvas
+          id="plot-b"
+          class="plot"
+          width="520"
+          height="370"
+          aria-label="Comparison shot sensitivity map"
+        ></canvas>
+        <div id="hint-b" class="hint"></div>
+      </section>
+    </div>
+    <p>
+      Horizontal axis: swipe-right displacement / screen width. Vertical axis:
+      swipe-up distance / screen height. White outline marks the centred .30 / 0
+      cell. The additional short/long/lateral edge probes are exported
+      separately from these rates.
+    </p>
+    <h2>Independent rim experiment</h2>
+    <div class="table-wrap">
+      <table id="rim">
+        <thead>
+          <tr>
+            <th>Mapping / radius</th>
+            <th>Makes /975</th>
+            <th>Swish</th>
+            <th>Rim make</th>
+            <th>Board make</th>
+            <th>Rim miss</th>
+            <th>Board miss</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p>
+      Gesture tuning: 614 → 498 makes. Shrinking only the rim: 614 → 611. A
+      smaller rim with moderate mapping gives 502, because some real rebounds
+      change into makes. The evidence supports keeping .232 m. Optional smaller
+      geometry was tested consistently across visual torus dimensions, net
+      attachment, physical segments and scoring clearance; it is not enabled in
+      the game.
+    </p>
+    <h2>Identical native-touch inputs, actual game sound</h2>
+    <div class="pair videos">
+      <figure>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          src="recordings/original/complete-run.webm"
+          poster="recordings/original/run-ready.png"
+        ></video>
+        <figcaption>
+          A · Original response · 10/10 for these selected vectors<br /><a
+            href="recordings/original/run-trace.json"
+            >Vectors, contacts, outcomes and camera observations</a
+          >
+        </figcaption>
+      </figure>
+      <figure>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          src="recordings/moderate/complete-run.webm"
+          poster="recordings/moderate/run-ready.png"
+        ></video>
+        <figcaption>
+          B · Moderate response · 7/10 for the same vectors<br /><a
+            href="recordings/moderate/run-trace.json"
+            >Vectors, contacts, outcomes and camera observations</a
+          >
+        </figcaption>
+      </figure>
+    </div>
+    <p>
+      The demonstration deliberately includes weak/strong edge swipes. Both
+      recordings use the same partial guidance and include all five positions,
+      results and a real retry. Native compositor frames retain original
+      timestamps and actual master audio; no scores, transforms or clocks are
+      injected. The small sample is not an estimate of human success.
+    </p>
+    <h2>Guidance change</h2>
+    <div class="screens">
+      <figure>
+        <img
+          src="browser/challenge-idle.png"
+          alt="Challenge ready without a full ideal baseline path"
+        />
+        <figcaption>Challenge idle · no ideal shot revealed</figcaption>
+      </figure>
+      <figure>
+        <img
+          src="browser/challenge-aim.png"
+          alt="Challenge aiming shows only the rising beginning of flight"
+        />
+        <figcaption>Challenge aim · 12 faint early-flight dots</figcaption>
+      </figure>
+      <figure>
+        <img
+          src="browser/practice-idle.png"
+          alt="Practice keeps the full baseline assistance"
+        />
+        <figcaption>Practice · full assistance retained</figcaption>
+      </figure>
+    </div>
+    <h2>Your two rounds</h2>
+    <p>
+      Use the development server. Warm up briefly in Practice, then open A and
+      shoot ten natural gestures. At results export Session log → Copy session
+      JSON before changing links. Repeat with B on the same phone; save both
+      exports. Compare miss clarity, control and desire to retry as well as
+      score. Ignore the shared personal best. If repeating, alternate the order.
+      Production ignores the A override.
+    </p>
+    <p>
+      <a href="checks/browser.log">Full browser checks</a> ·
+      <a href="checks/unit.log">Real physics and unit checks</a> ·
+      <a href="checks/protected-files.json"
+        >Preserved physics / camera / spin / art / audio / net</a
+      >
+    </p>
+  </main>
+  <script type="module">
+    const cache = new Map(),
+      $ = (s) => document.querySelector(s),
+      pct = (x) => (x * 100).toFixed(1) + "%",
+      labels = {
+        original: "Original · .232 m",
+        moderate: "Moderate · .232 m",
+        "original-small-rim": "Original · .229 m",
+        "moderate-small-rim": "Moderate · .229 m",
+      };
+    const summary = await (await fetch("summary.json")).json();
+    $("#rates tbody").innerHTML = summary.original.perSpot
+      .map((a, i) => {
+        const b = summary.moderate.perSpot[i];
+        return `<tr><td>${a.spot}</td><td>${a.broad.makes}/195 · ${pct(a.broad.makeRate)}</td><td>${b.broad.makes}/195 · ${pct(b.broad.makeRate)}</td><td>${pct(a.broad.cleanSwishRate)}</td><td>${pct(b.broad.cleanSwishRate)}</td></tr>`;
+      })
+      .join("");
+    $("#rim tbody").innerHTML = Object.keys(labels)
+      .map((k) => {
+        const a = summary[k].all;
+        return `<tr><td>${labels[k]}</td><td>${a.makes}</td>${["swish", "rim-make", "board-make", "rim-miss", "board-miss"].map((x) => `<td>${a.outcomes[x]}</td>`).join("")}</tr>`;
+      })
+      .join("");
+    async function load(key) {
+      if (!cache.has(key))
+        cache.set(
+          key,
+          fetch(key + ".json").then((r) => r.json()),
+        );
+      return cache.get(key);
+    }
+    let revision = 0;
+    async function draw() {
+      const rev = ++revision,
+        keys =
+          $("#comparison").value === "mapping"
+            ? ["original", "moderate"]
+            : $("#comparison").value === "rim-original"
+              ? ["original", "original-small-rim"]
+              : ["moderate", "moderate-small-rim"];
+      for (const [i, key] of keys.entries()) {
+        const data = await load(key);
+        if (rev !== revision) return;
+        const side = i ? "b" : "a",
+          canvas = $("#plot-" + side),
+          ctx = canvas.getContext("2d"),
+          xs = data.sampling.horizontal,
+          ys = data.sampling.vertical,
+          rows = data.rows.filter((r) => r.spot === $("#spot").value),
+          cw = 28,
+          ch = 22,
+          left = 70,
+          top = 20;
+        $("#title-" + side).textContent = labels[key];
+        ctx.fillStyle = "#0b2029";
+        ctx.fillRect(0, 0, 520, 370);
+        ctx.font = "10px system-ui";
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#a8c5bb";
+        ys.forEach((v, j) =>
+          ctx.fillText(v.toFixed(2), left - 10, top + j * ch + 15),
+        );
+        ctx.textAlign = "center";
+        xs.forEach((v, j) =>
+          ctx.fillText(
+            v.toFixed(2),
+            left + j * cw + 13,
+            top + ys.length * ch + 18,
+          ),
+        );
+        const colors = {
+          swish: "#93c7a0",
+          "rim-make": "#ebc48e",
+          "board-make": "#83bdd3",
+          "rim-miss": "#a77970",
+          "board-miss": "#665b74",
+        };
+        rows.forEach((r) => {
+          const x = left + xs.indexOf(r.dx) * cw,
+            y = top + ys.indexOf(r.up) * ch;
+          ctx.fillStyle = colors[r.result] ?? "#7a8c9a";
+          ctx.fillRect(x, y, cw - 2, ch - 2);
+          if (r.up === 0.3 && r.dx === 0) {
+            ctx.strokeStyle = "#fff";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x + 1, y + 1, cw - 4, ch - 4);
+          }
+        });
+        const inspect = (e) => {
+          const box = canvas.getBoundingClientRect(),
+            x = ((e.clientX - box.left) * 520) / box.width,
+            y = ((e.clientY - box.top) * 370) / box.height,
+            dx = xs[Math.floor((x - left) / cw)],
+            up = ys[Math.floor((y - top) / ch)],
+            r = rows.find((r) => r.dx === dx && r.up === up);
+          if (r)
+            $("#hint-" + side).textContent =
+              `up ${r.up.toFixed(2)}, right ${r.dx.toFixed(3)} → ${r.result}; target depth ${(r.mappedOffsets.depth * 100).toFixed(1)} cm, right ${(r.mappedOffsets.right * 100).toFixed(1)} cm; ${r.contacts.filter((c) => c.kind !== "floor").length} rim/board contacts, ${r.downwardScoreEvents} score event.`;
+        };
+        canvas.onpointermove = inspect;
+        canvas.onpointerdown = inspect;
+      }
+    }
+    $("#spot").onchange = draw;
+    $("#comparison").onchange = draw;
+    await draw();
+    document.body.dataset.ready = "true";
+  </script>
+</html>

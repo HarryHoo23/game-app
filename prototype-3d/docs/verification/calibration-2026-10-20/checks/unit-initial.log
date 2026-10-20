@@ -1,0 +1,104 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-20T03_05_31_511Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/harry.hu/Desktop/game-app/game-app/prototype-3d
+
+·stderr | tests/spinComparison.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/shotPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/spotsPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/calibration.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/gesture.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/sensitivityStudy.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+······x·x·········xstderr | tests/netPassage.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+··stderr | tests/physics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/shotVisuals.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+······stderr | tests/ballisticPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+·····stderr | tests/physicalContact.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+································
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/gesture.test.ts > natural_band_is_continuous_and_forgiving
+AssertionError: expected 0.12134306441678433 to be less than 0.1
+ ❯ tests/gesture.test.ts:39:49
+     37|   expect(a.velocity.z).toBeGreaterThan(b.velocity.z);
+     38|   expect(d.velocity.z).toBeLessThan(b.velocity.z);
+     39|   expect(Math.abs(a.velocity.z - b.velocity.z)).toBeLessThan(0.1);
+       |                                                 ^
+     40|   expect(Math.abs(mapGesture(gesture(0.3, 0.01), c)!.velocity.x)).toBe…
+     41|   expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/gesture.test.ts > smaller hoop preserves physical makes across the familiar straight-swipe band
+AssertionError: up=0.2: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/gesture.test.ts:66:33
+     64|   for (const up of [0.2, 0.25, 0.3, 0.35, 0.4]) {
+     65|     const s = simulateShot(c.hoop.center, mapGesture(gesture(up), c)!.…
+     66|     expect(s.makes, `up=${up}`).toBe(1);
+       |                                 ^
+     67|   }
+     68| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/spotsPhysics.test.ts > straight frontal launch and spin stay unchanged; ascending passage cannot score
+AssertionError: expected { x: +0, y: 7.345406728017176, …(1) } to deeply equal { x: +0, y: 7.345406728017176, …(1) }
+
+- Expected
++ Received
+
+  {
+    "x": 0,
+    "y": 7.345406728017176,
+-   "z": -3.4669446806396413,
++   "z": -3.466944671086824,
+  }
+
+ ❯ tests/spotsPhysics.test.ts:127:22
+    125|   const l = mapGesture(baseline.gesture, c, practiceSpot)!;
+    126|   expect(l.angularVelocity).toEqual({ x: -7, y: 0, z: 0 });
+    127|   expect(l.velocity).toEqual(baseline.launch.velocity);
+       |                      ^
+    128|   for (const spot of shootingSpots) {
+    129|     const h = createTestWorld(c, { x: 0, y: 2.7, z: 0 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 22 passed (24)
+      Tests  3 failed | 62 passed (65)
+   Start at  14:05:31
+   Duration  3.86s (transform 735ms, setup 0ms, collect 2.68s, tests 8.00s, environment 5ms, prepare 3.43s)

@@ -1,0 +1,21 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-20T03_03_10_975Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/harry.hu/Desktop/game-app/game-app/prototype-3d
+
+stderr | tests/sensitivityStudy.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stdout | tests/sensitivityStudy.test.ts > reproducible paired five-spot sensitivity study using live scoring and real contacts
+moderate-small-rim [{"spot":"left-corner","broad":{"shots":195,"makes":99,"makeRate":0.5076923076923077,"cleanSwishRate":0.4,"outcomes":{"swish":78,"rim-make":20,"board-make":1,"rim-miss":71,"board-miss":25,"short":0,"long":0,"left":0,"right":0,"miss":0}},"core":{"shots":81,"makes":80,"makeRate":0.9876543209876543,"cleanSwishRate":0.8641975308641975,"outcomes":{"swish":70,"rim-make":10,"board-make":0,"rim-miss":1,"board-miss":0,"short":0,"long":0,"left":0,"right":0,"miss":0}}},{"spot":"left-wing","broad":{"shots":195,"makes":100,"makeRate":0.5128205128205128,"cleanSwishRate":0.4,"outcomes":{"swish":78,"rim-make":21,"board-make":1,"rim-miss":64,"board-miss":31,"short":0,"long":0,"left":0,"right":0,"miss":0}},"core":{"shots":81,"makes":81,"makeRate":1,"cleanSwishRate":0.8641975308641975,"outcomes":{"swish":70,"rim-make":11,"board-make":0,"rim-miss":0,"board-miss":0,"short":0,"long":0,"left":0,"right":0,"miss":0}}},{"spot":"top","broad":{"shots":195,"makes":100,"makeRate":0.5128205128205128,"cleanSwishRate":0.4,"outcomes":{"swish":78,"rim-make":21,"board-make":1,"rim-miss":56,"board-miss":39,"short":0,"long":0,"left":0,"right":0,"miss":0}},"core":{"shots":81,"makes":81,"makeRate":1,"cleanSwishRate":0.8641975308641975,"outcomes":{"swish":70,"rim-make":11,"board-make":0,"rim-miss":0,"board-miss":0,"short":0,"long":0,"left":0,"right":0,"miss":0}}},{"spot":"right-wing","broad":{"shots":195,"makes":101,"makeRate":0.517948717948718,"cleanSwishRate":0.4,"outcomes":{"swish":78,"rim-make":21,"board-make":2,"rim-miss":62,"board-miss":32,"short":0,"long":0,"left":0,"right":0,"miss":0}},"core":{"shots":81,"makes":81,"makeRate":1,"cleanSwishRate":0.8641975308641975,"outcomes":{"swish":70,"rim-make":11,"board-make":0,"rim-miss":0,"board-miss":0,"short":0,"long":0,"left":0,"right":0,"miss":0}}},{"spot":"right-corner","broad":{"shots":195,"makes":102,"makeRate":0.5230769230769231,"cleanSwishRate":0.4,"outcomes":{"swish":78,"rim-make":21,"board-make":3,"rim-miss":67,"board-miss":26,"short":0,"long":0,"left":0,"right":0,"miss":0}},"core":{"shots":81,"makes":81,"makeRate":1,"cleanSwishRate":0.8641975308641975,"outcomes":{"swish":70,"rim-make":11,"board-make":0,"rim-miss":0,"board-miss":0,"short":0,"long":0,"left":0,"right":0,"miss":0}}}]
+
+ ✓ tests/sensitivityStudy.test.ts (2 tests) 2527ms
+   ✓ reproducible paired five-spot sensitivity study using live scoring and real contacts  2376ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  14:03:11
+   Duration  3.05s (transform 114ms, setup 0ms, collect 150ms, tests 2.53s, environment 0ms, prepare 93ms)

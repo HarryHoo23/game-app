@@ -1,0 +1,71 @@
+{
+  "media": [
+    {
+      "src": "http://localhost:5174/docs/verification/calibration-2026-10-20/recordings/original/complete-run.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 35.12,
+      "error": null
+    },
+    {
+      "src": "http://localhost:5174/docs/verification/calibration-2026-10-20/recordings/moderate/complete-run.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 36.08,
+      "error": null
+    }
+  ],
+  "played": [
+    {
+      "time": 0.215942,
+      "frames": 10
+    },
+    {
+      "time": 0.211237,
+      "frames": 10
+    }
+  ],
+  "errors": [],
+  "identicalGestureVectors": true,
+  "sourceHashesMatch": true,
+  "recordings": {
+    "original": {
+      "method": "actual native Chrome frames sampled using original compositor timestamps; unscaled crop of unused margins to complete CSS viewport; encoded offline without altering game clocks",
+      "encodedFps": 25,
+      "captures": 1925,
+      "frames": 878,
+      "durationSeconds": 35.12,
+      "observedDurationSeconds": 35.095685958862305,
+      "sourceSurface": {
+        "width": 500,
+        "height": 785,
+        "pageScaleFactor": 1
+      },
+      "viewportCrop": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 712
+      }
+    },
+    "moderate": {
+      "method": "actual native Chrome frames sampled using original compositor timestamps; unscaled crop of unused margins to complete CSS viewport; encoded offline without altering game clocks",
+      "encodedFps": 25,
+      "captures": 2034,
+      "frames": 902,
+      "durationSeconds": 36.08,
+      "observedDurationSeconds": 36.06271409988403,
+      "sourceSurface": {
+        "width": 500,
+        "height": 785,
+        "pageScaleFactor": 1
+      },
+      "viewportCrop": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 712
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "shotsPerConfiguration": 1025,
+  "totalPhysicalShots": 4100,
+  "pairedMainVectors": 975,
+  "separateEdgeProbes": 50,
+  "changedConfigFieldsOnly": [
+    "launch.softBand",
+    "launch.softDepth",
+    "hoop.innerRadius"
+  ],
+  "singleDownwardScoresMatchEveryOutcome": true,
+  "protectedFilesMatch": true
+}

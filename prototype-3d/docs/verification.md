@@ -2,6 +2,16 @@
 
 Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Current modes are Five Spot Challenge and Unlimited Practice; the user has reported improved shooting feel and successful human baskets.
 
+## Five-spot difficulty calibration — 2026-10-20
+
+Starting HEAD: `434044a3bc7c9943775d8146b41f03e602370a81`. [Calibration report and human A/B instructions](difficulty-calibration.md), [interactive sensitivity maps and paired recordings](verification/calibration-2026-10-20/review.html).
+
+Before editing runtime tuning, four paired actual-Rapier studies measured 975 identical gestures plus 50 separately labelled edge probes each. Original/current rim makes 614/975, moderate/current rim 498/975, original/.229 rim 611/975, and moderate/.229 rim 502/975. The large effect comes from gesture mapping; physical rebounds make the small-rim effect non-monotonic. These equally weighted grid rates do not estimate human performance. All 405 core gestures still make in both; moderate changes 45 of them from swishes to rim-makes.
+
+The delivered candidate uses `softBand=.08`, `softDepth=.075`, `normalUp=.30` and preserves the `.232 m` inner radius, horizontal settings, spin, ballistics, scoring, camera, round state, best score, art, net and audio. Challenge idle guidance is removed; aiming shows the first .55 seconds of the same launch calculation. Practice retains full assistance. DEV-only `?tuning=original`/`moderate` supports human comparison; production ignores overrides. Version-2 telemetry identifies preset, spot, gesture, mapped target, actual contacts and score crossings.
+
+Paired actual-touch recordings use identical vectors and all five angles, resulting in 10/10 original and 7/10 moderate for that selected demonstration. Both decode at 400×712 with native timestamps and actual sound; they do not establish human difficulty. [Raw study summary](verification/calibration-2026-10-20/summary.json), [protected source/asset hashes](verification/calibration-2026-10-20/checks/protected-files.json), [checks](verification/calibration-2026-10-20/checks/). Human A/B feedback remains the acceptance gate. Final checks: **68/68 unit/actual-Rapier**, **37/37 browser**, **106/106 original Phaser**, ESLint, TypeScript/build and packed-art reproducibility pass. The initial full browser run had one obsolete strong-rebound expectation; the recorded probe, corrected fixture and frozen complete rerun are documented in the calibration report. Historical image evidence remains unchanged.
+
 ## Five Spot Challenge — 2026-10-20
 
 Actual baseline HEAD: `665b2fd6510abddb57b9f8aad8b1683d0feacbe7`. [Implementation, geometry, state diagram, files and limits](five-spot-challenge.md), [five camera angles and recordings](verification/five-spot-2026-10-20/review.html).

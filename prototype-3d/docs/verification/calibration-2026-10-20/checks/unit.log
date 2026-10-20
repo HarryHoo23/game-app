@@ -1,0 +1,47 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-20T03_08_39_233Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/harry.hu/Desktop/game-app/game-app/prototype-3d
+
+stderr | tests/spinComparison.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/physicalContact.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/shotPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/gesture.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/sensitivityStudy.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/calibration.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+·······stderr | tests/spotsPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+··············stderr | tests/ballisticPhysics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+·stderr | tests/physics.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+····stderr | tests/shotVisuals.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | tests/netPassage.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+··········································
+
+ Test Files  25 passed (25)
+      Tests  68 passed (68)
+   Start at  14:08:39
+   Duration  3.44s (transform 624ms, setup 0ms, collect 2.73s, tests 7.74s, environment 5ms, prepare 3.30s)
