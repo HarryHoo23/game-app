@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 import { waitReady, swipe, shotResult } from "./lib/pointer-input.mjs";
 import { startFrameRecorder } from "./lib/frame-recorder.mjs";
 
-const out = process.argv[2] ?? "docs/verification/endless-2026-10-20";
+const out = process.argv[2] ?? "docs/verification/five-spot-2026-10-20/final";
 await mkdir(out, { recursive: true });
 const require = createRequire(import.meta.url);
 const { registry } = require(
@@ -74,7 +74,7 @@ try {
   const page = await context.newPage(),
     errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("http://localhost:5174/?automation&mode=endless");
+  await page.goto("http://localhost:5174/?automation&mode=challenge");
   const initial = await waitReady(page);
   await page.screenshot({ path: out + "/run-ready.png" });
   const origin = await page.evaluate(() => performance.now());
@@ -97,19 +97,28 @@ try {
         s.ready,
         s.attempts,
         s.makes,
-        s.missesLeft,
+        s.spotIndex,
+        s.ballInSpot,
         s.best,
         s.rewards.audio.played,
       ]);
-      if (key !== signature) {
+      if (key !== signature || s.phase === "changingSpot") {
         signature = key;
         states.push(s);
       }
       await page.waitForTimeout(35);
     }
   })();
-  const inputs = [];
-  for (const up of [0.3, 0.15, 0.3, 0.15, 0.15]) {
+  const inputs = [],
+    views = [];
+  let transitionCaptured = false;
+  for (let i = 0; i < 10; i++) {
+    const ready = await waitReady(page);
+    if (i % 2 === 0) {
+      views.push(ready);
+      await page.screenshot({ path: `${out}/spot-${ready.spotIndex}.png` });
+    }
+    const up = i % 2 === 0 ? 0.3 : 0.15;
     const input = await swipe(page, {
       up,
       touch: true,
@@ -118,31 +127,44 @@ try {
     });
     inputs.push(input);
     await shotResult(page, input.attempt);
+    if (i === 1) {
+      await page.waitForFunction(
+        () => window.afterHours3D.snapshot().phase === "changingSpot",
+      );
+      await page.waitForTimeout(180);
+      await page.screenshot({ path: out + "/camera-transition.png" });
+      transitionCaptured = true;
+    }
   }
-  await page.getByRole("region", { name: "Game Over" }).waitFor();
-  await page.waitForTimeout(700);
+  await page.getByRole("region", { name: "Round complete" }).waitFor();
+  const resultsAt = await page.evaluate(() => performance.now());
+  await page.waitForTimeout(2000);
   const finished = await page.evaluate(() => window.afterHours3D.snapshot());
   const run = await page.evaluate(() => window.afterHours3D.session());
-  assert.equal(finished.phase, "gameover");
+  assert.equal(finished.phase, "completed");
   assert.equal(finished.ready, false);
-  assert.equal(finished.attempts, 5);
-  assert.equal(finished.makes, 2);
-  assert.equal(finished.missesLeft, 0);
-  assert.equal(finished.best, 2);
+  assert.equal(finished.attempts, 10);
+  assert.equal(finished.makes, 5);
+  assert.equal(finished.spotIndex, 4);
+  assert.equal(views.length, 5);
+  assert.equal(transitionCaptured, true);
+  assert.equal(finished.best, 5);
   assert.deepEqual(
     run.shots.map((s) => s.result),
-    ["swish", "rim-miss", "swish", "rim-miss", "rim-miss"],
+    Array.from({ length: 10 }, (_, i) => (i % 2 ? "rim-miss" : "swish")),
   );
-  await page.screenshot({ path: out + "/run-game-over.png" });
+  await page.screenshot({ path: out + "/round-results.png" });
   const retryAt = await page.evaluate(() => performance.now());
-  await page.getByRole("button", { name: "Retry", exact: true }).tap();
+  await page.getByRole("button", { name: "PLAY AGAIN", exact: true }).tap();
   const retried = await waitReady(page);
   const retryReadyMs = (await page.evaluate(() => performance.now())) - retryAt;
   assert.equal(retried.sessionId, finished.sessionId + 1);
   assert.equal(retried.attempts, 0);
   assert.equal(retried.makes, 0);
-  assert.equal(retried.missesLeft, 3);
-  assert.equal(retried.best, 2);
+  assert.equal(retried.spotIndex, 0);
+  assert.equal(retried.ballInSpot, 0);
+  assert.deepEqual(retried.outcomes, Array(10).fill(null));
+  assert.equal(retried.best, 5);
   assert.equal(retried.bodyCount, 1);
   assert.equal(retried.render.artUploads, initial.render.artUploads);
   await page.screenshot({ path: out + "/run-retry-ready.png" });
@@ -198,26 +220,26 @@ try {
   await rm(audioFile);
   await rm(out + "/complete-run-silent.webm");
   assert.deepEqual(errors, []);
-  const baseline = JSON.parse(
-    await readFile(
-      "docs/verification/acceptance-2026-10-19/after/traces/clean-swish.json",
-      "utf8",
-    ),
-  ).shot;
-  const shot = run.shots[0];
-  assert.deepEqual(shot.launch, baseline.launch);
-  assert.equal(shot.result, baseline.result);
-  const matched = baseline.samples.flatMap((a) =>
-    shot.samples
-      .filter((b) => Math.abs(a.time - b.time) < 1e-6)
-      .map((b) => [a, b]),
-  );
-  const maximumPositionDeviationMetres = Math.max(
-    ...matched.map(([a, b]) =>
-      Math.hypot(...["x", "y", "z"].map((k) => a.position[k] - b.position[k])),
-    ),
-  );
-  assert.ok(matched.length > 0 && maximumPositionDeviationMetres < 1e-6);
+  execFileSync(ffmpeg, [
+    "-loglevel",
+    "error",
+    "-y",
+    "-ss",
+    String((resultsAt - origin) / 1000),
+    "-i",
+    out + "/complete-run.webm",
+    "-t",
+    String((retryAt - resultsAt) / 1000 + retryReadyMs / 1000 + 0.6),
+    "-c:v",
+    "vp8",
+    "-deadline",
+    "realtime",
+    "-b:v",
+    "1M",
+    "-c:a",
+    "copy",
+    out + "/results-retry.webm",
+  ]);
   await writeFile(
     out + "/run-trace.json",
     JSON.stringify(
@@ -234,13 +256,8 @@ try {
         states,
         recording,
         audioOffsetSeconds,
-        comparison: {
-          baselineHead: "969922972edd0a5d2a608b6a2502695d9272c2e8",
-          matchedSamples: matched.length,
-          maximumPositionDeviationMetres,
-          launchUnchanged: true,
-          outcomeUnchanged: true,
-        },
+        views,
+        resultsAtSeconds: (resultsAt - origin) / 1000,
         errors,
       },
       null,
@@ -264,7 +281,7 @@ try {
     ),
   );
   console.log(
-    `5-shot run: 2 makes, 3 misses; Game Over; native Retry ready in ${retryReadyMs.toFixed(0)} ms; physical retry swish; audio captured; ${matched.length} baseline samples, deviation ${maximumPositionDeviationMetres}`,
+    `10-shot run: 5 physical swishes, 5 rim misses; five views; results; native retry ready in ${retryReadyMs.toFixed(0)} ms; physical retry swish; actual audio captured`,
   );
 } finally {
   await browser.close();
