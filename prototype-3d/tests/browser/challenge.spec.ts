@@ -36,6 +36,8 @@ async function aimedTouch(page: Page, up: number, dx = 0) {
   expect(flight.camera.position).toEqual(s.camera.position);
   expect(aiming.shotVisuals!.previewCount).toBeGreaterThan(5);
   const result = await shotResult(page, s.attempts + 1);
+  for (const k of ["x", "z"] as const)
+    expect(result.viewBasis.right[k]).toBeCloseTo(s.camera.right[k], 8);
   for (const k of ["x", "y", "z"] as const)
     expect(result.launch.velocity[k]).toBeCloseTo(
       aiming.shotVisuals!.previewVelocity![k],
