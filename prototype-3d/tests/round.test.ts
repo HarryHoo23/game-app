@@ -147,7 +147,10 @@ it("completed-round best persists safely, practice stays unlimited, retry clears
     expect(s.recordResult(s.sessionId, i, i % 2 ? "swish" : "short")).toBe(
       true,
     );
-    if (i < 10) store.getState().settle(s.sessionId);
+    if (i < 10) {
+      expect(values.get(BEST_KEY)).toBeUndefined();
+      store.getState().settle(s.sessionId);
+    }
   }
   const old = store.getState();
   expect(old).toMatchObject({
