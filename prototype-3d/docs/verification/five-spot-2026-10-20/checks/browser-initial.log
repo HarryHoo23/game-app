@@ -1,0 +1,118 @@
+[2m[WebServer] [22m(node:25069) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:25145) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 33 tests using 1 worker
+
+(node:25157) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25157) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges (8.5s)
+  ✓   2 tests/browser/acceptance.spec.ts:48:1 › native held aim cancels on viewport rotation and restart; both orientations remain playable (8.8s)
+  ✓   3 tests/browser/acceptance.spec.ts:108:1 › real WebGL context loss restores rendering and bounded uploads across restart (7.1s)
+  ✘   4 tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 320x568 (6.7s)
+(node:26473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 400x712 (45.9s)
+  ✘   6 tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 430x820 (7.7s)
+(node:27552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 tests/browser/challenge.spec.ts:178:1 › moving camera rejects held input, pause freezes transition, and restart returns safely to corner (23.1s)
+  ✓   8 tests/browser/challenge.spec.ts:252:1 › two real rounds keep render and physical resources bounded (59.9s)
+  ✓   9 tests/browser/challenge.spec.ts:282:1 › production default challenge completes a native ten-shot round without developer hooks (31.5s)
+  ✓  10 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 320x568 (5.7s)
+  ✓  11 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 400x712 (5.6s)
+  ✓  12 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 430x820 (5.9s)
+  ✓  13 tests/browser/integration.spec.ts:49:1 › mute persists across reload and never consumes/intercepts a shot (11.3s)
+  ✓  14 tests/browser/integration.spec.ts:95:1 › production loads optimized art successfully and does not fetch source PNGs (4.7s)
+  ✓  15 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (3.7s)
+  ✓  16 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (3.6s)
+  ✓  17 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.8m)
+  ✓  18 tests/browser/lifecycle.spec.ts:84:1 › resize cancels aiming and preserves released physics (6.0s)
+  ✓  19 tests/browser/lifecycle.spec.ts:112:1 › native touch cancellation and extra touches do not add shots (5.8s)
+  ✓  20 tests/browser/lifecycle.spec.ts:150:1 › pause and simulated background visibility suspend physical time until explicit resume (7.2s)
+  ✓  21 tests/browser/lifecycle.spec.ts:195:1 › clipboard denial provides a JSON download (4.1s)
+  ✓  22 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (6.1s)
+  ✓  23 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (3.0s)
+  ✓  24 tests/browser/rewards.spec.ts:3:1 › audio stays locked before interaction; real swish animates the net and rewards HUD (9.1s)
+  ✓  25 tests/browser/rewards.spec.ts:52:1 › rim and glass audio correspond to physical contacts; makes react once and pause stops voices (10.7s)
+  ✓  26 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (7.1s)
+  ✓  27 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (9.2s)
+  ✓  28 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (6.3s)
+  ✓  29 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (5.7s)
+  ✓  30 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (19.1s)
+  ✓  31 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (12.9s)
+  ✓  32 tests/browser/shotVisuals.spec.ts:3:1 › prepared arc follows the swipe, becomes a real trail, and clears on restart (7.0s)
+  ✓  33 tests/browser/shotVisuals.spec.ts:58:1 › cancelled aim and paused preview return to the baseline without consuming shots (3.7s)
+
+
+  1) tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 320x568
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"re[7msolving[27m"[39m
+    Received: [31m"re[7mady[27m"[39m
+
+      106 |       expect(after.outcomes[i]).toBe(result.result);
+      107 |       expect(after.makes).toBe(outcomes.filter((shot) => shot.made).length);
+    > 108 |       expect(after.phase).toBe(i === 9 ? "completed" : "resolving");
+          |                           ^
+      109 |       if (i === 2) expect(after.makes).toBe(0);
+      110 |     }
+      111 |     const finished = await snap(page);
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/challenge.spec.ts:108:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/challenge-native-ten-ball--fa622--outcomes-and-retry-320x568/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/challenge-native-ten-ball--fa622--outcomes-and-retry-320x568/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/challenge-native-ten-ball--fa622--outcomes-and-retry-320x568/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/challenge-native-ten-ball--fa622--outcomes-and-retry-320x568/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 430x820
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"re[7msolving[27m"[39m
+    Received: [31m"re[7mady[27m"[39m
+
+      106 |       expect(after.makes).toBe(outcomes.filter((shot) => shot.made).length);
+      107 |       expect(after.attempts).toBe(i + 1);
+    > 108 |       // Polling can observe the next ready/transition state after the short feedback.
+          |                           ^
+      109 |       // Exact resolving gates are checked by the pure controller tests.
+      110 |       if (i === 9) expect(after.phase).toBe("completed");
+      111 |       else expect(after.phase).not.toBe("completed");
+        at /Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser/challenge.spec.ts:108:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/challenge-native-ten-ball--27950--outcomes-and-retry-430x820/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/challenge-native-ten-ball--27950--outcomes-and-retry-430x820/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/challenge-native-ten-ball--27950--outcomes-and-retry-430x820/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/challenge-native-ten-ball--27950--outcomes-and-retry-430x820/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 320x568
+    tests/browser/challenge.spec.ts:53:3 › native ten-ball round, five cameras, outcomes and retry 430x820
+  31 passed (8.9m)

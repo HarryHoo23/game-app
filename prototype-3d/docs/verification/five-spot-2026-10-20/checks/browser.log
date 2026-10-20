@@ -1,0 +1,48 @@
+[2m[WebServer] [22m(node:43445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:43608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 33 tests using 1 worker
+
+(node:43632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/acceptance.spec.ts:3:1 › small portrait HUD responds to native taps near its inside edges (11.6s)
+  ✓   2 tests/browser/acceptance.spec.ts:48:1 › native held aim cancels on viewport rotation and restart; both orientations remain playable (9.8s)
+  ✓   3 tests/browser/acceptance.spec.ts:108:1 › real WebGL context loss restores rendering and bounded uploads across restart (8.9s)
+  ✓   4 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 320x568 (53.9s)
+  ✓   5 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 400x712 (51.6s)
+  ✓   6 tests/browser/challenge.spec.ts:54:3 › native ten-ball round, five cameras, outcomes and retry 430x820 (1.3m)
+  ✓   7 tests/browser/challenge.spec.ts:181:1 › moving camera rejects held input, pause freezes transition, and restart returns safely to corner (22.4s)
+  ✓   8 tests/browser/challenge.spec.ts:255:1 › two real rounds keep render and physical resources bounded (1.0m)
+  ✓   9 tests/browser/challenge.spec.ts:285:1 › production default challenge completes a native ten-shot round without developer hooks (31.3s)
+  ✓  10 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 320x568 (6.0s)
+  ✓  11 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 400x712 (6.2s)
+  ✓  12 tests/browser/integration.spec.ts:13:3 › integrated art, unobstructed controls and net timing 430x820 (5.7s)
+  ✓  13 tests/browser/integration.spec.ts:49:1 › mute persists across reload and never consumes/intercepts a shot (9.8s)
+  ✓  14 tests/browser/integration.spec.ts:95:1 › production loads optimized art successfully and does not fetch source PNGs (34.5s)
+  ✓  15 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across restart (3.3s)
+  ✓  16 tests/browser/lifecycle.spec.ts:4:3 › held drag is cancelled across pause (3.4s)
+  ✓  17 tests/browser/lifecycle.spec.ts:33:1 › 30 consecutive shots and rapid retries keep bodies and listeners bounded (1.2m)
+  ✓  18 tests/browser/lifecycle.spec.ts:84:1 › resize cancels aiming and preserves released physics (5.1s)
+  ✓  19 tests/browser/lifecycle.spec.ts:112:1 › native touch cancellation and extra touches do not add shots (5.0s)
+  ✓  20 tests/browser/lifecycle.spec.ts:150:1 › pause and simulated background visibility suspend physical time until explicit resume (6.5s)
+  ✓  21 tests/browser/lifecycle.spec.ts:195:1 › clipboard denial provides a JSON download (3.1s)
+  ✓  22 tests/browser/production.spec.ts:2:1 › production swipes score physically without DEV controls (4.8s)
+  ✓  23 tests/browser/production.spec.ts:22:1 › failed WebGL initialization gives a retry action (2.1s)
+  ✓  24 tests/browser/rewards.spec.ts:3:1 › audio stays locked before interaction; real swish animates the net and rewards HUD (10.3s)
+  ✓  25 tests/browser/rewards.spec.ts:52:1 › rim and glass audio correspond to physical contacts; makes react once and pause stops voices (10.1s)
+  ✓  26 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 320x568 (6.0s)
+  ✓  27 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 400x712 (7.0s)
+  ✓  28 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 430x820 (6.3s)
+  ✓  29 tests/browser/shooting.spec.ts:16:3 › portrait composition and physical make 1280x800 (6.8s)
+  ✓  30 tests/browser/shooting.spec.ts:46:1 › actual pointer inputs yield readable physical misses and board contact (21.3s)
+  ✓  31 tests/browser/shooting.spec.ts:62:1 › mouse move event count does not change the launched velocity (13.5s)
+  ✓  32 tests/browser/shotVisuals.spec.ts:3:1 › prepared arc follows the swipe, becomes a real trail, and clears on restart (6.4s)
+  ✓  33 tests/browser/shotVisuals.spec.ts:58:1 › cancelled aim and paused preview return to the baseline without consuming shots (3.5s)
+
+  Slow test file: tests/browser/challenge.spec.ts (5.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  33 passed (10.4m)

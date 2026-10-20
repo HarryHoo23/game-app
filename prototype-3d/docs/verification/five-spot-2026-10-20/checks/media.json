@@ -1,0 +1,33 @@
+{
+  "media": [
+    {
+      "src": "http://localhost:5174/docs/verification/five-spot-2026-10-20/final/complete-run.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 48.12,
+      "error": null
+    },
+    {
+      "src": "http://localhost:5174/docs/verification/five-spot-2026-10-20/final/results-retry.webm",
+      "width": 400,
+      "height": 712,
+      "duration": 8.201,
+      "error": null
+    }
+  ],
+  "playing": [
+    {
+      "time": 2.090483,
+      "frames": 57,
+      "error": null
+    },
+    {
+      "time": 0.280879,
+      "frames": 5,
+      "error": null
+    }
+  ],
+  "recordedDuration": 48.12,
+  "observedDuration": 48.090965032577515,
+  "errors": []
+}

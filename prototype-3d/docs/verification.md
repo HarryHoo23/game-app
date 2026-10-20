@@ -1,6 +1,18 @@
 # 3D practice prototype — verification log
 
-Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Current modes are Endless Hoops and Unlimited Practice; the user has reported improved shooting feel and successful human baskets.
+Branch: `feat/3d-basketball-prototype`. The existing Phaser implementation remains available. Current modes are Five Spot Challenge and Unlimited Practice; the user has reported improved shooting feel and successful human baskets.
+
+## Five Spot Challenge — 2026-10-20
+
+Actual baseline HEAD: `665b2fd6510abddb57b9f8aad8b1683d0feacbe7`. [Implementation, geometry, state diagram, files and limits](five-spot-challenge.md), [five camera angles and recordings](verification/five-spot-2026-10-20/review.html).
+
+This replaces Endless with two real shots at each of five radial origins. The fixed hoop, original dimensions, power/deadzone response, Rapier flight, audio, net and image assets are retained. Camera changes follow resolved second shots and feedback; a pure ten-outcome controller isolates round state from physics. Best persists only after completed rounds, and Practice remains unlimited and frontal.
+
+The first complete browser run passed 31/33 cases. Two new portrait cases incorrectly required observing the brief `resolving` phase after polling a result; under concurrent recording load the valid next-ball `ready` state was already reached. Tests now assert the outcome/count/completion invariants, with exact phase gates retained in domain tests. Gameplay timing was not extended. The initial [log](verification/five-spot-2026-10-20/checks/browser-initial.log) and [results](verification/five-spot-2026-10-20/checks/browser-results-initial.json) remain available. Final checks: **62/62 unit/actual-Rapier**, **33/33 browser** (zero skipped or flaky), **106/106 original Phaser**, ESLint, TypeScript/build and packed-art reproducibility pass. [Final browser log](verification/five-spot-2026-10-20/checks/browser.log), [JSON](verification/five-spot-2026-10-20/checks/browser-results.json), [other logs](verification/five-spot-2026-10-20/checks/). Both genuine recordings decode at 400×712; the 48.12-second full round has matching original observed duration and sound, and the results/retry excerpt is 8.20 seconds. Current regression frames were saved under the new milestone; historical screenshots were restored.
+
+Five-angle Rapier tests use fixed real rim/board collision fixtures and compare rotated spin against the legacy fixed-X axis. The negative sign remains unchanged; measured rebound differences are documented rather than hidden. [Spin comparison](verification/five-spot-2026-10-20/spin-comparison.json). [21 protected code/asset hashes](verification/five-spot-2026-10-20/checks/protected-files.json) verify the preserved foundation.
+
+The recorded round contains five genuine swishes, five physical rim misses, all spot changes, final results and a native PLAY AGAIN followed by a real fresh-round shot. Source hashes, gestures, origins, launch vectors, outcomes and camera observations accompany the footage. This remains desktop native-touch emulation; human five-angle comfort and physical phone performance are still pending. Historical Endless rules below are superseded.
 
 ## Endless Hoops MVP — 2026-10-20
 
@@ -68,14 +80,14 @@ A separate review of this visualization change found no actionable issues.
 
 ## Original first-slice checks (before presentation updates)
 
-| Check | Result |
-| --- | --- |
-| Prototype unit + actual Rapier integration | 25 tests passed across 11 files |
-| Prototype TypeScript + production build | Passed |
-| Prototype ESLint | Passed |
-| Chrome acceptance suite | 15 passed, including native touch inputs and held-gesture restart/pause regressions |
-| Original Phaser tests | 106 passed across 12 files |
-| Original Phaser build and lint | Passed |
+| Check                                      | Result                                                                              |
+| ------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Prototype unit + actual Rapier integration | 25 tests passed across 11 files                                                     |
+| Prototype TypeScript + production build    | Passed                                                                              |
+| Prototype ESLint                           | Passed                                                                              |
+| Chrome acceptance suite                    | 15 passed, including native touch inputs and held-gesture restart/pause regressions |
+| Original Phaser tests                      | 106 passed across 12 files                                                          |
+| Original Phaser build and lint             | Passed                                                                              |
 
 Browser checks exercised 320×568, 400×712, 430×820 and 1280×800. All show the foreground ball, hoop and baseline apex within the camera. Real mouse and CDP native touch input produced downward, once-only physical baskets; no score events or ball transforms were injected. Tests also cover short/side/rim misses, backboard contact, input event-count invariance, resize during aim/flight, touch cancellation, extra touches, pause, simulated background visibility, rapid restart, clipboard fallback, initialization failure and absence of DEV controls in the production build.
 
@@ -89,14 +101,14 @@ Runtime used for browser checks: bundled Node.js 24.19.0 and installed Google Ch
 
 All videos are portrait 400×712, generated from native touch swipes. Trajectories, launch velocities, contact positions, pre/post-contact velocities and outcomes are in the matching traces. Sources are labeled automation; these recordings are not human playtesting.
 
-| Case | Video | Trace |
-| --- | --- | --- |
-| Typical make | [Watch](verification/2026-10-19/recordings/01-typical-make.webm) | [JSON](verification/2026-10-19/traces/01-typical-make.json) |
-| Clean swish, no contacts | [Watch](verification/2026-10-19/recordings/02-clean-swish.webm) | [JSON](verification/2026-10-19/traces/02-clean-swish.json) |
-| Front-rim miss | [Watch](verification/2026-10-19/recordings/03-front-rim-miss.webm) | [JSON](verification/2026-10-19/traces/03-front-rim-miss.json) |
-| Back-rim miss | [Watch](verification/2026-10-19/recordings/04-back-rim-miss.webm) | [JSON](verification/2026-10-19/traces/04-back-rim-miss.json) |
-| Backboard contact and make | [Watch](verification/2026-10-19/recordings/05-backboard-contact.webm) | [JSON](verification/2026-10-19/traces/05-backboard-contact.json) |
-| Five consecutive attempts | [Watch](verification/2026-10-19/recordings/06-consecutive-attempts.webm) | [JSON](verification/2026-10-19/traces/06-consecutive-attempts.json) |
+| Case                       | Video                                                                    | Trace                                                               |
+| -------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Typical make               | [Watch](verification/2026-10-19/recordings/01-typical-make.webm)         | [JSON](verification/2026-10-19/traces/01-typical-make.json)         |
+| Clean swish, no contacts   | [Watch](verification/2026-10-19/recordings/02-clean-swish.webm)          | [JSON](verification/2026-10-19/traces/02-clean-swish.json)          |
+| Front-rim miss             | [Watch](verification/2026-10-19/recordings/03-front-rim-miss.webm)       | [JSON](verification/2026-10-19/traces/03-front-rim-miss.json)       |
+| Back-rim miss              | [Watch](verification/2026-10-19/recordings/04-back-rim-miss.webm)        | [JSON](verification/2026-10-19/traces/04-back-rim-miss.json)        |
+| Backboard contact and make | [Watch](verification/2026-10-19/recordings/05-backboard-contact.webm)    | [JSON](verification/2026-10-19/traces/05-backboard-contact.json)    |
+| Five consecutive attempts  | [Watch](verification/2026-10-19/recordings/06-consecutive-attempts.webm) | [JSON](verification/2026-10-19/traces/06-consecutive-attempts.json) |
 
 See recording-summary.json and browser-results.json in that directory for machine-readable evidence. Clips were captured before the final held-gesture cancellation fix; launch mapping, physical geometry and scoring were unchanged by that fix. Source manifests distinguish the recorded and reviewed runtime. This host's native Chrome screencast cropped tall viewports; the capture script instead records real full-viewport screenshots, paced by wall time and encoded at 25 fps. Capture cadence is variable and duplicate frames preserve elapsed time; this is not a device FPS measurement. No gameplay state is changed by recording.
 

@@ -1,0 +1,110 @@
+{
+  "baseline": "665b2fd6510abddb57b9f8aad8b1683d0feacbe7",
+  "files": [
+    {
+      "path": "prototype-3d/src/config.ts",
+      "sha256": "2ad2e35b5a53debfbc53c6cb2abff5f33e349d4bc7fe94fbf4d718560b0e48f4",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/domain/scoring.ts",
+      "sha256": "e5ad8ea988d955b547b2d611bd9dc7ea9e8fd097a4f4006116c5b6d39db74b85",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/domain/shotFeedback.ts",
+      "sha256": "02e5f81af77d61e6c8ecc36f844708e3472a50b8f7026c8f33aa216c3077c204",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/domain/physicalContact.ts",
+      "sha256": "5a7c0bbf73f0a4589909439685c96577ecdc7ed737b766f638feed4b8c8df97c",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/audio/shotAudio.ts",
+      "sha256": "2b6bbe2747a9fc7b59d561f2dea3b4cc2f8f70bebcd03ede4e2894a763a85fd5",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/audio/synthesis.ts",
+      "sha256": "1efa8e9977b5b59c452f16f671c0c7140444e455b4e1ee972b67f7e622950e2b",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/scene/Hoop.tsx",
+      "sha256": "5397d155836a912f97fdf646c9a8733c16768ca0b97b834cc010219d021fc045",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/scene/Net.tsx",
+      "sha256": "430885cc0fe701a85d32af44bed812451ff0fc7962df2c5375dbfbc481b8a58f",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/scene/art.ts",
+      "sha256": "11d15f834f909cea4d9038afcb56dd5847c03fdc074cf2828faeffa87ec44348",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/scene/artGeometry.ts",
+      "sha256": "7966759e4958ca443f2334d354c850a1c098d8afe7dec789047a3a45859b659e",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/input/pointerGesture.ts",
+      "sha256": "1a157d52dbd49a5c4212def2e670123d2c438201527ec8f9c9445f8299cc4aaa",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/hoop/backboard.png",
+      "sha256": "77c5ab38e478c8a226706fe40f0f3e7981b3b2cdaac33bb80b5c6e581f4e1760",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/hoop/basketball.png",
+      "sha256": "06d2b12e736646058320729047f5324401ce86fa15505924a214436b32ff3a17",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/hoop/net.png",
+      "sha256": "9ffa5501fa63984528e81a7afb7d24c749700e39954dfdd0f305a7d887f8f475",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/hoop/rim_back.png",
+      "sha256": "1312f0898af11a36f7d42e39625e4300f047027382504b4be8e2fe08a8fa2e31",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/hoop/rim_front.png",
+      "sha256": "267c62d2be7d349acc91d91c3219338c15724d7116f72bfc9ab48b5df33c81b4",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/production/board.webp",
+      "sha256": "c9a687a72d6ad114043f650c7e969162f063ca3709c5d30519f13c6f3ff9e749",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/production/leather.webp",
+      "sha256": "21041f136542c515b2ac958814545d90b42bdd6f3d7a0bd9109321f7ba78cb99",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/production/manifest.json",
+      "sha256": "841cd2d8092032d14d2901b3a7b3652efee0647dad1a9f6b6b6254b5628714ec",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/production/net.webp",
+      "sha256": "30e6b750008add4a58c90cbde78e646fb7d6fd0818727600a2cafdd7b878fd11",
+      "unchanged": true
+    },
+    {
+      "path": "prototype-3d/src/assets/production/rim.webp",
+      "sha256": "10f5b27d09ff151bc63e789f422a83934b58b679b0d83157f29f8702a0fdd238",
+      "unchanged": true
+    }
+  ]
+}

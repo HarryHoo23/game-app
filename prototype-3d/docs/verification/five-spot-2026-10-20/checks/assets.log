@@ -1,0 +1,6 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-20T01_16_41_179Z-debug-0.log'
+
+> after-hours-3d-practice@0.1.0 assets:check
+> python3 scripts/prepare-art.py --check
+
+{"sourceBytes": 7184030, "productionBytes": 515010}

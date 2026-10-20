@@ -1,0 +1,14 @@
+npm WARN logfile could not be created: Error: EPERM: operation not permitted, open '/Users/harry.hu/.npm/_logs/2026-10-20T01_16_41_180Z-debug-0.log'
+
+> afterhours-basketball@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /Users/harry.hu/Desktop/game-app/game-app
+
+··········································································································
+
+ Test Files  12 passed (12)
+      Tests  106 passed (106)
+   Start at  12:16:42
+   Duration  4.81s (transform 2.65s, setup 0ms, collect 8.64s, tests 1.43s, environment 3ms, prepare 4.63s)

@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  /><title>AFTER HOURS · Five Spot Acceptance</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #071820;
+      color: #e5e7d7;
+      font:
+        15px/1.6 system-ui,
+        sans-serif;
+    }
+    main {
+      max-width: 1320px;
+      margin: auto;
+      padding: 38px 24px;
+    }
+    h1 {
+      font-size: clamp(24px, 4vw, 42px);
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+    h2 {
+      font-size: 21px;
+      margin-top: 44px;
+    }
+    p {
+      color: #a6c0b9;
+      max-width: 850px;
+    }
+    a {
+      color: #edcc98;
+    }
+    small {
+      color: #91b1aa;
+    }
+    figure {
+      margin: 0;
+    }
+    figcaption {
+      font-size: 12px;
+      padding: 9px 0;
+      color: #b8c8bb;
+    }
+    img,
+    video {
+      display: block;
+      width: 100%;
+      border: 1px solid #2d4b50;
+      border-radius: 8px;
+      background: #071820;
+    }
+    .views {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 400px));
+      gap: 28px;
+    }
+    .videos video {
+      aspect-ratio: 400/712;
+    }
+    .portraits {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 250px));
+      gap: 20px;
+    }
+    button {
+      font: inherit;
+      color: #d3e3d6;
+      background: #14323a;
+      border: 1px solid #46656a;
+      border-radius: 6px;
+      padding: 8px 15px;
+      margin: 0 8px 18px 0;
+      cursor: pointer;
+    }
+    button[aria-pressed="true"] {
+      color: #102a32;
+      background: #efcd97;
+      border-color: #efcd97;
+    }
+    .facts {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .facts strong {
+      color: #edcc98;
+    }
+    .facts span {
+      color: #a6c0b9;
+    }
+    details {
+      margin: 30px 0;
+    }
+    details > div {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 300px));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    @media (max-width: 800px) {
+      .views {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .videos {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      .portraits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+  <main>
+    <small>AFTER HOURS · 20 OCTOBER 2026</small>
+    <h1>Five positions. Ten real shots.</h1>
+    <p>
+      Native Chrome touch input drives every shot and retry shown here. The
+      fixed basket, ball motion, misses, camera changes and audio are actual
+      gameplay. Read-only diagnostics record the physical launch vectors and
+      outcomes.
+    </p>
+    <div class="facts">
+      <span><strong>5</strong> physical positions</span
+      ><span><strong>2</strong> balls per spot</span
+      ><span><strong>10</strong> outcomes per round</span
+      ><span>No timer or miss limit</span>
+    </div>
+    <p>
+      <a href="http://localhost:5174/">Play Challenge</a> ·
+      <a href="http://localhost:5174/?mode=practice">Unlimited Practice</a> ·
+      <a href="../../five-spot-challenge.md">Implementation report</a> ·
+      <a href="final/run-trace.json">Session, vectors and camera states</a> ·
+      <a href="checks/browser.log">Browser checks</a>
+    </p>
+    <h2>Five genuine camera angles</h2>
+    <p>
+      Choose a tested portrait size. Each frame is a prepared first ball after
+      reaching that position through real shots.
+    </p>
+    <div id="sizes">
+      <button data-size="400" aria-pressed="true">400 × 712</button
+      ><button data-size="320" aria-pressed="false">320 × 568</button
+      ><button data-size="430" aria-pressed="false">430 × 820</button>
+    </div>
+    <div class="views">
+      <figure>
+        <img
+          data-spot="0"
+          src="final/spot-0.png"
+          alt="Left corner, baseline-side view"
+        />
+        <figcaption>01 · LEFT CORNER · 0°</figcaption>
+      </figure>
+      <figure>
+        <img
+          data-spot="1"
+          src="final/spot-1.png"
+          alt="Diagonal left wing view"
+        />
+        <figcaption>02 · LEFT WING · 45°</figcaption>
+      </figure>
+      <figure>
+        <img
+          data-spot="2"
+          src="final/spot-2.png"
+          alt="Frontal top-of-key view"
+        />
+        <figcaption>03 · TOP OF THE KEY · 90°</figcaption>
+      </figure>
+      <figure>
+        <img
+          data-spot="3"
+          src="final/spot-3.png"
+          alt="Diagonal right wing view"
+        />
+        <figcaption>04 · RIGHT WING · 135°</figcaption>
+      </figure>
+      <figure>
+        <img
+          data-spot="4"
+          src="final/spot-4.png"
+          alt="Opposite baseline corner view"
+        />
+        <figcaption>05 · RIGHT CORNER · 180°</figcaption>
+      </figure>
+    </div>
+    <h2>Complete ten-shot round, with actual game sound</h2>
+    <p>
+      The full recording alternates five clean swishes and five physical rim
+      misses. It includes all camera changes, final results, a native PLAY AGAIN
+      tap, and a real first shot in the fresh round. The shorter recording
+      isolates results and retry.
+    </p>
+    <div class="videos">
+      <figure>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="final/run-ready.png"
+          src="final/complete-run.webm"
+        ></video>
+        <figcaption>Full uninterrupted round + retry · VP8 / Opus</figcaption>
+      </figure>
+      <figure>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="final/round-results.png"
+          src="final/results-retry.webm"
+        ></video>
+        <figcaption>Results → PLAY AGAIN → first corner</figcaption>
+      </figure>
+    </div>
+    <h2>Transition, completed round and retry</h2>
+    <div class="portraits">
+      <figure>
+        <img
+          src="final/camera-transition.png"
+          alt="Camera between the first corner and left wing"
+        />
+        <figcaption>Physical orbit · input blocked until settled</figcaption>
+      </figure>
+      <figure>
+        <img
+          id="result"
+          src="final/round-results.png"
+          alt="Completed ten-shot result with outcome pairs"
+        />
+        <figcaption>Ten resolved outcomes · saved best</figcaption>
+      </figure>
+      <figure>
+        <img
+          id="retry"
+          src="final/run-retry-ready.png"
+          alt="Fresh round returns to the first corner"
+        />
+        <figcaption>New round ID · cleared outcomes · best retained</figcaption>
+      </figure>
+    </div>
+    <details>
+      <summary>Focused support-pole correction</summary>
+      <p>
+        The initial left diagonal view put the old non-colliding support through
+        the net. Moving it behind the board's outer right edge keeps the same
+        physical hoop and opens the shooting corridor.
+      </p>
+      <div>
+        <figure>
+          <img
+            src="initial/spot-1.png"
+            alt="Before: support behind the centre of the net"
+          />
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="final/spot-1.png"
+            alt="After: support away from net centre"
+          />
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+    </details>
+    <p>
+      <a href="spin-comparison.json">Measured spin-axis rebound differences</a>
+      ·
+      <a href="checks/protected-files.json"
+        >Preserved physics, art, audio and net hashes</a
+      >
+      · <a href="final/recording-manifest.json">Recorded source hashes</a>
+    </p>
+    <p>
+      Verified in desktop Chrome with native touch events and viewport
+      emulation. Physical phone performance, human make rate and five-angle
+      comfort still require human testing. The legacy negative spin sign is
+      retained. No new copyrighted assets or additional gameplay mechanics.
+    </p>
+  </main>
+  <script>
+    document.querySelectorAll("[data-size]").forEach((button) =>
+      button.addEventListener("click", () => {
+        const size = button.dataset.size;
+        document
+          .querySelectorAll("[data-size]")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+        document
+          .querySelectorAll("[data-spot]")
+          .forEach(
+            (img) => (img.src = `browser/${size}-spot-${img.dataset.spot}.png`),
+          );
+        document.querySelector("#result").src = `browser/${size}-results.png`;
+        document.querySelector("#retry").src = `browser/${size}-retry.png`;
+      }),
+    );
+  </script>
+</html>
