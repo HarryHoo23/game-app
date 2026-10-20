@@ -29,6 +29,8 @@ export const config = {
     minUp: 0.055,
     normalUp: 0.3,
     ...launchTuningPresets[activeTuning],
+    // Speed multiplier: gentle near neutral, expressive outside the soft band.
+    power: { softSlope: 0.12, outerGain: 10, minScale: 0.6, maxScale: 1.25 },
     outerDepth: 3.6,
     maxDepth: 1.2,
     aimDeadzone: 0.018,

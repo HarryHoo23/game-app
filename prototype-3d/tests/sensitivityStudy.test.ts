@@ -18,13 +18,14 @@ it("a real physical swish scores exactly once in the sensitivity harness", () =>
   expect(
     row.crossings.find((x) => x.stage === "lower-confirmed")!.velocity.y,
   ).toBeLessThan(0);
-  expect(row.mappedOffsets.right).toBeCloseTo(0);
-  expect(row.mappedOffsets.depth).toBeCloseTo(0);
+  expect(row.mappedOffsets!.right).toBeCloseTo(0);
+  expect(row.mappedOffsets!.depth).toBeCloseTo(0);
 });
 if (process.env.CALIBRATION_STUDY)
   it("reproducible paired five-spot sensitivity study using live scoring and real contacts", () => {
     const preset = process.env.CALIBRATION_STUDY!;
     const c = structuredClone(config);
+    c.launch.model = "target";
     c.launch.softBand = preset.startsWith("moderate") ? 0.08 : 0.1;
     c.launch.softDepth = preset.startsWith("moderate") ? 0.075 : 0.06;
     c.hoop.innerRadius = preset.endsWith("small-rim") ? 0.229 : 0.232;

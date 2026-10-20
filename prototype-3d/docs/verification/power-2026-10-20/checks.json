@@ -1,0 +1,35 @@
+{
+  "prototype": {
+    "unitTests": 74,
+    "unitFiles": 26,
+    "lint": "passed",
+    "build": "passed",
+    "browserTests": 39,
+    "browserFailures": 0,
+    "assetCheck": "passed"
+  },
+  "originalPhaser": {
+    "unitTests": 106,
+    "lint": "passed",
+    "build": "passed",
+    "sourceChanged": false
+  },
+  "physicsStudy": {
+    "worlds": 900,
+    "models": [
+      "moderate",
+      "power"
+    ],
+    "humanSuccessEstimate": false
+  },
+  "recordings": {
+    "practice": "native touch SHORT / SWISH / LONG",
+    "challenge": "native touch ten-shot round, 5/10, retry and first neutral make",
+    "audio": "silent capture"
+  },
+  "knownLimitations": [
+    "Real-phone subjective acceptance remains pending.",
+    "Very strong shots can briefly leave the top of the unchanged portrait camera.",
+    "Existing large-bundle and Rapier initialization deprecation warnings remain."
+  ]
+}

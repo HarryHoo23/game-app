@@ -82,16 +82,16 @@ for (const spot of shootingSpots) {
   });
   it(`real rim and board rebounds at ${spot.name}`, () => {
     // Fixed real-contact regressions, discovered during initial geometry checks.
-    const boardDx: Record<string, number> = {
-      "left-corner": -0.3,
-      "left-wing": -0.4,
-      top: -0.4,
-      "right-wing": -0.1,
-      "right-corner": 0.2,
+    const boardGesture: Record<string, [number, number]> = {
+      "left-corner": [0.4, 0.1],
+      "left-wing": [0.46, 0],
+      top: [0.46, 0],
+      "right-wing": [0.46, 0],
+      "right-corner": [0.4, -0.1],
     };
     for (const [kind, up, dx] of [
-      ["rim", 0.15, 0],
-      ["board", 0.55, boardDx[spot.id]],
+      ["rim", 0.18, 0],
+      ["board", ...boardGesture[spot.id]],
     ] as const) {
       const h = createTestWorld(c, spot.origin),
         launch = mapGesture(gesture(up, dx), c, spot)!;

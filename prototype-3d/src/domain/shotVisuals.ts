@@ -19,7 +19,9 @@ export function writePreviewPoints(
 ): { count: number; hit: boolean } {
   const p = c.shotVisuals.preview;
   const count = Math.min(p.points, Math.floor(out.length / 3));
-  const targetY = c.hoop.center.y - p.endBelowRim;
+  const apex = origin.y + Math.max(0, velocity.y) ** 2 / (2 * c.gravity);
+  const targetY =
+    apex < c.hoop.center.y ? c.ball.radius : c.hoop.center.y - p.endBelowRim;
   const end = Math.min(
     maxDuration,
     (velocity.y +

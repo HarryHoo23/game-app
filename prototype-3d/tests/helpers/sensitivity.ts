@@ -25,26 +25,36 @@ export function sensitivityShot(
     durationMs: 240,
   };
   const launch = mapGesture(gesture, c, spot)!;
-  const time =
-    (launch.velocity.y +
-      Math.sqrt(
-        launch.velocity.y ** 2 -
-          2 * c.gravity * (c.hoop.center.y - spot.origin.y),
-      )) /
-    c.gravity;
-  const target = {
-    x: spot.origin.x + launch.velocity.x * time,
-    y: c.hoop.center.y,
-    z: spot.origin.z + launch.velocity.z * time,
-  };
+  const reachable =
+    launch.velocity.y ** 2 >= 2 * c.gravity * (c.hoop.center.y - spot.origin.y);
+  const time = reachable
+    ? (launch.velocity.y +
+        Math.sqrt(
+          launch.velocity.y ** 2 -
+            2 * c.gravity * (c.hoop.center.y - spot.origin.y),
+        )) /
+      c.gravity
+    : 0;
+  const target = reachable
+    ? {
+        x: spot.origin.x + launch.velocity.x * time,
+        y: c.hoop.center.y,
+        z: spot.origin.z + launch.velocity.z * time,
+      }
+    : null;
   const offset = {
-    x: target.x - c.hoop.center.x,
-    z: target.z - c.hoop.center.z,
+    x: (target?.x ?? c.hoop.center.x) - c.hoop.center.x,
+    z: (target?.z ?? c.hoop.center.z) - c.hoop.center.z,
   };
-  const mappedOffsets = {
-    right: offset.x * spot.basis.right.x + offset.z * spot.basis.right.z,
-    depth: -(offset.x * spot.basis.forward.x + offset.z * spot.basis.forward.z),
-  };
+  const mappedOffsets = reachable
+    ? {
+        right: offset.x * spot.basis.right.x + offset.z * spot.basis.right.z,
+        depth: -(
+          offset.x * spot.basis.forward.x +
+          offset.z * spot.basis.forward.z
+        ),
+      }
+    : null;
   const h = createTestWorld(c, spot.origin);
   h.ball.setLinvel(launch.velocity, true);
   h.ball.setAngvel(launch.angularVelocity, true);
@@ -141,6 +151,11 @@ export function sensitivityShot(
       downwardScoreEvents: makes,
       contacts,
       crossings,
+      observedPeak: Math.max(
+        ...trace
+          .filter((s) => s.time <= (contacts[0]?.time ?? Infinity))
+          .map((s) => s.position.y),
+      ),
     };
   } finally {
     h.dispose();

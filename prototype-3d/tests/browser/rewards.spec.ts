@@ -58,12 +58,12 @@ test("rim and glass audio correspond to physical contacts; makes react once and 
 }) => {
   await page.setViewportSize({ width: 320, height: 568 });
   await page.goto("/?automation&mode=practice");
-  for (const up of [0.15, 0.55]) {
+  for (const up of [0.18, 0.46]) {
     const input = await swipe(page, { up, touch: true });
     const shot = await shotResult(page, input.attempt);
     expect(
       shot.contacts.some(
-        (k: { kind: string }) => k.kind === (up === 0.15 ? "rim" : "board"),
+        (k: { kind: string }) => k.kind === (up === 0.18 ? "rim" : "board"),
       ),
     ).toBe(true);
     const s = await page.evaluate(() => window.afterHours3D!.snapshot());

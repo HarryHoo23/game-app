@@ -6,8 +6,14 @@ import { isMake, type ShotResult } from "../domain/shot";
 export type ShotLog = {
   spot?: { id: string; index: number; ballInSpot: number; angle: number };
   viewBasis?: import("../domain/spots").ViewBasis;
-  tuning: { preset: string; softBand: number; softDepth: number };
-  mappedTarget: { position: Vec3; screenRight: number; depth: number };
+  tuning: {
+    preset: string;
+    model: string;
+    softBand: number;
+    softDepth: number;
+  };
+  freeFlight: { apex: number; speed: number };
+  mappedTarget: { position: Vec3; screenRight: number; depth: number } | null;
   sessionId: number;
   shotId: number;
   gesture: Gesture;
@@ -39,9 +45,9 @@ export class SessionLog {
     const { origin, launch } = record,
       v = launch.velocity,
       h = config.hoop.center;
+    const discriminant = v.y * v.y - 2 * config.gravity * (h.y - origin.y);
     const time =
-      (v.y + Math.sqrt(v.y * v.y - 2 * config.gravity * (h.y - origin.y))) /
-      config.gravity;
+      discriminant >= 0 ? (v.y + Math.sqrt(discriminant)) / config.gravity : 0;
     const position = {
       x: origin.x + v.x * time,
       y: h.y,
@@ -57,14 +63,22 @@ export class SessionLog {
       ...record,
       tuning: {
         preset: activeTuning,
+        model: config.launch.model,
         softBand: config.launch.softBand,
         softDepth: config.launch.softDepth,
       },
-      mappedTarget: {
-        position,
-        screenRight: dx * basis.right.x + dz * basis.right.z,
-        depth: -(dx * basis.forward.x + dz * basis.forward.z),
+      freeFlight: {
+        apex: origin.y + Math.max(0, v.y) ** 2 / (2 * config.gravity),
+        speed: Math.hypot(v.x, v.y, v.z),
       },
+      mappedTarget:
+        discriminant < 0
+          ? null
+          : {
+              position,
+              screenRight: dx * basis.right.x + dz * basis.right.z,
+              depth: -(dx * basis.forward.x + dz * basis.forward.z),
+            },
       samples: [],
       contacts: [],
       result: null,
@@ -100,7 +114,7 @@ export class SessionLog {
   exportSession() {
     return JSON.stringify(
       {
-        version: 2,
+        version: 3,
         tuning: activeTuning,
         guidance:
           "challenge: no idle path, first 0.55 seconds while aiming; practice: full",

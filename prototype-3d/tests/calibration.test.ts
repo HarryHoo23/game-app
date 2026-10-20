@@ -3,11 +3,16 @@ import { config } from "../src/config";
 import { shootingSpots } from "../src/domain/spots";
 import { initPhysics } from "./helpers/rapierWorld";
 import { sensitivityShot } from "./helpers/sensitivity";
+import { launchTuningPresets } from "../src/tuning";
 beforeAll(initPhysics);
 it("moderate response keeps ordinary swipes physical makes and lets weak/strong swipes fail", () => {
+  const previous = {
+    ...config,
+    launch: { ...config.launch, ...launchTuningPresets.moderate },
+  };
   for (const spot of shootingSpots) {
-    expect(sensitivityShot(config, spot, 0.3, 0.01).result).toBe("swish");
-    expect(sensitivityShot(config, spot, 0.4, 0).made).toBe(false);
+    expect(sensitivityShot(previous, spot, 0.3, 0.01).result).toBe("swish");
+    expect(sensitivityShot(previous, spot, 0.4, 0).made).toBe(false);
   }
 });
 

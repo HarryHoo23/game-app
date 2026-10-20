@@ -183,7 +183,7 @@ test("production ignores development tuning URL parameters", async ({
   });
   await client.send("Input.dispatchTouchEvent", {
     type: "touchMove",
-    touchPoints: [{ x: 200, y: 330.2, id: 1 }],
+    touchPoints: [{ x: 200, y: 615 - 712 * 0.5, id: 1 }],
   });
   await page.waitForTimeout(180);
   await client.send("Input.dispatchTouchEvent", {

@@ -1,0 +1,1476 @@
+{
+  "config": {
+    "configFile": "/Users/harry.hu/Desktop/game-app/game-app/prototype-3d/playwright.config.ts",
+    "rootDir": "/Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/harry.hu/Desktop/game-app/game-app/prototype-3d/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/harry.hu/Desktop/game-app/game-app/prototype-3d/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "acceptance.spec.ts",
+      "file": "acceptance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "small portrait HUD responds to native taps near its inside edges",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:32:38.369Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf654160f377cf56a60-9c3b2771f694d208bac4",
+          "file": "acceptance.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "native held aim cancels on viewport rotation and restart; both orientations remain playable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5240,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:32:43.378Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf654160f377cf56a60-fd80d13dde352080cd05",
+          "file": "acceptance.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "real WebGL context loss restores rendering and bounded uploads across restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:32:48.628Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf654160f377cf56a60-a3c769cd75d961cd19df",
+          "file": "acceptance.spec.ts",
+          "line": 108,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "calibration.spec.ts",
+      "file": "calibration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "challenge hides ideal idle shot, shows only an early aim segment, and Practice retains full help",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3926,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:32:53.059Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c323294bba3442441f3-3e558c887c37137c7b09",
+          "file": "calibration.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "native A/B round original: all five angles, partial preview and attributable telemetry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25134,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:32:56.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c323294bba3442441f3-8a22924c712da212c8e5",
+          "file": "calibration.spec.ts",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "title": "native A/B round moderate: all five angles, partial preview and attributable telemetry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26884,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:33:22.140Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c323294bba3442441f3-97821366ceebd64ca631",
+          "file": "calibration.spec.ts",
+          "line": 55,
+          "column": 3
+        },
+        {
+          "title": "production ignores development tuning URL parameters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3851,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:33:49.041Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2c323294bba3442441f3-404881903681fbe8f351",
+          "file": "calibration.spec.ts",
+          "line": 140,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "challenge.spec.ts",
+      "file": "challenge.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native ten-ball round, five cameras, outcomes and retry 320x568",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:33:52.925Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-64b3577f54e9d3302054",
+          "file": "challenge.spec.ts",
+          "line": 54,
+          "column": 3
+        },
+        {
+          "title": "native ten-ball round, five cameras, outcomes and retry 400x712",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:34:28.761Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-ab1ab3a44870606a846c",
+          "file": "challenge.spec.ts",
+          "line": 54,
+          "column": 3
+        },
+        {
+          "title": "native ten-ball round, five cameras, outcomes and retry 430x820",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34466,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:35:03.226Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-3e946053f50104893d97",
+          "file": "challenge.spec.ts",
+          "line": 54,
+          "column": 3
+        },
+        {
+          "title": "moving camera rejects held input, pause freezes transition, and restart returns safely to corner",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15373,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:35:37.709Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-9f4d67048fe341f35324",
+          "file": "challenge.spec.ts",
+          "line": 181,
+          "column": 1
+        },
+        {
+          "title": "two real rounds keep render and physical resources bounded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 50977,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:35:53.095Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-94c74898f6638e826742",
+          "file": "challenge.spec.ts",
+          "line": 255,
+          "column": 1
+        },
+        {
+          "title": "production default challenge completes a native ten-shot round without developer hooks",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27918,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:36:44.087Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "57615ab809dc7b515620-84bc18429e0f8259e628",
+          "file": "challenge.spec.ts",
+          "line": 285,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "integration.spec.ts",
+      "file": "integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "integrated art, unobstructed controls and net timing 320x568",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3216,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:12.038Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4c8f7e420cc033ba00ea-04ed6a9f9815b3ba612d",
+          "file": "integration.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "integrated art, unobstructed controls and net timing 400x712",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3176,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:15.260Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4c8f7e420cc033ba00ea-78f91af67e8e0ff94ddd",
+          "file": "integration.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "integrated art, unobstructed controls and net timing 430x820",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3126,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:18.445Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4c8f7e420cc033ba00ea-1d9d340419f3e1ef3d52",
+          "file": "integration.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "mute persists across reload and never consumes/intercepts a shot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6237,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:21.584Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4c8f7e420cc033ba00ea-10f244867233f2e8fead",
+          "file": "integration.spec.ts",
+          "line": 49,
+          "column": 1
+        },
+        {
+          "title": "production loads optimized art successfully and does not fetch source PNGs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:27.831Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4c8f7e420cc033ba00ea-f298f25689ee0abf353c",
+          "file": "integration.spec.ts",
+          "line": 95,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "lifecycle.spec.ts",
+      "file": "lifecycle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "held drag is cancelled across restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1439,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:31.467Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-b5add10568e726bedec3",
+          "file": "lifecycle.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "held drag is cancelled across pause",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:32.913Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-1a2b65a2d598e817cc55",
+          "file": "lifecycle.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "30 consecutive shots and rapid retries keep bodies and listeners bounded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 59258,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:37:34.474Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-6910c2baacc635075f5e",
+          "file": "lifecycle.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "resize cancels aiming and preserves released physics",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3012,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:33.741Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-f0bc65bd3a1a89b0fcd7",
+          "file": "lifecycle.spec.ts",
+          "line": 84,
+          "column": 1
+        },
+        {
+          "title": "native touch cancellation and extra touches do not add shots",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3222,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:36.762Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-81a9172116d66c530449",
+          "file": "lifecycle.spec.ts",
+          "line": 112,
+          "column": 1
+        },
+        {
+          "title": "pause and simulated background visibility suspend physical time until explicit resume",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4392,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:39.993Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-a514098a49a70c19e337",
+          "file": "lifecycle.spec.ts",
+          "line": 150,
+          "column": 1
+        },
+        {
+          "title": "clipboard denial provides a JSON download",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1383,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:44.396Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1f1785dee40219527314-4bf6cda3075faabcfc69",
+          "file": "lifecycle.spec.ts",
+          "line": 195,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "power.spec.ts",
+      "file": "power.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native touch makes low, standard and high physical arcs on a portrait screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7468,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:45.802Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f9712d5531966a649693-a596c87e35924487ec90",
+          "file": "power.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "all five angles accept light/heavy arcs, then retry preserves forgiving ordinary touch shots",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 55492,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:38:53.276Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f9712d5531966a649693-28ce9cebed8900ee7c4f",
+          "file": "power.spec.ts",
+          "line": 69,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "production.spec.ts",
+      "file": "production.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "production swipes score physically without DEV controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4002,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:39:48.809Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed69554c53210704c98c-b4651e760e5a4a99c631",
+          "file": "production.spec.ts",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "failed WebGL initialization gives a retry action",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 983,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:39:52.821Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed69554c53210704c98c-6642d72a5d7aedf083df",
+          "file": "production.spec.ts",
+          "line": 22,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "rewards.spec.ts",
+      "file": "rewards.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "audio stays locked before interaction; real swish animates the net and rewards HUD",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5450,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:39:53.824Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed72e40d96a93c6ba296-be08d76a6e50bbdbbf1f",
+          "file": "rewards.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "rim and glass audio correspond to physical contacts; makes react once and pause stops voices",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7243,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:39:59.290Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ed72e40d96a93c6ba296-e374aaffcf6d8b2e48b0",
+          "file": "rewards.spec.ts",
+          "line": 52,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "shooting.spec.ts",
+      "file": "shooting.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "portrait composition and physical make 320x568",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3522,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:06.570Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-ed41e92079ac9c8ce38b",
+          "file": "shooting.spec.ts",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "portrait composition and physical make 400x712",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3313,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:10.100Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-7f510950b4f6b9fe31d5",
+          "file": "shooting.spec.ts",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "portrait composition and physical make 430x820",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:13.425Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-d4fe678664d94580a39e",
+          "file": "shooting.spec.ts",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "portrait composition and physical make 1280x800",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3173,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:16.834Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-a439dd90c9daa565918f",
+          "file": "shooting.spec.ts",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "actual pointer inputs yield readable physical misses and board contact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14371,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:20.023Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-be2b0a4d54005c0fcda3",
+          "file": "shooting.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "mouse move event count does not change the launched velocity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7232,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:34.406Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ffd42c965a7b0881d04a-b1a2c2e1b0674f7938a1",
+          "file": "shooting.spec.ts",
+          "line": 62,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "shotVisuals.spec.ts",
+      "file": "shotVisuals.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "prepared arc follows the swipe, becomes a real trail, and clears on restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3940,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:41.670Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2bf54abb65b0ab982871-da4fb8d36cae92225d8c",
+          "file": "shotVisuals.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "cancelled aim and paused preview return to the baseline without consuming shots",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2390,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-20T05:40:45.617Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2bf54abb65b0ab982871-c3a8fa5b0424ffc96629",
+          "file": "shotVisuals.spec.ts",
+          "line": 58,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-20T05:32:36.353Z",
+    "duration": 494705.381,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

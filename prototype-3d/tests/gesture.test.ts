@@ -60,7 +60,7 @@ it("rejects taps, downward, empty dimensions and invalid data", () => {
   ])
     expect(mapGesture(g, c)).toBeNull();
 });
-it("ordinary straight swipes remain physical makes inside the moderate band", () => {
+it("ordinary straight swipes remain physical makes inside the soft band", () => {
   for (const up of [0.22, 0.25, 0.3, 0.35, 0.38]) {
     const s = simulateShot(c.hoop.center, mapGesture(gesture(up), c)!.velocity);
     expect(s.makes, `up=${up}`).toBe(1);

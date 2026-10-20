@@ -3,6 +3,7 @@ import { initPhysics, createTestWorld } from "./helpers/rapierWorld";
 import { config as c } from "../src/config";
 import { mapGesture } from "../src/domain/launch";
 import { hasPhysicalContact } from "../src/domain/physicalContact";
+import { launchTuningPresets } from "../src/tuning";
 beforeAll(initPhysics);
 it("captures real rim impulses at positive speculative separation without inventing unforced contacts", () => {
   const h = createTestWorld(c),
@@ -14,7 +15,7 @@ it("captures real rim impulses at positive speculative separation without invent
         height: 712,
         durationMs: 200,
       },
-      c,
+      { ...c, launch: { ...c.launch, ...launchTuningPresets.moderate } },
     )!.velocity;
   h.ball.setLinvel(v, true);
   h.ball.setAngvel({ x: c.ball.backspin, y: 0, z: 0 }, true);

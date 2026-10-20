@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRapier } from "@react-three/rapier";
 import { InstancedMesh, Object3D } from "three";
 import { config as c, BALL_GROUPS } from "../config";
-import { solveBallistic } from "../domain/launch";
+import { launchFromIntent } from "../domain/launch";
 import {
   writePreviewPoints,
   writeTrailPoints,
@@ -40,12 +40,11 @@ export function ShotPaths({
       transform: new Object3D(),
       shape: new rapier.Ball(c.ball.radius),
       context: null as ShotContext | null,
-      baseline: solveBallistic(
-        c.ball.origin,
-        c.hoop.center,
-        c.launch.apex,
-        c.gravity,
-      ),
+      baseline: launchFromIntent(
+        { up: c.launch.normalUp, dx: 0, aim: 0, powerScale: 1 },
+        c,
+        practiceSpot,
+      ).velocity,
       previousVelocity: null as object | null,
       diagnostics: {
         previewCount: 0,
@@ -71,12 +70,11 @@ export function ShotPaths({
     const context = bridge.current.context ?? practiceSpot;
     if (data.context !== context) {
       data.context = context;
-      data.baseline = solveBallistic(
-        context.origin,
-        c.hoop.center,
-        c.launch.apex,
-        c.gravity,
-      );
+      data.baseline = launchFromIntent(
+        { up: c.launch.normalUp, dx: 0, aim: 0, powerScale: 1 },
+        c,
+        context,
+      ).velocity;
       data.previousVelocity = null;
     }
     const velocity =

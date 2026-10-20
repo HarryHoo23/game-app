@@ -47,6 +47,12 @@ export function resolveShot(
         ? "short"
         : "long";
   }
+  // A low physical flight has no rim-height crossing to classify above.
+  if (
+    trace.some((s) => s.velocity.y < 0) &&
+    trace.every((s) => s.position.y < c.hoop.center.y)
+  )
+    return "short";
   return "miss";
 }
 export function shouldRetire(

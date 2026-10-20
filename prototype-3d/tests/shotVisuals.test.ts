@@ -43,7 +43,7 @@ it("prediction stops at the physical board instead of drawing an invented reboun
   const v = mapGesture(
     {
       start: { x: 200, y: 620 },
-      end: { x: 200, y: 620 - 712 * 0.55 },
+      end: { x: 200, y: 620 - 712 * 0.46 },
       width: 400,
       height: 712,
       durationMs: 200,

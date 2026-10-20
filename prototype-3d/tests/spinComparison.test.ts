@@ -4,6 +4,7 @@ import { initPhysics, createTestWorld } from "./helpers/rapierWorld";
 import { config as c } from "../src/config";
 import { shootingSpots } from "../src/domain/spots";
 import { mapGesture } from "../src/domain/launch";
+import { launchTuningPresets } from "../src/tuning";
 beforeAll(initPhysics);
 it("rotated spin preserves the frontal sign and records physical rim/board rebound differences at all five spots", () => {
   const rows = [];
@@ -20,7 +21,7 @@ it("rotated spin preserves the frontal sign and records physical rim/board rebou
           height: 712,
           durationMs: 240,
         },
-        c,
+        { ...c, launch: { ...c.launch, ...launchTuningPresets.moderate } },
         spot,
       )!;
       const samples = [];
