@@ -6,7 +6,7 @@ import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { waitReady, swipe, shotResult } from "./lib/pointer-input.mjs";
-import { startFrameRecorder } from "./lib/frame-recorder.mjs";
+import { startViewportRecorder } from "./lib/viewport-recorder.mjs";
 
 const out = process.argv[2] ?? "docs/verification/five-spot-2026-10-20/final";
 await mkdir(out, { recursive: true });
@@ -77,11 +77,11 @@ try {
   await page.goto("http://localhost:5174/?automation&mode=challenge");
   const initial = await waitReady(page);
   await page.screenshot({ path: out + "/run-ready.png" });
-  const origin = await page.evaluate(() => performance.now());
-  const video = await startFrameRecorder(
+  const video = await startViewportRecorder(
     page,
     out + "/complete-run-silent.webm",
   );
+  const origin = video.browserOriginTime;
   const states = [];
   let observing = true,
     signature = "";
@@ -116,7 +116,7 @@ try {
     const ready = await waitReady(page);
     if (i % 2 === 0) {
       views.push(ready);
-      await page.screenshot({ path: `${out}/spot-${ready.spotIndex}.png` });
+      await video.screenshot(`${out}/spot-${ready.spotIndex}.png`);
     }
     const up = i % 2 === 0 ? 0.3 : 0.15;
     const input = await swipe(page, {
@@ -132,7 +132,7 @@ try {
         () => window.afterHours3D.snapshot().phase === "changingSpot",
       );
       await page.waitForTimeout(180);
-      await page.screenshot({ path: out + "/camera-transition.png" });
+      await video.screenshot(out + "/camera-transition.png");
       transitionCaptured = true;
     }
   }
@@ -153,7 +153,7 @@ try {
     run.shots.map((s) => s.result),
     Array.from({ length: 10 }, (_, i) => (i % 2 ? "rim-miss" : "swish")),
   );
-  await page.screenshot({ path: out + "/round-results.png" });
+  await video.screenshot(out + "/round-results.png");
   const retryAt = await page.evaluate(() => performance.now());
   await page.getByRole("button", { name: "PLAY AGAIN", exact: true }).tap();
   const retried = await waitReady(page);
@@ -167,7 +167,7 @@ try {
   assert.equal(retried.best, 5);
   assert.equal(retried.bodyCount, 1);
   assert.equal(retried.render.artUploads, initial.render.artUploads);
-  await page.screenshot({ path: out + "/run-retry-ready.png" });
+  await video.screenshot(out + "/run-retry-ready.png");
   const next = await swipe(page, {
     up: 0.3,
     touch: true,
@@ -177,11 +177,11 @@ try {
   const retryShot = await shotResult(page, next.attempt);
   assert.equal(retryShot.result, "swish");
   await page.waitForTimeout(450);
-  await page.screenshot({ path: out + "/run-retry-make.png" });
+  await video.screenshot(out + "/run-retry-make.png");
   const retrySession = await page.evaluate(() => window.afterHours3D.session());
   observing = false;
   await monitor;
-  const recording = await video.stop();
+  const encoding = video.stop();
   const audio = await page.evaluate(async () => {
     const s = window.__recordedAudio;
     if (!s.recorder) throw new Error("Missing actual game audio");
@@ -196,6 +196,7 @@ try {
     for (const b of new Uint8Array(buffer)) binary += String.fromCharCode(b);
     return { data: btoa(binary), start: s.start };
   });
+  const recording = await encoding;
   const audioFile = out + "/complete-run-audio.webm";
   await writeFile(audioFile, Buffer.from(audio.data, "base64"));
   const audioOffsetSeconds = Math.max(0, (audio.start - origin) / 1000);
@@ -209,6 +210,8 @@ try {
     String(audioOffsetSeconds),
     "-i",
     audioFile,
+    "-t",
+    String(recording.durationSeconds),
     "-map",
     "0:v:0",
     "-map",
